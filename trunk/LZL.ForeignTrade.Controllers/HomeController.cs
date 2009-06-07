@@ -11,7 +11,7 @@ namespace LZL.ForeignTrade.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
+            ViewData["Message"] = "欢迎进入LZL Foreign Trade！";
 
             return View();
         }

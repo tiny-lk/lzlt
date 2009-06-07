@@ -1,35 +1,35 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="loginTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Log On
+    登录
 </asp:Content>
 
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Log On</h2>
+    <h2>登录</h2>
     <p>
-        Please enter your username and password. <%= Html.ActionLink("Register", "Register") %> if you don't have an account.
+        请输入您的用户名与密码。 您还没有账户？<%= Html.ActionLink("现在就创建一个帐户", "Register")%> 
     </p>
-    <%= Html.ValidationSummary("Login was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("登录失败，请验证用户名或密码后重试。") %>
 
     <% using (Html.BeginForm()) { %>
         <div>
             <fieldset>
-                <legend>Account Information</legend>
+                <legend>账户信息</legend>
                 <p>
-                    <label for="username">Username:</label>
+                    <label for="username">用户名：</label>
                     <%= Html.TextBox("username") %>
                     <%= Html.ValidationMessage("username") %>
                 </p>
                 <p>
-                    <label for="password">Password:</label>
+                    <label for="password">密码：</label>
                     <%= Html.Password("password") %>
                     <%= Html.ValidationMessage("password") %>
                 </p>
                 <p>
-                    <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">Remember me?</label>
+                    <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">在此计算机上保存我的信息。</label>
                 </p>
                 <p>
-                    <input type="submit" value="Log On" />
+                    <input type="submit" value="登录" />
                 </p>
             </fieldset>
         </div>
