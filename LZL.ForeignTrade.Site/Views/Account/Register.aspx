@@ -1,45 +1,45 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
-    Register
+    注册
 </asp:Content>
 
 <asp:Content ID="registerContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Create a New Account</h2>
+    <h2>创建新帐户</h2>
     <p>
-        Use the form below to create a new account. 
+        请输入下面的必填信息来创建新账户。
     </p>
     <p>
-        Passwords are required to be a minimum of <%=Html.Encode(ViewData["PasswordLength"])%> characters in length.
+        新密码最少需要<%=Html.Encode(ViewData["PasswordLength"])%>位字符。
     </p>
-    <%= Html.ValidationSummary("Account creation was unsuccessful. Please correct the errors and try again.") %>
+    <%= Html.ValidationSummary("新账户创建失败，请更正错误后重试。")%>
 
     <% using (Html.BeginForm()) { %>
         <div>
             <fieldset>
-                <legend>Account Information</legend>
+                <legend>帐户信息</legend>
                 <p>
-                    <label for="username">Username:</label>
+                    <label for="username">用户名：</label>
                     <%= Html.TextBox("username") %>
                     <%= Html.ValidationMessage("username") %>
                 </p>
                 <p>
-                    <label for="email">Email:</label>
+                    <label for="email">电子邮件：</label>
                     <%= Html.TextBox("email") %>
                     <%= Html.ValidationMessage("email") %>
                 </p>
                 <p>
-                    <label for="password">Password:</label>
+                    <label for="password">密码：</label>
                     <%= Html.Password("password") %>
                     <%= Html.ValidationMessage("password") %>
                 </p>
                 <p>
-                    <label for="confirmPassword">Confirm password:</label>
+                    <label for="confirmPassword">再次输入密码：</label>
                     <%= Html.Password("confirmPassword") %>
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>
                 <p>
-                    <input type="submit" value="Register" />
+                    <input type="submit" value="注册" />
                 </p>
             </fieldset>
         </div>

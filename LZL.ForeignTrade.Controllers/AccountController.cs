@@ -145,13 +145,13 @@ namespace LZL.ForeignTrade.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
+                    ModelState.AddModelError("_FORM", "当前密码不正确或新的密码无效。");
                     return View();
                 }
             }
             catch
             {
-                ModelState.AddModelError("_FORM", "The current password is incorrect or the new password is invalid.");
+                ModelState.AddModelError("_FORM", "当前密码不正确或新的密码无效。");
                 return View();
             }
         }
@@ -166,7 +166,7 @@ namespace LZL.ForeignTrade.Controllers
         {
             if (filterContext.HttpContext.User.Identity is WindowsIdentity)
             {
-                throw new InvalidOperationException("Windows authentication is not supported.");
+                throw new InvalidOperationException("不支持Windows身份验证。");
             }
         }
 
@@ -176,19 +176,19 @@ namespace LZL.ForeignTrade.Controllers
         {
             if (String.IsNullOrEmpty(currentPassword))
             {
-                ModelState.AddModelError("currentPassword", "You must specify a current password.");
+                ModelState.AddModelError("currentPassword", "您必须指定当前密码。");
             }
             if (newPassword == null || newPassword.Length < MembershipService.MinPasswordLength)
             {
                 ModelState.AddModelError("newPassword",
                     String.Format(CultureInfo.CurrentCulture,
-                         "You must specify a new password of {0} or more characters.",
+                         "您指定的密码最少需要{0}个字符。",
                          MembershipService.MinPasswordLength));
             }
 
             if (!String.Equals(newPassword, confirmPassword, StringComparison.Ordinal))
             {
-                ModelState.AddModelError("_FORM", "The new password and confirmation password do not match.");
+                ModelState.AddModelError("_FORM", "新密码和确认密码不匹配。");
             }
 
             return ModelState.IsValid;
@@ -198,15 +198,15 @@ namespace LZL.ForeignTrade.Controllers
         {
             if (String.IsNullOrEmpty(userName))
             {
-                ModelState.AddModelError("username", "You must specify a username.");
+                ModelState.AddModelError("username", "您必须指定一个用户名。");
             }
             if (String.IsNullOrEmpty(password))
             {
-                ModelState.AddModelError("password", "You must specify a password.");
+                ModelState.AddModelError("password", "您必须指定一个电子邮件地址。");
             }
             if (!MembershipService.ValidateUser(userName, password))
             {
-                ModelState.AddModelError("_FORM", "The username or password provided is incorrect.");
+                ModelState.AddModelError("_FORM", "用户名或密码错误。");
             }
 
             return ModelState.IsValid;
@@ -216,22 +216,22 @@ namespace LZL.ForeignTrade.Controllers
         {
             if (String.IsNullOrEmpty(userName))
             {
-                ModelState.AddModelError("username", "You must specify a username.");
+                ModelState.AddModelError("username", "您必须指定一个用户名。");
             }
             if (String.IsNullOrEmpty(email))
             {
-                ModelState.AddModelError("email", "You must specify an email address.");
+                ModelState.AddModelError("email", "您必须指定一个电子邮件地址。");
             }
             if (password == null || password.Length < MembershipService.MinPasswordLength)
             {
                 ModelState.AddModelError("password",
                     String.Format(CultureInfo.CurrentCulture,
-                         "You must specify a password of {0} or more characters.",
+                         "您指定的密码最少需要{0}个字符。",
                          MembershipService.MinPasswordLength));
             }
             if (!String.Equals(password, confirmPassword, StringComparison.Ordinal))
             {
-                ModelState.AddModelError("_FORM", "The new password and confirmation password do not match.");
+                ModelState.AddModelError("_FORM", "新密码和确认密码不匹配。");
             }
             return ModelState.IsValid;
         }
@@ -243,37 +243,63 @@ namespace LZL.ForeignTrade.Controllers
             switch (createStatus)
             {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return "Username already exists. Please enter a different user name.";
+                    return "用户名已存在。请输入一个不同的用户名。";
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return "A username for that e-mail address already exists. Please enter a different e-mail address.";
+                    return "电子邮件地址已存在。请输入一个不同的电子邮件地址。 ";
 
                 case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
+                    return "密码的格式设置不正确。请输入正确格式的密码。";
 
                 case MembershipCreateStatus.InvalidEmail:
-                    return "The e-mail address provided is invalid. Please check the value and try again.";
+                    return "电子邮件地址的格式设置不正确。请检查输入的值并重试。";
 
                 case MembershipCreateStatus.InvalidAnswer:
-                    return "The password retrieval answer provided is invalid. Please check the value and try again.";
+                    return "密码提示问题答案的格式设置不正确。 请检查输入的值并重试。";
 
                 case MembershipCreateStatus.InvalidQuestion:
-                    return "The password retrieval question provided is invalid. Please check the value and try again.";
+                    return "密码提示问题的格式设置不正确。请检查输入的值并重试。";
 
                 case MembershipCreateStatus.InvalidUserName:
-                    return "The user name provided is invalid. Please check the value and try again.";
+                    return "在数据库中未找到用户名。请检查输入的值并重试。";
 
                 case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "身份验证提供程序返回错误。请确认您的条目，然后重试。如果问题仍然存在，请与系统管理员联系。";
 
                 case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "用户创建的请求已被取消。请确认您的条目，然后重试。如果问题仍然存在，请与系统管理员联系。";
 
                 default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "发生一个未知的错误。请确认您的条目，然后重试。如果问题仍然存在，请与系统管理员联系。";
             }
         }
         #endregion
+
+        /// <summary>
+        /// 显示当前用户信息
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult UserProfile()
+        {
+            ViewData.Model = Membership.GetUser();
+            return View();
+        }
+
+        /// <summary>
+        /// 修改用户信息
+        /// </summary>
+        /// <param name="email">电子邮件地址</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult UserProfile(string email)
+        {
+            MembershipUser user = Membership.GetUser();
+            user.Email = email;
+            Membership.UpdateUser(user);
+
+            ViewData.Model = user;
+            return View();
+        }
     }
 
     // The FormsAuthentication type is sealed and contains static members, so it is difficult to
