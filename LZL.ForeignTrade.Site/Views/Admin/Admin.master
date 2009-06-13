@@ -1,0 +1,24 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Base.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<asp:Content ID="AdminTitle" ContentPlaceHolderID="TitleContent" runat="server">
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+</asp:Content>
+<asp:Content ID="AdminContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="main">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+</asp:Content>
+<asp:Content ID="AdminSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
+    <div id="sidebar">
+        <h2>
+            Categories</h2>
+        <div>
+            <ul>
+                <li>
+                    <%= Html.ActionLink("用户管理", "ManageUser", "Admin")%></li>
+                <li>
+                    <%= Html.ActionLink("角色管理", "ManageRole", "Admin")%></li>
+            </ul>
+        </div>
+    </div>
+</asp:Content>

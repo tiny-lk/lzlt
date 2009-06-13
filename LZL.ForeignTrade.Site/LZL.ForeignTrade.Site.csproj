@@ -101,6 +101,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Admin\Admin.master" />
+    <Content Include="Views\Admin\Index.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Account.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\DeleteSymbol.png" />
+    <Content Include="Content\images\EditSymbol.png" />
+    <Content Include="Views\Admin\EditUser.aspx" />
+    <Content Include="Views\Admin\ManageUser.aspx" />
+    <Content Include="Views\Shared\Base.Master" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

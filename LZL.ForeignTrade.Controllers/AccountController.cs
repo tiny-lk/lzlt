@@ -293,13 +293,30 @@ namespace LZL.ForeignTrade.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult UserProfile(string email)
         {
+            if (String.IsNullOrEmpty(email))
+            {
+                ModelState.AddModelError("email", "您必须指定一个电子邮件地址。");
+            }
             MembershipUser user = Membership.GetUser();
             user.Email = email;
-            Membership.UpdateUser(user);
+            if (ModelState.IsValid)
+            {
+                Membership.UpdateUser(user);
+                return RedirectToAction("Index", "Home");
+            }
 
             ViewData.Model = user;
             return View();
         }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult DeleteUser(string id)
+        {
+            Membership.DeleteUser(id);
+            return RedirectToAction("ManageUser", "Admin");
+        }
+
+
     }
 
     // The FormsAuthentication type is sealed and contains static members, so it is difficult to
