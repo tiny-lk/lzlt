@@ -108,14 +108,16 @@
     <Content Include="Views\Account\Account.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ForeignTrade.mdf">
+    </Content>
+    <Content Include="App_Data\ForeignTrade_log.ldf">
+      <DependentUpon>ForeignTrade.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\images\DeleteSymbol.png" />
     <Content Include="Content\images\EditSymbol.png" />
     <Content Include="Views\Admin\EditUser.aspx" />
     <Content Include="Views\Admin\ManageUser.aspx" />
     <Content Include="Views\Shared\Base.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App_Data\ForeignTrade.zip" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
