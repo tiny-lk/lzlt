@@ -55,7 +55,7 @@ h1
 }
 h2
 {
-    padding: 0 0 10px 0;
+    padding: 0 0 5px 0;
 }
 h3
 {
@@ -130,7 +130,7 @@ page width. Or, you can specify an exact pixel width. */
 #footer
 {
     clear: both;
-    padding: 5px 10px;
+    padding: 15px 10px;
     background: #cc9;
     text-align: center;
 }
@@ -224,36 +224,58 @@ legend
 input[type="text"]
 {
     width: 200px;
-    border: 1px solid #CCC;
+    border: 1px solid #3f6ebc;
 }
-
+textarea 
+{
+    border: 1px solid #3f6ebc;
+}
 input[type="password"]
 {
     width: 200px;
-    border: 1px solid #CCC;
+    border: 1px solid #3f6ebc;
 }
-
 /* TABLE
 ----------------------------------------------------------*/
 
 table
 {
-    border: solid 1px #e8eef4;
+
+    border: solid 1px #8f884d;
     border-collapse: collapse;
 }
 
 table td
 {
     padding: 5px;
-    border: solid 1px #e8eef4;
+    border: solid 1px #8f884d;
 }
 
 table th
 {
     padding: 6px 5px;
     text-align: left;
-    background-color: #e8eef4;
-    border: solid 1px #e8eef4;
+    background-color: #8f884d;
+    border: solid 1px #8f884d;
+}
+
+.dynamictable
+{
+   border:solid 0px #8f884d;
+   width:100%;
+   margin-bottom:5px;
+   border-collapse: collapse; 
+}
+.dynamictable td
+{
+   border:solid 1px #8f884d;
+   border-collapse: collapse; 
+}
+.dynamictable th
+{
+    padding: 6px 5px;
+    text-align: left;
+     border:solid 1px #8f884d;
 }
 
 /* MISC  
