@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BECD7857-8A6B-4BA2-9810-784131A8D9B5}</ProjectGuid>
+    <ProjectGuid>{5DC32038-7CCD-4016-8DB4-BD198DFCB263}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LZL.ForeignTrade.Controllers</RootNamespace>
-    <AssemblyName>LZL.ForeignTrade.Controllers</AssemblyName>
+    <RootNamespace>LZL.ForeignTrade.DataEntity</RootNamespace>
+    <AssemblyName>LZL.ForeignTrade.DataEntity</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,21 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.Entity">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.Routing">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -57,18 +52,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountController.cs" />
-    <Compile Include="AdminController.cs" />
-    <Compile Include="CostomerController.cs" />
-    <Compile Include="HomeController.cs" />
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ForeignTrade.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ForeignTrade.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataBaseOperate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LZL.ForeignTrade.DataEntity\LZL.ForeignTrade.DataEntity.csproj">
-      <Project>{5DC32038-7CCD-4016-8DB4-BD198DFCB263}</Project>
-      <Name>LZL.ForeignTrade.DataEntity</Name>
-    </ProjectReference>
+    <EntityDeploy Include="ForeignTrade.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ForeignTrade.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

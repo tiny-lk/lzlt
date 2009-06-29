@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ForeignTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="ForeignTradeModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="ForeignTradeModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Linkman" EntityType="ForeignTradeModel.Store.Linkman" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Memorandum" EntityType="ForeignTradeModel.Store.Memorandum" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_LINKMAN_CUSTOMER" Association="ForeignTradeModel.Store.FK_LINKMAN_CUSTOMER">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Linkman" EntitySet="Linkman" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMORANDUM_CUSTOMER" Association="ForeignTradeModel.Store.FK_MEMORANDUM_CUSTOMER">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Memorandum" EntitySet="Memorandum" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NameCode" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="NameCn" Type="nvarchar" MaxLength="255" />
+          <Property Name="NameEn" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="AddressEn" Type="nvarchar" MaxLength="500" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="DakCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Internet" Type="nvarchar" MaxLength="100" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="500" />
+          <Property Name="BankCode" Type="nvarchar" MaxLength="500" />
+          <Property Name="Note" Type="text" />
+          <Property Name="TypeCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsShare" Type="bit" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Linkman">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Job" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="100" />
+          <Property Name="MobilePhone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Note" Type="text" />
+          <Property Name="FK_ID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Memorandum">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="255" />
+          <Property Name="Note" Type="text" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="FK_ID" Type="uniqueidentifier" />
+        </EntityType>
+        <Association Name="FK_LINKMAN_CUSTOMER">
+          <End Role="Customer" Type="ForeignTradeModel.Store.Customer" Multiplicity="0..1" />
+          <End Role="Linkman" Type="ForeignTradeModel.Store.Linkman" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Linkman">
+              <PropertyRef Name="FK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMORANDUM_CUSTOMER">
+          <End Role="Customer" Type="ForeignTradeModel.Store.Customer" Multiplicity="0..1" />
+          <End Role="Memorandum" Type="ForeignTradeModel.Store.Memorandum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Memorandum">
+              <PropertyRef Name="FK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ForeignTradeModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="Entities">
+          <EntitySet Name="Customer" EntityType="ForeignTradeModel.Customer" />
+          <EntitySet Name="Linkman" EntityType="ForeignTradeModel.Linkman" />
+          <EntitySet Name="Memorandum" EntityType="ForeignTradeModel.Memorandum" />
+          <AssociationSet Name="FK_LINKMAN_CUSTOMER" Association="ForeignTradeModel.FK_LINKMAN_CUSTOMER">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Linkman" EntitySet="Linkman" /></AssociationSet>
+          <AssociationSet Name="FK_MEMORANDUM_CUSTOMER" Association="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Memorandum" EntitySet="Memorandum" /></AssociationSet></EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" /></Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="NameCode" Type="String" Nullable="false" />
+          <Property Name="NameCn" Type="String" Nullable="true" />
+          <Property Name="NameEn" Type="String" Nullable="true" />
+          <Property Name="Address" Type="String" Nullable="true" />
+          <Property Name="AddressEn" Type="String" Nullable="true" />
+          <Property Name="Country" Type="String" Nullable="true" />
+          <Property Name="Province" Type="String" Nullable="true" />
+          <Property Name="City" Type="String" Nullable="true" />
+          <Property Name="DakCode" Type="String" Nullable="true" />
+          <Property Name="Phone" Type="String" Nullable="true" />
+          <Property Name="Fax" Type="String" Nullable="true" />
+          <Property Name="Internet" Type="String" Nullable="true" />
+          <Property Name="Bank" Type="String" Nullable="true" />
+          <Property Name="BankCode" Type="String" Nullable="true" />
+          <Property Name="Note" Type="String" Nullable="true" />
+          <Property Name="TypeCode" Type="String" Nullable="true" />
+          <Property Name="IsShare" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Linkman" Relationship="ForeignTradeModel.FK_LINKMAN_CUSTOMER" FromRole="Customer" ToRole="Linkman" />
+          <NavigationProperty Name="Memorandum" Relationship="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" FromRole="Customer" ToRole="Memorandum" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" /></EntityType>
+        <EntityType Name="Linkman">
+          <Key>
+            <PropertyRef Name="ID" /></Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Job" Type="String" Nullable="true" />
+          <Property Name="Phone" Type="String" Nullable="true" />
+          <Property Name="Fax" Type="String" Nullable="true" />
+          <Property Name="MobilePhone" Type="String" Nullable="true" />
+          <Property Name="Email" Type="String" Nullable="true" />
+          <Property Name="Note" Type="String" Nullable="true" />
+          <NavigationProperty Name="Customer" Relationship="ForeignTradeModel.FK_LINKMAN_CUSTOMER" FromRole="Linkman" ToRole="Customer" /></EntityType>
+        <EntityType Name="Memorandum">
+          <Key>
+            <PropertyRef Name="ID" /></Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Subject" Type="String" Nullable="true" />
+          <Property Name="Note" Type="String" Nullable="true" />
+          <Property Name="Date" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="Customer" Relationship="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" FromRole="Memorandum" ToRole="Customer" /></EntityType>
+        <Association Name="FK_LINKMAN_CUSTOMER">
+          <End Type="ForeignTradeModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="ForeignTradeModel.Linkman" Role="Linkman" Multiplicity="*" /></Association>
+        <Association Name="FK_MEMORANDUM_CUSTOMER">
+          <End Type="ForeignTradeModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="ForeignTradeModel.Memorandum" Role="Memorandum" Multiplicity="*" /></Association></Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="ForeignTradeModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Customer)">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="IsShare" ColumnName="IsShare" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Internet" ColumnName="Internet" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DakCode" ColumnName="DakCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="AddressEn" ColumnName="AddressEn" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameCn" ColumnName="NameCn" />
+                <ScalarProperty Name="NameCode" ColumnName="NameCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Linkman">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Linkman)">
+              <MappingFragment StoreEntitySet="Linkman">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Memorandum">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Memorandum)">
+              <MappingFragment StoreEntitySet="Memorandum">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_LINKMAN_CUSTOMER" TypeName="ForeignTradeModel.FK_LINKMAN_CUSTOMER" StoreEntitySet="Linkman">
+            <EndProperty Name="Linkman">
+              <ScalarProperty Name="ID" ColumnName="ID" /></EndProperty>
+            <EndProperty Name="Customer">
+              <ScalarProperty Name="ID" ColumnName="FK_ID" /></EndProperty>
+            <Condition ColumnName="FK_ID" IsNull="false" /></AssociationSetMapping>
+          <AssociationSetMapping Name="FK_MEMORANDUM_CUSTOMER" TypeName="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" StoreEntitySet="Memorandum">
+            <EndProperty Name="Memorandum">
+              <ScalarProperty Name="ID" ColumnName="ID" /></EndProperty>
+            <EndProperty Name="Customer">
+              <ScalarProperty Name="ID" ColumnName="FK_ID" /></EndProperty>
+            <Condition ColumnName="FK_ID" IsNull="false" /></AssociationSetMapping></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="COSTOMER" ZoomLevel="86">
+        <EntityTypeShape EntityType="ForeignTradeModel.Customer" Width="1.5" PointX="0.75" PointY="1.375" Height="4.8353279622395826" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Linkman" Width="1.5" PointX="5" PointY="3.875" Height="2.7341113281249996" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Memorandum" Width="1.5" PointX="4.75" PointY="1.125" Height="1.9700325520833335" />
+        <AssociationConnector Association="ForeignTradeModel.FK_LINKMAN_CUSTOMER" >
+          <ConnectorPoint PointX="2.25" PointY="5.0426639811197909" />
+          <ConnectorPoint PointX="5" PointY="5.0426639811197909" /></AssociationConnector>
+        <AssociationConnector Association="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" >
+          <ConnectorPoint PointX="2.25" PointY="2.2350162760416667" />
+          <ConnectorPoint PointX="4.75" PointY="2.2350162760416667" /></AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
