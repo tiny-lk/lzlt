@@ -26,5 +26,13 @@ namespace LZL.ForeignTrade.Controllers
         {
             return View();
         }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Add(FormCollection formvalues)
+        {
+            SharedController.childTable(formvalues, "");
+            return RedirectToAction("Index");
+        }
+
     }
 }

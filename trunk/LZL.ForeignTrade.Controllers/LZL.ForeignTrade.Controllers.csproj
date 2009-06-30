@@ -55,6 +55,10 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZhouBo.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\LZL.ForeignTrade.Site\DLL\ZhouBo.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountController.cs" />
@@ -63,6 +67,7 @@
     <Compile Include="HomeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\GlobalAssemblyInfo.cs" />
+    <Compile Include="SharedController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LZL.ForeignTrade.DataEntity\LZL.ForeignTrade.DataEntity.csproj">
