@@ -12,6 +12,10 @@
         添加客户信息</h2>
     <% using (Html.BeginForm())
        { %>
+    <!-- 标识子表区域名称(表格名称、实体对象名称) -->
+    <input type="hidden" name="region" value="Customer♂" />
+    <!-- 标识子表实体对象类 -->
+    <input type="hidden" name="Customer♂objectname" value="LZL.ForeignTrade.DataEntity.Customer,LZL.ForeignTrade.DataEntity" />
     <table width="100%">
         <thead align="center">
             <tr>
@@ -24,20 +28,20 @@
         </thead>
         <tbody>
             <tr>
-                <td rowspan="7" align="center" valign="middle">
+                <td rowspan="8" align="center" valign="middle">
                     客户基本信息
                 </td>
                 <td align="right">
                     客户代码（简称）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("khdmjc")%>
+                    <%= Html.TextBox("Customer♂NameCode")%>
                 </td>
                 <td align="right">
                     中文名称：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("zwmc")%>
+                    <%= Html.TextBox("Customer♂NameCn")%>
                 </td>
             </tr>
             <tr>
@@ -45,13 +49,27 @@
                     英文名称：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("ywmc")%>
+                    <%= Html.TextBox("Customer♂NameEn")%>
                 </td>
+                <td align="right">
+                    地 址：
+                </td>
+                <td align="left">
+                    <%= Html.TextBox("Customer♂Address")%>
+                </td>
+            </tr>
+            <tr>
                 <td align="right">
                     英文地址：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("ywdz")%>
+                    <%= Html.TextBox("Customer♂AddressEn")%>
+                </td>
+                <td align="right">
+                    是共享数据：
+                </td>
+                <td align="left">
+                    <%= Html.CheckBox("Customer♂IsShare",false)%>
                 </td>
             </tr>
             <tr>
@@ -59,13 +77,13 @@
                     国家：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("gj")%>
+                    <%= Html.TextBox("Customer♂Country")%>
                 </td>
                 <td align="right">
                     省份（州）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("sf")%>
+                    <%= Html.TextBox("Customer♂Province")%>
                 </td>
             </tr>
             <tr>
@@ -73,13 +91,13 @@
                     城市：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("cs")%>
+                    <%= Html.TextBox("Customer♂City")%>
                 </td>
                 <td align="right">
-                    编码：
+                    邮政编码：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("yzbm")%>
+                    <%= Html.TextBox("Customer♂DakCode")%>
                 </td>
             </tr>
             <tr>
@@ -87,13 +105,13 @@
                     电话号码：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("dhhm")%>
+                    <%= Html.TextBox("Customer♂Phone")%>
                 </td>
                 <td align="right">
                     传真号码：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("czhm")%>
+                    <%= Html.TextBox("Customer♂Fax")%>
                 </td>
             </tr>
             <tr>
@@ -101,13 +119,13 @@
                     网站：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("wzdz")%>
+                    <%= Html.TextBox("Customer♂Internet")%>
                 </td>
                 <td align="right">
                     客户类别：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("khlb")%>
+                    <%= Html.TextBox("Customer♂TypeCode")%>
                 </td>
             </tr>
             <tr>
@@ -115,7 +133,7 @@
                     备注：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextArea("bz", new { style = "width:99%; height:80px;" })%>
+                    <%= Html.TextArea("Customer♂Note", new { style = "width:99%; height:80px;" })%>
                 </td>
             </tr>
             <tr>
@@ -126,23 +144,23 @@
                     开户银行：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("kfhy")%>
+                    <%= Html.TextBox("Customer♂Bank")%>
                 </td>
                 <td align="right">
                     账&nbsp;&nbsp;&nbsp;&nbsp;户：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("yhzh")%>
+                    <%= Html.TextBox("Customer♂BankCode")%>
                 </td>
             </tr>
             <!-- 联系人区域 -->
-            <tr id="lxr★" style="display: none;">
+            <tr id="LinkMan♂" style="display: none;">
                 <td colspan="5">
                 </td>
             </tr>
             <!-- 联系人区域 -->
             <!-- 备忘录区域 -->
-            <tr id="bwl★" style="display: none;">
+            <tr id="Memorandum♂" style="display: none;">
                 <td colspan="5">
                 </td>
             </tr>
@@ -161,6 +179,6 @@
     <%} %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="addcontrol(this,'LinkManControl','lxr★')">添加联系人信息</a></li>
-    <li><a href="#" onclick="addcontrol(this,'MemorandumControl','bwl★')">备忘录</a></li>
+    <li><a href="#" onclick="addcontrol(this,'LinkManControl','LinkMan♂')">添加联系人信息</a></li>
+    <li><a href="#" onclick="addcontrol(this,'MemorandumControl','Memorandum♂')">备忘录</a></li>
 </asp:Content>
