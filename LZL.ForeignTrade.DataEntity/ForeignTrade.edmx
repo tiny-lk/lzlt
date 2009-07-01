@@ -40,7 +40,7 @@
           <Property Name="Note" Type="text" />
           <Property Name="TypeCode" Type="nvarchar" MaxLength="50" />
           <Property Name="IsShare" Type="bit" Nullable="false" />
-          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" />
         </EntityType>
         <EntityType Name="Linkman">
           <Key>
@@ -127,7 +127,7 @@
           <Property Name="IsShare" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Linkman" Relationship="ForeignTradeModel.FK_LINKMAN_CUSTOMER" FromRole="Customer" ToRole="Linkman" />
           <NavigationProperty Name="Memorandum" Relationship="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" FromRole="Customer" ToRole="Memorandum" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" /></EntityType>
+          <Property Name="CreateTime" Type="DateTime" Nullable="true" /></EntityType>
         <EntityType Name="Linkman">
           <Key>
             <PropertyRef Name="ID" /></Key>

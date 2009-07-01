@@ -25,12 +25,17 @@ function addregion(regionname) {
         regionname = $(regionname).parent();
     }
     var obj = $(regionname).parent("TABLE");
-    var value = Number(obj.parent().find("input[type='hidden']").val());
-    obj.parent().find("input[type='hidden']").val(value + 1);
+    $.each(obj.parent().find("input[type='hidden']"), function(i, o) {
+        if ($(o).attr("name").search("regioncount") != -1) {
+            var value = Number($(o).val());
+            $(o).val(value + 1);
+        }
+    });
     var copyhtml = $(obj).clone();
     $(obj).parent().append(copyhtml);
     dynamicinputcss(); //动态添加之后执行模板页中css样式。
 }
+
 //删除区域模版
 function deleteregion(regionname) {
     while ($(regionname).parent("TABLE").length == 0) {
@@ -39,10 +44,10 @@ function deleteregion(regionname) {
     var obj = $(regionname).parent("TABLE");
     $.each(obj.parent().find("input[type='hidden']"), function(i, o) {
         if ($(o).attr("name").search("regioncount") != -1) {
-            var value = $(o).val();
+            var value = Number($(o).val());
             $(o).val(value - 1);
             if (value == 1) {
-                $.data(document, $(o).attr("name").substr(0, $(o).attr("name").indexOf("★") + 1), 0);
+                $.data(document, $(o).attr("name").substr(0, $(o).attr("name").indexOf("♂") + 1), 0);
                 $($(obj).parent().parent()).css("display", "none");
                 $($(obj).parent()).children().remove();
             }

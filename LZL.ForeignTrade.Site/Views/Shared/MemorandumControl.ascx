@@ -2,10 +2,14 @@
 <center>
     <h3>
         备忘录动态区域</h3>
-    <input type="hidden" value="1" name="bwl★regioncount" id="bwl★regioncount" /><!-- 标识子表添加总数 -->
-    <input type="hidden" name="region" value="bwl★" /><!-- 标识子表区域名称 -->
-    <input type="hidden" name="bwl★objectname" value="LZL.ForeignTrade.DataEntity,LZL.ForeignTrade.DataEntity.Memorandum" /><!-- 标识子表名称 -->
-    
+    <!-- 标识子表添加总数 -->
+    <input type="hidden" value='<%= int.Parse(ViewData["number"].ToString())%>' name="Memorandum♂regioncount" id="Memorandum♂regioncount" />
+    <!-- 标识子表区域名称(表格名称、实体对象名称) -->
+    <input type="hidden" name="region" value="Memorandum♂" />
+    <!-- 标识子表实体对象类 -->
+    <input type="hidden" name="Memorandum♂objectname" value="LZL.ForeignTrade.DataEntity.Memorandum,LZL.ForeignTrade.DataEntity" />
+    <!-- 标识子表外键实体对象名称、外键字段名称 -->
+    <input type="hidden" name="LinkMan♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "Customer" :ViewData["FK"] %>' />
 </center>
 <%
     for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
@@ -20,13 +24,13 @@
             日期：
         </td>
         <td style="width: 20%;" align="right">
-            <input type="text" name="bwl★rq" />
+            <input type="text" name="Memorandum♂rq" />
         </td>
         <td style="width: 20%;" align="right">
             主题：
         </td>
         <td style="width: 20%;" align="right">
-            <input type="text" name="bwl★zt" />
+            <input type="text" name="Memorandum♂zt" />
         </td>
     </tr>
     <tr>
@@ -34,7 +38,7 @@
             备忘内容：
         </td>
         <td align="left" colspan="3">
-            <textarea name="bwl★nr" style="width: 99%; height: 80px;" cols="5"></textarea>
+            <textarea name="Memorandum♂nr" style="width: 99%; height: 80px;" cols="5"></textarea>
         </td>
     </tr>
     <tr>

@@ -13,7 +13,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_MEMORANDUM_CUSTOMER", "Customer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Customer), "Memorandum", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.Memorandum))]
 
 // 原始文件名:
-// 生成日期: 2009/6/28 17:39:27
+// 生成日期: 2009/6/30 20:56:08
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -131,14 +131,12 @@ namespace LZL.ForeignTrade.DataEntity
         /// <param name="id">ID 的初始值。</param>
         /// <param name="nameCode">NameCode 的初始值。</param>
         /// <param name="isShare">IsShare 的初始值。</param>
-        /// <param name="createTime">CreateTime 的初始值。</param>
-        public static Customer CreateCustomer(global::System.Guid id, string nameCode, bool isShare, global::System.DateTime createTime)
+        public static Customer CreateCustomer(global::System.Guid id, string nameCode, bool isShare)
         {
             Customer customer = new Customer();
             customer.ID = id;
             customer.NameCode = nameCode;
             customer.IsShare = isShare;
-            customer.CreateTime = createTime;
             return customer;
         }
         /// <summary>
@@ -558,9 +556,9 @@ namespace LZL.ForeignTrade.DataEntity
         /// <summary>
         /// 架构中不存在属性 CreateTime 的注释。
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.DateTime CreateTime
+        public global::System.Nullable<global::System.DateTime> CreateTime
         {
             get
             {
@@ -575,8 +573,8 @@ namespace LZL.ForeignTrade.DataEntity
                 this.OnCreateTimeChanged();
             }
         }
-        private global::System.DateTime _CreateTime;
-        partial void OnCreateTimeChanging(global::System.DateTime value);
+        private global::System.Nullable<global::System.DateTime> _CreateTime;
+        partial void OnCreateTimeChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnCreateTimeChanged();
         /// <summary>
         /// 架构中不存在 Linkman 的注释。
