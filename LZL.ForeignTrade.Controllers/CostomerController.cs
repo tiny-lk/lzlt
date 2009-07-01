@@ -16,11 +16,13 @@ namespace LZL.ForeignTrade.Controllers
         /// 客户管理首页
         /// </summary>
         /// <returns></returns>
-        public ActionResult Index(int? page)
+        /// <param name="page">页码</param>
+        /// <param name="w">查询条件</param>
+        public ActionResult Index(int? page, string w)
         {
             Entities _Entities = new Entities();
             int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            var customers = _Entities.Customer.OrderBy(v=>v.NameCode).Skip(pagesize * page ?? 0).Take(pagesize).ToList();
+            var customers = _Entities.Customer.OrderBy(v => v.NameCode).Skip(pagesize * page ?? 0).Take(pagesize).ToList();
             return View(customers);
         }
 

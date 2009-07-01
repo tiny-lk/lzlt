@@ -31,9 +31,8 @@ function addregion(regionname) {
             $(o).val(value + 1);
         }
     });
-    var copyhtml = $(obj).clone();
+    var copyhtml = $(obj).clone(true);
     $(obj).parent().append(copyhtml);
-    dynamicinputcss(); //动态添加之后执行模板页中css样式。
 }
 
 //删除区域模版

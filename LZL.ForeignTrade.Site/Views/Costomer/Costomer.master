@@ -15,7 +15,7 @@
         <div>
             <ul>
                 <li>商品信息</li>
-                <li>报 价 单 </li>
+                <li>报 价 单</li>
                 <li>
                     <%= Html.ActionLink("添加客户信息", "Add", "Costomer")%></li>
                 <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />

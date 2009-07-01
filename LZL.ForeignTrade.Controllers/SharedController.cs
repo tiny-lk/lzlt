@@ -7,6 +7,7 @@ using LZL.ForeignTrade.DataEntity;
 using ZhouBo.Core;
 using System.Data.Objects.DataClasses;
 using System.Data.Objects;
+using System.Data.Common;
 
 namespace LZL.ForeignTrade.Controllers
 {
@@ -23,6 +24,16 @@ namespace LZL.ForeignTrade.Controllers
         {
             ViewData["number"] = number ?? 1;
             return View(name);
+        }
+
+        public JsonResult GetAutocompleteValue(string t, string f)
+        {
+            Entities entities = new Entities();
+            string sql = "set(select value it." + f + " from " + entities.DefaultContainerName + "." + t + " as it where it." + f + " like '" + Request["q"] + "%'";
+            sql += " order by it." + f;
+            sql += " Skip 0 limit 20 )";
+            ObjectQuery<string> querylist = entities.CreateQuery<string>(sql);
+            return Json(querylist);
         }
 
         public static void mainTable(FormCollection formvalues, ObjectContext entities)
