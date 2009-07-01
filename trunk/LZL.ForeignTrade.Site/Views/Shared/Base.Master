@@ -3,28 +3,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/Site.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/jquery.autocomplete.css")%>" rel="stylesheet"
+        type="text/css" />
     <title>
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
-        <style type="text/css" media="screen">
+    <style type="text/css" media="screen">
         .ie_focus
         {
             border: 1px solid red;
             background: #fcc;
         }
     </style>
+
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.3.2.js")%>"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                dynamicinputcss();
-            })
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftAjax.js")%>"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            dynamicinputcss();
+        })
         function dynamicinputcss() {
             $("input[type='text'], input[type='password'], textarea").focus(function()
             { $(this).addClass("ie_focus") }).blur(function()
             { $(this).removeClass("ie_focus") });
         }
     </script>
+
 </head>
 <body>
     <%
