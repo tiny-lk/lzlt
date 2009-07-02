@@ -259,7 +259,14 @@ table th
     background-color: #8f884d;
     border: solid 1px #8f884d;
 }
-
+.mouseover
+{
+    background-color: #efe9b5;
+}
+.select
+{
+    background-color: #e0d686;
+}
 .dynamictable
 {
    border:solid 0px #8f884d;

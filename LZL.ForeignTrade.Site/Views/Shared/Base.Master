@@ -6,9 +6,6 @@
     <link href="<%= Url.Content("~/Content/Site.css")%>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Content("~/Content/jquery.autocomplete.css")%>" rel="stylesheet"
         type="text/css" />
-    <title>
-        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
-    </title>
     <style type="text/css" media="screen">
         .ie_focus
         {
@@ -16,16 +13,27 @@
             background: #fcc;
         }
     </style>
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.3.2.js")%>"></script>
 
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.js")%>"></script>
-
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftAjax.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.js")%>"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
             dynamicinputcss();
+            $("table > tbody > tr").bind("mouseover", function() {
+                $(this).addClass("mouseover");
+            }).bind("mouseout", function() {
+                $(this).removeClass("mouseover");
+            }).bind("click", function() {
+                $("table > tbody > tr").removeClass("select");
+                $(this).addClass("select");
+            });
         })
         function dynamicinputcss() {
             $("input[type='text'], input[type='password'], textarea").focus(function()

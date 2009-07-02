@@ -1,10 +1,11 @@
 .ac_results {
 	padding: 0px;
 	border: 1px solid black;
-	background-color: white;
+	background-color: #f3f3f3;
 	overflow: hidden;
 	z-index: 99999;
 	line-height:20px;
+	color:Black;
 }
 
 .ac_results ul {
@@ -39,11 +40,12 @@
 }
 
 .ac_odd {
-	background-color: #aabcce;
-	color:White ;
+	background-color: #e3eaef;
+	 color:Black;
 }
 
 .ac_over {
-	background-color: #2987e5;
+	background-color: #2873bd;
 	color: White;
+	font-weight:bolder;
 }
