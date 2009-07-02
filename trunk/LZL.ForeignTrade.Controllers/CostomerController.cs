@@ -84,9 +84,19 @@ namespace LZL.ForeignTrade.Controllers
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Delete)]
-        public ActionResult Index()
+        public ActionResult Delete(string id)
         {
+            Entities entities = new Entities();
+            string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < ids.Length; i++)
+            {
+                Guid guid = new Guid(ids[i]);
+                var customer = entities.Customer.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+                customer.Linkman.Load();
+                customer.Memorandum.Load();
+                entities.DeleteObject(customer);
+            }
+            entities.SaveChanges();
             return RedirectToAction("Index", new { page = 1 });
         }
     }
