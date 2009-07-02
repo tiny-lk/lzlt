@@ -61,6 +61,13 @@ namespace LZL.ForeignTrade.Controllers
             return View();
         }
 
+        public ActionResult Details(string id)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.Customer.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Add(FormCollection formvalues)
         {

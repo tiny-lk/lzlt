@@ -10,6 +10,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.PrintArea.js")%>"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             autocompletevalue($("#quyerCondition").val());
@@ -34,33 +36,31 @@
             });
         });
 
+        function print() {
+            $("table > tbody").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
+        }
+
         function autocompletevalue(f) {
             $("#queryvalue").autocomplete('<%=Url.Action("GetAutocompleteValue","Shared")%>',
-            {
-                max: 20,
-                highlight: false,
-                multiple: false,
-                scroll: true,
-                scrollHeight: 300,
-                dataType: 'json',
-                extraParams: { t: "Customer", f: f },
-                parse: function(data) {
-                    var rows = [];
-                    for (var i = 0; i < data.length; i++) {
-                        rows[rows.length] = {
-                            data: data[i],
-                            value: data[i],
-                            result: data[i]
-                        };
-                    }
-                    return rows;
-                },
-                formatItem: function(row, i, n) {
-                    return row;
-                }
-            });
-        }
-    </script>
+                { max: 20,
+                    highlight: false,
+                    multiple: false,
+                    scroll: true,
+                    scrollHeight: 300,
+                    dataType:
+                'json',
+                    extraParams: { t: "Customer", f: f },
+                    parse: function(data) {
+                        var rows = [];
+                        for (var i = 0; i < data.length; i++) {
+                            rows[rows.length] = { data: data[i],
+                                value: data[i], result: data[i]
+                            };
+                        } return rows;
+                    }, formatItem: function(row, i,
+                n) { return row; }
+                });
+        } </script>
 
     <% using (Html.BeginForm())
        { %>
@@ -87,6 +87,8 @@
                     <%= Html.ActionLink("Ë¢ ÐÂ","Index","Costomer") %>
                 </td>
             </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td>
                     Ñ¡Ôñ
@@ -116,8 +118,6 @@
                     ²Ù×÷
                 </td>
             </tr>
-        </thead>
-        <tbody>
             <%
                 int page = string.IsNullOrEmpty(Request["page"]) ? 1 : int.Parse(Request["page"]);
                 int beginenumber = page <= 1 ? 1 : ((page - 1) * int.Parse(ConfigurationManager.AppSettings["pagenumber"])) + 1;
@@ -151,8 +151,9 @@
                     <%= Html.Encode(Model[i].IsShare ? "ÊÇ" : "·ñ")%>
                 </td>
                 <td>
-                    <%= Html.ActionLink("ÏêÏ¸", "", new { id = Html.Encode(Model[i].ID) })%> |
-                    <%= Html.ActionLink("É¾³ý", "", new { id = Html.Encode(Model[i].ID) })%>
+                    <%= Html.ActionLink("ÏêÏ¸", "Details", new { id = Html.Encode(Model[i].ID) })%>
+                    |
+                    <%= Html.ActionLink("É¾³ý", "Delete", new { id = Html.Encode(Model[i].ID) })%>
                 </td>
             </tr>
             <%
@@ -163,6 +164,7 @@
         <tfoot>
             <tr>
                 <td colspan="9" align="right">
+                    <a href="#" onclick="print();">´ò Ó¡</a>|
                     <%
                         int count = int.Parse(ViewData["pagecount"].ToString());
                         int p = Request["page"] == null ? 1 : int.Parse(Request["page"]);
