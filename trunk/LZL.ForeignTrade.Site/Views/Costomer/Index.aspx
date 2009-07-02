@@ -36,6 +36,9 @@
             });
         });
 
+        function checked(obj) {
+            alert(obj);
+        }
         function print() {
             $("table > tbody").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
         }
@@ -79,12 +82,14 @@
                              new SelectListItem(){ Text ="Ó¢ÎÄµØÖ·", Value ="AddressEn"}
                         }, "Value", "Text", "NameCode"))%>
                 </td>
-                <td colspan="6">
+                <td colspan="4">
                     <%= Html.TextBox("queryvalue", "", new { style = "width:95%;" })%>
                 </td>
-                <td>
-                    <%= Html.ActionLink("²é Ñ¯", "#", "Costomer", null, new { id = "OK", disabled = "disabled" })%>
-                    <%= Html.ActionLink("Ë¢ ÐÂ","Index","Costomer") %>
+                <td colspan="3">
+                    <input type="button" id="OK" value="²é Ñ¯" disabled="disabled" />
+                    <input type="button" id="Edit" value="±à ¼­" disabled="disabled" />
+                    <input type="button" id="Delet" value="É¾ ³ý" disabled="disabled" />
+                    <input type="button" value="Ë¢ ÐÂ" onclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Index") %>'" />
                 </td>
             </tr>
         </thead>
@@ -125,9 +130,10 @@
                 {
                 
             %>
-            <tr>
+            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Details/"+Html.Encode(Model[i].ID)) %>'"
+                title="Ë«»÷²é¿´ÏêÏ¸ÐÅÏ¢">
                 <td>
-                    <%= Html.CheckBox("select", false)%>
+                    <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString()), onclick="checked(this);" })%>
                 </td>
                 <td>
                     <%= (beginenumber+i).ToString()%>
@@ -151,8 +157,6 @@
                     <%= Html.Encode(Model[i].IsShare ? "ÊÇ" : "·ñ")%>
                 </td>
                 <td>
-                    <%= Html.ActionLink("ÏêÏ¸", "Details", new { id = Html.Encode(Model[i].ID) })%>
-                    |
                     <%= Html.ActionLink("É¾³ý", "Delete", new { id = Html.Encode(Model[i].ID) })%>
                 </td>
             </tr>

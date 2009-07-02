@@ -79,5 +79,15 @@ namespace LZL.ForeignTrade.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit(string id)
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Delete)]
+        public ActionResult Index()
+        {
+            return RedirectToAction("Index", new { page = 1 });
+        }
     }
 }

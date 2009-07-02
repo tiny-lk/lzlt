@@ -34,13 +34,22 @@
                 $(this).removeClass("mouseover");
             }).bind("click", function() {
                 if ($(this).attr("class").search("select") != -1) {//表示存在
-                    $(this).find("input[type='checkbox']").attr("checked", "");
+                    if ($(this).find("input[type='checkbox']").length > 0) {
+                        //$(this).find("input[type='checkbox']").click();
+                        $(this).find("input[type='checkbox']").attr("checked", "");
+                    }
+
                     $(this).removeClass("select");
                 } else {
+                    if ($(this).find("input[type='checkbox']").length > 0) {
+                        $(this).find("input[type='checkbox']").bind("click", function() {
+                            //alert("this");
+                        });
+                        //$(this).find("input[type='checkbox']").trigger("click");
+                        $(this).find("input[type='checkbox']").attr("checked", "true");
+                    }
                     $(this).addClass("select");
-                    $(this).find("input[type='checkbox']").attr("checked", "true");
                 }
-
             });
         })
         function dynamicinputcss() {
