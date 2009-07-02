@@ -118,9 +118,6 @@
   <ItemGroup>
     <Content Include="App_Data\ForeignTrade.mdf">
     </Content>
-    <Content Include="App_Data\ForeignTrade_log.ldf">
-      <DependentUpon>ForeignTrade.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\images\DeleteSymbol.png" />
     <Content Include="Content\images\EditSymbol.png" />
     <Content Include="Views\Admin\EditUser.aspx" />
@@ -128,6 +125,9 @@
     <Content Include="Views\Shared\Base.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ForeignTrade_log.ldf">
+      <DependentUpon>ForeignTrade.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\jquery.autocomplete.css" />
     <Content Include="Scripts\jquery.PrintArea.js" />
     <Content Include="Scripts\jquery.validate.js" />
