@@ -23,6 +23,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.js")%>"></script>
 
+    <script type="text/javascript" src="../../Scripts/jquery-1.3.2.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             dynamicinputcss();
@@ -31,8 +33,14 @@
             }).bind("mouseout", function() {
                 $(this).removeClass("mouseover");
             }).bind("click", function() {
-                $("table > tbody > tr").removeClass("select");
-                $(this).addClass("select");
+                if ($(this).attr("class").search("select") != -1) {//表示存在
+                    $(this).find("input[type='checkbox']").attr("checked", "");
+                    $(this).removeClass("select");
+                } else {
+                    $(this).addClass("select");
+                    $(this).find("input[type='checkbox']").attr("checked", "true");
+                }
+
             });
         })
         function dynamicinputcss() {
