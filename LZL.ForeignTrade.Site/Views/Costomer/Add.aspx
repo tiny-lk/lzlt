@@ -22,7 +22,7 @@
                 <td colspan="5" align="right">
                     <input type="submit" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:history.back(1);" />
+                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Index") %>'" />
                 </td>
             </tr>
             <tr>
@@ -169,7 +169,7 @@
                 <td colspan="5" align="right">
                     <input type="submit" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:history.back(1);" />
+                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Index") %>'" />
                 </td>
             </tr>
         </tfoot>

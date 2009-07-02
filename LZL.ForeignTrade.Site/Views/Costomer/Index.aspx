@@ -29,20 +29,48 @@
                     $("#OK").attr("disabled", "");
                 }
             });
+
             $("#OK").bind("click", function() {
                 if ($("#queryvalue").val() != "") {
                     $('form').submit();
                 }
             });
+
+            $("#Delete").bind("click", function() {
+                var State = confirm('你确认要删除' + $(document).data('checkvalue') + '吗？');
+                if (State == true) {
+                    window.location.href = '<%=Url.Content("~/Costomer/Delete/") %>' + $(document).data('checkvalue');
+                }
+            });
+
+            $("#Edit").bind("click", function() {
+                window.location.href = '<%=Url.Content("~/Costomer/Edit/") %>' + $(document).data('checkvalue');
+            });
+
+            $("#Refresh").bind("click", function() {
+                window.location.href = '<%=Url.Content("~/Costomer/Index") %>';
+            });
+
+            $("#allselect").bind("click", function() {
+                $.each($('table > tbody > tr').find("input[type='checkbox']"), function(i, o) {
+                    if ($(o).attr("checked") != true) {
+                        $(o).click();
+                    }
+                })
+            });
+
+            $("#reverseselect").bind("click", function() {
+                $('table > tbody > tr').find("input[type='checkbox']").click();
+            });
+            
         });
 
-        function checked(obj) {
-            alert(obj);
-        }
         function print() {
             $("table > tbody").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
         }
-
+        function selecthandler() {
+            $('table > tbody > tr').find("input[type='checkbox']").click();
+        }
         function autocompletevalue(f) {
             $("#queryvalue").autocomplete('<%=Url.Action("GetAutocompleteValue","Shared")%>',
                 { max: 20,
@@ -82,21 +110,21 @@
                              new SelectListItem(){ Text ="英文地址", Value ="AddressEn"}
                         }, "Value", "Text", "NameCode"))%>
                 </td>
-                <td colspan="4">
-                    <%= Html.TextBox("queryvalue", "", new { style = "width:95%;" })%>
-                </td>
-                <td colspan="3">
-                    <input type="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" id="Edit" value="编 辑" disabled="disabled" />
-                    <input type="button" id="Delet" value="删 除" disabled="disabled" />
-                    <input type="button" value="刷 新" onclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Index") %>'" />
+                <td colspan="6" align="left">
+                    <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
+                    <div style="float: right;">
+                        <input type="button" id="OK" value="查 询" disabled="disabled" />
+                        <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                        <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                        <input type="button" id="Refresh" value="刷 新" />
+                    </div>
                 </td>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>
-                    选择
+                    <a href="#" id="allselect">全选</a>/<a href="#" id="reverseselect">反选</a>
                 </td>
                 <td>
                     序号
@@ -119,21 +147,17 @@
                 <td>
                     是否共享
                 </td>
-                <td>
-                    操作
-                </td>
             </tr>
             <%
                 int page = string.IsNullOrEmpty(Request["page"]) ? 1 : int.Parse(Request["page"]);
                 int beginenumber = page <= 1 ? 1 : ((page - 1) * int.Parse(ConfigurationManager.AppSettings["pagenumber"])) + 1;
                 for (int i = 0; i < Model.Count; i++)
                 {
-                
             %>
             <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Details/"+Html.Encode(Model[i].ID)) %>'"
                 title="双击查看详细信息">
                 <td>
-                    <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString()), onclick="checked(this);" })%>
+                    <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
                 </td>
                 <td>
                     <%= (beginenumber+i).ToString()%>
@@ -155,9 +179,6 @@
                 </td>
                 <td>
                     <%= Html.Encode(Model[i].IsShare ? "是" : "否")%>
-                </td>
-                <td>
-                    <%= Html.ActionLink("删除", "Delete", new { id = Html.Encode(Model[i].ID) })%>
                 </td>
             </tr>
             <%

@@ -149,7 +149,7 @@
             <tr>
                 <td colspan="5" align="right">
                     <input type="button" value="´ò Ó¡" onclick="print();" />
-                    <input type="button" value="·µ »Ø" onclick="javascript:history.back(1);" />
+                    <input type="button" value="·µ »Ø" onclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Index") %>'" />
                 </td>
             </tr>
         </tfoot>

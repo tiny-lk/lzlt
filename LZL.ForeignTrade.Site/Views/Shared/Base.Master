@@ -32,26 +32,47 @@
                 $(this).addClass("mouseover");
             }).bind("mouseout", function() {
                 $(this).removeClass("mouseover");
-            }).bind("click", function() {
-                if ($(this).attr("class").search("select") != -1) {//表示存在
-                    if ($(this).find("input[type='checkbox']").length > 0) {
-                        //$(this).find("input[type='checkbox']").click();
-                        $(this).find("input[type='checkbox']").attr("checked", "");
+            });
+            $($("table > tbody > tr").find("input[type='checkbox'],input[name='select']")).live("click", function() {
+                if ($(document).data("check") == null || $(document).data("check") == "" || $(document).data("check") == 'undefined') {
+                    $(document).data("check", 0);
+                }
+                var array = [];
+                if ($(this).attr("checked") == true) {
+                    $(this).closest("tr").addClass("select");
+                    $(document).data("check", Number($(document).data("check")) + 1);
+                    if ($(document).data("check") == 1) {
+                        $(document).data("checkvalue", $(this).val());
+                    } else {
+                        $(document).data("checkvalue", $(this).val() + "♂" + $(document).data("checkvalue"));
                     }
-
-                    $(this).removeClass("select");
                 } else {
-                    if ($(this).find("input[type='checkbox']").length > 0) {
-                        $(this).find("input[type='checkbox']").bind("click", function() {
-                            //alert("this");
-                        });
-                        //$(this).find("input[type='checkbox']").trigger("click");
-                        $(this).find("input[type='checkbox']").attr("checked", "true");
-                    }
-                    $(this).addClass("select");
+                    $(this).closest("tr").removeClass("select");
+                    $(document).data("check", Number($(document).data("check")) - 1);
+                    var checkedvalue = $(this).val();
+                    $.each($(document).data("checkvalue").split('♂'), function(i, o) {
+                        if (!(o == null || o == "" || o == 'undefined' || checkedvalue == o)) {
+                            array.push(o);
+                        }
+                    });
+                    $(document).data("checkvalue", array.join('♂'));
+                }
+
+                if (Number($(document).data("check")) == 1) {
+                    $(document).find("input[check='1']").attr("disabled", "");
+                    $(document).find("input[check='n']").attr("disabled", "");
+                }
+                else if (Number($(document).data("check")) == 0) {
+                    $(document).find("input[check='1']").attr("disabled", "true");
+                    $(document).find("input[check='n']").attr("disabled", "true");
+                }
+                else {
+                    $(document).find("input[check='1']").attr("disabled", "true");
+                    $(document).find("input[check='n']").attr("disabled", "");
                 }
             });
         })
+
         function dynamicinputcss() {
             $("input[type='text'], input[type='password'], textarea").focus(function()
             { $(this).addClass("ie_focus") }).blur(function()
