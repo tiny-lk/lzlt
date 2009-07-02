@@ -25,8 +25,6 @@
                         type="button" value="返 回" onclick="javascript:history.back(1);" />
                 </td>
             </tr>
-        </thead>
-        <tbody>
             <tr>
                 <td rowspan="8" align="center" valign="middle">
                     客户基本信息
@@ -164,8 +162,8 @@
                 <td colspan="5">
                 </td>
             </tr>
-            <!-- 备忘录区域 -->
-        </tbody>
+        </thead>
+        <!-- 备忘录区域 -->
         <tfoot>
             <tr>
                 <td colspan="5" align="right">

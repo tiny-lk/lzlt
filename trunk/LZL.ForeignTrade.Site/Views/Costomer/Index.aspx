@@ -8,7 +8,7 @@
 
     <script type="text/javascript" src="../../Scripts/jquery-1.3.2.js"></script>
 
-    <script type="text/javascript" src="../../Scripts/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -17,6 +17,20 @@
                 $("#queryvalue").unbind(".autocomplete");
                 $("#queryvalue").val("");
                 autocompletevalue($(this).val());
+            });
+
+            $("#queryvalue").bind("blur", function() {
+                if ($("#queryvalue").val() == "") {
+                    $("#OK").attr("disabled", "disabled");
+                }
+                else {
+                    $("#OK").attr("disabled", "");
+                }
+            });
+            $("#OK").bind("click", function() {
+                if ($("#queryvalue").val() != "") {
+                    $('form').submit();
+                }
             });
         });
 
@@ -48,19 +62,11 @@
         }
     </script>
 
-    <div id="loading">
-        数据正在查询中...</div>
-    <% using (Ajax.BeginForm("Costomer", new AjaxOptions()
-       {
-           LoadingElementId = "loading",
-           UpdateTargetId = "tbodyajax",
-           HttpMethod = "Post",
-           InsertionMode = InsertionMode.InsertBefore
-       }))
+    <% using (Html.BeginForm())
        { %>
     <h2>
         客户信息</h2>
-    <table width="97%" style="vertical-align: middle; text-align: center;">
+    <table width="100%" style="vertical-align: middle; text-align: center;">
         <thead>
             <tr>
                 <td colspan="2">
@@ -77,11 +83,10 @@
                     <%= Html.TextBox("queryvalue", "", new { style = "width:95%;" })%>
                 </td>
                 <td>
-                    <input type="submit" value="查 询" />
+                    <%= Html.ActionLink("查 询", "#", "Costomer", null, new { id = "OK", disabled = "disabled" })%>
+                    <%= Html.ActionLink("刷 新","Index","Costomer") %>
                 </td>
             </tr>
-        </thead>
-        <tbody id="tbodyajax">
             <tr>
                 <td>
                     选择
@@ -111,8 +116,11 @@
                     操作
                 </td>
             </tr>
+        </thead>
+        <tbody>
             <%
                 int page = string.IsNullOrEmpty(Request["page"]) ? 1 : int.Parse(Request["page"]);
+                int beginenumber = page <= 1 ? 1 : ((page - 1) * int.Parse(ConfigurationManager.AppSettings["pagenumber"])) + 1;
                 for (int i = 0; i < Model.Count; i++)
                 {
                 
@@ -122,7 +130,7 @@
                     <%= Html.CheckBox("select", false)%>
                 </td>
                 <td>
-                    <%= ((i + 1) * page).ToString()%>
+                    <%= (beginenumber+i).ToString()%>
                 </td>
                 <td>
                     <%= Html.Encode(Model[i].NameCode)%>
@@ -143,7 +151,7 @@
                     <%= Html.Encode(Model[i].IsShare ? "是" : "否")%>
                 </td>
                 <td>
-                    <%= Html.ActionLink("详细", "", new { id = Html.Encode(Model[i].ID) })%>|
+                    <%= Html.ActionLink("详细", "", new { id = Html.Encode(Model[i].ID) })%> |
                     <%= Html.ActionLink("删除", "", new { id = Html.Encode(Model[i].ID) })%>
                 </td>
             </tr>
@@ -152,6 +160,32 @@
             
             %>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="9" align="right">
+                    <%
+                        int count = int.Parse(ViewData["pagecount"].ToString());
+                        int p = Request["page"] == null ? 1 : int.Parse(Request["page"]);
+                        if (p == count && count <= 1)
+                        {
+                            Response.Write("上一页|下一页");
+                        }
+                        else
+                        {
+                            if (p < count)
+                            {
+                                Response.Write("上一页|" + Html.ActionLink("下一页", "Index", "Costomer", new { page = p + 1 }, null));
+                            }
+                            else
+                            {
+                                Response.Write(Html.ActionLink("上一页", "Index", "Costomer", new { page = p - 1 }, null) + "|下一页");
+                            }
+                        }
+                        Response.Write("|当前页：第 <span style='font-weight:bolder; color:Red;'>" + p + "</span> 页|总页码：<span style='font-weight:bolder; color:Red;'>" + count + "</span> 页");
+                    %>
+                </td>
+            </tr>
+        </tfoot>
     </table>
     <%
         }
