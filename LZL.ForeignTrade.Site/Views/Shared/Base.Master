@@ -28,11 +28,12 @@
     <script type="text/javascript">
         $(document).ready(function() {
             dynamicinputcss();
-            $("table > tbody > tr").bind("mouseover", function() {
+            $("table > tbody[listmouse='listmouseovercss'] > tr").bind("mouseover", function() {
                 $(this).addClass("mouseover");
             }).bind("mouseout", function() {
                 $(this).removeClass("mouseover");
             });
+            
             $($("table > tbody > tr").find("input[type='checkbox'],input[name='select']")).live("click", function() {
                 if ($(document).data("check") == null || $(document).data("check") == "" || $(document).data("check") == 'undefined') {
                     $(document).data("check", 0);
