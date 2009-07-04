@@ -177,6 +177,6 @@
     <%} %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="addcontrol(this,'LinkManControl','LinkMan♂')">添加联系人信息</a></li>
-    <li><a href="#" onclick="addcontrol(this,'MemorandumControl','Memorandum♂')">备忘录</a></li>
+    <li><a href="#" onclick="addcontrol(this,'LinkManControl','LinkMan♂',1)">添加联系人信息</a></li>
+    <li><a href="#" onclick="addcontrol(this,'MemorandumControl','Memorandum♂',1)">备忘录</a></li>
 </asp:Content>

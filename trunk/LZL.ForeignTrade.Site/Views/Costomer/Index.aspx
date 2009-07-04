@@ -121,7 +121,7 @@
                 </td>
             </tr>
         </thead>
-        <tbody>
+        <tbody listmouse="listmouseovercss">
             <tr>
                 <td>
                     <a href="#" id="allselect">全选</a>/<a href="#" id="reverseselect">反选</a>
@@ -193,7 +193,7 @@
                     <%
                         int count = int.Parse(ViewData["pagecount"].ToString());
                         int p = Request["page"] == null ? 1 : int.Parse(Request["page"]);
-                        if (p == count && count <= 1)
+                        if (p >= count && count <= 1)
                         {
                             Response.Write("上一页|下一页");
                         }

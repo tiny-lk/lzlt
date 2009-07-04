@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.Objects.DataClasses;
 using ZhouBo.Core;
 using System.Data.Objects;
+using System.Data.Common;
 namespace LZL.ForeignTrade.Controllers
 {
     public class CostomerController : Controller
@@ -58,6 +59,20 @@ namespace LZL.ForeignTrade.Controllers
         }
         public ActionResult Add()
         {
+//            Entities entities = new Entities();
+//            string esql = @"select value TargetEntity from (select value x from Entities.[FK_LINKMAN_CUSTOMER] AS x where
+//            Key(x.Customer) = row(@EntityKeyValue)) AS EntityKey
+//            inner join Entities.Linkman AS TargetEntity on Key(EntityKey.Linkman) = Key(Ref(TargetEntity)) where TargetEntity.ID in {@id}";
+//            Guid testid = new Guid("fff7cb96-c81a-40d5-ab27-e88a9b90bf06");
+//            Guid id = new Guid("ba985241-70a0-498c-b6d2-3d7af11fdbf0");
+//            ObjectQuery<EntityObject> query = entities.CreateQuery<EntityObject>
+//                (esql, new ObjectParameter[]{ new ObjectParameter("EntityKeyValue", testid), new ObjectParameter("id","Guid'ba985241-70a0-498c-b6d2-3d7af11fdbf0'")});
+//           var querys= query.Where("it.ID in {Guid'ba985241-70a0-498c-b6d2-3d7af11fdbf0'}");
+//            foreach (EntityObject r in query)
+//            {
+//                entities.DeleteObject(r);
+//            }
+//            entities.SaveChanges();
             return View();
         }
 
@@ -81,9 +96,20 @@ namespace LZL.ForeignTrade.Controllers
 
         public ActionResult Edit(string id)
         {
-            return View();
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.Customer.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
-
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Edit(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("Index");
+        }
         public ActionResult Delete(string id)
         {
             Entities entities = new Entities();
