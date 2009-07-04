@@ -15,16 +15,17 @@
     </center>
 
     <script type="text/javascript">
-    $(document).ready(function() {
-        $('#Memorandum¡á').css("display", "");
-    });
+        $(document).ready(function() {
+            $('#Memorandum¡á').css("display", "");
+        });
     </script>
+
 </div>
+<%
+    for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
+    {
+%>
 <div id="regioncontent">
-    <%
-        for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
-        {
-    %>
     <table class="dynamictable">
         <%
             if (Model == null)
@@ -95,7 +96,7 @@
             </td>
         </tr>
     </table>
-    <%
-        }
-    %>
 </div>
+<%
+    }
+%>

@@ -228,7 +228,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="COSTOMER" ZoomLevel="86">
+      <Diagram Name="COSTOMER" ZoomLevel="74">
         <EntityTypeShape EntityType="ForeignTradeModel.Customer" Width="1.5" PointX="0.75" PointY="1.375" Height="4.8353279622395826" />
         <EntityTypeShape EntityType="ForeignTradeModel.Linkman" Width="1.5" PointX="5" PointY="3.875" Height="2.7341113281249996" />
         <EntityTypeShape EntityType="ForeignTradeModel.Memorandum" Width="1.5" PointX="4.75" PointY="1.125" Height="1.9700325520833335" />

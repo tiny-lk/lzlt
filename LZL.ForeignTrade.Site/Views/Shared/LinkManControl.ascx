@@ -1,14 +1,14 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.Linkman>>" %>
 <div id="region">
     <!-- 标识子表添加总数 -->
-    <input type="hidden" value='<%= int.Parse(ViewData["number"].ToString())%>' name="LinkMan♂regioncount"
-        id="LinkMan♂regioncount" />
+    <input type="hidden" value='<%= int.Parse(ViewData["number"].ToString())%>' name="Linkman♂regioncount"
+        id="Linkman♂regioncount" />
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
-    <input type="hidden" name="region" value="LinkMan♂" />
+    <input type="hidden" name="region" value="Linkman♂" />
     <!-- 标识子表实体对象类 -->
-    <input type="hidden" name="LinkMan♂objectname" value="LZL.ForeignTrade.DataEntity.Linkman,LZL.ForeignTrade.DataEntity" />
+    <input type="hidden" name="Linkman♂objectname" value="LZL.ForeignTrade.DataEntity.Linkman,LZL.ForeignTrade.DataEntity" />
     <!-- 标识子表外键实体对象名称、外键字段名称 -->
-    <input type="hidden" name="LinkMan♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "Customer" :ViewData["FK"] %>' />
+    <input type="hidden" name="Linkman♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "Customer" :ViewData["FK"] %>' />
     <center>
         <h3>
             联系人动态区域</h3>
@@ -16,25 +16,25 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#LinkMan♂').css("display", "");
+            $('#Linkman♂').css("display", "");
         });
     </script>
 
 </div>
+<%
+    for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
+    {
+%>
 <div id="regioncontent">
-    <%
-        for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
-        {
-    %>
     <table class="dynamictable">
         <%
             if (Model == null)
             {
-                Response.Write(Html.Hidden("LinkMan♂ID"));
+                Response.Write(Html.Hidden("Linkman♂ID"));
             }
             else
             {
-                Response.Write(Html.Hidden("LinkMan♂ID", Model[i].ID.ToString()));
+                Response.Write(Html.Hidden("Linkman♂ID", Model[i].ID.ToString()));
             }
         %>
         <tr>
@@ -48,11 +48,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Name"));
+                        Response.Write(Html.TextBox("Linkman♂Name"));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Name", Html.Encode(Model[i].Name)));
+                        Response.Write(Html.TextBox("Linkman♂Name", Html.Encode(Model[i].Name)));
                     }
                 %>
             </td>
@@ -63,11 +63,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Job"));
+                        Response.Write(Html.TextBox("Linkman♂Job"));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Job", Html.Encode(Model[i].Job)));
+                        Response.Write(Html.TextBox("Linkman♂Job", Html.Encode(Model[i].Job)));
                     }
                 %>
             </td>
@@ -80,11 +80,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Phone"));
+                        Response.Write(Html.TextBox("Linkman♂Phone"));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Phone", Html.Encode(Model[i].Phone)));
+                        Response.Write(Html.TextBox("Linkman♂Phone", Html.Encode(Model[i].Phone)));
                     }
                 %>
             </td>
@@ -95,11 +95,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Fax"));
+                        Response.Write(Html.TextBox("Linkman♂Fax"));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Fax", Html.Encode(Model[i].Fax)));
+                        Response.Write(Html.TextBox("Linkman♂Fax", Html.Encode(Model[i].Fax)));
                     }
                 %>
             </td>
@@ -112,11 +112,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("LinkMan♂MobilePhone"));
+                        Response.Write(Html.TextBox("Linkman♂MobilePhone"));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("LinkMan♂MobilePhone", Html.Encode(Model[i].MobilePhone)));
+                        Response.Write(Html.TextBox("Linkman♂MobilePhone", Html.Encode(Model[i].MobilePhone)));
                     }
                 %>
             </td>
@@ -127,11 +127,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Email"));
+                        Response.Write(Html.TextBox("Linkman♂Email"));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("LinkMan♂Email", Html.Encode(Model[i].Email)));
+                        Response.Write(Html.TextBox("Linkman♂Email", Html.Encode(Model[i].Email)));
                     }
                 %>
             </td>
@@ -144,11 +144,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextArea("LinkMan♂Note", new { style = "width: 99%; height: 80px;" }));
+                        Response.Write(Html.TextArea("Linkman♂Note", new { style = "width: 99%; height: 80px;" }));
                     }
                     else
                     {
-                        Response.Write(Html.TextArea("LinkMan♂Note", Html.Encode(Model[i].Note), new { style = "width: 99%; height: 80px;" }));
+                        Response.Write(Html.TextArea("Linkman♂Note", Html.Encode(Model[i].Note), new { style = "width: 99%; height: 80px;" }));
                     }
                 %>
             </td>
@@ -160,7 +160,7 @@
             </td>
         </tr>
     </table>
-    <%  
-        }
-    %>
 </div>
+<%  
+    }
+%>

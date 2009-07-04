@@ -67,7 +67,7 @@
                     是共享数据：
                 </td>
                 <td align="left">
-                    <%= Html.CheckBox("Customer♂IsShare",false)%>
+                      <% =Html.CheckBox("Customer♂IsShare") %>
                 </td>
             </tr>
             <tr>
@@ -152,7 +152,7 @@
                 </td>
             </tr>
             <!-- 联系人区域 -->
-            <tr id="LinkMan♂" style="display: none;">
+            <tr id="Linkman♂" style="display: none;">
                 <td colspan="5">
                 </td>
             </tr>
@@ -177,6 +177,6 @@
     <%} %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="addcontrol(this,'LinkManControl','LinkMan♂',1)">添加联系人信息</a></li>
+    <li><a href="#" onclick="addcontrol(this,'LinkmanControl','Linkman♂',1)">添加联系人信息</a></li>
     <li><a href="#" onclick="addcontrol(this,'MemorandumControl','Memorandum♂',1)">备忘录</a></li>
 </asp:Content>

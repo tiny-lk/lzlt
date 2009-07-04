@@ -33,7 +33,7 @@
             }).bind("mouseout", function() {
                 $(this).removeClass("mouseover");
             });
-            
+
             $($("table > tbody > tr").find("input[type='checkbox'],input[name='select']")).live("click", function() {
                 if ($(document).data("check") == null || $(document).data("check") == "" || $(document).data("check") == 'undefined') {
                     $(document).data("check", 0);
@@ -72,6 +72,8 @@
                     $(document).find("input[check='n']").attr("disabled", "");
                 }
             });
+
+            //var hidderobj = $("input[type='checkbox']").next("input[type='hidden']");
         })
 
         function dynamicinputcss() {
