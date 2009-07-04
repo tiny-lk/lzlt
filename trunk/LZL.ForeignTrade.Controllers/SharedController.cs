@@ -43,16 +43,16 @@ namespace LZL.ForeignTrade.Controllers
             Guid id = System.Guid.NewGuid();
             var fkregions = (from temp in formvalues.AllKeys
                              where temp.Contains("♂")
-                             let v = temp.Substring(temp.LastIndexOf("♂")+1)
+                             let v = temp.Substring(temp.LastIndexOf("♂") + 1)
                              where v != null && v.Equals("fk", StringComparison.CurrentCultureIgnoreCase)
                              select temp).ToArray();
             for (int i = 0; i < regions.Length; i++)//
             {
-                var regioncount = BasicOperate.GetInt(formvalues[regions[i] + "regioncount"], true); //获取区域中存在几个。
-                if (regioncount > 0)
+                if (formvalues[regions[i] + "regioncount"] != null)
                 {
                     continue;
                 }
+                var regioncount = BasicOperate.GetInt(formvalues[regions[i] + "regioncount"], true); //获取区域中存在几个。
                 var regionnames = (from temp in formvalues.AllKeys
                                    where temp.Contains("♂") &&
                                        temp.Substring(0, temp.IndexOf("♂") + 1).Equals(regions[i], StringComparison.CurrentCultureIgnoreCase)
@@ -83,11 +83,17 @@ namespace LZL.ForeignTrade.Controllers
                     {
                         if (tableobj != null)
                         {
-                            if (!string.IsNullOrEmpty(formvalues[regionnames[j]]))
+                            string propertyName = regionnames[j].Replace(regions[i], "").Trim();
+                            string value;
+                            if (formvalues[regionnames[j]] == null)
                             {
-                                string propertyName = regionnames[j].Replace(regions[i], "").Trim();
-                                BuilderObject(propertyName, ClassHelper.ChangeType(formvalues[regionnames[j]], tableobj.GetType().GetProperty(propertyName).PropertyType), tableobj);
+                                value = string.Empty;
                             }
+                            else
+                            {
+                                value = formvalues[regionnames[j]];
+                            }
+                            BuilderObject(propertyName, value, tableobj);
                         }
                         else
                         {
@@ -128,11 +134,13 @@ namespace LZL.ForeignTrade.Controllers
                             var childregioncount = BasicOperate.GetInt(formvalues[childregionname + "regioncount"], true); //获取区域中存在多个，表示是子表。
                             if (childregioncount == 0 && !string.IsNullOrEmpty(formvalues[regions[i] + "id"]))//表示所有的子被删除
                             {
-                                (ClassHelper.GetPropertyValue(tableobj, "Linkman") as EntityCollection<EntityObject>).Load();
-                                string esql = @"select value TargetEntity from (select value x from " + entities.DefaultContainerName + ".[FK_LINKMAN_CUSTOMER] AS x where ";
-                                esql += " Key(x." + tableobj.GetType().Name + ") = row(@EntityKeyValue)) AS EntityKey ";
-                                esql += " inner join " + entities.DefaultContainerName + "." + childregionname.Substring(0, childregionname.IndexOf("♂")) + " AS TargetEntity on Key(EntityKey." + childregionname.Substring(0, childregionname.IndexOf("♂")) + ") = Key(Ref(TargetEntity))";
-                                ObjectQuery<EntityObject> query = entities.CreateQuery<EntityObject>(esql, new ObjectParameter("EntityKeyValue", id));
+                                IRelatedEnd relatedEndObject = ClassHelper.GetPropertyValue2(tableobj, childregionname.Substring(0, childregionname.IndexOf("♂"))) as IRelatedEnd;
+                                relatedEndObject.Load();
+                                IEnumerable<EntityObject> query = relatedEndObject.CreateSourceQuery().OfType<EntityObject>();
+                                for (int k = 0; k < query.Count(); k++)
+                                {
+                                    entities.DeleteObject(query.ElementAt(k));
+                                }
                             }
                             else
                             {
@@ -160,7 +168,7 @@ namespace LZL.ForeignTrade.Controllers
                 return;
             }
 
-            StringBuilder guidBuilder = new StringBuilder();
+            List<Guid> guids = new List<Guid>();
             var regionnames = formvalues.AllKeys.Where(v => v.Substring(0, v.IndexOf("♂") + 1).Equals(region, StringComparison.CurrentCultureIgnoreCase)).ToArray();
             for (int s = 0; s < regioncount; s++)// 表示存在几个子表
             {
@@ -189,11 +197,16 @@ namespace LZL.ForeignTrade.Controllers
                         if (tableobj != null)
                         {
                             string propertyName = regionnames[j].Replace(region, "").Trim();
-                            if (!string.IsNullOrEmpty(formvalues[regionnames[j]]))
+                            string value;
+                            if (formvalues[regionnames[j]].Split(new[] { ',' })[s] == null)
                             {
-                                BuilderObject(propertyName, ClassHelper.ChangeType(formvalues[regionnames[j]].Split(new[] { ',' })[s],
-                                    tableobj.GetType().GetProperty(propertyName).PropertyType), tableobj);
+                                value = string.Empty;
                             }
+                            else
+                            {
+                                value = formvalues[regionnames[j]].Split(new[] { ',' })[s];
+                            }
+                            BuilderObject(propertyName, value, tableobj);
                         }
                         else
                         {
@@ -217,7 +230,7 @@ namespace LZL.ForeignTrade.Controllers
                         else
                         {
                             Guid guid = new Guid(formvalues[region + "id"].Split(new[] { ',' })[s]);//子表ID
-                            guidBuilder.Append("Guid'" + guid.ToString() + "',");
+                            guids.Add(guid);
                         }
                     }
                 }
@@ -230,28 +243,24 @@ namespace LZL.ForeignTrade.Controllers
 
                 if (s == regioncount - 1)
                 {
-                    guidBuilder.Remove(guidBuilder.Length - 1, 1);
-                    string esql = @"select value TargetEntity from (select value x from " + entities.DefaultContainerName + ".[FK_LINKMAN_CUSTOMER] AS x where ";
-                    esql += " Key(x." + parentobject.GetType().Name + ") = row(@EntityKeyValue)) AS EntityKey ";
-                    esql += " inner join " + entities.DefaultContainerName + "." + tableobj.GetType().Name + " AS TargetEntity on Key(EntityKey." + tableobj.GetType().Name + ") = Key(Ref(TargetEntity))";
-                    if (guidBuilder.Length > 0)
-                    {
-                        esql += " where TargetEntity." + propertyinfo.Name + " not in {" + guidBuilder + "}";
-                    }
-                    ObjectQuery<EntityObject> query = entities.CreateQuery<EntityObject>
-                        (esql, new ObjectParameter("EntityKeyValue", pid));
+                    IRelatedEnd relatedEndObject = ClassHelper.GetPropertyValue2(parentobject, tableobj.GetType().Name) as IRelatedEnd;
+                    relatedEndObject.Load();
+                    IEnumerable<EntityObject> query = relatedEndObject.CreateSourceQuery().OfType<EntityObject>();
+
                     foreach (EntityObject r in query)
                     {
-                        entities.DeleteObject(r);
+                        if (!guids.Contains(new Guid(r.EntityKey.EntityKeyValues.Select(v => v.Value).FirstOrDefault().ToString())))
+                        {
+                            entities.DeleteObject(r);
+                        }
                     }
                 }
-
             }
         }
 
         private static void BuilderObject(string name, object value, object o)
         {
-            ClassHelper.SetPropertyValue(o, name, value);
+            ClassHelper.SetPropertyValue(o, name.Trim(), value);
         }
     }
 }

@@ -13,7 +13,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_MEMORANDUM_CUSTOMER", "Customer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Customer), "Memorandum", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.Memorandum))]
 
 // 原始文件名:
-// 生成日期: 2009/7/4 9:20:47
+// 生成日期: 2009/7/4 23:47:50
 namespace LZL.ForeignTrade.DataEntity
 {
     
