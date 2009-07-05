@@ -57,22 +57,9 @@ namespace LZL.ForeignTrade.Controllers
             var count = entities.CreateQuery<int>(sql).FirstOrDefault();
             return count;
         }
+
         public ActionResult Add()
         {
-//            Entities entities = new Entities();
-//            string esql = @"select value TargetEntity from (select value x from Entities.[FK_LINKMAN_CUSTOMER] AS x where
-//            Key(x.Customer) = row(@EntityKeyValue)) AS EntityKey
-//            inner join Entities.Linkman AS TargetEntity on Key(EntityKey.Linkman) = Key(Ref(TargetEntity)) where TargetEntity.ID in {@id}";
-//            Guid testid = new Guid("fff7cb96-c81a-40d5-ab27-e88a9b90bf06");
-//            Guid id = new Guid("ba985241-70a0-498c-b6d2-3d7af11fdbf0");
-//            ObjectQuery<EntityObject> query = entities.CreateQuery<EntityObject>
-//                (esql, new ObjectParameter[]{ new ObjectParameter("EntityKeyValue", testid), new ObjectParameter("id","Guid'ba985241-70a0-498c-b6d2-3d7af11fdbf0'")});
-//           var querys= query.Where("it.ID in {Guid'ba985241-70a0-498c-b6d2-3d7af11fdbf0'}");
-//            foreach (EntityObject r in query)
-//            {
-//                entities.DeleteObject(r);
-//            }
-//            entities.SaveChanges();
             return View();
         }
 

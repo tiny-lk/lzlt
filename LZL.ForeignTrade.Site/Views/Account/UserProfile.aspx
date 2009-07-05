@@ -20,7 +20,8 @@
                 用户名 ：<%= Html.Encode(user.UserName) %><br />
             </p>
             <p>
-                电子邮件：<%= Html.TextBox("email",user.Email) %> <%= Html.ValidationMessage("email") %>
+                电子邮件：<%= Html.TextBox("email",user.Email) %>
+                <%= Html.ValidationMessage("email") %>
             </p>
             <p>
                 创建时间：<%= user.CreationDate.ToLocalTime() %><br />

@@ -51,12 +51,14 @@
                     $(this).closest("tr").removeClass("select");
                     $(document).data("check", Number($(document).data("check")) - 1);
                     var checkedvalue = $(this).val();
-                    $.each($(document).data("checkvalue").split('♂'), function(i, o) {
-                        if (!(o == null || o == "" || o == 'undefined' || checkedvalue == o)) {
-                            array.push(o);
-                        }
-                    });
-                    $(document).data("checkvalue", array.join('♂'));
+                    if (!($(document).data("checkvalue") == "undefined" || $(document).data("checkvalue") == null)) {
+                        $.each($(document).data("checkvalue").split('♂'), function(i, o) {
+                            if (!(o == null || o == "" || o == 'undefined' || checkedvalue == o)) {
+                                array.push(o);
+                            }
+                        });
+                        $(document).data("checkvalue", array.join('♂'));
+                    }
                 }
 
                 if (Number($(document).data("check")) == 1) {
@@ -72,7 +74,7 @@
                     $(document).find("input[check='n']").attr("disabled", "");
                 }
             });
-
+            
             //var hidderobj = $("input[type='checkbox']").next("input[type='hidden']");
         })
 
