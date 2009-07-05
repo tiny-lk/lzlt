@@ -11,7 +11,7 @@
 <asp:Content ID="AdminSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
     <div id="sidebar">
         <h2>
-            Categories</h2>
+            相关功能</h2>
         <div>
             <ul>
                 <li>

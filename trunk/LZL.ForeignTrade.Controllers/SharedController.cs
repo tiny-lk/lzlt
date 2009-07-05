@@ -92,6 +92,10 @@ namespace LZL.ForeignTrade.Controllers
                             else
                             {
                                 value = formvalues[regionnames[j]];
+                                if (value.Contains(",") && value.Contains("true"))
+                                {
+                                    value = "true";
+                                }
                             }
                             BuilderObject(propertyName, value, tableobj);
                         }
@@ -205,6 +209,10 @@ namespace LZL.ForeignTrade.Controllers
                             else
                             {
                                 value = formvalues[regionnames[j]].Split(new[] { ',' })[s];
+                                if (value.Contains(",") && value.Contains("true"))
+                                {
+                                    value = "true";
+                                }
                             }
                             BuilderObject(propertyName, value, tableobj);
                         }

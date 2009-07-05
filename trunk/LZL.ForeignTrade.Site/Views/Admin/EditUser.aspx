@@ -6,53 +6,61 @@
 <asp:Content ID="EditUserContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         编辑用户</h2>
-    <form method="post" action="EditUser" class="manage-user">
-    <!-- The hidden control manages the username -->
-    <%= Html.Hidden("id") %>
-    <!-- Shows detailed information about member from MembershipUser object -->
-    <p>
-        <b>UserName:</b>
-        <%= Model.UserName %>
-    </p>
-    <p>
-        <b>E-Mail:</b>
-        <%= Model.Email%></p>
-    <p>
-        <b>Registered:</b>
-        <%= Model.CreationDate.ToLocalTime()%></p>
-    <p>
-        <b>Last Login:</b>
-        <%= Model.LastLoginDate.ToLocalTime()%></p>
-    <p>
-        <b>Last Activity:</b>
-        <%= Model.LastActivityDate.ToLocalTime()%></p>
-    <p>
-        <b>Online Now:</b>
-        <%= Html.CheckBox("onlineNow", Model.IsOnline, new { disabled = "true" })%></p>
-    <p>
-        <b>Approved:</b>
-        <%= Html.CheckBox("approved", Model.IsApproved)%></p>
-    <p>
-        <b>Locked Out:</b>
-        <%= Html.CheckBox("lockedOut", Model.IsLockedOut, new { disabled = "true" })%></p>
-    <hr />
-    <!-- This portion allows you to actually edit the roles of the user -->
-    <h2>
-        Edit User Roles</h2>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Return").bind("click", function() {
+                window.location.href = '<%=Url.Content("~/Admin/ManageUser/") %>';
+            });
+            $("#Edit").bind("click", function() {
+                $("form").submit();
+            });
+        });
+    </script>
+
+    <% using (Html.BeginForm())
+       { %>
+    <fieldset>
+        <legend>用户信息</legend>
+        <%= Html.Hidden("id")%>
+        <p>
+            <label for="UserName">
+                用户名称：</label>
+            <%=Html.TextBox("UserName", Model.UserName) %>
+        </p>
+        <p>
+            <label for="Email">
+                E-Mail：</label><%=Html.TextBox("Email", Model.Email)%></p>
+        <p>
+            <label for="Password">
+                密 码：</label>
+            <%= Html.Password("Password")%></p>
+                    <p>
+            <label for="Password">
+                 确认密码：</label>
+            <%= Html.Password("confirmPassword")%></p>
+        <p>
+            <label for="approved">
+                是有效：</label>
+            <%= Html.CheckBox("approved", Model.IsApproved)%></p>
+        <p>
+            <label for="approved">
+                是锁定：</label>
+            <%= Html.CheckBox("lockedOut", Model.IsLockedOut)%></p>
+    </fieldset>
     <ul>
         <% foreach (string role in (string[])ViewData["roles"])
            { %>
         <li>
-            <%= Html.CheckBox("role." + role,  Roles.IsUserInRole(Model.UserName, role))%>
+            <%= Html.CheckBox("role." + role, Roles.IsUserInRole(Model.UserName, role))%>
             <label for="role.<%= role %>">
-                <%= role %></label></li>
+                <%= role%></label></li>
         <% } %>
     </ul>
     <p>
-        <button type="submit" id="user-editUser-button">
-            Update User</button>
-        <button type="button" onclick="location.href='/User/ManageUser'" style="margin-left: 2em;">
-            Return</button>
+        <input type="submit" value="更 新" id="Edit" />
+        <input id="Return" type="button" value="返 回" />
     </p>
-    </form>
+    <%}
+    %>
 </asp:Content>
