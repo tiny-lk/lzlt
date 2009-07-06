@@ -57,22 +57,88 @@ namespace LZL.ForeignTrade.Controllers
             return View(viewData);
         }
 
-        public ActionResult ManageRole(int? page)
+        public ActionResult ManageRole()
         {
-            return View();
+            return View(Roles.GetAllRoles());
         }
         /// <summary>
         /// 编辑用户
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [AcceptVerbs(HttpVerbs.Get)]
+
         public ActionResult EditUser(string id)
         {
             ViewData["roles"] = (String[])Roles.GetAllRoles();
             MembershipUser membershipUser = Membership.GetUser(id);
-
             return View(membershipUser);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditUser(string id, FormCollection form)
+        {
+            MembershipUser membershipUser = Membership.GetUser(id);
+            membershipUser.Email = form["Email"];
+            if (string.IsNullOrEmpty(form["approved"]))
+            {
+                membershipUser.IsApproved = false;
+            }
+            else
+            {
+                membershipUser.IsApproved = true;
+            }
+            membershipUser.Comment = form["note"];
+            string password = membershipUser.GetPassword();
+            if (!form["Password"].Equals(password))
+            {
+                membershipUser.ChangePassword(membershipUser.GetPassword(), form["Password"]);
+            }
+
+            Membership.UpdateUser(membershipUser);
+            string[] userroles = Roles.GetRolesForUser(id);
+            if (userroles.Length > 0)
+            {
+                Roles.RemoveUserFromRoles(id, userroles);
+            }
+            if (!string.IsNullOrEmpty(form["role"]))
+            {
+                string[] roles = form["role"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).
+                    Where(v => !v.Equals("false", StringComparison.CurrentCultureIgnoreCase)).ToArray();
+                if (roles.Length > 0)
+                {
+                    Roles.AddUserToRoles(id, roles);
+                }
+            }
+            return RedirectToAction("ManageUser");
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult AddRole()
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddRole(FormCollection form)
+        {
+            if (!string.IsNullOrEmpty(form["rolename"]))
+            {
+                Roles.CreateRole(form["rolename"].ToUpper());
+            }
+            return RedirectToAction("ManageRole");
+        }
+
+        public ActionResult DeleteRole(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    Roles.DeleteRole(ids[i], true);
+                }
+            }
+            return RedirectToAction("ManageRole");
         }
     }
 }

@@ -62,7 +62,7 @@
             $("#reverseselect").bind("click", function() {
                 $('table > tbody > tr').find("input[type='checkbox']").click();
             });
-            
+
         });
 
         function print() {
@@ -91,7 +91,8 @@
                     }, formatItem: function(row, i,
                 n) { return row; }
                 });
-        } </script>
+        } 
+    </script>
 
     <% using (Html.BeginForm())
        { %>
