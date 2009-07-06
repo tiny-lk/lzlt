@@ -135,6 +135,7 @@
     <Content Include="Scripts\child_table_template.js" />
     <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="Views\Account\EditUserProfile.aspx" />
+    <Content Include="Views\Admin\AddRole.aspx" />
     <Content Include="Views\Admin\ManageRole.aspx" />
     <Content Include="Views\Costomer\Add.aspx" />
     <Content Include="Views\Costomer\Costomer.master" />

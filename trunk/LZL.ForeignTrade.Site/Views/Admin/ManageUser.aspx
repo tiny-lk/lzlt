@@ -35,7 +35,7 @@
             function print() {
                 $("table > tbody").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
             }
-            
+
             $("#Delete").bind("click", function() {
                 var State = confirm('ÄãÈ·ÈÏÒªÉ¾³ý' + $(document).data('checkvalue') + 'Âð£¿');
                 if (State == true) {
@@ -43,6 +43,7 @@
                 }
             });
         });
+
     </script>
 
     <% using (Html.BeginForm())
