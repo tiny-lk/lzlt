@@ -135,10 +135,18 @@ namespace LZL.ForeignTrade.Controllers
                 string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
                 for (int i = 0; i < ids.Length; i++)
                 {
-                    Roles.DeleteRole(ids[i], true);
+                    try
+                    {
+                        Roles.DeleteRole(ids[i], true);
+                    }
+                    catch (Exception err)
+                    {
+                        return View("Error", new HandleErrorInfo(err, "Admin", "DeleteRole"));
+                    }
                 }
             }
             return RedirectToAction("ManageRole");
         }
+
     }
 }
