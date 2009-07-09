@@ -16,7 +16,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ProductCustomer_Product", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Product), "ProductCustomer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ProductCustomer))]
 
 // 原始文件名:
-// 生成日期: 2009/7/7 11:30:58
+// 生成日期: 2009/7/9 22:58:42
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -141,6 +141,21 @@ namespace LZL.ForeignTrade.DataEntity
         }
         private global::System.Data.Objects.ObjectQuery<ProductCustomer> _ProductCustomer;
         /// <summary>
+        /// 架构中不存在 Dictionary 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Dictionary> Dictionary
+        {
+            get
+            {
+                if ((this._Dictionary == null))
+                {
+                    this._Dictionary = base.CreateQuery<Dictionary>("[Dictionary]");
+                }
+                return this._Dictionary;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Dictionary> _Dictionary;
+        /// <summary>
         /// 架构中不存在 Customer 的注释。
         /// </summary>
         public void AddToCustomer(Customer customer)
@@ -181,6 +196,13 @@ namespace LZL.ForeignTrade.DataEntity
         public void AddToProductCustomer(ProductCustomer productCustomer)
         {
             base.AddObject("ProductCustomer", productCustomer);
+        }
+        /// <summary>
+        /// 架构中不存在 Dictionary 的注释。
+        /// </summary>
+        public void AddToDictionary(Dictionary dictionary)
+        {
+            base.AddObject("Dictionary", dictionary);
         }
     }
     /// <summary>
@@ -1315,10 +1337,12 @@ namespace LZL.ForeignTrade.DataEntity
         /// 创建新的 Product 对象。
         /// </summary>
         /// <param name="id">ID 的初始值。</param>
-        public static Product CreateProduct(global::System.Guid id)
+        /// <param name="isShare">IsShare 的初始值。</param>
+        public static Product CreateProduct(global::System.Guid id, bool isShare)
         {
             Product product = new Product();
             product.ID = id;
+            product.IsShare = isShare;
             return product;
         }
         /// <summary>
@@ -1853,9 +1877,9 @@ namespace LZL.ForeignTrade.DataEntity
         /// <summary>
         /// 架构中不存在属性 IsShare 的注释。
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<bool> IsShare
+        public bool IsShare
         {
             get
             {
@@ -1870,8 +1894,8 @@ namespace LZL.ForeignTrade.DataEntity
                 this.OnIsShareChanged();
             }
         }
-        private global::System.Nullable<bool> _IsShare;
-        partial void OnIsShareChanging(global::System.Nullable<bool> value);
+        private bool _IsShare;
+        partial void OnIsShareChanging(bool value);
         partial void OnIsShareChanged();
         /// <summary>
         /// 架构中不存在属性 DescriptionCH 的注释。
@@ -2149,5 +2173,142 @@ namespace LZL.ForeignTrade.DataEntity
                 }
             }
         }
+    }
+    /// <summary>
+    /// 架构中不存在 ForeignTradeModel.Dictionary 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="Dictionary")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Dictionary : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 Dictionary 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static Dictionary CreateDictionary(global::System.Guid id)
+        {
+            Dictionary dictionary = new Dictionary();
+            dictionary.ID = id;
+            return dictionary;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在属性 Type 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type
+        {
+            get
+            {
+                return this._Type;
+            }
+            set
+            {
+                this.OnTypeChanging(value);
+                this.ReportPropertyChanging("Type");
+                this._Type = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Type");
+                this.OnTypeChanged();
+            }
+        }
+        private string _Type;
+        partial void OnTypeChanging(string value);
+        partial void OnTypeChanged();
+        /// <summary>
+        /// 架构中不存在属性 Name 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
+        /// <summary>
+        /// 架构中不存在属性 Code 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Code
+        {
+            get
+            {
+                return this._Code;
+            }
+            set
+            {
+                this.OnCodeChanging(value);
+                this.ReportPropertyChanging("Code");
+                this._Code = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Code");
+                this.OnCodeChanged();
+            }
+        }
+        private string _Code;
+        partial void OnCodeChanging(string value);
+        partial void OnCodeChanged();
+        /// <summary>
+        /// 架构中不存在属性 Pid 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.Guid> Pid
+        {
+            get
+            {
+                return this._Pid;
+            }
+            set
+            {
+                this.OnPidChanging(value);
+                this.ReportPropertyChanging("Pid");
+                this._Pid = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Pid");
+                this.OnPidChanged();
+            }
+        }
+        private global::System.Nullable<global::System.Guid> _Pid;
+        partial void OnPidChanging(global::System.Nullable<global::System.Guid> value);
+        partial void OnPidChanged();
     }
 }
