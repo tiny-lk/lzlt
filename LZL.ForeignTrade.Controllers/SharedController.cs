@@ -9,6 +9,7 @@ using System.Data.Objects.DataClasses;
 using System.Data.Objects;
 using System.Data.Common;
 using System.Linq.Expressions;
+using System.Configuration;
 
 namespace LZL.ForeignTrade.Controllers
 {
@@ -132,25 +133,35 @@ namespace LZL.ForeignTrade.Controllers
                     }
                     for (int f = 0; f < fkregions.Length; f++)
                     {
-                        if (formvalues[fkregions[f]].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
+                        string childregionname = fkregions[f].Substring(0, fkregions[f].IndexOf("♂") + 1);//子表对象
+                        //判断是否存在pfk
+                        var pfkname = fkregions[i].Replace("♂fk", "♂pfk");
+                        if (!string.IsNullOrEmpty(formvalues[pfkname]) && formvalues[pfkname].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
                         {
-                            string childregionname = fkregions[f].Substring(0, fkregions[f].IndexOf("♂") + 1);
-                            var childregioncount = BasicOperate.GetInt(formvalues[childregionname + "regioncount"], true); //获取区域中存在多个，表示是子表。
-                            if (childregioncount == 0 && !string.IsNullOrEmpty(formvalues[regions[i] + "id"]))//表示所有的子被删除
+                            childTable(formvalues, tableobj, entities, childregionname, id);
+                        }
+                        else
+                        {
+                            if (formvalues[fkregions[f]].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
                             {
-                                IRelatedEnd relatedEndObject = ClassHelper.GetPropertyValue2(tableobj, childregionname.Substring(0, childregionname.IndexOf("♂"))) as IRelatedEnd;
-                                relatedEndObject.Load();
-                                IEnumerable<EntityObject> query = relatedEndObject.CreateSourceQuery().OfType<EntityObject>();
-                                for (int k = 0; k < query.Count(); k++)
+                                var childregioncount = BasicOperate.GetInt(formvalues[childregionname + "regioncount"], true); //获取区域中存在多个，表示是子表。
+                                if (childregioncount == 0 && !string.IsNullOrEmpty(formvalues[regions[i] + "id"]))//表示所有的子被删除
                                 {
-                                    entities.DeleteObject(query.ElementAt(k));
+                                    IRelatedEnd relatedEndObject = ClassHelper.GetPropertyValue2(tableobj, childregionname.Substring(0, childregionname.IndexOf("♂"))) as IRelatedEnd;
+                                    relatedEndObject.Load();
+                                    IEnumerable<EntityObject> query = relatedEndObject.CreateSourceQuery().OfType<EntityObject>();
+                                    for (int k = 0; k < query.Count(); k++)
+                                    {
+                                        entities.DeleteObject(query.ElementAt(k));
+                                    }
+                                }
+                                else
+                                {
+                                    childTable(formvalues, tableobj, entities, childregionname, id);
                                 }
                             }
-                            else
-                            {
-                                childTable(formvalues, tableobj, entities, childregionname, id);
-                            }
                         }
+
                     }
                 }
             }
@@ -179,7 +190,8 @@ namespace LZL.ForeignTrade.Controllers
                 EntityObject tableobj = null;
                 if (!string.IsNullOrEmpty(formvalues[region + "objectname"]))
                 {
-                    if (!string.IsNullOrEmpty(formvalues[region + "id"].Split(new[] { ',' })[s]))
+
+                    if (!string.IsNullOrEmpty(formvalues[region + "id"]) && !string.IsNullOrEmpty(formvalues[region + "id"].Split(new[] { ',' })[s]))
                     {
                         string sql = "select value it from " + entities.DefaultContainerName + "." + region.Substring(0, region.LastIndexOf("♂")) + " as it ";
                         sql += " where it.ID=Guid'" + formvalues[region + "id"].Split(new[] { ',' })[s] + "'";
@@ -196,6 +208,7 @@ namespace LZL.ForeignTrade.Controllers
                         (region + "objectname").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                         (region + "fk").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                         (region + "id").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                        (region + "pfk").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                          region.Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase)))
                     {
                         if (tableobj != null)
@@ -231,7 +244,7 @@ namespace LZL.ForeignTrade.Controllers
                 {
                     if (propertyinfo.PropertyType.FullName.Equals("System.Guid", StringComparison.CurrentCultureIgnoreCase))
                     {
-                        if (string.IsNullOrEmpty(formvalues[region + "id"].Split(new[] { ',' })[s]))
+                        if (string.IsNullOrEmpty(formvalues[region + "id"]) || string.IsNullOrEmpty(formvalues[region + "id"].Split(new[] { ',' })[s]))
                         {
                             ClassHelper.SetPropertyValue(tableobj, propertyinfo.Name, System.Guid.NewGuid());
                         }
@@ -243,32 +256,78 @@ namespace LZL.ForeignTrade.Controllers
                     }
                 }
 
-                ClassHelper.SetPropertyValue(tableobj, parentobject.GetType().Name, parentobject);
-                if (string.IsNullOrEmpty(formvalues[region + "id"].Split(new[] { ',' })[s]))
+                ClassHelper.SetPropertyValue(tableobj, parentobject.GetType().Name, parentobject);//设置子对象信息
+
+                if (!string.IsNullOrEmpty(formvalues[region + "pfk"]))
+                {
+                    string sqlchild = "select value it from " + entities.DefaultContainerName + "." + formvalues[region + "fk"] + " as it ";
+                    sqlchild += " where it.ID=Guid'" + formvalues[formvalues[region + "fk"] + "♂id"] + "'";
+                    ClassHelper.SetPropertyValue(tableobj, formvalues[region + "fk"], entities.CreateQuery<EntityObject>(sqlchild).FirstOrDefault());//设置父对象信息
+                }
+
+                if (string.IsNullOrEmpty(formvalues[region + "id"]) || string.IsNullOrEmpty(formvalues[region + "id"].Split(new[] { ',' })[s]))
                 {
                     entities.AddObject(tableobj.GetType().Name, tableobj);
                 }
 
                 if (s == regioncount - 1)
                 {
-                    IRelatedEnd relatedEndObject = ClassHelper.GetPropertyValue2(parentobject, tableobj.GetType().Name) as IRelatedEnd;
-                    relatedEndObject.Load();
-                    IEnumerable<EntityObject> query = relatedEndObject.CreateSourceQuery().OfType<EntityObject>();
-
-                    foreach (EntityObject r in query)
+                    IRelatedEnd relatedEndObject = relatedEndObject = ClassHelper.GetPropertyValue2(parentobject, tableobj.GetType().Name) as IRelatedEnd;
+                    if (!(parentobject.EntityState == System.Data.EntityState.Added || parentobject.EntityState == System.Data.EntityState.Detached))
                     {
-                        if (!guids.Contains(new Guid(r.EntityKey.EntityKeyValues.Select(v => v.Value).FirstOrDefault().ToString())))
+                        relatedEndObject.Load();
+                        IEnumerable<EntityObject> query = relatedEndObject.CreateSourceQuery().OfType<EntityObject>();
+                        foreach (EntityObject r in query)
                         {
-                            entities.DeleteObject(r);
+                            if (!guids.Contains(new Guid(r.EntityKey.EntityKeyValues.Select(v => v.Value).FirstOrDefault().ToString())))
+                            {
+                                entities.DeleteObject(r);
+                            }
                         }
                     }
                 }
+
             }
         }
 
-        private static void BuilderObject(string name, object value, object o)
+        private static void BuilderObject(string name, string value, object o)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                value = null;
+            }
             ClassHelper.SetPropertyValue(o, name.Trim(), value);
         }
+
+        public ActionResult CostromerIndex(string type,string quyerCondition, string queryvalue, int? page)
+        {
+            if (string.IsNullOrEmpty(quyerCondition))
+            {
+                quyerCondition = "NameCode";
+            }
+            Entities entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Customer")) / pagesize);
+            string sql = "select value it from " + entities.DefaultContainerName + ".Customer as it ";
+
+            if (!string.IsNullOrEmpty(type))
+            {
+                sql += " where it.TypeCode= '" + type + "'";
+            }
+            else
+            {
+                sql += " where it.TypeCode is not null" ;
+            }
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                sql += " and it." + quyerCondition + " like '" + queryvalue + "%'";
+            }
+           
+            sql += " order by it." + quyerCondition;
+            sql += " Skip " + ((page ?? 1) - 1) + " limit " + pagesize.ToString();
+            var querylist = entities.CreateQuery<Customer>(sql).ToList();
+            return View("CostromerIndex", querylist);
+        }
+
     }
 }

@@ -6,8 +6,6 @@
 </asp:Content>
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script type="text/javascript" src="../../Scripts/jquery-1.3.2.js"></script>
-
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.PrintArea.js")%>"></script>
@@ -18,6 +16,7 @@
             $("#quyerCondition").bind("change", function() {
                 $("#queryvalue").unbind(".autocomplete");
                 $("#queryvalue").val("");
+                $("#OK").attr("disabled", "disabled");
                 autocompletevalue($(this).val());
             });
 
@@ -68,9 +67,11 @@
         function print() {
             $("table > tbody").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
         }
+
         function selecthandler() {
             $('table > tbody > tr').find("input[type='checkbox']").click();
         }
+
         function autocompletevalue(f) {
             $("#queryvalue").autocomplete('<%=Url.Action("GetAutocompleteValue","Shared")%>',
                 { max: 20,
@@ -78,8 +79,7 @@
                     multiple: false,
                     scroll: true,
                     scrollHeight: 300,
-                    dataType:
-                'json',
+                    dataType: 'json',
                     extraParams: { t: "Customer", f: f },
                     parse: function(data) {
                         var rows = [];
@@ -88,8 +88,8 @@
                                 value: data[i], result: data[i]
                             };
                         } return rows;
-                    }, formatItem: function(row, i,
-                n) { return row; }
+                    },
+                    formatItem: function(row, i, n) { return row; }
                 });
         } 
     </script>

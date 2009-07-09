@@ -24,7 +24,7 @@ namespace LZL.ForeignTrade.Controllers
         {
             Entities _Entities = new Entities();
             int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)Getcount(page, "NameCode", "")) / pagesize);
+            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "NameCode", "", "Customer")) / pagesize);
             var customers = _Entities.Customer.OrderBy(v => v.NameCode).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
             return View(customers);
         }
@@ -34,7 +34,7 @@ namespace LZL.ForeignTrade.Controllers
         {
             Entities entities = new Entities();
             int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)Getcount(1, quyerCondition, queryvalue)) / pagesize);
+            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Customer")) / pagesize);
             string sql = "select value it from " + entities.DefaultContainerName + ".Customer as it ";
             if (!string.IsNullOrEmpty(queryvalue))
             {
@@ -46,17 +46,7 @@ namespace LZL.ForeignTrade.Controllers
             return View(querylist);
         }
 
-        private int Getcount(int? page, string quyerCondition, string queryvalue)
-        {
-            Entities entities = new Entities();
-            string sql = "select value Count(it." + quyerCondition + ") from " + entities.DefaultContainerName + ".Customer as it ";
-            if (!string.IsNullOrEmpty(queryvalue))
-            {
-                sql += " where it." + quyerCondition + " like '" + queryvalue + "%'";
-            }
-            var count = entities.CreateQuery<int>(sql).FirstOrDefault();
-            return count;
-        }
+
 
         public ActionResult Add()
         {

@@ -6,6 +6,8 @@
     <link href="<%= Url.Content("~/Content/Site.css")%>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Content("~/Content/jquery.autocomplete.css")%>" rel="stylesheet"
         type="text/css" />
+    <link href="<%= Url.Content("~/Content/themes/base/ui.all.css")%>" rel="stylesheet"
+        type="text/css" />
     <style type="text/css" media="screen">
         .ie_focus
         {
@@ -33,7 +35,6 @@
             }).bind("mouseout", function() {
                 $(this).removeClass("mouseover");
             });
-
             $($("table > tbody > tr").find("input[type='checkbox'],input[name='select']")).live("click", function() {
                 if ($(document).data("check") == null || $(document).data("check") == "" || $(document).data("check") == 'undefined') {
                     $(document).data("check", 0);

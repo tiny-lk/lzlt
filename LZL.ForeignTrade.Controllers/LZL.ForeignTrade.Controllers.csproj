@@ -64,6 +64,7 @@
     <Compile Include="AccountController.cs" />
     <Compile Include="AdminController.cs" />
     <Compile Include="CostomerController.cs" />
+    <Compile Include="DataHelper.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="ProductController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
