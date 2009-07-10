@@ -268,6 +268,8 @@
     <Content Include="Scripts\ui\ui.sortable.js" />
     <Content Include="Scripts\ui\ui.tabs.js" />
     <Content Include="Views\Product\Add.aspx" />
+    <Content Include="Views\Product\Details.aspx" />
+    <Content Include="Views\Product\Edit.aspx" />
     <Content Include="Views\Product\Index.aspx" />
     <Content Include="Views\Product\Product.master" />
     <Content Include="Views\Shared\CostromerIndex.ascx" />
