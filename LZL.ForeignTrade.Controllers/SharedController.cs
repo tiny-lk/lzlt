@@ -131,38 +131,34 @@ namespace LZL.ForeignTrade.Controllers
                     {
                         entities.AddObject(tableobj.GetType().Name, tableobj);
                     }
+
                     for (int f = 0; f < fkregions.Length; f++)
                     {
                         string childregionname = fkregions[f].Substring(0, fkregions[f].IndexOf("♂") + 1);//子表对象
                         //判断是否存在pfk
                         var pfkname = fkregions[i].Replace("♂fk", "♂pfk");
-                        if (!string.IsNullOrEmpty(formvalues[pfkname]) && formvalues[pfkname].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
+                        if ((!string.IsNullOrEmpty(formvalues[pfkname]) && formvalues[pfkname].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
+                            || (formvalues[fkregions[f]].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
+                            )
                         {
-                            childTable(formvalues, tableobj, entities, childregionname, id);
-                        }
-                        else
-                        {
-                            if (formvalues[fkregions[f]].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
+                            var childregioncount = BasicOperate.GetInt(formvalues[childregionname + "regioncount"], true); //获取区域中存在多个，表示是子表。
+                            if (childregioncount == 0 && !string.IsNullOrEmpty(formvalues[regions[i] + "id"]))//表示所有的子被删除
                             {
-                                var childregioncount = BasicOperate.GetInt(formvalues[childregionname + "regioncount"], true); //获取区域中存在多个，表示是子表。
-                                if (childregioncount == 0 && !string.IsNullOrEmpty(formvalues[regions[i] + "id"]))//表示所有的子被删除
+                                IRelatedEnd relatedEndObject = ClassHelper.GetPropertyValue2(tableobj, childregionname.Substring(0, childregionname.IndexOf("♂"))) as IRelatedEnd;
+                                relatedEndObject.Load();
+                                IEnumerable<EntityObject> query = relatedEndObject.CreateSourceQuery().OfType<EntityObject>();
+                                for (int k = 0; k < query.Count(); k++)
                                 {
-                                    IRelatedEnd relatedEndObject = ClassHelper.GetPropertyValue2(tableobj, childregionname.Substring(0, childregionname.IndexOf("♂"))) as IRelatedEnd;
-                                    relatedEndObject.Load();
-                                    IEnumerable<EntityObject> query = relatedEndObject.CreateSourceQuery().OfType<EntityObject>();
-                                    for (int k = 0; k < query.Count(); k++)
-                                    {
-                                        entities.DeleteObject(query.ElementAt(k));
-                                    }
-                                }
-                                else
-                                {
-                                    childTable(formvalues, tableobj, entities, childregionname, id);
+                                    entities.DeleteObject(query.ElementAt(k));
                                 }
                             }
+                            else
+                            {
+                                childTable(formvalues, tableobj, entities, childregionname, id);
+                            }
                         }
-
                     }
+                    //
                 }
             }
         }
@@ -261,7 +257,7 @@ namespace LZL.ForeignTrade.Controllers
                 if (!string.IsNullOrEmpty(formvalues[region + "pfk"]))
                 {
                     string sqlchild = "select value it from " + entities.DefaultContainerName + "." + formvalues[region + "fk"] + " as it ";
-                    sqlchild += " where it.ID=Guid'" + formvalues[formvalues[region + "fk"] + "♂id"] + "'";
+                    sqlchild += " where it.ID=Guid'" + formvalues[formvalues[region + "fk"] + "♂id"].Split(new[] { ',' })[s] + "'";
                     ClassHelper.SetPropertyValue(tableobj, formvalues[region + "fk"], entities.CreateQuery<EntityObject>(sqlchild).FirstOrDefault());//设置父对象信息
                 }
 

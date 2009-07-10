@@ -40,12 +40,12 @@
             $("#Delete").bind("click", function() {
                 var State = confirm('你确认要删除' + $(document).data('checkvalue') + '吗？');
                 if (State == true) {
-                    window.location.href = '<%=Url.Action("Delete","Product")%>' + $(document).data('checkvalue');
+                    window.location.href = '<%=Url.Action("Delete","Product")%>' + '/' + $(document).data('checkvalue');
                 }
             });
 
             $("#Edit").bind("click", function() {
-                window.location.href = '<%=Url.Action("Edit","Product")%>' + $(document).data('checkvalue');
+                window.location.href = '<%=Url.Action("Edit","Product")%>' + '/' + $(document).data('checkvalue');
             });
 
             $("#Refresh").bind("click", function() {
@@ -107,8 +107,7 @@
                             new SelectListItem(){ Text="客户代码", Value ="NameCode"},
                             new SelectListItem(){Text="客户中文名称", Value ="NameCH"},
                              new SelectListItem(){Text="客户英文名称", Value ="NameEH"},
-                             new SelectListItem(){ Text="商品条码", Value ="CustomsCode"},
-                             new SelectListItem(){ Text ="客户类型", Value ="TypeCode"}
+                             new SelectListItem(){ Text="商品条码", Value ="CustomsCode"}
                         }, "Value", "Text", "NameCode"))%>
                 </td>
                 <td colspan="6" align="left">
@@ -155,7 +154,8 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
             %>
-            <tr>
+            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Product/Details/"+Html.Encode(Model[i].ID)) %>'"
+                title="双击查看详细信息">
                 <td>
                     <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
                 </td>

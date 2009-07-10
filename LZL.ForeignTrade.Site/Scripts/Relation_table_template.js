@@ -1,4 +1,4 @@
-﻿function addRelationcontrol(regionname, childobject, data, addid) {
+﻿function addRelationcontrol(regionname, childobject, data, addid, url) {
     $("#modedialog").remove();
     $("body").append("<div id='modedialog'></div>");
     var groupid = addid;
@@ -23,7 +23,7 @@
                             var checkedhtml = "<li style='display: inline;padding:0 2;'>";
                             checkedhtml += " <input type='checkbox'name=" + childobject + " value=" + o.split('|')[0] + " checked = '" + o.split('|')[0] + "' ";
                             checkedhtml += " onclick=$(this).parent().remove();display('" + regionname + "','" + groupid + "'); >";
-                            checkedhtml += o.split("|")[1] + " </li>";
+                            checkedhtml += " <a href=" + url + "/" + o.split('|')[0] + ">" + o.split("|")[1] + "</a> </li>";
                             if (addid != null && $("#" + regionname).find("#" + groupid).length == 1) {
                                 $('#' + groupid).parent().css("display", "");
                                 $("#" + regionname).find("#" + groupid).append(checkedhtml);
