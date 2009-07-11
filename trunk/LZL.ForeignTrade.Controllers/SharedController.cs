@@ -10,6 +10,7 @@ using System.Data.Objects;
 using System.Data.Common;
 using System.Linq.Expressions;
 using System.Configuration;
+using System.Web;
 
 namespace LZL.ForeignTrade.Controllers
 {
@@ -323,6 +324,119 @@ namespace LZL.ForeignTrade.Controllers
             sql += " Skip " + ((page ?? 1) - 1) + " limit " + pagesize.ToString();
             var querylist = entities.CreateQuery<Customer>(sql).ToList();
             return View("CostromerIndex", querylist);
+        }
+
+        public ActionResult ImageUserControl(string fid)
+        {
+            ViewData["fid"] = fid;
+            return View("ImageUserControl");
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void ImageUserControl(FormCollection form, HttpPostedFileBase Attachment)
+        {
+            Image image = new Image();
+            image.ID =  Guid.NewGuid();
+            image.Name = form["Name"];
+            image.FK_ID = new Guid(form["fid"]);
+            image.Note = form["Note"];
+            image.TypeCode = form["TypeCode"];
+            if (Attachment != null)
+            {
+                byte[] array = new byte[Attachment.ContentLength];
+                Attachment.InputStream.Read(array, 0, Attachment.ContentLength);
+                image.Attachment = array;
+                image.ExtensName = Attachment.FileName.Substring(Attachment.FileName.LastIndexOf(".") + 1);
+                image.FileName = Attachment.FileName.Substring(Attachment.FileName.LastIndexOf("\\") + 1);
+            }
+            Entities entities = new Entities();
+            entities.AddToImage(image);
+            entities.SaveChanges();
+            ViewData["fid"] = form["fid"];
+        }
+
+        public ActionResult ImageView(string imagetype, string fid)
+        {
+            Entities entities = new Entities();
+            Guid fguid = new Guid(fid);
+            var images = entities.Image.Where(v => v.FK_ID.Value.Equals(fguid)).OrderBy(v => v.TypeCode).ToList();
+
+            ViewData["tree"] = builderDictionaryTree(Server.UrlDecode(imagetype), images);
+
+            return View("ImageView", images.FirstOrDefault());
+        }
+
+        public static string builderDictionaryTree(string type,List<Image> images)
+        {
+            Entities entities = new Entities();
+            var treedictionary = entities.Dictionary.Where(v => v.Type.Equals(type, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            var tree = string.Empty;
+            for (int i = 0; i < treedictionary.Count; i++)
+            {
+                tree = "<li id='" + treedictionary.ElementAt(i).ID.ToString() + "'><span class='folder'>" + treedictionary.ElementAt(i).Name + "</span>";
+                if (treedictionary.ElementAt(i).Pid != null)
+                {
+                    builderDictionary(treedictionary, treedictionary.ElementAt(i).Pid.GetValueOrDefault(), tree, images);
+                }
+                else
+                {
+                    var imagecode = images.Where(v => v.TypeCode.Equals(treedictionary[i].Code,StringComparison.CurrentCultureIgnoreCase)).ToList();
+                    if (imagecode.Count > 0)
+                    {
+                        tree += "<ul>";
+                        for (int j = 0; j < imagecode.Count; j++)
+                        {
+                            tree += "<li id='" + imagecode[j].ID.ToString() + "'><a href='#'><span class='file'>" + imagecode[j].Name + "</span></a></li>";
+                        }
+                        tree += "</ul>";
+                    }
+                }
+                tree += "</li>";
+            }
+            return tree;
+            
+        }
+
+        private static void builderDictionary(List<Dictionary> dictionarys, Guid pid, string tree, List<Image> images)
+        {
+            var childdictionary = dictionarys.Where(v => v.ID.Equals(pid)).ToList();
+            if (childdictionary.Count > 0)
+            {
+                tree += "<ul>";
+
+                for (int i = 0; i < childdictionary.Count; i++)
+                {
+                    tree += "<li id='" + childdictionary[i].ID.ToString() + "'><span class='folder'>" + childdictionary[i].Name + "</span>";
+                    if (childdictionary[i].Pid != null)
+                    {
+                        builderDictionary(dictionarys, childdictionary.ElementAt(i).Pid.GetValueOrDefault(), tree, images);
+                    }
+                    else
+                    {
+                        var imagecode = images.Where(v => v.TypeCode.Equals(childdictionary[i].Code, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                        if (imagecode.Count > 0)
+                        {
+                            tree += "<ul>";
+                            for (int j = 0; j < imagecode.Count; j++)
+                            {
+                                tree += "<li id='" + imagecode[j].ID.ToString() + "'><a href='#'><span class='file'>" + imagecode[j].Name + "</span></a></li>";
+                            }
+                            tree += "</ul>";
+                        }
+                    }
+                    tree += "</li>";
+                }
+                tree += "</ul>";
+            }
+
+        }
+
+        public FileResult ShowImage(string id)
+        {
+            Entities entities = new Entities();
+            Guid fguid = new Guid(id);
+            var images = entities.Image.Where(v => v.ID.Equals(fguid)).OrderBy(v => v.TypeCode).FirstOrDefault();
+            return File(images.Attachment, "image/" + images.ExtensName);
         }
 
     }

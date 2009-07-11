@@ -13,10 +13,6 @@
           <EntitySet Name="Memorandum" EntityType="ForeignTradeModel.Store.Memorandum" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product" EntityType="ForeignTradeModel.Store.Product" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductCustomer" EntityType="ForeignTradeModel.Store.ProductCustomer" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Image_Product" Association="ForeignTradeModel.Store.FK_Image_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Image" EntitySet="Image" />
-          </AssociationSet>
           <AssociationSet Name="FK_LINKMAN_CUSTOMER" Association="ForeignTradeModel.Store.FK_LINKMAN_CUSTOMER">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Linkman" EntitySet="Linkman" />
@@ -76,9 +72,10 @@
           <Property Name="FK_ID" Type="uniqueidentifier" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="FileName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Image" Type="image" />
+          <Property Name="Attachment" Type="image" />
           <Property Name="ExtensName" Type="nvarchar" MaxLength="10" />
           <Property Name="Note" Type="text" />
+          <Property Name="TypeCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Linkman">
           <Key>
@@ -146,18 +143,6 @@
           <Property Name="CustomerID" Type="uniqueidentifier" />
           <Property Name="Note" Type="text" />
         </EntityType>
-        <Association Name="FK_Image_Product">
-          <End Role="Product" Type="ForeignTradeModel.Store.Product" Multiplicity="0..1" />
-          <End Role="Image" Type="ForeignTradeModel.Store.Image" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Image">
-              <PropertyRef Name="FK_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_LINKMAN_CUSTOMER">
           <End Role="Customer" Type="ForeignTradeModel.Store.Customer" Multiplicity="0..1" />
           <End Role="Linkman" Type="ForeignTradeModel.Store.Linkman" Multiplicity="*" />
@@ -220,19 +205,16 @@
           <AssociationSet Name="FK_MEMORANDUM_CUSTOMER" Association="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Memorandum" EntitySet="Memorandum" /></AssociationSet>
-          <EntitySet Name="Image" EntityType="ForeignTradeModel.Image" />
           <EntitySet Name="Product" EntityType="ForeignTradeModel.Product" />
           <EntitySet Name="ProductCustomer" EntityType="ForeignTradeModel.ProductCustomer" />
           <AssociationSet Name="FK_ProductCustomer_Customer" Association="ForeignTradeModel.FK_ProductCustomer_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="ProductCustomer" EntitySet="ProductCustomer" /></AssociationSet>
-          <AssociationSet Name="FK_Image_Product" Association="ForeignTradeModel.FK_Image_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Image" EntitySet="Image" /></AssociationSet>
           <AssociationSet Name="FK_ProductCustomer_Product" Association="ForeignTradeModel.FK_ProductCustomer_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductCustomer" EntitySet="ProductCustomer" /></AssociationSet>
-          <EntitySet Name="Dictionary" EntityType="ForeignTradeModel.Dictionary" /></EntityContainer>
+          <EntitySet Name="Dictionary" EntityType="ForeignTradeModel.Dictionary" />
+          <EntitySet Name="Image" EntityType="ForeignTradeModel.Image" /></EntityContainer>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="ID" /></Key>
@@ -284,16 +266,6 @@
         <Association Name="FK_MEMORANDUM_CUSTOMER">
           <End Type="ForeignTradeModel.Customer" Role="Customer" Multiplicity="0..1" />
           <End Type="ForeignTradeModel.Memorandum" Role="Memorandum" Multiplicity="*" /></Association>
-        <EntityType Name="Image">
-          <Key>
-            <PropertyRef Name="ID" /></Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="true" />
-          <Property Name="FileName" Type="String" Nullable="true" />
-          <Property Name="Image1" Type="Binary" Nullable="true" />
-          <Property Name="ExtensName" Type="String" Nullable="true" />
-          <Property Name="Note" Type="String" Nullable="true" />
-          <NavigationProperty Name="Product" Relationship="ForeignTradeModel.FK_Image_Product" FromRole="Image" ToRole="Product" /></EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" /></Key>
@@ -325,7 +297,6 @@
           <Property Name="DescriptionEN" Type="String" Nullable="true" />
           <Property Name="Note" Type="String" Nullable="true" />
           <Property Name="FK_ID" Type="String" Nullable="true" />
-          <NavigationProperty Name="Image" Relationship="ForeignTradeModel.FK_Image_Product" FromRole="Product" ToRole="Image" />
           <NavigationProperty Name="ProductCustomer" Relationship="ForeignTradeModel.FK_ProductCustomer_Product" FromRole="Product" ToRole="ProductCustomer" /></EntityType>
         <EntityType Name="ProductCustomer">
           <Key>
@@ -337,9 +308,6 @@
         <Association Name="FK_ProductCustomer_Customer">
           <End Type="ForeignTradeModel.Customer" Role="Customer" Multiplicity="0..1" />
           <End Type="ForeignTradeModel.ProductCustomer" Role="ProductCustomer" Multiplicity="*" /></Association>
-        <Association Name="FK_Image_Product">
-          <End Type="ForeignTradeModel.Product" Role="Product" Multiplicity="0..1" />
-          <End Type="ForeignTradeModel.Image" Role="Image" Multiplicity="*" /></Association>
         <Association Name="FK_ProductCustomer_Product">
           <End Type="ForeignTradeModel.Product" Role="Product" Multiplicity="0..1" />
           <End Type="ForeignTradeModel.ProductCustomer" Role="ProductCustomer" Multiplicity="*" /></Association>
@@ -350,7 +318,18 @@
           <Property Name="Type" Type="String" Nullable="true" />
           <Property Name="Name" Type="String" Nullable="true" />
           <Property Name="Code" Type="String" Nullable="true" />
-          <Property Name="Pid" Type="Guid" Nullable="true" /></EntityType></Schema>
+          <Property Name="Pid" Type="Guid" Nullable="true" /></EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ID" /></Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="FK_ID" Type="Guid" Nullable="true" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="FileName" Type="String" Nullable="true" />
+          <Property Name="Attachment" Type="Binary" Nullable="true" />
+          <Property Name="ExtensName" Type="String" Nullable="true" />
+          <Property Name="Note" Type="String" Nullable="true" />
+          <Property Name="TypeCode" Type="String" Nullable="true" /></EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -408,15 +387,6 @@
             <EndProperty Name="Customer">
               <ScalarProperty Name="ID" ColumnName="FK_ID" /></EndProperty>
             <Condition ColumnName="FK_ID" IsNull="false" /></AssociationSetMapping>
-          <EntitySetMapping Name="Image">
-            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Image)">
-              <MappingFragment StoreEntitySet="Image">
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="ExtensName" ColumnName="ExtensName" />
-                <ScalarProperty Name="Image1" ColumnName="Image" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Product)">
               <MappingFragment StoreEntitySet="Product">
@@ -459,12 +429,6 @@
             <EndProperty Name="Customer">
               <ScalarProperty Name="ID" ColumnName="CustomerID" /></EndProperty>
             <Condition ColumnName="CustomerID" IsNull="false" /></AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Image_Product" TypeName="ForeignTradeModel.FK_Image_Product" StoreEntitySet="Image">
-            <EndProperty Name="Image">
-              <ScalarProperty Name="ID" ColumnName="ID" /></EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ID" ColumnName="FK_ID" /></EndProperty>
-            <Condition ColumnName="FK_ID" IsNull="false" /></AssociationSetMapping>
           <AssociationSetMapping Name="FK_ProductCustomer_Product" TypeName="ForeignTradeModel.FK_ProductCustomer_Product" StoreEntitySet="ProductCustomer">
             <EndProperty Name="ProductCustomer">
               <ScalarProperty Name="ID" ColumnName="ID" /></EndProperty>
@@ -478,6 +442,17 @@
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Image">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Image)">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="ExtensName" ColumnName="ExtensName" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FK_ID" ColumnName="FK_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -496,35 +471,35 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="COSTOMER" ZoomLevel="71">
-        <EntityTypeShape EntityType="ForeignTradeModel.Customer" Width="1.5" PointX="0.75" PointY="2.625" Height="5.2173673502604156" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Linkman" Width="1.5" PointX="3" PointY="7.75" Height="2.7341113281249996" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Memorandum" Width="1.5" PointX="3" PointY="5" Height="1.9700325520833335" />
+      <Diagram Name="COSTOMER" ZoomLevel="100" ShowGrid="true" DisplayType="false">
+        <EntityTypeShape EntityType="ForeignTradeModel.Customer" Width="1.5" PointX="0.75" PointY="2.625" Height="5.2173673502604156" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Linkman" Width="1.5" PointX="3" PointY="7.75" Height="2.7341113281249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Memorandum" Width="1.5" PointX="3" PointY="5" Height="1.9700325520833335" IsExpanded="true" />
         <AssociationConnector Association="ForeignTradeModel.FK_LINKMAN_CUSTOMER" >
           <ConnectorPoint PointX="1.5" PointY="7.8423673502604156" />
-          <ConnectorPoint PointX="1.5" PointY="9.1632398392796315" />
-          <ConnectorPoint PointX="3" PointY="9.1632398392796315" />
-          </AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="9.1632398391927072" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="9.1632398391927072" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="9.1632398391927072" />
+          <ConnectorPoint PointX="3" PointY="9.1632398391927072" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" >
           <ConnectorPoint PointX="2.25" PointY="5.9850162760416667" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="5.9850162760416659" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="5.9850162760416667" />
           <ConnectorPoint PointX="3" PointY="5.9850162760416667" />
           </AssociationConnector>
-        <EntityTypeShape EntityType="ForeignTradeModel.Image" Width="1.5" PointX="3" PointY="12.875" Height="2.3520719401041674" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Product" Width="1.5" PointX="0.75" PointY="10.75" Height="6.745524902343746" />
-        <EntityTypeShape EntityType="ForeignTradeModel.ProductCustomer" Width="1.5" PointX="5" PointY="2.375" Height="1.7790128580729157" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Product" Width="1.5" PointX="0.75" PointY="10.5" Height="6.5545052083333353" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.ProductCustomer" Width="1.5" PointX="3" PointY="2.375" Height="1.7790128580729157" IsExpanded="true" />
         <AssociationConnector Association="ForeignTradeModel.FK_ProductCustomer_Customer" >
-          <ConnectorPoint PointX="2.25" PointY="3.3895064290364578" />
-          <ConnectorPoint PointX="5" PointY="3.3895064290364578" />
-          </AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_Image_Product" >
-          <ConnectorPoint PointX="2.25" PointY="14.051035970052084" />
-          <ConnectorPoint PointX="3" PointY="14.051035970052084" />
-          </AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="3.5650070362955724" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="3.5650070362955719" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="3.5650070362955724" />
+          <ConnectorPoint PointX="3" PointY="3.5650070362955724" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ProductCustomer_Product" >
-          <ConnectorPoint PointX="2.25" PointY="16.392548421223957" />
-          <ConnectorPoint PointX="5.75" PointY="16.392548421223957" />
-          <ConnectorPoint PointX="5.75" PointY="4.1540128580729156" />
-          </AssociationConnector>
-        <EntityTypeShape EntityType="ForeignTradeModel.Dictionary" Width="1.5" PointX="8.25" PointY="5.5" Height="1.9700325520833335" /></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="2.25" PointY="13.777252604166666" />
+          <ConnectorPoint PointX="2.625" PointY="13.777252604166666" />
+          <ConnectorPoint PointX="2.625" PointY="2.8510012145182291" />
+          <ConnectorPoint PointX="3" PointY="2.8510012145182291" /></AssociationConnector>
+        <EntityTypeShape EntityType="ForeignTradeModel.Dictionary" Width="1.5" PointX="5.75" PointY="0.75" Height="1.9700325520833331" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Image" Width="1.5" PointX="4.375" PointY="12.875" Height="2.5430916341145835" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
