@@ -32,7 +32,35 @@
                 }
             });
         }
-
+        function addImage(key) {
+            $("#imagemodedialog").remove();
+            $("body").append("<div id='imagemodedialog'></div>");
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { fid: key },
+                url: '<%=Url.Action("ImageUserControl","Shared")%>',
+                success: function(data) {
+                    $("#imagemodedialog").dialog({
+                        bgiframe: true,
+                        height: 140,
+                        modal: true,
+                        width: 700,
+                        height: 'auto',
+                        position: 'center',
+                        resizable: true,
+                        draggable: true,
+                        closeOnEscape: true
+                    });
+                    $("#imagemodedialog").append(data);
+                    $("#imagemodedialog").dialog();
+                    $("#imagemodedialog").dialog('open');
+                },
+                error: function() {
+                    alert("添加表单数据失败！");
+                }
+            });
+        }
     </script>
 
     <% using (Html.BeginForm())
@@ -255,13 +283,14 @@
                 {
                     Model.ProductCustomer.ElementAt(i).CustomerReference.Load();
                 }
+           
             %>
             <tr id="ProductCustomer♂" style="text-align: left; <%=Model.ProductCustomer.Count>0?"": "display: none"%>;">
                 <td colspan="5">
                     <center style="text-align: center; font-size: x-large; font-weight: bolder;">
                         关联客户信息</center>
                     <!-- 标识子表添加总数 -->
-                    <input type="hidden" value='<%= Model.ProductCustomer.Count%>' name="ProductCustomer♂regioncount"
+                    <input type="hidden" value='<%= Model.ProductCustomer.Count %>' name="ProductCustomer♂regioncount"
                         id="ProductCustomer♂regioncount" />
                     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
                     <input type="hidden" name="region" value="ProductCustomer♂" />
@@ -273,7 +302,7 @@
                     <!-- 标识多对多关系表中（一） -->
                     <input type="hidden" name="ProductCustomer♂pfk" value='Product' />
                     <%
-                        var customers = Model.ProductCustomer.Where(v => v.Customer.TypeCode.Equals("01")).Select(v => v.Customer);
+                        var customers = Model.ProductCustomer.Where(v => v.Customer != null && v.Customer.TypeCode.Equals("01")).Select(v => v.Customer);
                     %>
                     <fieldset style="width: 95%; <%=customers.Count()>0?"": "display: none"%>;">
                         <legend>供应商关系信息</legend>
@@ -291,7 +320,7 @@
                         </ul>
                     </fieldset>
                     <%
-                        var customers2 = Model.ProductCustomer.Where(v => v.Customer.TypeCode.Equals("02")).Select(v => v.Customer);
+                        var customers2 = Model.ProductCustomer.Where(v => v.Customer != null && v.Customer.TypeCode.Equals("02")).Select(v => v.Customer);
                     %>
                     <fieldset style="width: 95%; <%=customers2.Count()>0?"": "display: none"%>;">
                         <legend>客户商品关系信息</legend>
@@ -329,5 +358,5 @@
         供应商信息</a></li>
     <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Costomer")%>');">
         客户商品信息</a></li>
-    <li>商品图片</li>
+    <li><a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>');">商品图片</a></li>
 </asp:Content>

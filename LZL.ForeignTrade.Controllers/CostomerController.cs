@@ -97,6 +97,11 @@ namespace LZL.ForeignTrade.Controllers
                 var customer = entities.Customer.Where(v => v.ID.Equals(guid)).FirstOrDefault();
                 customer.Linkman.Load();
                 customer.Memorandum.Load();
+                customer.ProductCustomer.Load();
+                for (int s = 0; s < customer.ProductCustomer.Count; s++)
+                {
+                    entities.DeleteObject(customer.ProductCustomer.ElementAt(s));
+                }
                 entities.DeleteObject(customer);
             }
             entities.SaveChanges();

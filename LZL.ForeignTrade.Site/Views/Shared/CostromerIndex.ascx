@@ -12,7 +12,6 @@
                 }
             })
         });
-
         autocompletevalue($("#quyerCondition").val());
         $("#quyerCondition").bind("change", function() {
             $("#queryvalue").unbind(".autocomplete");
