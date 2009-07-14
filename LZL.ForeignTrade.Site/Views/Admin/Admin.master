@@ -18,6 +18,10 @@
                     <%= Html.ActionLink("用户管理", "ManageUser", "Admin")%></li>
                 <li>
                     <%= Html.ActionLink("角色管理", "ManageRole", "Admin")%></li>
+                <li>
+                    <%= Html.ActionLink("数据字典管理", "ManageDictionary", "Admin")%></li>
+                <li>
+                    <%= Html.ActionLink("部门管理", "ManageDepartment", "Admin")%></li>
             </ul>
         </div>
     </div>
