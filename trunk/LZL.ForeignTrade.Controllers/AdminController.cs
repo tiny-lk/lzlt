@@ -149,6 +149,100 @@ namespace LZL.ForeignTrade.Controllers
             return RedirectToAction("ManageRole");
         }
 
+<<<<<<< .mine
+        /// <summary>
+        /// Managers the dictionary.---add by lj
+        /// </summary>
+        /// <param name="quyerCondition">The quyer condition.</param>
+        /// <param name="queryvalue">The queryvalue.</param>
+        /// <param name="page">The page.</param>
+        /// <returns></returns>
+        [AcceptVerbs("Post", "Get")]
+        public ActionResult ManageDictionary(string quyerCondition, string queryvalue, int? page)
+        {
+            Entities _Entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "Type", "", "Dictionary")) / pagesize);
+            var customers = _Entities.Dictionary.OrderBy(v => v.Type).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
+            return View(customers);
+        }
+
+        /// <summary>
+        /// Edits the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public ActionResult EditDictionary(string id)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.Dictionary.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Edits the dictionary.
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditDictionary(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("ManageDictionary");
+        }
+
+        /// <summary>
+        /// Adds this instance.
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddDictionary()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Adds the dictionary.
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddDictionary(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+            {
+                return View();
+            }
+
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("ManageDictionary");
+        }
+
+        /// <summary>
+        /// Deletes the specified id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public ActionResult DeleteDictionary(string id)
+        {
+            Entities entities = new Entities();
+            string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < ids.Length; i++)
+            {
+                Guid guid = new Guid(ids[i]);
+                var dictionary = entities.Dictionary.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+                entities.DeleteObject(dictionary);
+            }
+            entities.SaveChanges();
+            return RedirectToAction("ManageDictionary", new { page = 1 });
+        }
+
+=======
 
         /// <summary>
         /// Managers the dictionary.---add by lj
@@ -242,6 +336,7 @@ namespace LZL.ForeignTrade.Controllers
             return RedirectToAction("ManageDictionary", new { page = 1 });
         }
 
+>>>>>>> .r29
     }
 }
 
