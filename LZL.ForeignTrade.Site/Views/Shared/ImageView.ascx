@@ -13,15 +13,19 @@
             unique: true
         });
     });
+
+    function showimage(key) {
+        $("#image").find("img").attr("src", '<%=Url.Action("ShowImage", "Shared") %>' + "/" + key);
+    }
 </script>
 
-<div id="imageview" style="position: relative;">
-    <div style="float: left; width: 100px; position: relative; z-index: 99999999;">
+<div id="imageview" style="width: 100%; height: 100%;">
+    <div style="float: left; width: 100px; position: relative; z-index: 999999;">
         <ul id="treenavigation">
             <%=ViewData["tree"] %>
         </ul>
     </div>
-    <div id="image" style="vertical-align: top; float: left; width: 90%;">
+    <div id="image" style="float: left; width: 800px;">
         <%
             if (Model == null)
             {
@@ -30,8 +34,10 @@
             else
             {
         %>
-        <img src='<%=Url.Action("ShowImage", "Shared", new { id = Model.ID.ToString() }) %>'
-            alt="图片信息" style="cursor: move;" title='<%= Html.Encode( Model.Note) %>'  />
+        <center>
+            <img src='<%=Url.Action("ShowImage", "Shared", new { id = Model.ID.ToString() }) %>'
+                alt="图片信息" style="cursor: move;" title='<%= Html.Encode( Model.Note) %>' />
+        </center>
         <%
             }  
         %>

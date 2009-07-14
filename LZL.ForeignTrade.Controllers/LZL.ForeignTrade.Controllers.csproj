@@ -63,9 +63,11 @@
   <ItemGroup>
     <Compile Include="AccountController.cs" />
     <Compile Include="AdminController.cs" />
+    <Compile Include="CollectionHelper.cs" />
     <Compile Include="CostomerController.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="HomeController.cs" />
+    <Compile Include="PriceController.cs" />
     <Compile Include="ProductController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\GlobalAssemblyInfo.cs" />

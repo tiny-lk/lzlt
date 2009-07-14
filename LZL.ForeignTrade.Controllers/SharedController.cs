@@ -39,6 +39,22 @@ namespace LZL.ForeignTrade.Controllers
             return Json(querylist);
         }
 
+        public JsonResult GetAutocompleteValue2(string t, string f)
+        {
+            Entities entities = new Entities();
+            string sql = "select it." + f + ",it.ID from " + entities.DefaultContainerName + "." + t + " as it where it." + f + " like '" + Request["q"] + "%'";
+            sql += " order by it." + f;
+            sql += " Skip 0 limit 20 ";
+            ObjectQuery<DbDataRecord> querylist = entities.CreateQuery<DbDataRecord>(sql);
+            Dictionary<string,string> r = new Dictionary<string,string>();
+            foreach (DbDataRecord item in querylist)
+            {
+                r.Add(BasicOperate.GetString(item[1], true),
+                    BasicOperate.GetString(item[0], true));
+            }
+            return Json(r);
+        }
+
         public static void mainTable(FormCollection formvalues, ObjectContext entities)
         {
             var regions = formvalues["region"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -386,7 +402,8 @@ namespace LZL.ForeignTrade.Controllers
                         tree += "<ul>";
                         for (int j = 0; j < imagecode.Count; j++)
                         {
-                            tree += "<li id='" + imagecode[j].ID.ToString() + "'><a href='#'><span class='file'>" + imagecode[j].Name + "</span></a></li>";
+                            tree += "<li id='" + imagecode[j].ID.ToString() + "'>";
+                            tree += "<a href='#' onclick=showimage('" + imagecode[j].ID.ToString() + "')><span class='file'>" + imagecode[j].Name + "</span></a></li>";
                         }
                         tree += "</ul>";
                     }
@@ -419,7 +436,8 @@ namespace LZL.ForeignTrade.Controllers
                             tree += "<ul>";
                             for (int j = 0; j < imagecode.Count; j++)
                             {
-                                tree += "<li id='" + imagecode[j].ID.ToString() + "'><a href='#'><span class='file'>" + imagecode[j].Name + "</span></a></li>";
+                                tree += "<li id='" + imagecode[j].ID.ToString() + "'>";
+                                tree += "<a href='#' onclick=showimage('" + imagecode[j].ID.ToString() + "')><span class='file'>" + imagecode[j].Name + "</span></a></li>";
                             }
                             tree += "</ul>";
                         }
