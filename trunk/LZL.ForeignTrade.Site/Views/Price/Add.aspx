@@ -56,6 +56,11 @@
             $("input[name='_Price♂CustomerID']").result(function(event, data, formatted) {
                 $("input[name='Price♂CustomerID']").val(formatted);
             });
+            $("input[name='_Price♂CustomerID']").bind("blur", function() {
+                if ($(this).val() == "" || $(this).val() == null) {
+                    $("input[name='Price♂CustomerID']").val("");
+                }
+            });
 
             $("input[name='_Price♂CompanyID']").autocomplete('<%=Url.Action("GetAutocompleteValue2","Shared")%>',
                 { max: 20,
@@ -81,16 +86,21 @@
             $("input[name='_Price♂CompanyID']").result(function(event, data, formatted) {
                 $("input[name='Price♂CompanyID']").val(formatted);
             });
+            $("input[name='_Price♂CompanyID']").bind("blur", function() {
+                if ($(this).val() == "" || $(this).val() == null) {
+                    $("input[name='Price♂CompanyID']").val("");
+                }
+            });
 
         });
     </script>
 
     <% using (Html.BeginForm())
        { %>
-    <%--    <!-- 标识子表区域名称(表格名称、实体对象名称) -->
+    <!-- 标识子表区域名称(表格名称、实体对象名称) -->
     <input type="hidden" name="region" value="Price♂" />
     <!-- 标识子表实体对象类 -->
-    <input type="hidden" name="Price♂objectname" value="LZL.ForeignTrade.DataEntity.Price,LZL.ForeignTrade.DataEntity" />--%>
+    <input type="hidden" name="Price♂objectname" value="LZL.ForeignTrade.DataEntity.Price,LZL.ForeignTrade.DataEntity" />
     <table width="100%">
         <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
             商品信息</caption>
