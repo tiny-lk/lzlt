@@ -235,7 +235,7 @@
                                 {
                                     var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
                                     Response.Write(string.Format(htmlstr, Html.CheckBox("CustromID", true),
-                                        Html.ActionLink(customers.ElementAt(i).NameCode, "Details", "Costomer", new { id = customers.ElementAt(i).ID.ToString() }, new { target = "_blank" })));
+                                        Html.ActionLink(customers.ElementAt(i).NameCode, "Details", "Customer", new { id = customers.ElementAt(i).ID.ToString() }, new { target = "_blank" })));
                                 }
                             %>
                         </ul>
@@ -254,7 +254,7 @@
                                 {
                                     var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
                                     Response.Write(string.Format(htmlstr, Html.CheckBox("CustromID", true),
-                                        Html.ActionLink(customers2.ElementAt(s).NameCode, "Details", "Costomer", new { id = customers.ElementAt(s).ID.ToString() }, new { target = "_blank" })));
+                                        Html.ActionLink(customers2.ElementAt(s).NameCode, "Details", "Customer", new { id = customers.ElementAt(s).ID.ToString() }, new { target = "_blank" })));
 
                                 }   
                             %>

@@ -1,0 +1,7 @@
+E:\Project\外贸\LZL.ForeignTrade.Models\bin\Debug\LZL.ForeignTrade.Models.dll
+E:\Project\外贸\LZL.ForeignTrade.Models\bin\Debug\LZL.ForeignTrade.Models.pdb
+E:\Project\外贸\LZL.ForeignTrade.Models\bin\Debug\LZL.ForeignTrade.DataEntity.dll
+E:\Project\外贸\LZL.ForeignTrade.Models\bin\Debug\LZL.ForeignTrade.DataEntity.pdb
+E:\Project\外贸\LZL.ForeignTrade.Models\obj\Debug\ResolveAssemblyReference.cache
+E:\Project\外贸\LZL.ForeignTrade.Models\obj\Debug\LZL.ForeignTrade.Models.dll
+E:\Project\外贸\LZL.ForeignTrade.Models\obj\Debug\LZL.ForeignTrade.Models.pdb

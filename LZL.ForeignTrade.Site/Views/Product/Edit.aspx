@@ -23,7 +23,7 @@
                 type: "get",
                 dataType: "html",
                 data: { type: khtype },
-                url: '<%=Url.Action("CostromerIndex","Shared")%>',
+                url: '<%=Url.Action("CustomerIndex","Shared")%>',
                 success: function(data) {
                     addRelationcontrol(regionname, childobject, data, addid, url);
                 },
@@ -314,7 +314,7 @@
                                     var script = @"$(this).parent().remove();display('ProductCustomer♂','gysxx')";
                                     Response.Write(string.Format(htmlstr,
                                         @"<input type='checkbox' name='Customer♂ID' checked='true' onclick=" + Html.Encode(script) + " value='" + Html.Encode(customers.ElementAt(i).ID.ToString()) + "' />",
-                                        Html.ActionLink(customers.ElementAt(i).NameCode, "Details", "Costomer", new { id = customers.ElementAt(i).ID.ToString() }, null)));
+                                        Html.ActionLink(customers.ElementAt(i).NameCode, "Details", "Customer", new { id = customers.ElementAt(i).ID.ToString() }, null)));
                                 }
                             %>
                         </ul>
@@ -331,7 +331,7 @@
                                     var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
                                     var script = @"$(this).parent().remove();display('ProductCustomer♂','khspxx')";
                                     Response.Write(string.Format(htmlstr, "<input type='checkbox' name='Customer♂ID' checked='true'onclick=" + Html.Encode(script) + " value='" + Html.Encode(customers2.ElementAt(s).ID.ToString()) + "' />",
-                                        Html.ActionLink(customers2.ElementAt(s).NameCode, "Details", "Costomer", new { id = customers2.ElementAt(s).ID.ToString() }, null)));
+                                        Html.ActionLink(customers2.ElementAt(s).NameCode, "Details", "Customer", new { id = customers2.ElementAt(s).ID.ToString() }, null)));
 
                                 }   
                             %>
@@ -354,9 +354,9 @@
     <%} %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Costomer")%>');">
+    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Customer")%>');">
         供应商信息</a></li>
-    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Costomer")%>');">
+    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Customer")%>');">
         客户商品信息</a></li>
     <li><a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>');">商品图片</a></li>
 </asp:Content>

@@ -175,11 +175,11 @@
                         {
                             if (p < count)
                             {
-                                Response.Write("上一页|" + Html.ActionLink("下一页", "Index", "Costomer", new { page = p + 1 }, null));
+                                Response.Write("上一页|" + Html.ActionLink("下一页", "Index", "Customer", new { page = p + 1 }, null));
                             }
                             else
                             {
-                                Response.Write(Html.ActionLink("上一页", "Index", "Costomer", new { page = p - 1 }, null) + "|下一页");
+                                Response.Write(Html.ActionLink("上一页", "Index", "Customer", new { page = p - 1 }, null) + "|下一页");
                             }
                         }
                         Response.Write("|当前页：第 <span style='font-weight:bolder; color:Red;'>" + p + "</span> 页|总页码：<span style='font-weight:bolder; color:Red;'>" + count + "</span> 页");

@@ -4,7 +4,6 @@
     var groupid = addid;
     $("#modedialog").dialog({
         bgiframe: true,
-        height: 140,
         modal: true,
         width: 600,
         height: 'auto',

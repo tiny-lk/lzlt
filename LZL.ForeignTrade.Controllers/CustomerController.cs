@@ -12,7 +12,7 @@ using System.Data.Objects;
 using System.Data.Common;
 namespace LZL.ForeignTrade.Controllers
 {
-    public class CostomerController : Controller
+    public class CustomerController : Controller
     {
         /// <summary>
         /// 客户管理首页
@@ -20,33 +20,13 @@ namespace LZL.ForeignTrade.Controllers
         /// <returns></returns>
         /// <param name="page">页码</param>
         /// <param name="w">查询条件</param>
-        public ActionResult Index(int? page)
+        public ActionResult Index()
         {
-            Entities _Entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "NameCode", "", "Customer")) / pagesize);
-            var customers = _Entities.Customer.OrderBy(v => v.NameCode).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
-            return View(customers);
-        }
-
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(string quyerCondition, string queryvalue)
-        {
-            Entities entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Customer")) / pagesize);
-            string sql = "select value it from " + entities.DefaultContainerName + ".Customer as it ";
-            if (!string.IsNullOrEmpty(queryvalue))
-            {
-                sql += " where it." + quyerCondition + " like '" + queryvalue + "%'";
-            }
-            sql += " order by it." + quyerCondition;
-            sql += " Skip " + 0 + " limit " + pagesize.ToString();
-            var querylist = entities.CreateQuery<Customer>(sql).ToList();
+            int pagecount = 1;
+            var querylist = DataHelper.GetCustomers(string.Empty, string.Empty, 1, string.Empty, out pagecount);
+            ViewData["pagecount"] = pagecount;
             return View(querylist);
         }
-
-
 
         public ActionResult Add()
         {

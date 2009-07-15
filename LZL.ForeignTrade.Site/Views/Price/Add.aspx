@@ -20,8 +20,8 @@
             $.ajax({
                 type: "get",
                 dataType: "html",
-                data: { type: khtype },
-                url: '<%=Url.Action("CostromerIndex","Shared")%>',
+                data: { simple: true },
+                url: '<%=Url.Action("ProductIndex","Shared")%>',
                 success: function(data) {
                     addRelationcontrol(regionname, childobject, data, addid, url);
                 },
@@ -30,6 +30,9 @@
                 }
             });
         }
+    </script>
+    
+    <script type="text/javascript">
         $(document).ready(function() {
             $("input[name='_Price♂CustomerID']").autocomplete('<%=Url.Action("GetAutocompleteValue2","Shared")%>',
                 { max: 20,
@@ -54,8 +57,11 @@
                 });
 
             $("input[name='_Price♂CustomerID']").result(function(event, data, formatted) {
-                $("input[name='Price♂CustomerID']").val(formatted);
+                if (formatted != "" && formatted != null) {
+                    $("input[name='Price♂CustomerID']").val(formatted);
+                }
             });
+
             $("input[name='_Price♂CustomerID']").bind("blur", function() {
                 if ($(this).val() == "" || $(this).val() == null) {
                     $("input[name='Price♂CustomerID']").val("");
@@ -83,9 +89,13 @@
                         return row;
                     }
                 });
+
             $("input[name='_Price♂CompanyID']").result(function(event, data, formatted) {
-                $("input[name='Price♂CompanyID']").val(formatted);
+                if (formatted != "" && formatted != null) {
+                    $("input[name='Price♂CompanyID']").val(formatted);
+                }
             });
+
             $("input[name='_Price♂CompanyID']").bind("blur", function() {
                 if ($(this).val() == "" || $(this).val() == null) {
                     $("input[name='Price♂CompanyID']").val("");
@@ -307,6 +317,30 @@
                     <%= Html.TextArea("Price♂Note", new { style = "width:99%; height:60px;" })%>
                 </td>
             </tr>
+            <!-- 产品信息 -->
+            <tr id="PriceProduct♂" style="display: none; text-align: left;">
+                <td colspan="5">
+                    <center style="text-align: center; font-size: x-large; font-weight: bolder;">
+                        关联客户信息</center>
+                    <!-- 标识子表添加总数 -->
+                    <input type="hidden" value='0' name="PriceProduct♂regioncount" id="PriceProduct♂regioncount" />
+                    <!-- 标识子表区域名称(表格名称、实体对象名称) -->
+                    <input type="hidden" name="region" value="PriceProduct♂" />
+                    <!-- 标识子表实体对象类 -->
+                    <input type="hidden" name="PriceProduct♂objectname" value="LZL.ForeignTrade.DataEntity.PriceProduct,LZL.ForeignTrade.DataEntity" />
+                    <!-- 多对多关系中 -->
+                    <!-- 标识子表外键实体对象名称、外键字段名称 -->
+                    <input type="hidden" name="PriceProduct♂fk" value='Product' />
+                    <!-- 标识多对多关系表中（一） -->
+                    <input type="hidden" name="PriceProduct♂pfk" value='Price' />
+                    <fieldset style="display: none; width: 95%;">
+                        <legend>商品信息</legend>
+                        <ul id="spxx" style="float: left; width: 100%; clear: both; position: relative;">
+                        </ul>
+                    </fieldset>
+                </td>
+            </tr>
+            <!-- 产品信息 -->
         </thead>
         <tfoot>
             <tr>
@@ -321,5 +355,7 @@
     <%
         } %>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
+<asp:Content ID="ChildContent" ContentPlaceHolderID="ChildActionContent" runat="server">
+    <li><a href="#" onclick="opengys('PriceProduct♂','Product♂ID','01','spxx','<%=Url.Action("Details","Product")%>');">
+        关联商品信息</a></li>
 </asp:Content>

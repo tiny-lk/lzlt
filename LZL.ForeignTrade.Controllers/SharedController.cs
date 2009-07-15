@@ -312,34 +312,37 @@ namespace LZL.ForeignTrade.Controllers
             ClassHelper.SetPropertyValue(o, name.Trim(), value);
         }
 
-        public ActionResult CostromerIndex(string type,string quyerCondition, string queryvalue, int? page)
+        public ActionResult CustomerIndex(string type, string quyerCondition, string queryvalue, string simple, int? page)
         {
-            if (string.IsNullOrEmpty(quyerCondition))
+            if (!string.IsNullOrEmpty(simple))
             {
-                quyerCondition = "NameCode";
-            }
-            Entities entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Customer")) / pagesize);
-            string sql = "select value it from " + entities.DefaultContainerName + ".Customer as it ";
-
-            if (!string.IsNullOrEmpty(type))
-            {
-                sql += " where it.TypeCode= '" + type + "'";
-            }
-            else
-            {
-                sql += " where it.TypeCode is not null" ;
+                ViewData["simple"] = "true";
             }
             if (!string.IsNullOrEmpty(queryvalue))
             {
-                sql += " and it." + quyerCondition + " like '" + queryvalue + "%'";
+                queryvalue = Server.UrlDecode(queryvalue);
             }
-           
-            sql += " order by it." + quyerCondition;
-            sql += " Skip " + ((page ?? 1) - 1) + " limit " + pagesize.ToString();
-            var querylist = entities.CreateQuery<Customer>(sql).ToList();
-            return View("CostromerIndex", querylist);
+
+            int pagecount = 1;
+            var querylist = DataHelper.GetCustomers(quyerCondition, queryvalue, page, type, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View("CustomerIndex",querylist);
+        }
+
+        public ActionResult ProductIndex(string quyerCondition, string queryvalue,string simple, int? page)
+        {
+            if (!string.IsNullOrEmpty(simple))
+            {
+                ViewData["simple"] = "true";
+            }
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetProducts(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View("ProductIndex", querylist);
         }
 
         public ActionResult ImageUserControl(string fid)

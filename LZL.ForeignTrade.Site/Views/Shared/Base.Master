@@ -33,11 +33,12 @@
     <script type="text/javascript">
         $(document).ready(function() {
             dynamicinputcss();
-            $("table > tbody[listmouse='listmouseovercss'] > tr").bind("mouseover", function() {
+            $("table > tbody[listmouse='listmouseovercss'] > tr").live("mouseover", function() {
                 $(this).addClass("mouseover");
-            }).bind("mouseout", function() {
+            }).live("mouseout", function() {
                 $(this).removeClass("mouseover");
             });
+
             $($("table > tbody > tr").find("input[type='checkbox'],input[name='select']")).live("click", function() {
                 if ($(document).data("check") == null || $(document).data("check") == "" || $(document).data("check") == 'undefined') {
                     $(document).data("check", 0);
@@ -110,7 +111,7 @@
                     <li>
                         <%= Html.ActionLink("管理", "Index", "Admin")%></li>
                     <li>
-                        <%= Html.ActionLink("客户信息", "Index", "Costomer")%></li>
+                        <%= Html.ActionLink("客户信息", "Index", "Customer")%></li>
                     <li>
                         <%= Html.ActionLink("商品信息", "Index", "Product")%></li>
                     <li>
