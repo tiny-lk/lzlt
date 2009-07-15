@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Costomer/Costomer.master"
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Customer/Customer.master"
     Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -22,7 +22,7 @@
                 <td colspan="5" align="right">
                     <input type="submit" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Index") %>'" />
+                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
                 </td>
             </tr>
             <tr>
@@ -169,7 +169,7 @@
                 <td colspan="5" align="right">
                     <input type="submit" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Index") %>'" />
+                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
                 </td>
             </tr>
         </tfoot>

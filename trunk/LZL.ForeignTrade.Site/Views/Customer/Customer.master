@@ -1,14 +1,14 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Base.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
 
-<asp:Content ID="CostomeTitler" ContentPlaceHolderID="TitleContent" runat="server">
+<asp:Content ID="CustomerTitler" ContentPlaceHolderID="TitleContent" runat="server">
     <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
 </asp:Content>
-<asp:Content ID="CostomeMain" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="CustomerMain" ContentPlaceHolderID="MainContent" runat="server">
     <div id="main">
         <asp:ContentPlaceHolder ID="MainContent" runat="server" />
     </div>
 </asp:Content>
-<asp:Content ID="CostomeSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
+<asp:Content ID="CustomerSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
     <div id="sidebar">
         <h2>
             相关功能</h2>
@@ -17,7 +17,7 @@
                 <li>商品信息</li>
                 <li>报 价 单</li>
                 <li>
-                    <%= Html.ActionLink("添加客户信息", "Add", "Costomer")%></li>
+                    <%= Html.ActionLink("添加客户信息", "Add", "Customer")%></li>
                 <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
             </ul>
         </div>

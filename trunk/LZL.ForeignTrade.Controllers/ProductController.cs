@@ -11,24 +11,11 @@ namespace LZL.ForeignTrade.Controllers
     [HandleError]
     public class ProductController : Controller
     {
-        [AcceptVerbs("Post","Get")]
-        public ActionResult Index(string quyerCondition, string queryvalue,int? page)
+        public ActionResult Index()
         {
-            Entities entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Product")) / pagesize);
-            string sql = "select value it from " + entities.DefaultContainerName + ".Product as it ";
-            if (!string.IsNullOrEmpty(queryvalue))
-            {
-                sql += " where it." + quyerCondition + " like '" + queryvalue + "%'";
-            }
-            if (string.IsNullOrEmpty(quyerCondition))
-            {
-                quyerCondition = "ID";
-            }
-            sql += " order by it." + quyerCondition;
-            sql += " Skip " + pagesize * ((page ?? 1) - 1) + " limit " + pagesize.ToString();
-            var querylist = entities.CreateQuery<Product>(sql).ToList();
+            int pagecount = 1;
+            var querylist = DataHelper.GetProducts(string.Empty, string.Empty, 1, out pagecount);
+            ViewData["pagecount"] = pagecount;
             return View(querylist);
         }
         /// <summary>

@@ -23,7 +23,7 @@
                 type: "get",
                 dataType: "html",
                 data: { type: khtype },
-                url: '<%=Url.Action("CostromerIndex","Shared")%>',
+                url: '<%=Url.Action("CustomerIndex","Shared")%>',
                 success: function(data) {
                     addRelationcontrol(regionname, childobject, data, addid, url);
                 },
@@ -291,9 +291,9 @@
         } %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Costomer")%>');">
+    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Customer")%>');">
         供应商信息</a></li>
-    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Costomer")%>');">
+    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Customer")%>');">
         客户商品信息</a></li>
     <li>商品图片</li>
 </asp:Content>

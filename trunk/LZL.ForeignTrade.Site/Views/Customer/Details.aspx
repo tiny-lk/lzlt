@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Costomer/Costomer.master"
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Customer/Customer.master"
     Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.Customer>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
@@ -149,7 +149,7 @@
             <tr>
                 <td colspan="5" align="right">
                     <input type="button" value="´ò Ó¡" onclick="print();" />
-                    <input type="button" value="·µ »Ø" onclick="javascript:window.location.href ='<%=Url.Content("~/Costomer/Index") %>'" />
+                    <input type="button" value="·µ »Ø" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
                 </td>
             </tr>
         </tfoot>

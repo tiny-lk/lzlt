@@ -137,11 +137,11 @@
     <Content Include="Views\Account\EditUserProfile.aspx" />
     <Content Include="Views\Admin\AddRole.aspx" />
     <Content Include="Views\Admin\ManageRole.aspx" />
-    <Content Include="Views\Costomer\Add.aspx" />
-    <Content Include="Views\Costomer\Costomer.master" />
-    <Content Include="Views\Costomer\Details.aspx" />
-    <Content Include="Views\Costomer\Edit.aspx" />
-    <Content Include="Views\Costomer\Index.aspx" />
+    <Content Include="Views\Customer\Add.aspx" />
+    <Content Include="Views\Customer\Customer.master" />
+    <Content Include="Views\Customer\Details.aspx" />
+    <Content Include="Views\Customer\Edit.aspx" />
+    <Content Include="Views\Customer\Index.aspx" />
     <Content Include="Views\Shared\LinkManControl.ascx" />
     <Content Include="Views\Shared\MemorandumControl.ascx" />
   </ItemGroup>
@@ -285,7 +285,7 @@
     <Content Include="Views\Product\Edit.aspx" />
     <Content Include="Views\Product\Index.aspx" />
     <Content Include="Views\Product\Product.master" />
-    <Content Include="Views\Shared\CostromerIndex.ascx" />
+    <Content Include="Views\Shared\CustomerIndex.ascx" />
     <Content Include="Views\Shared\ImageUserControl.ascx" />
     <Content Include="Views\Shared\ImageView.ascx" />
   </ItemGroup>
@@ -296,6 +296,7 @@
     <Content Include="Views\Price\Add.aspx" />
     <Content Include="Views\Price\Index.aspx" />
     <Content Include="Views\Price\Price.master" />
+    <Content Include="Views\Shared\ProductIndex.ascx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
