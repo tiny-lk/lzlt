@@ -15,6 +15,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js")%>"></script>
+
     <script type="text/javascript">
         function opengys(regionname, childobject, khtype, addid, url) {
             $.ajax({
@@ -31,9 +33,11 @@
             });
         }
     </script>
-    
+
     <script type="text/javascript">
         $(document).ready(function() {
+            $.validator.setDefaults();
+
             $("input[name='_Price♂CustomerID']").autocomplete('<%=Url.Action("GetAutocompleteValue2","Shared")%>',
                 { max: 20,
                     highlight: false,
@@ -99,6 +103,19 @@
             $("input[name='_Price♂CompanyID']").bind("blur", function() {
                 if ($(this).val() == "" || $(this).val() == null) {
                     $("input[name='Price♂CompanyID']").val("");
+                }
+            });
+
+            $($("form")).validate({
+                rules: {
+                    Price♂Name: {
+                        required: true
+                    }
+                },
+                messages: {
+                    Price♂Name: {
+                        required: "报价单号不能为空！"
+                    }
                 }
             });
 

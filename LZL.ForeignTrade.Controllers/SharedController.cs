@@ -309,6 +309,10 @@ namespace LZL.ForeignTrade.Controllers
             {
                 value = null;
             }
+            if (o.GetType().GetProperty(name).PropertyType.FullName.Equals("System.Guid"))
+            {
+ 
+            }
             ClassHelper.SetPropertyValue(o, name.Trim(), value);
         }
 
