@@ -149,6 +149,7 @@ namespace LZL.ForeignTrade.Controllers
             return RedirectToAction("ManageRole");
         }
 
+        #region 数据字典管理 ---add by lj
         /// <summary>
         /// Managers the dictionary.---add by lj
         /// </summary>
@@ -162,12 +163,12 @@ namespace LZL.ForeignTrade.Controllers
             Entities _Entities = new Entities();
             int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
             ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "Type", "", "Dictionary")) / pagesize);
-            var customers = _Entities.Dictionary.OrderBy(v => v.Type).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
-            return View(customers);
+            var dictionarys = _Entities.Dictionary.OrderBy(v => v.Type).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
+            return View(dictionarys);
         }
 
         /// <summary>
-        /// Edits the specified id.
+        /// Edits the specified id.---add by lj
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
@@ -179,7 +180,7 @@ namespace LZL.ForeignTrade.Controllers
         }
 
         /// <summary>
-        /// Edits the dictionary.
+        /// Edits the dictionary.---add by lj
         /// </summary>
         /// <param name="formvalues">The formvalues.</param>
         /// <returns></returns>
@@ -195,7 +196,7 @@ namespace LZL.ForeignTrade.Controllers
         }
 
         /// <summary>
-        /// Adds this instance.
+        /// Adds this instance.---add by lj
         /// </summary>
         /// <returns></returns>
         public ActionResult AddDictionary()
@@ -204,7 +205,7 @@ namespace LZL.ForeignTrade.Controllers
         }
 
         /// <summary>
-        /// Adds the dictionary.
+        /// Adds the dictionary.---add by lj
         /// </summary>
         /// <param name="formvalues">The formvalues.</param>
         /// <returns></returns>
@@ -223,7 +224,7 @@ namespace LZL.ForeignTrade.Controllers
         }
 
         /// <summary>
-        /// Deletes the specified id.
+        /// Deletes the specified id.---add by lj
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns></returns>
@@ -239,7 +240,102 @@ namespace LZL.ForeignTrade.Controllers
             }
             entities.SaveChanges();
             return RedirectToAction("ManageDictionary", new { page = 1 });
+        } 
+        #endregion
+
+        #region 公司信息管理 ---add by lj
+        /// <summary>
+        /// Managers the company.---add by lj
+        /// </summary>
+        /// <param name="quyerCondition">The quyer condition.</param>
+        /// <param name="queryvalue">The queryvalue.</param>
+        /// <param name="page">The page.</param>
+        /// <returns></returns>
+        [AcceptVerbs("Post", "Get")]
+        public ActionResult ManageCompany(string quyerCondition, string queryvalue, int? page)
+        {
+            Entities _Entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "Name", "", "Company")) / pagesize);
+            var companys = _Entities.Company.OrderBy(v => v.Name).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
+            return View(companys);
         }
+
+        /// <summary>
+        /// Edits the specified id.---add by lj
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public ActionResult EditCompany(string id)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.Company.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Edits the company.---add by lj
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditCompany(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("ManageCompany");
+        }
+
+        /// <summary>
+        /// Adds this instance.---add by lj
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddCompany()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Adds the company.---add by lj
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddCompany(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+            {
+                return View();
+            }
+
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("ManageCompany");
+        }
+
+        /// <summary>
+        /// Deletes the specified id.---add by lj
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public ActionResult DeleteCompany(string id)
+        {
+            Entities entities = new Entities();
+            string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < ids.Length; i++)
+            {
+                Guid guid = new Guid(ids[i]);
+                var dictionary = entities.Company.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+                entities.DeleteObject(dictionary);
+            }
+            entities.SaveChanges();
+            return RedirectToAction("ManageCompany", new { page = 1 });
+        }
+        #endregion
     }
 }
 
