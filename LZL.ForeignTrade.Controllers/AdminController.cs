@@ -21,7 +21,7 @@ namespace LZL.ForeignTrade.Controllers
             return View();
         }
 
-
+        #region 用户管理
         /// <summary>
         /// 用户管理
         /// </summary>
@@ -58,16 +58,11 @@ namespace LZL.ForeignTrade.Controllers
             return View(viewData);
         }
 
-        public ActionResult ManageRole()
-        {
-            return View(Roles.GetAllRoles());
-        }
         /// <summary>
         /// 编辑用户
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-
         public ActionResult EditUser(string id)
         {
             ViewData["roles"] = (String[])Roles.GetAllRoles();
@@ -111,6 +106,14 @@ namespace LZL.ForeignTrade.Controllers
                 }
             }
             return RedirectToAction("ManageUser");
+        } 
+        #endregion
+
+        #region 角色管理
+
+        public ActionResult ManageRole()
+        {
+            return View(Roles.GetAllRoles());
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -147,7 +150,8 @@ namespace LZL.ForeignTrade.Controllers
                 }
             }
             return RedirectToAction("ManageRole");
-        }
+        } 
+        #endregion
 
         #region 数据字典管理 ---add by lj
         /// <summary>
@@ -334,6 +338,100 @@ namespace LZL.ForeignTrade.Controllers
             }
             entities.SaveChanges();
             return RedirectToAction("ManageCompany", new { page = 1 });
+        }
+        #endregion
+
+        #region 部门信息管理 ---add by lj
+        /// <summary>
+        /// Managers the Department.---add by lj
+        /// </summary>
+        /// <param name="quyerCondition">The quyer condition.</param>
+        /// <param name="queryvalue">The queryvalue.</param>
+        /// <param name="page">The page.</param>
+        /// <returns></returns>
+        [AcceptVerbs("Post", "Get")]
+        public ActionResult ManageDepartment(string quyerCondition, string queryvalue, int? page)
+        {
+            Entities _Entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "Name", "", "Department")) / pagesize);
+            var companys = _Entities.Department.OrderBy(v => v.Name).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
+            return View(companys);
+        }
+
+        /// <summary>
+        /// Edits the specified id.---add by lj
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public ActionResult EditDepartment(string id)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.Department.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Edits the Department.---add by lj
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditDepartment(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("ManageDepartment");
+        }
+
+        /// <summary>
+        /// Adds this instance.---add by lj
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AddDepartment()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Adds the Department.---add by lj
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddDepartment(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+            {
+                return View();
+            }
+
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("ManageDepartment");
+        }
+
+        /// <summary>
+        /// Deletes the specified id.---add by lj
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns></returns>
+        public ActionResult DeleteDepartment(string id)
+        {
+            Entities entities = new Entities();
+            string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < ids.Length; i++)
+            {
+                Guid guid = new Guid(ids[i]);
+                var dictionary = entities.Department.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+                entities.DeleteObject(dictionary);
+            }
+            entities.SaveChanges();
+            return RedirectToAction("ManageDepartment", new { page = 1 });
         }
         #endregion
     }
