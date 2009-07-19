@@ -119,6 +119,9 @@
                     <a href="#" id="allselect">全选</a>/<a href="#" id="reverseselect">反选</a>
                 </td>
                 <td>
+                    编号
+                </td>
+                <td>
                     公司中文名称
                 </td>
                 <td>
