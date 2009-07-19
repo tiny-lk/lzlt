@@ -1,13 +1,13 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.master" Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.Dictionary>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.master" Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.Department>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    数据字典管理
+	部门管理
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        数据字典管理</h2>
 
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <h2>部门管理</h2>
+<script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.PrintArea.js")%>"></script>
 
@@ -37,22 +37,22 @@
             });
 
             $("#Add").bind("click", function() {
-            window.location.href = '<%=Url.Content("~/Admin/AddDictionary/") %>';
+            window.location.href = '<%=Url.Content("~/Admin/AddDepartment/") %>';
             });
 
             $("#Delete").bind("click", function() {
                 var State = confirm('你确认要删除' + $(document).data('checkvalue') + '吗？');
                 if (State == true) {
-                    window.location.href = '<%=Url.Content("~/Admin/DeleteDictionary/") %>' + $(document).data('checkvalue');
+                    window.location.href = '<%=Url.Content("~/Admin/DeleteDepartment/") %>' + $(document).data('checkvalue');
                 }
             });
 
             $("#Edit").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Admin/EditDictionary/") %>' + $(document).data('checkvalue');
+                window.location.href = '<%=Url.Content("~/Admin/EditDepartment/") %>' + $(document).data('checkvalue');
             });
 
             $("#Refresh").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Admin/ManageDictionary") %>';
+                window.location.href = '<%=Url.Content("~/Admin/ManageDepartment") %>';
             });
 
             $("#allselect").bind("click", function() {
@@ -122,15 +122,11 @@
                     编号
                 </td>
                 <td>
-                    字典名称
+                    部门名称
                 </td>
                 <td>
-                    字典编码
+                    排序编号
                 </td>
-                <td>
-                    字典键值
-                </td>
-               
             </tr>
             <%
                 int page = string.IsNullOrEmpty(Request["page"]) ? 1 : int.Parse(Request["page"]);
@@ -138,7 +134,7 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
             %>
-            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Admin/EditDictionary/"+Html.Encode(Model[i].ID)) %>'"
+            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Admin/EditDepartment/"+Html.Encode(Model[i].ID)) %>'"
                 title="双击查看详细信息">
                 <td>
                     <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
@@ -147,13 +143,10 @@
                     <%= (beginenumber+i).ToString()%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].Type)%>
-                </td>
-                <td>
                     <%= Html.Encode(Model[i].Name)%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].Code)%>
+                    <%= Html.Encode(Model[i].OrderField)%>
                 </td>
             </tr>
             <%
