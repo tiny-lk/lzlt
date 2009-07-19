@@ -26,40 +26,40 @@
                 <td align="right">
                     公司简称：
                 </td>
-                <td align="left">
-                    <%= Html.TextBox("Company♂Name", Html.Encode(Model.Name))%>
+                <td align="left" colspan="3">
+                    <%= Html.TextBox("Company♂Name", Html.Encode(Model.Name), new { style = "width: 500px" })%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     中文名称：
                 </td>
-                <td align="left">
-                    <%= Html.TextBox("Company♂NameCH", Html.Encode(Model.NameCH))%>
+                <td align="left" colspan="3">
+                    <%= Html.TextBox("Company♂NameCH", Html.Encode(Model.NameCH), new { style = "width: 500px" })%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     英文名称：
                 </td>
-                <td align="left">
-                    <%= Html.TextBox("Company♂NameEH", Html.Encode(Model.NameEH))%>
+                <td align="left" colspan="3">
+                    <%= Html.TextBox("Company♂NameEH", Html.Encode(Model.NameEH), new { style = "width: 500px" })%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     中文地址：
                 </td>
-                <td align="left">
-                    <%= Html.TextBox("Company♂AddressCH", Html.Encode(Model.AddressCH))%>
+                <td align="left" colspan="3">
+                    <%= Html.TextBox("Company♂AddressCH", Html.Encode(Model.AddressCH), new { style = "width: 500px" })%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     英文地址：
                 </td>
-                <td align="left">
-                    <%= Html.TextBox("Company♂AddressEH", Html.Encode(Model.AddressEH))%>
+                <td align="left" colspan="3">
+                    <%= Html.TextBox("Company♂AddressEH", Html.Encode(Model.AddressEH), new { style = "width: 500px" })%>
                 </td>
             </tr>
             <tr>
@@ -69,8 +69,6 @@
                 <td align="left">
                     <%= Html.TextBox("Company♂DakCode", Html.Encode(Model.DakCode))%>
                 </td>
-            </tr>
-            <tr>
                 <td align="right">
                     电话：
                 </td>
@@ -85,8 +83,6 @@
                 <td align="left">
                     <%= Html.TextBox("Company♂Fax", Html.Encode(Model.Fax))%>
                 </td>
-            </tr>
-            <tr>
                 <td align="right">
                     网址：
                 </td>
@@ -101,8 +97,6 @@
                 <td align="left">
                     <%= Html.TextBox("Company♂Email", Html.Encode(Model.Email))%>
                 </td>
-            </tr>
-            <tr>
                 <td align="right">
                     开户银行：
                 </td>
@@ -114,15 +108,15 @@
                 <td align="right">
                     银行帐号：
                 </td>
-                <td align="left">
-                    <%= Html.TextBox("Company♂BankCode", Html.Encode(Model.BankCode))%>
+                <td align="left" colspan="3">
+                    <%= Html.TextBox("Company♂BankCode", Html.Encode(Model.BankCode), new { style = "width: 500px" })%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     公司徽标：
                 </td>
-                <td align="left">
+                <td align="left" colspan="3">
                     <%= Html.TextBox("Company♂Badge", Html.Encode(Model.Badge))%>
                 </td>
             </tr>
@@ -130,11 +124,10 @@
                 <td align="right">
                     公司签章：
                 </td>
-                <td align="left">
+                <td align="left" colspan="3">
                     <%= Html.TextBox("Company♂Logo", Html.Encode(Model.Logo))%>
                 </td>
             </tr>
-        
         </thead>
         <!-- 备忘录区域 -->
         <tfoot>
