@@ -9,7 +9,7 @@ namespace LZL.ForeignTrade.Controllers
 {
     public class DataHelper
     {
-        public static int Getcount(int? page, string quyerCondition, string queryvalue,string objectname)
+        public static int Getcount(int? page, string quyerCondition, string queryvalue, string objectname)
         {
             Entities entities = new Entities();
             if (string.IsNullOrEmpty(quyerCondition))
@@ -73,5 +73,61 @@ namespace LZL.ForeignTrade.Controllers
             var querylist = entities.CreateQuery<Product>(sql).ToList();
             return querylist;
         }
+
+        public static List<Price> GetPrices(string quyerCondition, string queryvalue, int? page, out int pagecount)
+        {
+            if (string.IsNullOrEmpty(quyerCondition))
+            {
+                quyerCondition = "Name";
+            }
+            Entities entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            pagecount = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Price")) / pagesize);
+            string sql = "select value it from " + entities.DefaultContainerName + ".Price as it ";
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                sql += " where  it." + quyerCondition + " like '" + queryvalue + "%'";
+            }
+            sql += " order by it." + quyerCondition;
+            sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
+            var querylist = entities.CreateQuery<Price>(sql).ToList();
+            return querylist;
+        }
+
+        /// <summary>
+        /// 获取客户信息
+        /// </summary>
+        /// <param name="id">公司ID</param>
+        /// <returns>返回客户对象</returns>
+        public static Customer GetCustomer(Guid? id)
+        {
+            if (id != null)
+            {
+                Entities entities = new Entities();
+                return entities.Customer.Where(v => v.ID.Equals(id.Value)).FirstOrDefault();
+            }
+            else
+            {
+                return new Customer();
+            }
+        }
+        /// <summary>
+        /// 获取公司信息
+        /// </summary>
+        /// <param name="id">公司ID</param>
+        /// <returns>返回公司对象</returns>
+        public static Company GetCompany(Guid? id)
+        {
+            if (id != null)
+            {
+                Entities entities = new Entities();
+                return entities.Company.Where(v => v.ID.Equals(id.Value)).FirstOrDefault();
+            }
+            else
+            {
+                return new Company();
+            }
+        }
+
     }
 }

@@ -27,25 +27,54 @@ namespace LZL.ForeignTrade.Controllers
             return RedirectToAction("Index");
         }
 
-        [AcceptVerbs("Post", "Get")]
-        public ActionResult Index(string quyerCondition, string queryvalue, int? page)
+        public ActionResult Index()
+        {
+            int pagecount = 1;
+            var querylist = DataHelper.GetPrices(string.Empty, string.Empty, 1, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View(querylist);
+        }
+
+        public ActionResult Details(string id)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.Price.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+
+        public ActionResult Delete(string id)
         {
             Entities entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Price")) / pagesize);
-            string sql = "select value it from " + entities.DefaultContainerName + ".Price as it ";
-            if (!string.IsNullOrEmpty(queryvalue))
+            string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < ids.Length; i++)
             {
-                sql += " where it." + quyerCondition + " like '" + queryvalue + "%'";
+                Guid guid = new Guid(ids[i]);
+                var Price = entities.Price.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+                Price.PriceProduct.Load();
+                for (int s = 0; s < Price.PriceProduct.Count; s++)
+                {
+                    entities.DeleteObject(Price.PriceProduct.ElementAt(s));
+                }
+                entities.DeleteObject(Price);
             }
-            if (string.IsNullOrEmpty(quyerCondition))
-            {
-                quyerCondition = "ID";
-            }
-            sql += " order by it." + quyerCondition;
-            sql += " Skip " + pagesize * ((page ?? 1) - 1) + " limit " + pagesize.ToString();
-            var querylist = entities.CreateQuery<Price>(sql).ToList();
-            return View(querylist);
+            entities.SaveChanges();
+            return RedirectToAction("Index", new { page = 1 });
+        }
+
+        public ActionResult Edit(string id)
+        {
+            return Details(id);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Edit(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }
