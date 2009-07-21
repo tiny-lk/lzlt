@@ -294,8 +294,11 @@
     <Content Include="Views\Admin\EditDictionary.aspx" />
     <Content Include="Views\Admin\ManageDictionary.aspx" />
     <Content Include="Views\Price\Add.aspx" />
+    <Content Include="Views\Price\Details.aspx" />
+    <Content Include="Views\Price\Edit.aspx" />
     <Content Include="Views\Price\Index.aspx" />
     <Content Include="Views\Price\Price.master" />
+    <Content Include="Views\Shared\PriceIndex.ascx" />
     <Content Include="Views\Shared\ProductIndex.ascx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

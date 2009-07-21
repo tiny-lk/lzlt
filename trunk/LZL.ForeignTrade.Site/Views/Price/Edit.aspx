@@ -1,9 +1,9 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Price/Price.master" Inherits="System.Web.Mvc.ViewPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Price/Price.master" Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.Price>" %>
 
-<asp:Content ID="TitlePrice" ContentPlaceHolderID="TitleContent" runat="server">
-    添加报价单
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    编辑
 </asp:Content>
-<asp:Content ID="MainPrice" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/ui/ui.draggable.js")%>"></script>
 
@@ -140,6 +140,7 @@
                 </td>
             </tr>
             <tr>
+                <%= Html.Hidden("Price♂ID", Html.Encode(Model.ID.ToString()))%>
                 <td rowspan="5" align="center" valign="middle">
                     报价单基本信息
                 </td>
@@ -147,13 +148,13 @@
                     报价单号：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂Name")%>
+                    <%= Html.TextBox("Price♂Name",Html.Encode( Model.Name))%>
                 </td>
                 <td align="right" style="width: 20%;">
                     报价单日期：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂Date")%>
+                    <%= Html.TextBox("Price♂Date",Html.Encode(Model.Date))%>
                 </td>
             </tr>
             <tr>
@@ -161,13 +162,13 @@
                     报价币种：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂CurrencyType")%>
+                    <%= Html.TextBox("Price♂CurrencyType", Html.Encode(Model.CurrencyType))%>
                 </td>
                 <td align="right">
                     价格条款：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂PriceClause")%>
+                    <%= Html.TextBox("Price♂PriceClause", Html.Encode(Model.PriceClause))%>
                 </td>
             </tr>
             <tr>
@@ -175,7 +176,7 @@
                     价格条款补充说明：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextArea("Price♂PriceClauseNote", new { style = "width:99%; height:40px;" })%>
+                    <%= Html.TextArea("Price♂PriceClauseNote", Html.Encode(Model.PriceClauseNote), new { style = "width:99%; height:40px;" })%>
                 </td>
             </tr>
             <tr>
@@ -183,7 +184,7 @@
                     付款方式：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextBox("Price♂ClauseType")%>
+                    <%= Html.TextBox("Price♂ClauseType", Html.Encode(Model.ClauseType))%>
                 </td>
             </tr>
             <tr>
@@ -191,7 +192,7 @@
                     付款方式补充说明：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextArea("Price♂ClauseTypeNote", new { style = "width:99%; height:40px;" })%>
+                    <%= Html.TextArea("Price♂ClauseTypeNote", Html.Encode(Model.ClauseTypeNote), new { style = "width:99%; height:40px;" })%>
                 </td>
             </tr>
             <tr>
@@ -202,13 +203,13 @@
                     运抵国：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂TansportCountry")%>
+                    <%= Html.TextBox("Price♂TansportCountry", Html.Encode(Model.TansportCountry))%>
                 </td>
                 <td align="right">
                     起运港口：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂StartHaven")%>
+                    <%= Html.TextBox("Price♂StartHaven", Html.Encode(Model.StartHaven))%>
                 </td>
             </tr>
             <tr>
@@ -216,13 +217,13 @@
                     转运港口：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂TransferHaven")%>
+                    <%= Html.TextBox("Price♂TransferHaven", Html.Encode(Model.TransferHaven))%>
                 </td>
                 <td align="right">
                     目的港口：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂EdnHaven")%>
+                    <%= Html.TextBox("Price♂EdnHaven", Html.Encode(Model.EdnHaven))%>
                 </td>
             </tr>
             <tr>
@@ -230,7 +231,7 @@
                     运输方式：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextBox("Price♂TransportMode")%>
+                    <%= Html.TextBox("Price♂TransportMode", Html.Encode(Model.TransportMode))%>
                 </td>
             </tr>
             <tr>
@@ -241,13 +242,13 @@
                     报价单类型：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂PriceType")%>
+                    <%= Html.TextBox("Price♂PriceType", Html.Encode(Model.PriceType))%>
                 </td>
                 <td align="right">
                     总报价金额：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseQuote")%>
+                    <%= Html.TextBox("Price♂ClauseQuote", Html.Encode(Model.ClauseQuote))%>
                 </td>
             </tr>
             <tr>
@@ -255,13 +256,13 @@
                     总包装数量：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClausePackNumber")%>
+                    <%= Html.TextBox("Price♂ClausePackNumber", Html.Encode(Model.ClausePackNumber))%>
                 </td>
                 <td align="right">
                     包装单位（英文）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseUnitEN")%>
+                    <%= Html.TextBox("Price♂ClauseUnitEN", Html.Encode(Model.ClauseUnitEN))%>
                 </td>
             </tr>
             <tr>
@@ -269,13 +270,13 @@
                     总毛重（KG）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseWeight")%>
+                    <%= Html.TextBox("Price♂ClauseWeight", Html.Encode(Model.ClauseWeight))%>
                 </td>
                 <td align="right">
                     总净重（KG）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseNetWeight")%>
+                    <%= Html.TextBox("Price♂ClauseNetWeight", Html.Encode(Model.ClauseNetWeight))%>
                 </td>
             </tr>
             <tr>
@@ -283,13 +284,13 @@
                     总体积（CBM）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseBulk")%>
+                    <%= Html.TextBox("Price♂ClauseBulk", Html.Encode(Model.ClauseBulk))%>
                 </td>
                 <td align="right">
                     商品总数量：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseNumber")%>
+                    <%= Html.TextBox("Price♂ClauseNumber", Html.Encode(Model.ClauseNumber))%>
                 </td>
             </tr>
             <tr>
@@ -297,14 +298,14 @@
                     商品总单位：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseUnit")%>
+                    <%= Html.TextBox("Price♂ClauseUnit", Html.Encode(Model.ClauseUnit))%>
                 </td>
                 <td align="right">
                     商品总数量<br />
                     （不同单位）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseNotUnit")%>
+                    <%= Html.TextBox("Price♂ClauseNotUnit", Html.Encode(Model.ClauseNotUnit))%>
                 </td>
             </tr>
             <tr>
@@ -315,15 +316,37 @@
                     选择客户：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("_Price♂CustomerID")%><!-- "-"表示不被处理的值 -->
-                    <%=Html.Hidden("Price♂CustomerID")%>
+                    <%
+                        if (Model.CustomerID != null)
+                        {
+                            var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCustomer(Model.CustomerID);
+                            Response.Write(Html.TextBox("_Price♂CustomerID", obj.NameCode));
+                            Response.Write(Html.Hidden("Price♂CustomerID", obj.ID.ToString()));
+                        }
+                        else
+                        {
+                            Response.Write(Html.TextBox("_Price♂CustomerID"));
+                            Response.Write(Html.Hidden("Price♂CustomerID"));
+                        }
+                    %>
                 </td>
                 <td align="right">
                     公司简称：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("_Price♂CompanyID")%><!-- "-"表示不被处理的值 -->
-                    <%= Html.Hidden("Price♂CompanyID")%>
+                    <%
+                        if (Model.CompanyID != null)
+                        {
+                            var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCompany(Model.CompanyID);
+                            Response.Write(Html.TextBox("_Price♂CompanyID", obj.Name));
+                            Response.Write(Html.Hidden("Price♂CompanyID", obj.ID.ToString()));
+                        }
+                        else
+                        {
+                            Response.Write(Html.TextBox("_Price♂CompanyID"));
+                            Response.Write(Html.Hidden("Price♂CompanyID"));
+                        }
+                    %>
                 </td>
             </tr>
             <tr>
@@ -331,16 +354,26 @@
                     备注信息：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextArea("Price♂Note", new { style = "width:99%; height:60px;" })%>
+                    <%= Html.TextArea("Price♂Note", Html.Encode(Model.Note), new { style = "width:99%; height:60px;" })%>
                 </td>
             </tr>
+            <% 
+                Model.PriceProduct.Load();
+                if (Model.PriceProduct.Count > 0)
+                {
+                    for (int i = 0; i < Model.PriceProduct.Count; i++)
+                    {
+                        Model.PriceProduct.ElementAt(i).ProductReference.Load();
+                    }
+                }
+            %>
             <!-- 产品信息 -->
-            <tr id="PriceProduct♂" style="display: none; text-align: left;">
+            <tr id="PriceProduct♂" style="text-align: left; <%=Model.PriceProduct.Count>0?"": "display: none"%>;">
                 <td colspan="5">
                     <center style="text-align: center; font-size: x-large; font-weight: bolder;">
                         关联客户信息</center>
                     <!-- 标识子表添加总数 -->
-                    <input type="hidden" value='0' name="PriceProduct♂regioncount" id="PriceProduct♂regioncount" />
+                    <input type="hidden" value='<%= Model.PriceProduct.Count %>' name="PriceProduct♂regioncount" id="PriceProduct♂regioncount" />
                     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
                     <input type="hidden" name="region" value="PriceProduct♂" />
                     <!-- 标识子表实体对象类 -->
@@ -350,9 +383,19 @@
                     <input type="hidden" name="PriceProduct♂fk" value='Product' />
                     <!-- 标识多对多关系表中（一） -->
                     <input type="hidden" name="PriceProduct♂pfk" value='Price' />
-                    <fieldset style="display: none; width: 95%;">
+                    <fieldset style="width: 95%; <%=Model.PriceProduct.Count>0?"": "display: none"%>;">
                         <legend>商品信息</legend>
                         <ul id="spxx" style="float: left; width: 100%; clear: both; position: relative;">
+                            <%
+                                for (int i = 0; i < Model.PriceProduct.Count(); i++)
+                                {
+                                    var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
+                                    var script = @"$(this).parent().remove();display('PriceProduct♂','spxx')";
+                                    Response.Write(string.Format(htmlstr,
+                                        @"<input type='checkbox' name='Product♂ID' checked='true' onclick=" + Html.Encode(script) + " value='" + Model.PriceProduct.ElementAt(i).Product.ID.ToString() + "' />",
+                                        Html.ActionLink(Model.PriceProduct.ElementAt(i).Product.NameCode, "Details", "Product", new { id = Model.PriceProduct.ElementAt(i).Product.ID.ToString() }, null)));
+                                }
+                            %>
                         </ul>
                     </fieldset>
                 </td>
@@ -370,9 +413,10 @@
         </tfoot>
     </table>
     <%
-        } %>
+        }
+    %>
 </asp:Content>
-<asp:Content ID="ChildContent" ContentPlaceHolderID="ChildActionContent" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
     <li><a href="#" onclick="opengys('PriceProduct♂','Product♂ID','01','spxx','<%=Url.Action("Details","Product")%>');">
         关联商品信息</a></li>
 </asp:Content>

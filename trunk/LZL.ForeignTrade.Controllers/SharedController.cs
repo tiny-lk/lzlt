@@ -309,10 +309,6 @@ namespace LZL.ForeignTrade.Controllers
             {
                 value = null;
             }
-            if (o.GetType().GetProperty(name).PropertyType.FullName.Equals("System.Guid"))
-            {
- 
-            }
             ClassHelper.SetPropertyValue(o, name.Trim(), value);
         }
 
@@ -348,6 +344,23 @@ namespace LZL.ForeignTrade.Controllers
             ViewData["pagecount"] = pagecount;
             return View("ProductIndex", querylist);
         }
+
+        public ActionResult PriceIndex(string quyerCondition, string queryvalue, string simple, int? page)
+        {
+            if (!string.IsNullOrEmpty(simple))
+            {
+                ViewData["simple"] = "true";
+            }
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetPrices(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View("PriceIndex", querylist);
+        }
+
 
         public ActionResult ImageUserControl(string fid)
         {
