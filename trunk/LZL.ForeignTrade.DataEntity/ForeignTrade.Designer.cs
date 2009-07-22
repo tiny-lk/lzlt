@@ -17,7 +17,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ProductCustomer_Product", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Product), "ProductCustomer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ProductCustomer))]
 
 // 原始文件名:
-// 生成日期: 2009/7/15 22:53:44
+// 生成日期: 2009/7/22 9:12:13
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -202,6 +202,21 @@ namespace LZL.ForeignTrade.DataEntity
         }
         private global::System.Data.Objects.ObjectQuery<ProductCustomer> _ProductCustomer;
         /// <summary>
+        /// 架构中不存在 Department 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<Department> Department
+        {
+            get
+            {
+                if ((this._Department == null))
+                {
+                    this._Department = base.CreateQuery<Department>("[Department]");
+                }
+                return this._Department;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<Department> _Department;
+        /// <summary>
         /// 架构中不存在 Company 的注释。
         /// </summary>
         public void AddToCompany(Company company)
@@ -270,6 +285,13 @@ namespace LZL.ForeignTrade.DataEntity
         public void AddToProductCustomer(ProductCustomer productCustomer)
         {
             base.AddObject("ProductCustomer", productCustomer);
+        }
+        /// <summary>
+        /// 架构中不存在 Department 的注释。
+        /// </summary>
+        public void AddToDepartment(Department department)
+        {
+            base.AddObject("Department", department);
         }
     }
     /// <summary>
@@ -3561,5 +3583,119 @@ namespace LZL.ForeignTrade.DataEntity
                 }
             }
         }
+    }
+    /// <summary>
+    /// 架构中不存在 ForeignTradeModel.Department 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="Department")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class Department : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 Department 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static Department CreateDepartment(global::System.Guid id)
+        {
+            Department department = new Department();
+            department.ID = id;
+            return department;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在属性 Name 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
+        /// <summary>
+        /// 架构中不存在属性 OrderField 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> OrderField
+        {
+            get
+            {
+                return this._OrderField;
+            }
+            set
+            {
+                this.OnOrderFieldChanging(value);
+                this.ReportPropertyChanging("OrderField");
+                this._OrderField = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("OrderField");
+                this.OnOrderFieldChanged();
+            }
+        }
+        private global::System.Nullable<int> _OrderField;
+        partial void OnOrderFieldChanging(global::System.Nullable<int> value);
+        partial void OnOrderFieldChanged();
+        /// <summary>
+        /// 架构中不存在属性 ParentId 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.Guid> ParentId
+        {
+            get
+            {
+                return this._ParentId;
+            }
+            set
+            {
+                this.OnParentIdChanging(value);
+                this.ReportPropertyChanging("ParentId");
+                this._ParentId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ParentId");
+                this.OnParentIdChanged();
+            }
+        }
+        private global::System.Nullable<global::System.Guid> _ParentId;
+        partial void OnParentIdChanging(global::System.Nullable<global::System.Guid> value);
+        partial void OnParentIdChanged();
     }
 }

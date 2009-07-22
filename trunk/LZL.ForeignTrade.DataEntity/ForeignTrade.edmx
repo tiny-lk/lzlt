@@ -8,6 +8,7 @@
         <EntityContainer Name="ForeignTradeModelStoreContainer">
           <EntitySet Name="Company" EntityType="ForeignTradeModel.Store.Company" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customer" EntityType="ForeignTradeModel.Store.Customer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Department" EntityType="ForeignTradeModel.Store.Department" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Dictionary" EntityType="ForeignTradeModel.Store.Dictionary" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Image" EntityType="ForeignTradeModel.Store.Image" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Linkman" EntityType="ForeignTradeModel.Store.Linkman" store:Type="Tables" Schema="dbo" />
@@ -86,6 +87,15 @@
           <Property Name="TypeCode" Type="nvarchar" MaxLength="50" />
           <Property Name="IsShare" Type="bit" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+          <Property Name="OrderField" Type="int" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Dictionary">
           <Key>
@@ -326,7 +336,7 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductCustomer" EntitySet="ProductCustomer" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Department" EntityType="ForeignTradeModel.Department" /></EntityContainer>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="ID" />
@@ -530,7 +540,13 @@
           <End Role="Product" Type="ForeignTradeModel.Product" Multiplicity="0..1" />
           <End Role="ProductCustomer" Type="ForeignTradeModel.ProductCustomer" Multiplicity="*" />
         </Association>
-      </Schema>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" /></Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="OrderField" Type="Int32" Nullable="true" />
+          <Property Name="ParentId" Type="Guid" Nullable="true" /></EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -768,7 +784,13 @@
             </EndProperty>
             <Condition ColumnName="ProductID" IsNull="false" />
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Department)">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="OrderField" ColumnName="OrderField" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -826,6 +848,7 @@
           <ConnectorPoint PointX="2.25" PointY="15.440757818684896" />
           <ConnectorPoint PointX="2.625" PointY="15.440757818684896" />
           <ConnectorPoint PointX="2.625" PointY="2.8510012145182291" />
-          <ConnectorPoint PointX="3" PointY="2.8510012145182291" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="3" PointY="2.8510012145182291" /></AssociationConnector>
+        <EntityTypeShape EntityType="ForeignTradeModel.Department" Width="1.5" PointX="8.375" PointY="4.75" Height="1.7790128580729174" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
