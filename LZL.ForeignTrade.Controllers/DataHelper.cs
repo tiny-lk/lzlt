@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using LZL.ForeignTrade.DataEntity;
 using System.Configuration;
+using System.Web.Mvc;
 
 namespace LZL.ForeignTrade.Controllers
 {
@@ -127,6 +128,39 @@ namespace LZL.ForeignTrade.Controllers
             {
                 return new Company();
             }
+        }
+        public static string GetDictionaryName(string type, string value)
+        {
+            Entities entities = new Entities();
+            return entities.Dictionary.Where(v => v.Type.Equals(type, StringComparison.CurrentCultureIgnoreCase)
+                && v.Code.Equals(value, StringComparison.CurrentCultureIgnoreCase)
+                ).FirstOrDefault().Name;
+        }
+
+        public static SelectList GetDictionary(string name)
+        {
+            return GetDictionary(name, string.Empty);
+        }
+
+        public static SelectList GetDictionary(string name, string selectvalue)
+        {
+            List<SelectListItem> selectitem = new List<SelectListItem>();
+            if (!string.IsNullOrEmpty(name))
+            {
+                Entities entities = new Entities();
+                var tempvalues = entities.Dictionary.Where(v => v.Type.Equals(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                for (int i = 0; i < tempvalues.Count; i++)
+                {
+                    SelectListItem item = new SelectListItem() { Text = tempvalues[i].Name, Value = tempvalues[i].Code };
+                    if (!string.IsNullOrEmpty(selectvalue) && item.Value.Equals(selectvalue, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        item.Selected = true;
+                    }
+                    selectitem.Add(item);
+                }
+            }
+                return new SelectList(selectitem, "Value", "Text");
+     
         }
 
     }

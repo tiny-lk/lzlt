@@ -8,6 +8,35 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js")%>"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.validator.setDefaults();
+            $($("form")).validate({
+                rules: {
+                    Customer♂NameCode: {
+                        required: true
+                    },
+                    Customer♂Internet:{
+                        url:true
+                    }
+                    
+                },
+                messages: {
+                    Customer♂NameCode: {
+                        required: "客户信息中的简称不能为空！"
+                    },
+                    Customer♂Internet:{
+                        url:"网站信息错误！"
+                    }
+                }
+            });
+    });
+    </script>
+
     <h2>
         添加客户信息</h2>
     <% using (Html.BeginForm())
@@ -67,7 +96,7 @@
                     是共享数据：
                 </td>
                 <td align="left">
-                      <% =Html.CheckBox("Customer♂IsShare") %>
+                    <% =Html.CheckBox("Customer♂IsShare") %>
                 </td>
             </tr>
             <tr>
@@ -123,7 +152,7 @@
                     客户类别：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂TypeCode")%>
+                    <%= Html.DropDownList("Customer♂TypeCode", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("客户类型"), "请选择")%>
                 </td>
             </tr>
             <tr>
