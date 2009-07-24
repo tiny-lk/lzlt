@@ -48,11 +48,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("Memorandum¡áDate"));
+                        Response.Write(Html.TextBox("Memorandum¡áDate", "", new { validate = "date:true", Readonly = true }));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Memorandum¡áDate", Html.Encode(Model[i].Date)));
+                        Response.Write(Html.TextBox("Memorandum¡áDate", Html.Encode(Model[i].Date), new { validate = "date:true", Readonly = true }));
                     }
                 %>
             </td>
@@ -63,11 +63,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("Memorandum¡áSubject"));
+                        Response.Write(Html.TextBox("Memorandum¡áSubject", "", new { validate = "required:true" }));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Memorandum¡áSubject", Html.Encode(Model[i].Subject)));
+                        Response.Write(Html.TextBox("Memorandum¡áSubject", Html.Encode(Model[i].Subject), new { validate = "required:true" }));
                     }
                 %>
             </td>

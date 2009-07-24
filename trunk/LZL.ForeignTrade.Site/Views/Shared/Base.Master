@@ -28,10 +28,29 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.js")%>"></script>
 
-    <script type="text/javascript" src='<%= Url.Content("~/Scripts/ui/ui.core.js")%>'></script>
+    <script type="text/javascript" src='<%= Url.Content("~/Scripts/ui/jquery-ui-1.7.2.custom.min.js")%>'></script>
+
+    <script type="text/javascript" src='<%= Url.Content("~/Scripts/ui/i18n/jquery-ui-i18n.js")%>'></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.min.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.metadata.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/messages_cn.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.bgiframe.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.PrintArea.js")%>"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
+
+            $.validator.setDefaults();
+            $.metadata.setType("attr", "validate");
+            $($("form")).validate();
+
             dynamicinputcss();
             $("table > tbody[listmouse='listmouseovercss'] > tr").live("mouseover", function() {
                 $(this).addClass("mouseover");

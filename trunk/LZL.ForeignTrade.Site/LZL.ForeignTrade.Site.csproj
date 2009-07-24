@@ -130,7 +130,6 @@
     </Content>
     <Content Include="Content\jquery.autocomplete.css" />
     <Content Include="Scripts\jquery.PrintArea.js" />
-    <Content Include="Scripts\jquery.validate.js" />
     <Content Include="DLL\ZhouBo.Core.dll" />
     <Content Include="Scripts\child_table_template.js" />
     <Content Include="Scripts\jquery.autocomplete.js" />
@@ -267,7 +266,6 @@
     <Content Include="Scripts\ui\i18n\ui.datepicker-uk.js" />
     <Content Include="Scripts\ui\i18n\ui.datepicker-zh-CN.js" />
     <Content Include="Scripts\ui\i18n\ui.datepicker-zh-TW.js" />
-    <Content Include="Scripts\ui\jquery-ui-1.7.2.custom.js" />
     <Content Include="Scripts\ui\ui.accordion.js" />
     <Content Include="Scripts\ui\ui.core.js" />
     <Content Include="Scripts\ui\ui.datepicker.js" />
@@ -290,6 +288,11 @@
     <Content Include="Views\Shared\ImageView.ascx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\AutoCompletedata.js" />
+    <Content Include="Scripts\jquery.metadata.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\messages_cn.js" />
+    <Content Include="Scripts\ui\jquery-ui-1.7.2.custom.min.js" />
     <Content Include="Views\Admin\AddDictionary.aspx" />
     <Content Include="Views\Admin\EditDictionary.aspx" />
     <Content Include="Views\Admin\ManageDictionary.aspx" />

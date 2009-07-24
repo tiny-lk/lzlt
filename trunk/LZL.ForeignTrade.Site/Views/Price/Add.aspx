@@ -5,17 +5,8 @@
 </asp:Content>
 <asp:Content ID="MainPrice" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/ui/ui.draggable.js")%>"></script>
-
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.bgiframe.js")%>"></script>
-
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/ui/ui.dialog.js")%>"></script>
-
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
 
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
-
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js")%>"></script>
 
     <script type="text/javascript">
         function opengys(regionname, childobject, khtype, addid, url) {

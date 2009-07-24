@@ -5,17 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/ui/ui.draggable.js")%>"></script>
-
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.bgiframe.js")%>"></script>
-
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/ui/ui.dialog.js")%>"></script>
-
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
-
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
-
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js")%>"></script>
 
     <script type="text/javascript">
         function opengys(regionname, childobject, khtype, addid, url) {
@@ -373,7 +363,8 @@
                     <center style="text-align: center; font-size: x-large; font-weight: bolder;">
                         关联客户信息</center>
                     <!-- 标识子表添加总数 -->
-                    <input type="hidden" value='<%= Model.PriceProduct.Count %>' name="PriceProduct♂regioncount" id="PriceProduct♂regioncount" />
+                    <input type="hidden" value='<%= Model.PriceProduct.Count %>' name="PriceProduct♂regioncount"
+                        id="PriceProduct♂regioncount" />
                     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
                     <input type="hidden" name="region" value="PriceProduct♂" />
                     <!-- 标识子表实体对象类 -->

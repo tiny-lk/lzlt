@@ -48,11 +48,11 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("Linkman¡áName"));
+                        Response.Write(Html.TextBox("Linkman¡áName", "", new { validate = "required:true" }));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Linkman¡áName", Html.Encode(Model[i].Name)));
+                        Response.Write(Html.TextBox("Linkman¡áName", Html.Encode(Model[i].Name), new { validate = "required:true" }));
                     }
                 %>
             </td>
