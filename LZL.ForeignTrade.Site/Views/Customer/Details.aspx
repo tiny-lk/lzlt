@@ -8,8 +8,6 @@
     <h2>
         客户详细信息</h2>
 
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.PrintArea.js")%>"></script>
-
     <script type="text/javascript">
         function print() {
             $("table > thead").printArea("<table width='100%'></table>");

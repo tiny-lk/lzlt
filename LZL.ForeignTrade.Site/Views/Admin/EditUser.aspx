@@ -4,55 +4,14 @@
     编辑用户
 </asp:Content>
 <asp:Content ID="EditUserContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>编辑用户</h2>
-
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js")%>"></script>
+    <h2>
+        编辑用户</h2>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $.validator.setDefaults();
             $("input[name='Return']").bind("click", function() {
                 window.location.href = '<%=Url.Content("~/Admin/ManageUser/") %>';
             });
-
-            $($("form")).validate({
-                rules: {
-                    UserName: {
-                        required: true
-                    },
-                    Email: {
-                        required: true,
-                        email: true
-                    },
-                    Password: {
-                        minlength: 5,
-                        required: true
-                    },
-                    confirmPassword: {
-                        minlength: 5,
-                        required: true,
-                        equalTo: "#Password"
-                    }
-                },
-                messages: {
-                    UserName: {
-                        required: "用户名不能为空！"
-                    },
-                    Email: {
-                        required: "邮箱地址不能为空！",
-                        email: "输入邮箱地址错误！"
-                    },
-                    Password: {
-                        minlength: "密码最小长度不能小于6！",
-                        required: "密码不能为空！"
-                    },
-                    confirmPassword: {
-                        required: "重复密码不能为空！",
-                        equalTo: "密码不一致！"
-                    }
-                }
-            });
-
         });
     </script>
 
@@ -68,19 +27,19 @@
         <p>
             <label for="UserName">
                 用户名称：</label>
-            <%=Html.TextBox("UserName", Model.UserName, new { disabled = true })%>
+            <%=Html.TextBox("UserName", Model.UserName, new { disabled = true, validate = "required:true" })%>
         </p>
         <p>
             <label for="Email">
-                E-Mail：</label><%=Html.TextBox("Email", Model.Email)%></p>
+                E-Mail：</label><%=Html.TextBox("Email", Model.Email, new { validate = "email:true, required:true" })%></p>
         <p>
             <label for="Password">
                 密 码：</label>
-            <%= Html.Password("Password", Model.GetPassword())%></p>
+            <%= Html.Password("Password", Model.GetPassword(), new { validate = "required:true,minlength:5" })%></p>
         <p>
             <label for="Password">
                 确认密码：</label>
-            <%= Html.Password("confirmPassword", Model.GetPassword())%></p>
+            <%= Html.Password("confirmPassword", Model.GetPassword(), new { validate = "required:true,equalTo:'#Password', minlength:5" })%></p>
         <p>
             <label for="approved">
                 是有效：</label>

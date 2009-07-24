@@ -1,6 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<LZL.ForeignTrade.DataEntity.Image>" %>
 
-<script type="text/javascript" src='<%= Url.Content("~/Scripts/ui.dialog.js")%>'></script>
 
 <script type="text/javascript" src='<%= Url.Content("~/Scripts/jquery.treeview.js")%>'></script>
 

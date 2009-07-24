@@ -8,37 +8,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
 
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
 
-    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js")%>"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $.validator.setDefaults();
-            $($("form")).validate({
-                rules: {
-                    Customer♂NameCode: {
-                        required: true
-                    },
-                    Customer♂Internet:{
-                        url:true
-                    }
-                    
-                },
-                messages: {
-                    Customer♂NameCode: {
-                        required: "客户信息中的简称不能为空！"
-                    },
-                    Customer♂Internet:{
-                        url:"网站信息错误！"
-                    }
-                }
-            });
-    });
-    </script>
-
-    <h2>
-        添加客户信息</h2>
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
@@ -46,6 +17,8 @@
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Customer♂objectname" value="LZL.ForeignTrade.DataEntity.Customer,LZL.ForeignTrade.DataEntity" />
     <table width="100%">
+        <caption>
+            添加客户信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
@@ -62,7 +35,7 @@
                     客户代码（简称）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂NameCode")%>
+                    <%= Html.TextBox("Customer♂NameCode", "", new { validate = "required:true"})%>
                 </td>
                 <td align="right">
                     中文名称：
@@ -96,7 +69,7 @@
                     是共享数据：
                 </td>
                 <td align="left">
-                    <% =Html.CheckBox("Customer♂IsShare") %>
+                    <% =Html.CheckBox("Customer♂IsShare")%>
                 </td>
             </tr>
             <tr>
@@ -104,7 +77,7 @@
                     国家：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂Country")%>
+                    <%= Html.DropDownList("Customer♂Country", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("国家"), "请选择")%>
                 </td>
                 <td align="right">
                     省份（州）：
@@ -146,7 +119,7 @@
                     网站：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂Internet")%>
+                    <%= Html.TextBox("Customer♂Internet", "", new { validate = "url:true" })%>
                 </td>
                 <td align="right">
                     客户类别：
@@ -177,7 +150,7 @@
                     账&nbsp;&nbsp;&nbsp;&nbsp;户：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂BankCode")%>
+                    <%= Html.TextBox("Customer♂BankCode", "", new { validate = "creditcard:true" })%>
                 </td>
             </tr>
             <!-- 联系人区域 -->

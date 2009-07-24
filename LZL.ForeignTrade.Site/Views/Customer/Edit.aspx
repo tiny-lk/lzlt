@@ -76,7 +76,7 @@
                     国家：
                 </td>
                 <td align="left">
-                    <%=Html.TextBox("Customer♂Country", Html.Encode(Model.Country))%>
+                    <%= Html.DropDownList("Customer♂Country", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("国家", Html.Encode(Model.Country)), "请选择")%>
                 </td>
                 <td align="right">
                     省份（州）：
@@ -118,13 +118,13 @@
                     网站：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂Internet", Html.Encode(Model.Internet))%>
+                    <%= Html.TextBox("Customer♂Internet", Html.Encode(Model.Internet), new { validate = "url:true" })%>
                 </td>
                 <td align="right">
                     客户类别：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂TypeCode", Html.Encode(Model.TypeCode))%>
+                    <%= Html.DropDownList("Customer♂TypeCode", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("客户类型", Html.Encode(Model.TypeCode)), "请选择")%>
                 </td>
             </tr>
             <tr>
@@ -149,7 +149,7 @@
                     账&nbsp;&nbsp;&nbsp;&nbsp;户：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂BankCode", Html.Encode(Model.BankCode))%>
+                    <%= Html.TextBox("Customer♂BankCode", Html.Encode(Model.BankCode), new { validate = "creditcard:true" })%>
                 </td>
             </tr>
             <!-- 联系人区域 -->

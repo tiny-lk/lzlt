@@ -55,6 +55,15 @@ namespace LZL.ForeignTrade.Controllers
             return Json(r);
         }
 
+        public JsonResult GetDictionary(string typename)
+        {
+            Entities entities = new Entities();
+            string sql = "select value it from " + entities.DefaultContainerName + ".Dictionary  as it where it.Type='" + typename + "' and ";
+            sql += "  it.Name like '" + Request["q"] + "%' order by it.Name ";
+            sql += " Skip 0 limit 20 ";
+            return Json(entities.CreateQuery<Dictionary>(sql));
+        }
+
         public static void mainTable(FormCollection formvalues, ObjectContext entities)
         {
             var regions = formvalues["region"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

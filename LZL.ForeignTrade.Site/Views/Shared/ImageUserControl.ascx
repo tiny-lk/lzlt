@@ -2,8 +2,6 @@
 
 <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.form.js")%>"></script>
 
-<script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.validate.js")%>"></script>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $("#imageform").ajaxForm(function() {
