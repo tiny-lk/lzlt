@@ -1,18 +1,18 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.master" Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.Department>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	添加部门
+    添加部门
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>添加部门</h2>
-<% using (Html.BeginForm())
+    <h2>
+        添加部门</h2>
+    <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
     <input type="hidden" name="region" value="Department♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Department♂objectname" value="LZL.ForeignTrade.DataEntity.Department,LZL.ForeignTrade.DataEntity" />
+    <%= Html.Hidden("Department♂ParentId", Html.ViewContext.RequestContext.RouteData.Values["id"])%>
     <table width="100%">
         <thead align="center">
             <tr>
@@ -38,14 +38,7 @@
                     <%= Html.TextBox("Department♂OrderField")%>
                 </td>
             </tr>
-           <%-- <tr>
-                <td align="right">
-                    父编码：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("Department♂ParentId")%>
-                </td>
-            </tr>--%>
+            
         </thead>
         <!-- 备忘录区域 -->
         <tfoot>
