@@ -8,7 +8,7 @@
         编辑数据字典信息</h2>
     <% using (Html.BeginForm())
        { %>
-        <!-- 标识子表区域名称(表格名称、实体对象名称) -->
+    <!-- 标识子表区域名称(表格名称、实体对象名称) -->
     <input type="hidden" name="region" value="Dictionary♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Dictionary♂objectname" value="LZL.ForeignTrade.DataEntity.Dictionary,LZL.ForeignTrade.DataEntity" />
@@ -44,14 +44,6 @@
                 </td>
                 <td align="left">
                     <%= Html.TextBox("Dictionary♂Code", Html.Encode(Model.Code))%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    父编码：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("Dictionary♂Pid", Html.Encode(Model.Pid))%>
                 </td>
             </tr>
         </thead>

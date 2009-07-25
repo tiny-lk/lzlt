@@ -1,11 +1,11 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.master" Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.Department>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.Department>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    部门管理
+    子部门管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        部门管理</h2>
+        子部门管理</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -37,7 +37,7 @@
             });
 
             $("#Add").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Admin/AddDepartment/") %>';
+            window.location.href = '<%=(Url.Content("~/Admin/AddDepartment/")+Html.ViewContext.RequestContext.RouteData.Values["id"]) %>';
             });
 
             $("#AddChildDepart").bind("click", function() {
@@ -108,13 +108,13 @@
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
         <thead>
             <tr>
-                <td colspan="6" align="right">
+                <td colspan="4" align="right">
                     <input type="button" id="OK" value="查 询" disabled="disabled" />
                     <input type="button" id="Add" value="添加" />
                     <input type="button" id="AddChildDepart" value="添加子部门" disabled="disabled" check="1" />
                     <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
                     <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
-                    <input type="button" id="Refresh" value="刷 新" />
+                    <input type="button" id="Refresh" value="返回" />
                 </td>
             </tr>
         </thead>
@@ -132,20 +132,12 @@
                 <td>
                     排序编号
                 </td>
-                <td>
-                    子部门
-                </td>
-                <td>
-                    用户信息
-                </td>
             </tr>
             <%
                 int page = string.IsNullOrEmpty(Request["page"]) ? 1 : int.Parse(Request["page"]);
                 int beginenumber = page <= 1 ? 1 : ((page - 1) * int.Parse(ConfigurationManager.AppSettings["pagenumber"])) + 1;
                 for (int i = 0; i < Model.Count; i++)
                 {
-                    if (string.IsNullOrEmpty(Model[i].ParentId.ToString()))
-                    { 
             %>
             <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Admin/EditDepartment/"+Html.Encode(Model[i].ID)) %>'"
                 title="双击查看详细信息">
@@ -161,17 +153,8 @@
                 <td>
                     <%= Html.Encode(Model[i].OrderField)%>
                 </td>
-                <td>
-                    <a href="<%=Url.Content("~/Admin/ManageChildDepartment/"+Html.Encode(Model[i].ID)) %>">
-                        维护</a>
-                </td>
-                <td>
-                    <a href="<%=Url.Content("~/Admin/ManageChildDepartment/"+Html.Encode(Model[i].ID)) %>">
-                        关联</a>
-                </td>
             </tr>
-            <% 
-                    }
+            <%
                 }
             %>
         </tbody>
