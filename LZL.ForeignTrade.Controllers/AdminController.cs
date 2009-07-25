@@ -349,13 +349,29 @@ namespace LZL.ForeignTrade.Controllers
         /// <param name="queryvalue">The queryvalue.</param>
         /// <param name="page">The page.</param>
         /// <returns></returns>
-        [AcceptVerbs("Post", "Get")]
         public ActionResult ManageDepartment(string quyerCondition, string queryvalue, int? page)
         {
             Entities _Entities = new Entities();
             int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
             ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "Name", "", "Department")) / pagesize);
             var companys = _Entities.Department.OrderBy(v => v.Name).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
+            return View(companys);
+        }
+
+        /// <summary>
+        /// Manages the department.
+        /// </summary>
+        /// <param name="strid">The strid.</param>
+        /// <param name="page">The page.</param>
+        /// <returns></returns>
+        public ActionResult ManageChildDepartment(string id, int? page)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            var dataList = _Entities.Department.Where(v => v.ParentId.Value.Equals(guid));
+            ViewData["pagecount"] = (int)Math.Ceiling((double)(dataList.Count()) / pagesize);
+            var companys = dataList.OrderBy(v => v.Name).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
             return View(companys);
         }
 
