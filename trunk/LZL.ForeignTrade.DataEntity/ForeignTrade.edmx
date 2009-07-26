@@ -17,6 +17,7 @@
           <EntitySet Name="PriceProduct" EntityType="ForeignTradeModel.Store.PriceProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product" EntityType="ForeignTradeModel.Store.Product" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductCustomer" EntityType="ForeignTradeModel.Store.ProductCustomer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserDepartRelation" EntityType="ForeignTradeModel.Store.UserDepartRelation" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_LINKMAN_CUSTOMER" Association="ForeignTradeModel.Store.FK_LINKMAN_CUSTOMER">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Linkman" EntitySet="Linkman" />
@@ -40,6 +41,10 @@
           <AssociationSet Name="FK_ProductCustomer_Product" Association="ForeignTradeModel.Store.FK_ProductCustomer_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductCustomer" EntitySet="ProductCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDepartRelation_Department" Association="ForeignTradeModel.Store.FK_UserDepartRelation_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="UserDepartRelation" EntitySet="UserDepartRelation" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
@@ -225,6 +230,14 @@
           <Property Name="CustomerID" Type="uniqueidentifier" />
           <Property Name="Note" Type="text" />
         </EntityType>
+        <EntityType Name="UserDepartRelation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="DepartId" Type="uniqueidentifier" />
+        </EntityType>
         <Association Name="FK_LINKMAN_CUSTOMER">
           <End Role="Customer" Type="ForeignTradeModel.Store.Customer" Multiplicity="0..1" />
           <End Role="Linkman" Type="ForeignTradeModel.Store.Linkman" Multiplicity="*" />
@@ -297,6 +310,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserDepartRelation_Department">
+          <End Role="Department" Type="ForeignTradeModel.Store.Department" Multiplicity="0..1" />
+          <End Role="UserDepartRelation" Type="ForeignTradeModel.Store.UserDepartRelation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserDepartRelation">
+              <PropertyRef Name="DepartId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -336,7 +361,11 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductCustomer" EntitySet="ProductCustomer" />
           </AssociationSet>
-          <EntitySet Name="Department" EntityType="ForeignTradeModel.Department" /></EntityContainer>
+          <EntitySet Name="Department" EntityType="ForeignTradeModel.Department" />
+          <EntitySet Name="UserDepartRelation" EntityType="ForeignTradeModel.UserDepartRelation" />
+          <AssociationSet Name="FK_UserDepartRelation_Department" Association="ForeignTradeModel.FK_UserDepartRelation_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="UserDepartRelation" EntitySet="UserDepartRelation" /></AssociationSet></EntityContainer>
         <EntityType Name="Company">
           <Key>
             <PropertyRef Name="ID" />
@@ -546,7 +575,17 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="true" />
           <Property Name="OrderField" Type="Int32" Nullable="true" />
-          <Property Name="ParentId" Type="Guid" Nullable="true" /></EntityType></Schema>
+          <Property Name="ParentId" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="UserDepartRelation" Relationship="ForeignTradeModel.FK_UserDepartRelation_Department" FromRole="Department" ToRole="UserDepartRelation" /></EntityType>
+        <EntityType Name="UserDepartRelation">
+          <Key>
+            <PropertyRef Name="ID" /></Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="true" />
+          <NavigationProperty Name="Department" Relationship="ForeignTradeModel.FK_UserDepartRelation_Department" FromRole="UserDepartRelation" ToRole="Department" /></EntityType>
+        <Association Name="FK_UserDepartRelation_Department">
+          <End Type="ForeignTradeModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="ForeignTradeModel.UserDepartRelation" Role="UserDepartRelation" Multiplicity="*" /></Association></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -790,7 +829,18 @@
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="OrderField" ColumnName="OrderField" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserDepartRelation">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.UserDepartRelation)">
+              <MappingFragment StoreEntitySet="UserDepartRelation">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_UserDepartRelation_Department" TypeName="ForeignTradeModel.FK_UserDepartRelation_Department" StoreEntitySet="UserDepartRelation">
+            <EndProperty Name="UserDepartRelation">
+              <ScalarProperty Name="ID" ColumnName="ID" /></EndProperty>
+            <EndProperty Name="Department">
+              <ScalarProperty Name="ID" ColumnName="DepartId" /></EndProperty>
+            <Condition ColumnName="DepartId" IsNull="false" /></AssociationSetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -849,6 +899,11 @@
           <ConnectorPoint PointX="2.625" PointY="15.440757818684896" />
           <ConnectorPoint PointX="2.625" PointY="2.8510012145182291" />
           <ConnectorPoint PointX="3" PointY="2.8510012145182291" /></AssociationConnector>
-        <EntityTypeShape EntityType="ForeignTradeModel.Department" Width="1.5" PointX="8.375" PointY="4.75" Height="1.7790128580729174" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="ForeignTradeModel.Department" Width="1.5" PointX="8.125" PointY="6.75" Height="1.9700325520833335" />
+        <EntityTypeShape EntityType="ForeignTradeModel.UserDepartRelation" Width="1.5" PointX="9.625" PointY="4.5" Height="1.5879931640624996" />
+        <AssociationConnector Association="ForeignTradeModel.FK_UserDepartRelation_Department" >
+          <ConnectorPoint PointX="8.84375" PointY="6.75" />
+          <ConnectorPoint PointX="8.84375" PointY="5.29399658203125" />
+          <ConnectorPoint PointX="9.625" PointY="5.29399658203125" /></AssociationConnector></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
