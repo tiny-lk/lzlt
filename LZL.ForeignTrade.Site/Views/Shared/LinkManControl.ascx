@@ -18,6 +18,7 @@
         $(document).ready(function() {
             $('#Linkman♂').css("display", "");
         });
+
     </script>
 
 </div>
@@ -38,13 +39,13 @@
             }
         %>
         <tr>
-            <td align="center" valign="middle" rowspan="4" style="width: 20%;">
+            <td align="center" valign="middle" rowspan="4" style="width: 10%;">
                 联系人信息
             </td>
             <td align="right" style="width: 20%;">
                 联系人：
             </td>
-            <td align="left" style="width: 20%;">
+            <td align="left" style="width: 25%;">
                 <%
                     if (Model == null)
                     {
@@ -52,14 +53,21 @@
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Linkman♂Name", Html.Encode(Model[i].Name), new { validate = "required:true" }));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextBox("Linkman♂Name", Html.Encode(Model[i].Name), new { validate = "required:true" }));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Name));
+                        }
                     }
                 %>
             </td>
             <td align="right" style="width: 20%;">
                 职位：
             </td>
-            <td align="left" style="width: 20%;">
+            <td align="left" style="width: 25%;">
                 <%
                     if (Model == null)
                     {
@@ -67,7 +75,14 @@
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Linkman♂Job", Html.Encode(Model[i].Job)));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextBox("Linkman♂Job", Html.Encode(Model[i].Job)));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Job));
+                        }
                     }
                 %>
             </td>
@@ -84,7 +99,14 @@
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Linkman♂Phone", Html.Encode(Model[i].Phone)));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextBox("Linkman♂Phone", Html.Encode(Model[i].Phone)));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Phone));
+                        }
                     }
                 %>
             </td>
@@ -99,7 +121,14 @@
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Linkman♂Fax", Html.Encode(Model[i].Fax)));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextBox("Linkman♂Fax", Html.Encode(Model[i].Fax)));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Fax));
+                        }
                     }
                 %>
             </td>
@@ -116,7 +145,14 @@
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Linkman♂MobilePhone", Html.Encode(Model[i].MobilePhone)));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextBox("Linkman♂MobilePhone", Html.Encode(Model[i].MobilePhone)));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].MobilePhone));
+                        }
                     }
                 %>
             </td>
@@ -127,11 +163,18 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("Linkman♂Email"));
+                        Response.Write(Html.TextBox("Linkman♂Email", "", new { validate = "email:true" }));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Linkman♂Email", Html.Encode(Model[i].Email)));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextBox("Linkman♂Email", Html.Encode(Model[i].Email), new { validate = "email:true" }));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Email));
+                        }
                     }
                 %>
             </td>
@@ -148,17 +191,31 @@
                     }
                     else
                     {
-                        Response.Write(Html.TextArea("Linkman♂Note", Html.Encode(Model[i].Note), new { style = "width: 99%; height: 80px;" }));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextArea("Linkman♂Note", Html.Encode(Model[i].Note), new { style = "width: 99%; height: 80px;" }));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Note));
+                        }
                     }
                 %>
             </td>
         </tr>
+        <%
+            if (ViewData["Details"] == null)
+            {
+        %>
         <tr>
             <td colspan="5" align="right">
                 <input type="button" value="添 加" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="button" value="删 除" onclick="deleteregion(this);" />
             </td>
         </tr>
+        <%
+            }
+        %>
     </table>
 </div>
 <%  

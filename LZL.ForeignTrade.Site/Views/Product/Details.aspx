@@ -14,19 +14,19 @@
                 </td>
             </tr>
             <tr>
-                <td rowspan="5" align="center" valign="middle">
+                <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     商品介绍信息
                 </td>
                 <td align="right" style="width: 20%;">
                     商品代码（简称）：
                 </td>
-                <td align="left">
+                <td align="left" style="width: 25%;">
                     <%= Html.Encode( Model.NameCode)%>
                 </td>
                 <td align="right" style="width: 20%;">
                     中文名称：
                 </td>
-                <td align="left">
+                <td align="left" style="width: 25%;">
                     <%= Html.Encode(Model.NameCH)%>
                 </td>
             </tr>
@@ -49,13 +49,13 @@
                     英文规格：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.SpecEN)%>
+                    <%=  Html.Encode(Model.SpecEN)%>
                 </td>
                 <td align="right">
                     中文单位：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.UnitCH)%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("中文单位", Html.Encode(Model.UnitCH))%>
                 </td>
             </tr>
             <tr>
@@ -63,7 +63,7 @@
                     英文单位：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.UnitEN)%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("英文单位", Html.Encode(Model.UnitEN))%>
                 </td>
                 <td align="right">
                     海关代码：
@@ -94,7 +94,7 @@
                     中文包装单位：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.PackUnitCH)%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("中文单位", Html.Encode(Model.PackUnitCH))%>
                 </td>
             </tr>
             <tr>
@@ -102,7 +102,7 @@
                     英文包装单位：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.PackUnitEN)%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("英文单位", Html.Encode(Model.PackUnitEN))%>
                 </td>
                 <td align="right">
                     包装长度(CM)：
@@ -158,13 +158,13 @@
                     内盒中文单位：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.BoxUnitCH)%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("中文单位", Html.Encode(Model.BoxUnitCH))%>
                 </td>
                 <td align="right">
                     内盒英文单位：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.BoxUnitEN)%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("英文单位", Html.Encode(Model.BoxUnitEN))%>
                 </td>
             </tr>
             <tr>
@@ -175,7 +175,7 @@
                     商品类别：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.TypeCode)%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("商品类型", Html.Encode(Model.TypeCode))%>
                 </td>
                 <td align="right">
                     是否共享：
@@ -254,7 +254,7 @@
                                 {
                                     var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
                                     Response.Write(string.Format(htmlstr, Html.CheckBox("CustromID", true),
-                                        Html.ActionLink(customers2.ElementAt(s).NameCode, "Details", "Customer", new { id = customers.ElementAt(s).ID.ToString() }, new { target = "_blank" })));
+                                        Html.ActionLink(customers2.ElementAt(s).NameCode, "Details", "Customer", new { id = customers2.ElementAt(s).ID.ToString() }, new { target = "_blank" })));
 
                                 }   
                             %>

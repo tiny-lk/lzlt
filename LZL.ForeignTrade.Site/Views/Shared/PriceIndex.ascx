@@ -2,7 +2,8 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $(document).removeData("checkvalue");
+        $(document).data("checkvalue", "");
+        $(document).data("check", 0);
         autocompletevalue($("#quyerCondition").val());
         $("#quyerCondition").bind("change", function() {
             $("#queryvalue").unbind(".autocomplete");
@@ -110,8 +111,7 @@
                 });
     }
 </script>
-
-<input type="hidden" name="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
+<input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
 <table width="100%" id="PriceIndex">
     <caption>
         报价单信息</caption>
@@ -170,7 +170,7 @@
             for (int i = 0; i < Model.Count; i++)
             {
         %>
-        <tr ondblclick="if($('#simple').val()==null){window.location.href ='<%=Url.Content("~/Price/Details/"+Html.Encode(Model[i].ID)) %>';}">
+        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/Price/Details/"+Html.Encode(Model[i].ID)) %>';}">
             <td>
                 <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString() + "|" + Html.Encode(Model[i].Name)) })%>
             </td>

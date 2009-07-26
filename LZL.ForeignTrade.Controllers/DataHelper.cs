@@ -95,6 +95,26 @@ namespace LZL.ForeignTrade.Controllers
             return querylist;
         }
 
+        public static List<Dictionary> GetDictionary(string quyerCondition, string queryvalue, int? page, out int pagecount)
+        {
+            if (string.IsNullOrEmpty(quyerCondition))
+            {
+                quyerCondition = "Type";
+            }
+            Entities entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            pagecount = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Dictionary")) / pagesize);
+            string sql = "select value it from " + entities.DefaultContainerName + ".Dictionary as it ";
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                sql += " where  it." + quyerCondition + " = '" + queryvalue + "'";
+            }
+            sql += " order by it." + quyerCondition;
+            sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
+            var querylist = entities.CreateQuery<Dictionary>(sql).ToList();
+            return querylist;
+        }
+
         /// <summary>
         /// 获取客户信息
         /// </summary>
@@ -131,6 +151,10 @@ namespace LZL.ForeignTrade.Controllers
         }
         public static string GetDictionaryName(string type, string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
             Entities entities = new Entities();
             return entities.Dictionary.Where(v => v.Type.Equals(type, StringComparison.CurrentCultureIgnoreCase)
                 && v.Code.Equals(value, StringComparison.CurrentCultureIgnoreCase)
@@ -141,6 +165,27 @@ namespace LZL.ForeignTrade.Controllers
         {
             return GetDictionary(name, string.Empty);
         }
+        public static SelectList GetAllDictionary()
+        {
+            return GetAllDictionary(string.Empty);
+        }
+
+        public static SelectList GetAllDictionary(string select)
+        {
+            List<SelectListItem> selectitem = new List<SelectListItem>();
+            Entities entities = new Entities();
+            var tempvalues = entities.Dictionary.Select(v => v.Type).Distinct().ToList();
+            for (int i = 0; i < tempvalues.Count; i++)
+            {
+                SelectListItem item = new SelectListItem() { Text = tempvalues[i], Value = "Type" };
+                if (!string.IsNullOrEmpty(select) && tempvalues[i].Equals(select, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    item.Selected = true;
+                }
+                selectitem.Add(item);
+            }
+            return new SelectList(selectitem, "Value", "Text");
+        }
 
         public static SelectList GetDictionary(string name, string selectvalue)
         {
@@ -148,7 +193,7 @@ namespace LZL.ForeignTrade.Controllers
             if (!string.IsNullOrEmpty(name))
             {
                 Entities entities = new Entities();
-                var tempvalues = entities.Dictionary.Where(v => v.Type.Equals(name, StringComparison.CurrentCultureIgnoreCase)).ToList();
+                var tempvalues = entities.Dictionary.Where(v => v.Type.Equals(name, StringComparison.CurrentCultureIgnoreCase)).OrderBy(v => v.Code).ToList();
                 for (int i = 0; i < tempvalues.Count; i++)
                 {
                     SelectListItem item = new SelectListItem() { Text = tempvalues[i].Name, Value = tempvalues[i].Code };
@@ -159,7 +204,7 @@ namespace LZL.ForeignTrade.Controllers
                     selectitem.Add(item);
                 }
             }
-                return new SelectList(selectitem, "Value", "Text");
+            return new SelectList(selectitem, "Value", "Text", selectvalue);
      
         }
 

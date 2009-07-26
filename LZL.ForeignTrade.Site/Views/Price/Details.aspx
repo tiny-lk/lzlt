@@ -14,19 +14,19 @@
                 </td>
             </tr>
             <tr>
-                <td rowspan="5" align="center" valign="middle">
+                <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     报价单基本信息
                 </td>
                 <td align="right" style="width: 20%;">
                     报价单号：
                 </td>
-                <td align="left">
+                <td align="left" style="width: 25%;">
                     <%= Html.Encode(Model.Name)%>
                 </td>
                 <td align="right" style="width: 20%;">
                     报价单日期：
                 </td>
-                <td align="left">
+                <td align="left" style="width: 25%;">
                     <%= Html.Encode(Model.Date)%>
                 </td>
             </tr>

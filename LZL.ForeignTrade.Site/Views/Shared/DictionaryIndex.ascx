@@ -1,30 +1,18 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.Product>>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.Dictionary>>" %>
+
+<script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.PrintArea.js")%>"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
         $(document).data("checkvalue", "");
         $(document).data("check", 0);
-        $("#queryvalue").val("");
-        autocompletevalue($("#quyerCondition").val());
         $("#quyerCondition").bind("change", function() {
-            $("#queryvalue").unbind(".autocomplete");
-            $("#queryvalue").val("");
-            $("#OK").attr("disabled", "disabled");
-            autocompletevalue($(this).val());
-        });
-
-        $("#queryvalue").bind("blur", function() {
-            if ($("#queryvalue").val() == "") {
-                $("#OK").attr("disabled", "disabled");
+            if ($(this).val() != null && $(this).val() != "") {
+                loadlistdata(this, $(this).val(), $(this).find("option:selected").text(), 1);
             }
             else {
-                $("#OK").attr("disabled", "");
+                loadlistdata(this, "", "", 1);
             }
-        });
-
-        //查询
-        $("#OK").bind("click", function() {
-            loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
         });
 
         $("#Delete").bind("click", function() {
@@ -37,7 +25,7 @@
                 ids = $.trim(ids.substr(0, ids.length - 1));
                 var State = confirm('你确认要删除 ' + ids + ' 吗？');
                 if (State == true) {
-                    window.location.href = '<%=Url.Action("Delete","Product")%>' + '/' + ids;
+                    window.location.href = '<%=Url.Action("Delete","Dictionary")%>' + '/' + ids;
                 }
             }
         });
@@ -45,12 +33,18 @@
         $("#Edit").bind("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
-                window.location.href = '<%=Url.Action("Edit","Product")%>' + '/' + id;
+                window.location.href = '<%=Url.Action("Edit","Dictionary")%>' + '/' + id;
             }
         });
 
         $("#Refresh").bind("click", function() {
-            loadlistdata(this, "", "", 1);
+            var q = '<%=Request["quyerCondition"] %>';
+            var v = '<%=Server.UrlDecode(Request["queryvalue"]) %>';
+            if (q == "" || q == null) {
+                loadlistdata(this, "", "", 1);
+            } else {
+                loadlistdata(this, q, v, 1);
+            }
         });
 
         $("#allselect").bind("click", function() {
@@ -67,11 +61,6 @@
 
     });
 
-    function print() {
-        var queryobject = this;
-        $(queryobject).closest("table > tbody ").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
-    }
-
     //查询数据信息
     function loadlistdata(obj, name, value, p) {
         var tableobject = $(obj).closest("table");
@@ -79,7 +68,7 @@
             type: "get",
             dataType: "html",
             data: { quyerCondition: name, queryvalue: encodeURI(value), page: p },
-            url: '<%=Url.Action("ProductIndex","Shared")%>',
+            url: '<%=Url.Action("DictionaryIndex","Shared")%>',
             success: function(data) {
                 $(tableobject).find("tfoot").html("");
                 $(tableobject).find("tfoot").append($(data).find("tfoot").html());
@@ -92,47 +81,23 @@
         });
     }
 
-    function autocompletevalue(f) {
-        $("#queryvalue").autocomplete('<%=Url.Action("GetAutocompleteValue","Shared")%>',
-                { max: 20,
-                    highlight: false,
-                    multiple: false,
-                    scroll: true,
-                    scrollHeight: 300,
-                    dataType: 'json',
-                    extraParams: { t: "Product", f: f },
-                    parse: function(data) {
-                        var rows = [];
-                        for (var i = 0; i < data.length; i++) {
-                            rows[rows.length] = { data: data[i],
-                                value: data[i], result: data[i]
-                            };
-                        } return rows;
-                    },
-                    formatItem: function(row, i, n) { return row; }
-                });
-    } 
+    function print() {
+        var queryobject = this;
+        $(queryobject).closest("table > tbody ").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
+    }
 </script>
 
 <input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
-<table width="100%" id="productindex">
+<table width="100%" style="vertical-align: middle; text-align: center;">
     <caption>
-        商品信息</caption>
+        数据字段信息</caption>
     <thead>
         <tr>
             <td colspan="2">
-                <%=Html.DropDownList("quyerCondition",
-                        new SelectList(new List<SelectListItem>() {
-                            new SelectListItem(){ Text="客户代码", Value ="NameCode"},
-                            new SelectListItem(){Text="客户中文名称", Value ="NameCH"},
-                             new SelectListItem(){Text="客户英文名称", Value ="NameEH"},
-                             new SelectListItem(){ Text="商品条码", Value ="CustomsCode"}
-                        }, "Value", "Text", "NameCode"))%>
+                <%=Html.DropDownList("quyerCondition", LZL.ForeignTrade.Controllers.DataHelper.GetAllDictionary(Server.UrlDecode(Request["queryvalue"])), "请选择")%>
             </td>
-            <td colspan="6" align="left">
-                <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
+            <td colspan="2" align="left">
                 <div style="float: right;">
-                    <input type="button" id="OK" value="查 询" disabled="disabled" />
                     <% if (ViewData["simple"] == null)
                        {
                     %>
@@ -155,22 +120,10 @@
                 序号
             </td>
             <td>
-                客户代码
+                类型
             </td>
             <td>
-                中文名称
-            </td>
-            <td>
-                英文名称
-            </td>
-            <td>
-                商品条码
-            </td>
-            <td>
-                商品类型
-            </td>
-            <td>
-                是否共享
+                名称
             </td>
         </tr>
         <%
@@ -179,35 +132,22 @@
             for (int i = 0; i < Model.Count; i++)
             {
         %>
-        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/Product/Details/"+Html.Encode(Model[i].ID)) %>';}">
+        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/Dictionary/Details/"+Html.Encode(Model[i].ID)) %>';}">
             <td>
-                <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString() + "|" + Html.Encode(Model[i].NameCode)) })%>
+                <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString() + "|" + Html.Encode(Model[i].Name)) })%>
             </td>
             <td>
                 <%= (beginenumber+i).ToString()%>
             </td>
             <td>
-                <%= Html.Encode(Model[i].NameCode)%>
+                <%= Html.Encode(Model[i].Type)%>
             </td>
             <td>
-                <%= Html.Encode(Model[i].NameCH)%>
-            </td>
-            <td>
-                <%= Html.Encode(Model[i].NameEH)%>
-            </td>
-            <td>
-                <%= Html.Encode(Model[i].CustomsCode)%>
-            </td>
-            <td>
-                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("商品类型", Html.Encode(Model[i].TypeCode))%>
-            </td>
-            <td>
-                <%= Html.Encode(Model[i].IsShare ? "是" : "否")%>
+                <%= Html.Encode(Model[i].Name)%>
             </td>
         </tr>
         <%
             }
-            
         %>
     </tbody>
     <tfoot>

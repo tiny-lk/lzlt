@@ -79,7 +79,7 @@
                     商品代码（简称）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂NameCode",Html.Encode( Model.NameCode))%>
+                    <%= Html.TextBox("Product♂NameCode",Html.Encode( Model.NameCode), new { validate = "required:true" })%>
                 </td>
                 <td align="right" style="width: 20%;">
                     中文名称：
@@ -113,7 +113,7 @@
                     中文单位：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂UnitCH", Html.Encode(Model.UnitCH))%>
+                    <%= Html.DropDownList("Product♂UnitCH", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位", Html.Encode(Model.UnitCH)), "请选择")%>
                 </td>
             </tr>
             <tr>
@@ -121,7 +121,7 @@
                     英文单位：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂UnitEN", Html.Encode(Model.UnitEN))%>
+                    <%= Html.DropDownList("Product♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.UnitEN)), "请选择")%>
                 </td>
                 <td align="right">
                     海关代码：
@@ -146,13 +146,13 @@
                     包装商品数量：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackAmount", Html.Encode(Model.PackAmount))%>
+                    <%= Html.TextBox("Product♂PackAmount", Html.Encode(Model.PackAmount),new { validate = "digits:true" })%>
                 </td>
                 <td align="right">
                     中文包装单位：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackUnitCH", Html.Encode(Model.PackUnitCH))%>
+                    <%= Html.DropDownList("Product♂PackUnitCH", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位", Html.Encode(Model.PackUnitCH)), "请选择")%>
                 </td>
             </tr>
             <tr>
@@ -160,13 +160,13 @@
                     英文包装单位：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackUnitEN", Html.Encode(Model.PackUnitEN))%>
+                    <%= Html.DropDownList("Product♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.PackUnitEN)), "请选择")%>
                 </td>
                 <td align="right">
                     包装长度(CM)：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackLength", Html.Encode(Model.PackLength))%>
+                    <%= Html.TextBox("Product♂PackLength", Html.Encode(Model.PackLength),new { validate = "number:true" })%>
                 </td>
             </tr>
             <tr>
@@ -174,13 +174,13 @@
                     包装宽度(CM)：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackWidth", Html.Encode(Model.PackWidth))%>
+                    <%= Html.TextBox("Product♂PackWidth", Html.Encode(Model.PackWidth), new { validate = "number:true" })%>
                 </td>
                 <td align="right">
                     包装高度(CM)：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackHeight", Html.Encode(Model.PackHeight))%>
+                    <%= Html.TextBox("Product♂PackHeight", Html.Encode(Model.PackHeight), new { validate = "number:true" })%>
                 </td>
             </tr>
             <tr>
@@ -188,13 +188,13 @@
                     包装体积(CBM)：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackBulk", Html.Encode(Model.PackBulk))%>
+                    <%= Html.TextBox("Product♂PackBulk", Html.Encode(Model.PackBulk), new { validate = "number:true" })%>
                 </td>
                 <td align="right">
                     包装毛重(KG)：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackGrossWeight", Html.Encode(Model.PackGrossWeight))%>
+                    <%= Html.TextBox("Product♂PackGrossWeight", Html.Encode(Model.PackGrossWeight), new { validate = "number:true" })%>
                 </td>
             </tr>
             <tr>
@@ -202,13 +202,13 @@
                     包装净重(KG)：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂PackNetWeight", Html.Encode(Model.PackNetWeight))%>
+                    <%= Html.TextBox("Product♂PackNetWeight", Html.Encode(Model.PackNetWeight), new { validate = "number:true" })%>
                 </td>
                 <td align="right">
                     内盒商品数量：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂BoxAmount", Html.Encode(Model.BoxAmount))%>
+                    <%= Html.TextBox("Product♂BoxAmount", Html.Encode(Model.BoxAmount), new { validate = "digits:true" })%>
                 </td>
             </tr>
             <tr>
@@ -216,13 +216,13 @@
                     内盒中文单位：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂BoxUnitCH", Html.Encode(Model.BoxUnitCH))%>
+                    <%= Html.DropDownList("Product♂BoxUnitCH", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位", Html.Encode(Model.BoxUnitCH)), "请选择")%>
                 </td>
                 <td align="right">
                     内盒英文单位：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂BoxUnitEN", Html.Encode(Model.BoxUnitEN))%>
+                    <%= Html.DropDownList("Product♂BoxUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.BoxUnitEN)), "请选择")%>
                 </td>
             </tr>
             <tr>
@@ -233,7 +233,7 @@
                     商品类别：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Product♂TypeCode", Html.Encode(Model.TypeCode))%>
+                    <%= Html.DropDownList("Product♂TypeCode", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("商品类型", Html.Encode(Model.TypeCode)), "请选择")%>
                 </td>
                 <td align="right">
                     是否共享：

@@ -10,6 +10,13 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            autocompletedictionary("Customer♂Province", "省州");
+            autocompletedictionary("Customer♂City", "城市");
+        });
+    </script>
+
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
@@ -83,7 +90,7 @@
                     省份（州）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂Province")%>
+                    <%= Html.TextBox("Customer♂Province")%><a href="#" onclick="LoadDictionaryPanel('省州',true,this)">选择</a>
                 </td>
             </tr>
             <tr>
@@ -91,7 +98,7 @@
                     城市：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂City")%>
+                    <%= Html.TextBox("Customer♂City")%><a href="#" id="test" onclick="LoadDictionaryPanel('城市',true,this)">选择</a>
                 </td>
                 <td align="right">
                     邮政编码：
@@ -125,7 +132,7 @@
                     客户类别：
                 </td>
                 <td align="left">
-                    <%= Html.DropDownList("Customer♂TypeCode", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("客户类型"), "请选择")%>
+                    <%= Html.DropDownList("Customer♂TypeCode", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("客户类型"), new { validate = "required:true" })%>
                 </td>
             </tr>
             <tr>
