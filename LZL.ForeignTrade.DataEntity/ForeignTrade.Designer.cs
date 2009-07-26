@@ -15,9 +15,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_PriceProduct_Price", "Price", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Price), "PriceProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.PriceProduct))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_PriceProduct_Product", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Product), "PriceProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.PriceProduct))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ProductCustomer_Product", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Product), "ProductCustomer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ProductCustomer))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_UserDepartRelation_Department", "Department", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Department), "UserDepartRelation", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.UserDepartRelation))]
 
 // 原始文件名:
-// 生成日期: 2009/7/22 9:12:13
+// 生成日期: 2009/7/26 21:33:00
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -217,6 +218,21 @@ namespace LZL.ForeignTrade.DataEntity
         }
         private global::System.Data.Objects.ObjectQuery<Department> _Department;
         /// <summary>
+        /// 架构中不存在 UserDepartRelation 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<UserDepartRelation> UserDepartRelation
+        {
+            get
+            {
+                if ((this._UserDepartRelation == null))
+                {
+                    this._UserDepartRelation = base.CreateQuery<UserDepartRelation>("[UserDepartRelation]");
+                }
+                return this._UserDepartRelation;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<UserDepartRelation> _UserDepartRelation;
+        /// <summary>
         /// 架构中不存在 Company 的注释。
         /// </summary>
         public void AddToCompany(Company company)
@@ -292,6 +308,13 @@ namespace LZL.ForeignTrade.DataEntity
         public void AddToDepartment(Department department)
         {
             base.AddObject("Department", department);
+        }
+        /// <summary>
+        /// 架构中不存在 UserDepartRelation 的注释。
+        /// </summary>
+        public void AddToUserDepartRelation(UserDepartRelation userDepartRelation)
+        {
+            base.AddObject("UserDepartRelation", userDepartRelation);
         }
     }
     /// <summary>
@@ -3697,5 +3720,131 @@ namespace LZL.ForeignTrade.DataEntity
         private global::System.Nullable<global::System.Guid> _ParentId;
         partial void OnParentIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnParentIdChanged();
+        /// <summary>
+        /// 架构中不存在 UserDepartRelation 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_UserDepartRelation_Department", "UserDepartRelation")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<UserDepartRelation> UserDepartRelation
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<UserDepartRelation>("ForeignTradeModel.FK_UserDepartRelation_Department", "UserDepartRelation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<UserDepartRelation>("ForeignTradeModel.FK_UserDepartRelation_Department", "UserDepartRelation", value);
+                }
+            }
+        }
+    }
+    /// <summary>
+    /// 架构中不存在 ForeignTradeModel.UserDepartRelation 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="UserDepartRelation")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class UserDepartRelation : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 UserDepartRelation 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static UserDepartRelation CreateUserDepartRelation(global::System.Guid id)
+        {
+            UserDepartRelation userDepartRelation = new UserDepartRelation();
+            userDepartRelation.ID = id;
+            return userDepartRelation;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在属性 UserId 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.Guid> UserId
+        {
+            get
+            {
+                return this._UserId;
+            }
+            set
+            {
+                this.OnUserIdChanging(value);
+                this.ReportPropertyChanging("UserId");
+                this._UserId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("UserId");
+                this.OnUserIdChanged();
+            }
+        }
+        private global::System.Nullable<global::System.Guid> _UserId;
+        partial void OnUserIdChanging(global::System.Nullable<global::System.Guid> value);
+        partial void OnUserIdChanged();
+        /// <summary>
+        /// 架构中不存在 Department 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_UserDepartRelation_Department", "Department")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public Department Department
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("ForeignTradeModel.FK_UserDepartRelation_Department", "Department").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("ForeignTradeModel.FK_UserDepartRelation_Department", "Department").Value = value;
+            }
+        }
+        /// <summary>
+        /// 架构中不存在 Department 的注释。
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Department> DepartmentReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("ForeignTradeModel.FK_UserDepartRelation_Department", "Department");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Department>("ForeignTradeModel.FK_UserDepartRelation_Department", "Department", value);
+                }
+            }
+        }
     }
 }
