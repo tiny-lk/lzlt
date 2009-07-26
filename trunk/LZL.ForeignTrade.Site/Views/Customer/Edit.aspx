@@ -8,6 +8,15 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            autocompletedictionary("Customer♂Province", "省州");
+            autocompletedictionary("Customer♂City", "城市");
+        });
+    </script>
+
     <h2>
         编辑客户信息</h2>
     <% using (Html.BeginForm())
@@ -34,7 +43,7 @@
                     客户代码（简称）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂NameCode",Html.Encode(Model.NameCode))%>
+                    <%= Html.TextBox("Customer♂NameCode", Html.Encode(Model.NameCode), new { validate = "required:true" })%>
                 </td>
                 <td align="right">
                     中文名称：
@@ -82,7 +91,7 @@
                     省份（州）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂Province", Html.Encode(Model.Province))%>
+                    <%= Html.TextBox("Customer♂Province", Html.Encode(Model.Province))%><a href="#" onclick="LoadDictionaryPanel('省州',true,this)">选择</a>
                 </td>
             </tr>
             <tr>
@@ -90,7 +99,8 @@
                     城市：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂City", Html.Encode(Model.City))%>
+                    <%= Html.TextBox("Customer♂City", Html.Encode(Model.City))%><a href="#" id="test"
+                        onclick="LoadDictionaryPanel('城市',true,this)">选择</a>
                 </td>
                 <td align="right">
                     邮政编码：
@@ -124,7 +134,7 @@
                     客户类别：
                 </td>
                 <td align="left">
-                    <%= Html.DropDownList("Customer♂TypeCode", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("客户类型", Html.Encode(Model.TypeCode)), "请选择")%>
+                    <%= Html.DropDownList("Customer♂TypeCode", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("客户类型", Html.Encode(Model.TypeCode)), new { validate = "required:true" })%>
                 </td>
             </tr>
             <tr>

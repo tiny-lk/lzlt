@@ -38,28 +38,35 @@
             }
         %>
         <tr>
-            <td align="center" valign="middle" rowspan="2" style="width: 20%;">
+            <td align="center" valign="middle" rowspan="2" style="width: 10%;">
                 备忘录信息
             </td>
             <td style="width: 20%;" align="right">
                 日期：
             </td>
-            <td style="width: 20%;" align="right">
+            <td style="width: 25%;" align="right">
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("Memorandum♂Date", "", new { validate = "date:true", Readonly = true }));
+                        Response.Write(Html.TextBox("Memorandum♂Date", "", new { validate = "date:true", Class = "calendar" }));
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Memorandum♂Date", Html.Encode(Model[i].Date), new { validate = "date:true", Readonly = true }));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextBox("Memorandum♂Date", Html.Encode(Model[i].Date), new { validate = "date:true", Class = "calendar" }));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Date));
+                        }
                     }
                 %>
             </td>
             <td style="width: 20%;" align="right">
                 主题：
             </td>
-            <td style="width: 20%;" align="right">
+            <td style="width: 25%;" align="right">
                 <%
                     if (Model == null)
                     {
@@ -67,7 +74,14 @@
                     }
                     else
                     {
-                        Response.Write(Html.TextBox("Memorandum♂Subject", Html.Encode(Model[i].Subject), new { validate = "required:true" }));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextBox("Memorandum♂Subject", Html.Encode(Model[i].Subject), new { validate = "required:true" }));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Subject));
+                        }
                     }
                 %>
             </td>
@@ -84,17 +98,31 @@
                     }
                     else
                     {
-                        Response.Write(Html.TextArea("Memorandum♂Note", Model[i].Note, new { style = "width: 99%; height: 80px;" }));
+                        if (ViewData["Details"] == null)
+                        {
+                            Response.Write(Html.TextArea("Memorandum♂Note", Model[i].Note, new { style = "width: 99%; height: 80px;" }));
+                        }
+                        else
+                        {
+                            Response.Write(Html.Encode(Model[i].Note));
+                        }
                     }
                 %>
             </td>
         </tr>
+        <%
+            if (ViewData["Details"] == null)
+            {
+        %>
         <tr>
             <td colspan="5" align="right">
                 <input type="button" value="添 加" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
                 <input type="button" value="删 除" onclick="deleteregion(this);" />
             </td>
         </tr>
+        <%
+            }
+        %>
     </table>
 </div>
 <%

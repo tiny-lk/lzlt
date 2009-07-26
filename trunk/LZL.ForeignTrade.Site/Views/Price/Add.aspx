@@ -7,6 +7,7 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
 
     <script type="text/javascript">
         function opengys(regionname, childobject, khtype, addid, url) {
@@ -27,8 +28,6 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $.validator.setDefaults();
-
             $("input[name='_Price♂CustomerID']").autocomplete('<%=Url.Action("GetAutocompleteValue2","Shared")%>',
                 { max: 20,
                     highlight: false,
@@ -96,20 +95,19 @@
                     $("input[name='Price♂CompanyID']").val("");
                 }
             });
+        });
+    </script>
 
-            $($("form")).validate({
-                rules: {
-                    Price♂Name: {
-                        required: true
-                    }
-                },
-                messages: {
-                    Price♂Name: {
-                        required: "报价单号不能为空！"
-                    }
-                }
-            });
-
+    <script type="text/javascript">
+        $(document).ready(function() {
+            autocompletedictionary("Price♂CurrencyType", "货币类型");
+            autocompletedictionary("Price♂PriceClause", "价格条款");
+            autocompletedictionary("Price♂ClauseType", "付款方式");
+            autocompletedictionary("Price♂TansportCountry", "港口");
+            autocompletedictionary("Price♂StartHaven", "港口");
+            autocompletedictionary("Price♂TransferHaven", "港口");
+            autocompletedictionary("Price♂EdnHaven", "港口");
+            autocompletedictionary("Price♂TransportMode", "运输方式");
         });
     </script>
 
@@ -131,20 +129,20 @@
                 </td>
             </tr>
             <tr>
-                <td rowspan="5" align="center" valign="middle">
+                <td rowspan="5" align="center" valign="middle" style="width: 8%;">
                     报价单基本信息
                 </td>
-                <td align="right" style="width: 20%;">
+                <td align="right">
                     报价单号：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂Name")%>
+                    <%= Html.TextBox("Price♂Name", "", new { validate = "required:true" })%>
                 </td>
-                <td align="right" style="width: 20%;">
+                <td align="right">
                     报价单日期：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂Date")%>
+                    <%= Html.TextBox("Price♂Date", "", new { validate = "date:true", Class = "calendar" })%>
                 </td>
             </tr>
             <tr>
@@ -152,13 +150,13 @@
                     报价币种：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂CurrencyType")%>
+                    <%= Html.TextBox("Price♂CurrencyType")%><a href="#" onclick="LoadDictionaryPanel('货币类型',true,this)">选择</a>
                 </td>
                 <td align="right">
                     价格条款：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂PriceClause")%>
+                    <%= Html.TextBox("Price♂PriceClause")%><a href="#" onclick="LoadDictionaryPanel('价格条款',true,this)">选择</a>
                 </td>
             </tr>
             <tr>
@@ -174,7 +172,7 @@
                     付款方式：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextBox("Price♂ClauseType")%>
+                    <%= Html.TextBox("Price♂ClauseType")%><a href="#" onclick="LoadDictionaryPanel('付款方式',true,this)">选择</a>
                 </td>
             </tr>
             <tr>
@@ -193,13 +191,13 @@
                     运抵国：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂TansportCountry")%>
+                    <%= Html.TextBox("Price♂TansportCountry")%><a href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                 </td>
                 <td align="right">
                     起运港口：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂StartHaven")%>
+                    <%= Html.TextBox("Price♂StartHaven")%><a href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                 </td>
             </tr>
             <tr>
@@ -207,13 +205,13 @@
                     转运港口：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂TransferHaven")%>
+                    <%= Html.TextBox("Price♂TransferHaven")%><a href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                 </td>
                 <td align="right">
                     目的港口：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂EdnHaven")%>
+                    <%= Html.TextBox("Price♂EdnHaven")%><a href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                 </td>
             </tr>
             <tr>
@@ -222,6 +220,7 @@
                 </td>
                 <td align="left" colspan="3">
                     <%= Html.TextBox("Price♂TransportMode")%>
+                    <a href="#" onclick="LoadDictionaryPanel('运输方式',true,this)">选择</a>
                 </td>
             </tr>
             <tr>
@@ -232,13 +231,13 @@
                     报价单类型：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂PriceType")%>
+                    <%= Html.DropDownList("Price♂PriceType", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("报价单类型"), "请选择")%>
                 </td>
                 <td align="right">
                     总报价金额：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseQuote")%>
+                    <%= Html.TextBox("Price♂ClauseQuote", "", new { validate = "number:true" })%>
                 </td>
             </tr>
             <tr>
@@ -246,13 +245,13 @@
                     总包装数量：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClausePackNumber")%>
+                    <%= Html.TextBox("Price♂ClausePackNumber", "", new { validate = "digits:true" })%>
                 </td>
                 <td align="right">
                     包装单位（英文）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseUnitEN")%>
+                    <%= Html.DropDownList("Price♂ClauseUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择")%>
                 </td>
             </tr>
             <tr>
@@ -260,13 +259,13 @@
                     总毛重（KG）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseWeight")%>
+                    <%= Html.TextBox("Price♂ClauseWeight", "", new { validate = "number:true" })%>
                 </td>
                 <td align="right">
                     总净重（KG）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseNetWeight")%>
+                    <%= Html.TextBox("Price♂ClauseNetWeight", "", new { validate = "number:true" })%>
                 </td>
             </tr>
             <tr>
@@ -274,13 +273,13 @@
                     总体积（CBM）：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseBulk")%>
+                    <%= Html.TextBox("Price♂ClauseBulk", "", new { validate = "number:true" })%>
                 </td>
                 <td align="right">
                     商品总数量：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Price♂ClauseNumber")%>
+                    <%= Html.TextBox("Price♂ClauseNumber", "", new { validate = "digits:true" })%>
                 </td>
             </tr>
             <tr>

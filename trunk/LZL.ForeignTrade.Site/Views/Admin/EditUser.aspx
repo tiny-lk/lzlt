@@ -12,6 +12,7 @@
             $("input[name='Return']").bind("click", function() {
                 window.location.href = '<%=Url.Content("~/Admin/ManageUser/") %>';
             });
+            
         });
     </script>
 
@@ -24,11 +25,11 @@
     <fieldset>
         <legend>用户信息</legend>
         <%= Html.Hidden("id")%>
-        <p>
+        <%--<p>
             <label for="UserName">
                 用户名称：</label>
             <%=Html.TextBox("UserName", Model.UserName, new { disabled = true, validate = "required:true" })%>
-        </p>
+        </p>--%>
         <p>
             <label for="Email">
                 E-Mail：</label><%=Html.TextBox("Email", Model.Email, new { validate = "email:true, required:true" })%></p>

@@ -46,12 +46,30 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-
             $.validator.setDefaults();
             $.metadata.setType("attr", "validate");
             $($("form")).validate();
+            $.datepicker.setDefaults($.extend({ showMonthAfterYear: false }, $.datepicker.regional['zh-CN']));
+            init();
 
-            dynamicinputcss();
+            checksettring();
+        })
+        function init() {
+            $("input[type='text'], input[type='password'], textarea").focus(function()
+            { $(this).addClass("ie_focus") }).blur(function()
+            { $(this).removeClass("ie_focus") });
+
+            $('.calendar').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy/m/d',
+                firstDay: 1
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function checksettring() {
             $("table > tbody[listmouse='listmouseovercss'] > tr").live("mouseover", function() {
                 $(this).addClass("mouseover");
             }).live("mouseout", function() {
@@ -75,7 +93,7 @@
                     $(this).closest("tr").removeClass("select");
                     $(document).data("check", Number($(document).data("check")) - 1);
                     var checkedvalue = $(this).val();
-                    if (!($(document).data("checkvalue") == "undefined" || $(document).data("checkvalue") == null)) {
+                    if (!($(document).data("checkvalue") == "undefined" || $(document).data("checkvalue") == null || $(document).data("checkvalue") == "")) {
                         $.each($(document).data("checkvalue").split('♂'), function(i, o) {
                             if (!(o == null || o == "" || o == 'undefined' || checkedvalue == o)) {
                                 array.push(o);
@@ -99,13 +117,55 @@
                 }
             });
 
-            //var hidderobj = $("input[type='checkbox']").next("input[type='hidden']");
-        })
+        }
+    </script>
 
-        function dynamicinputcss() {
-            $("input[type='text'], input[type='password'], textarea").focus(function()
-            { $(this).addClass("ie_focus") }).blur(function()
-            { $(this).removeClass("ie_focus") });
+    <script type="text/javascript">
+        function LoadDictionaryPanel(type, s, o) {
+            var object = $(o).parent().find("input[type='text']");
+            $("#DictionaryPaneldialog").remove();
+            $("body").append("<div id='DictionaryPaneldialog'></div>");
+            $("#DictionaryPaneldialog").dialog({
+                bgiframe: true,
+                modal: true,
+                width: 500,
+                height: 'auto',
+                position: 'center',
+                resizable: true,
+                draggable: true,
+                closeOnEscape: true,
+                buttons: {
+                    确定: function() {
+                        if ($(document).data("checkvalue") != null) {
+                            if ($(document).data("checkvalue").split("♂").length != 1) {
+                                alert("请选择一条数据！");
+                                return;
+                            }
+                            $.each($(document).data("checkvalue").split("♂"), function(i, o) {
+                                $(object).val(o.split("|")[1]);
+                            });
+                            $("#DictionaryPaneldialog").children().remove();
+                            $(this).dialog('close');
+                        }
+
+                    }
+                }
+            });
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { quyerCondition: "Type", queryvalue: encodeURI(type), simple: s },
+                url: '/Shared/DictionaryIndex', //获取控件信息
+                success: function(data) {
+                    $("#DictionaryPaneldialog").append(data);
+                },
+                error: function(err) {
+                    alert("添加" + controlname + "表单错误！");
+                }
+            });
+
+            $("#DictionaryPaneldialog").dialog();
+            $("#DictionaryPaneldialog").dialog('open');
         }
     </script>
 

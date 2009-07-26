@@ -370,6 +370,21 @@ namespace LZL.ForeignTrade.Controllers
             return View("PriceIndex", querylist);
         }
 
+        public ActionResult DictionaryIndex(string quyerCondition, string queryvalue, string simple, int? page)
+        {
+            if (!string.IsNullOrEmpty(simple))
+            {
+                ViewData["simple"] = "true";
+            }
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetDictionary(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View("DictionaryIndex", querylist);
+        }
 
         public ActionResult ImageUserControl(string fid)
         {
