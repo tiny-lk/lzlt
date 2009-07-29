@@ -483,6 +483,9 @@ namespace LZL.ForeignTrade.Controllers
                 viewData = Membership.FindUsersByName(searchInput);
             }
 
+            Entities _Entities = new Entities();
+            ViewData["UserRelation"] = _Entities.UserDepartRelation.ToList();
+
             return View(viewData);
         }
 
@@ -494,36 +497,47 @@ namespace LZL.ForeignTrade.Controllers
         /// <returns></returns>
         public ActionResult SaveUserRelation()
         {
-            var objUserRel = new UserDepartRelation();
             Entities _Entities = new Entities();
-            string id = Request["id"];
-            string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
-            for (int i = 0; i < ids.Length; i++)
+            string strParamIds = Request["id"];
+            string strDepartId = Request["DepartId"];
+            
+            //删除旧的勾选项
+            List<UserDepartRelation> userList = _Entities.UserDepartRelation.Where(v => v.DepartId.Equals(strDepartId)).ToList();
+            foreach( UserDepartRelation objUser in userList)
             {
-                // Deserialize (Include white list!)
-                //TryUpdateModel(objUserRel,formvalues.ToValueProvider());
+                _Entities.DeleteObject(objUser);
+            }
 
-                // Validate
-                //if (String.IsNullOrEmpty(objUserRel.UserId))
-                //    ModelState.AddModelError("UserId", "UserId is required!");
-                //if (String.IsNullOrEmpty(objUserRel.DepartId))
-                //    ModelState.AddModelError("DepartId", "DepartId is required!");
+            //保存新的勾选项
+            if (strParamIds != "undefined")
+            {
+                string[] ids = strParamIds.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
 
-                objUserRel.ID = Guid.NewGuid();
-                objUserRel.DepartId = Request["DepartId"];
-                objUserRel.UserId = ids[i];
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    var objUserRel = new UserDepartRelation();
 
-                // If valid, save movie to database
-                //if (ModelState.IsValid)
-                //{
+                    // Deserialize (Include white list!)
+                    //TryUpdateModel(objUserRel,new {"UserId","DepartId"},formvalues.ToValueProvider());
+                    // Validate
+                    //if (String.IsNullOrEmpty(objUserRel.UserId))
+                    //    ModelState.AddModelError("UserId", "UserId is required!");
+                    //if (String.IsNullOrEmpty(objUserRel.DepartId))
+                    //    ModelState.AddModelError("DepartId", "DepartId is required!");
+                    // If valid, save movie to database
+                    //if (ModelState.IsValid)
+                    //{
+                    //}
+
+                    objUserRel.ID = Guid.NewGuid();
+                    objUserRel.DepartId = strDepartId;
+                    objUserRel.UserId = ids[i];
                     _Entities.AddToUserDepartRelation(objUserRel);
-                //}
+                }
             }
 
             _Entities.SaveChanges();
             return RedirectToAction("ManageDepartment");
-            // Otherwise, reshow form
-            //return View(objUserRel);
         }
 
         #endregion
