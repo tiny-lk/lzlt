@@ -1,5 +1,6 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.master" Inherits="System.Web.Mvc.ViewPage<System.Web.Security.MembershipUserCollection>" %>
 
+
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     用户关联管理
 </asp:Content>
@@ -46,7 +47,7 @@
                     <%= Html.TextBox("searchInput", ViewData["searchInput"])%>
                 </td>
                 <td>
-                    <input type="button"id="SaveRelation" value="保存关联" disabled="disabled" check="n" />
+                    <input type="button" id="SaveRelation" value="保存关联" disabled="disabled" check="n" />
                     <input type="button" id="ReturnMainPage" value="返回" />
                 </td>
             </tr>
@@ -67,7 +68,18 @@
                { %>
             <tr id="user-<%= membershipUser.UserName %>">
                 <td>
-                    <%= Html.CheckBox("select", false, new { value = Html.Encode(membershipUser.UserName.ToString()) })%>
+                    <%
+                       bool bNoData = false;
+                        foreach (LZL.ForeignTrade.DataEntity.UserDepartRelation objUser in (List<LZL.ForeignTrade.DataEntity.UserDepartRelation>)ViewData["UserRelation"])
+                        {
+                            if (objUser.UserId == membershipUser.UserName)
+                            {
+                                bNoData = true;
+                            }
+                        }
+
+                        Response.Write(Html.CheckBox("select", bNoData, new { value = Html.Encode(membershipUser.UserName.ToString()) }));
+                   %>
                 </td>
                 <td>
                     <%= membershipUser.UserName%>
