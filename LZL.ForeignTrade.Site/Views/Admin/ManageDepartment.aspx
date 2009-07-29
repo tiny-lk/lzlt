@@ -166,7 +166,7 @@
                         Î¬»¤</a>
                 </td>
                 <td>
-                    <a href="<%=Url.Content("~/Admin/ManageChildDepartment/"+Html.Encode(Model[i].ID)) %>">
+                    <a href="<%=Url.Content("~/Admin/ManageUserRelation/"+Html.Encode(Model[i].ID)) %>">
                         ¹ØÁª</a>
                 </td>
             </tr>
