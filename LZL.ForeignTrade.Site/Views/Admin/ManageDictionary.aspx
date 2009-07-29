@@ -104,7 +104,7 @@
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
         <thead>
             <tr>
-                <td colspan="3" align="right">
+                <td colspan="5" align="right">
                     <input type="button" id="OK" value="²é Ñ¯" disabled="disabled" />
                     <input type="button" id="Add" value="Ìí¼Ó" />
                     <input type="button" id="Edit" value="±à ¼­" disabled="disabled" check="1" />
@@ -163,7 +163,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="9" align="right">
+                <td colspan="5" align="right">
                     <a href="#" onclick="print();">´ò Ó¡</a>|
                     <%
                         int count = int.Parse(ViewData["pagecount"].ToString());
