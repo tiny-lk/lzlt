@@ -106,7 +106,7 @@ namespace LZL.ForeignTrade.Controllers
                 }
             }
             return RedirectToAction("ManageUser");
-        } 
+        }
         #endregion
 
         #region 角色管理
@@ -150,7 +150,7 @@ namespace LZL.ForeignTrade.Controllers
                 }
             }
             return RedirectToAction("ManageRole");
-        } 
+        }
         #endregion
 
         #region 数据字典管理 ---add by lj
@@ -244,7 +244,7 @@ namespace LZL.ForeignTrade.Controllers
             }
             entities.SaveChanges();
             return RedirectToAction("ManageDictionary", new { page = 1 });
-        } 
+        }
         #endregion
 
         #region 公司信息管理 ---add by lj
@@ -449,6 +449,83 @@ namespace LZL.ForeignTrade.Controllers
             entities.SaveChanges();
             return RedirectToAction("ManageDepartment", new { page = 1 });
         }
+        #endregion
+
+        #region 部门用户关联
+        /// <summary>
+        /// Manages the user relation.
+        /// </summary>
+        /// <param name="searchType">Type of the search.</param>
+        /// <param name="searchInput">The search input.</param>
+        /// <returns></returns>
+        public ActionResult ManageUserRelation(string searchType, string searchInput)
+        {
+            List<SelectListItem> searchOptionList = new List<SelectListItem>() 
+            {
+                new SelectListItem() { Value = "UserName", Text = "用户名" },
+                new SelectListItem() { Value = "Email", Text = "电子邮件" }
+            };
+
+            ViewData["searchOptionList"] = new SelectList(searchOptionList, "Value", "Text", searchType ?? "UserName");
+            ViewData["searchInput"] = searchInput ?? string.Empty;
+
+            MembershipUserCollection viewData;
+            if (String.IsNullOrEmpty(searchInput))
+            {
+                viewData = Membership.GetAllUsers();
+            }
+            else if (searchType == "Email")
+            {
+                viewData = Membership.FindUsersByEmail(searchInput);
+            }
+            else
+            {
+                viewData = Membership.FindUsersByName(searchInput);
+            }
+
+            return View(viewData);
+        }
+
+        /// <summary>
+        /// Manages the user relation.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        public ActionResult SaveUserRelation()
+        {
+            var objUserRel = new UserDepartRelation();
+            Entities _Entities = new Entities();
+            string id = Request["id"];
+            string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < ids.Length; i++)
+            {
+                // Deserialize (Include white list!)
+                //TryUpdateModel(objUserRel,formvalues.ToValueProvider());
+
+                // Validate
+                //if (String.IsNullOrEmpty(objUserRel.UserId))
+                //    ModelState.AddModelError("UserId", "UserId is required!");
+                //if (String.IsNullOrEmpty(objUserRel.DepartId))
+                //    ModelState.AddModelError("DepartId", "DepartId is required!");
+
+                objUserRel.ID = Guid.NewGuid();
+                objUserRel.DepartId = Request["DepartId"];
+                objUserRel.UserId = ids[i];
+
+                // If valid, save movie to database
+                //if (ModelState.IsValid)
+                //{
+                    _Entities.AddToUserDepartRelation(objUserRel);
+                //}
+            }
+
+            _Entities.SaveChanges();
+            return RedirectToAction("ManageDepartment");
+            // Otherwise, reshow form
+            //return View(objUserRel);
+        }
+
         #endregion
     }
 }
