@@ -6,6 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
         编辑公司信息</h2>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
+
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
@@ -101,7 +104,7 @@
                     开户银行：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Company♂Bank", Html.Encode(Model.Bank))%>
+                    <%= Html.DropDownList("Company♂Bank", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("银行类别", Html.Encode(Model.Bank)), "请选择")%>
                 </td>
             </tr>
             <tr>
