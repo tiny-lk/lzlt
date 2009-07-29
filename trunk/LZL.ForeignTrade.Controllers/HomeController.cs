@@ -15,7 +15,7 @@ namespace LZL.ForeignTrade.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            ViewData["Message"] = "欢迎进入LZL Foreign Trade！";
+            ViewData["Message"] = "欢迎进入诚诺外贸管理系统！";
 
             return View();
         }
