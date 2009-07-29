@@ -26,9 +26,7 @@
             });
 
             $("#SaveRelation").bind("click", function() {
-
-            window.location.href = '<%=Url.Content("~/Admin/SaveUserRelation") %>' + '?id=' + $(document).data('checkvalue') + "&DepartId=" + $("#DepartId").val();
-                //window.location.href = '<%=Url.Action("ManageUserRelation","Admin")%>' + '/' + $(document).data('checkvalue');
+                window.location.href = '<%=Url.Content("~/Admin/SaveUserRelation") %>' + '?id=' + $(document).data('checkvalue') + "&DepartId=" + $("#DepartId").val();
                 //window.location.href = '<%=Url.Action("SaveUserRelation","Admin")%>' + '?id=' + $(document).data('checkvalue') + "&DepartId=" + $("#DepartId").value;
             });
         });
