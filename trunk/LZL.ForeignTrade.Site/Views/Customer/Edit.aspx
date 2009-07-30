@@ -36,16 +36,16 @@
             </tr>
             <%= Html.Hidden("Customer♂ID",Html.Encode(Model.ID.ToString())) %>
             <tr>
-                <td rowspan="8" align="center" valign="middle">
+                <td rowspan="8" align="center" valign="middle"  style="width:10%;">
                     客户基本信息
                 </td>
-                <td align="right">
+                <td align="right"  style="width:15%;">
                     客户代码（简称）：
                 </td>
                 <td align="left">
                     <%= Html.TextBox("Customer♂NameCode", Html.Encode(Model.NameCode), new { validate = "required:true" })%>
                 </td>
-                <td align="right">
+                <td align="right"  style="width:15%;">
                     中文名称：
                 </td>
                 <td align="left">

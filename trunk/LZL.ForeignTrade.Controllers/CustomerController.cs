@@ -78,9 +78,10 @@ namespace LZL.ForeignTrade.Controllers
                 customer.Linkman.Load();
                 customer.Memorandum.Load();
                 customer.ProductCustomer.Load();
-                for (int s = 0; s < customer.ProductCustomer.Count; s++)
+                var count = customer.ProductCustomer.Count;
+                for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(customer.ProductCustomer.ElementAt(s));
+                    entities.DeleteObject(customer.ProductCustomer.ElementAt(0));
                 }
                 entities.DeleteObject(customer);
             }

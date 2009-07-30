@@ -129,7 +129,7 @@
                 bgiframe: true,
                 modal: true,
                 width: 500,
-                height: 'auto',
+                height: 400,
                 position: 'center',
                 resizable: true,
                 draggable: true,
@@ -195,6 +195,8 @@
                         <%= Html.ActionLink("客户信息", "Index", "Customer")%></li>
                     <li>
                         <%= Html.ActionLink("管理", "Index", "Admin")%></li>
+                    <li>
+                        <%= Html.ActionLink("出口合同信息", "Index", "ExportContracts")%></li>
                     <li>
                         <%= Html.ActionLink("关于", "About", "Home")%></li>
                 </ul>

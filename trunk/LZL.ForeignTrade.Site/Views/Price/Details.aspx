@@ -17,16 +17,16 @@
                 <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     报价单基本信息
                 </td>
-                <td align="right" style="width: 20%;">
+                <td align="right"  style="width:15%;">
                     报价单号：
                 </td>
-                <td align="left" style="width: 25%;">
+                <td align="left" style="width:30%;">
                     <%= Html.Encode(Model.Name)%>
                 </td>
-                <td align="right" style="width: 20%;">
+                <td align="right"  style="width:15%;">
                     报价单日期：
                 </td>
-                <td align="left" style="width: 25%;">
+                <td align="left" style="width:30%;">
                     <%= Html.Encode(Model.Date)%>
                 </td>
             </tr>
@@ -193,7 +193,10 @@
                         if (Model.CustomerID != null)
                         {
                             var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCustomer(Model.CustomerID);
-                            Response.Write(Html.ActionLink(obj.NameCode, "Details", "Customer", new { id = obj.ID.ToString() }, null));
+                            if (obj != null)
+                            {
+                                Response.Write(Html.ActionLink(obj.NameCode, "Details", "Customer", new { id = obj.ID.ToString() }, null));
+                            }
                         }
                     %>
                 </td>
@@ -205,7 +208,10 @@
                         if (Model.CompanyID != null)
                         {
                             var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCompany(Model.CompanyID);
-                            Response.Write(Html.ActionLink(obj.Name, "Details", "Company", new { id = obj.ID.ToString() }));
+                            if (obj != null)
+                            {
+                                Response.Write(Html.ActionLink(obj.Name, "Details", "Company", new { id = obj.ID.ToString() }));
+                            }
                         }
                     %>
                 </td>

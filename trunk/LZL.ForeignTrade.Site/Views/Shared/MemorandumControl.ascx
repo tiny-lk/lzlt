@@ -41,10 +41,10 @@
             <td align="center" valign="middle" rowspan="2" style="width: 10%;">
                 备忘录信息
             </td>
-            <td style="width: 20%;" align="right">
+            <td  style="width:15%;" align="right">
                 日期：
             </td>
-            <td style="width: 25%;" align="right">
+            <td align="right" style="width:30%;">
                 <%
                     if (Model == null)
                     {
@@ -63,10 +63,10 @@
                     }
                 %>
             </td>
-            <td style="width: 20%;" align="right">
+            <td  style="width:15%;" align="right">
                 主题：
             </td>
-            <td style="width: 25%;" align="right">
+            <td align="right" style="width:30%;">
                 <%
                     if (Model == null)
                     {

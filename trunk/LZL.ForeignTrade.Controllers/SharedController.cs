@@ -386,6 +386,22 @@ namespace LZL.ForeignTrade.Controllers
             return View("DictionaryIndex", querylist);
         }
 
+        public ActionResult ExportContractsIndex(string quyerCondition, string queryvalue, string simple, int? page)
+        {
+            if (!string.IsNullOrEmpty(simple))
+            {
+                ViewData["simple"] = "true";
+            }
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetExportContracts(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View("ExportContractsIndex", querylist);
+        }
+
         public ActionResult ImageUserControl(string fid)
         {
             ViewData["fid"] = fid;

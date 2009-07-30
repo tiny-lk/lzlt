@@ -42,10 +42,10 @@
             <td align="center" valign="middle" rowspan="4" style="width: 10%;">
                 联系人信息
             </td>
-            <td align="right" style="width: 20%;">
+            <td align="right"  style="width:15%;">
                 联系人：
             </td>
-            <td align="left" style="width: 25%;">
+            <td align="left" style="width:30%;">
                 <%
                     if (Model == null)
                     {
@@ -64,10 +64,10 @@
                     }
                 %>
             </td>
-            <td align="right" style="width: 20%;">
+            <td align="right"  style="width:15%;">
                 职位：
             </td>
-            <td align="left" style="width: 25%;">
+            <td align="left" style="width:30%;">
                 <%
                     if (Model == null)
                     {

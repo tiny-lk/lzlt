@@ -35,24 +35,24 @@
                 </td>
             </tr>
             <tr>
-                <td rowspan="8" align="center" valign="middle">
+                <td rowspan="8" align="center" valign="middle" style="width:10%;">
                     客户基本信息
                 </td>
-                <td align="right">
+                <td align="right"  style="width:15%;">
                     客户代码（简称）：
                 </td>
                 <td align="left">
                     <%= Html.TextBox("Customer♂NameCode", "", new { validate = "required:true"})%>
                 </td>
-                <td align="right">
+                <td align="right" style="width:15%;">
                     中文名称：
                 </td>
-                <td align="left">
+                <td align="left" >
                     <%= Html.TextBox("Customer♂NameCn")%>
                 </td>
             </tr>
             <tr>
-                <td align="right">
+                <td align="right" >
                     英文名称：
                 </td>
                 <td align="left">

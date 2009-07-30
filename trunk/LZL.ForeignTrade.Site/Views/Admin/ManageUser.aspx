@@ -32,10 +32,10 @@
                 window.location.href = '<%=Url.Content("~/Admin/ManageUser/") %>';
             });
 
-            function print() {
-                $("table > tbody").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
-            }
-
+            $(".print").bind("click", function() {
+                $("table > tbody ").printArea("true");
+            });
+            
             $("#Delete").bind("click", function() {
                 var State = confirm('你确认要删除' + $(document).data('checkvalue') + '吗？');
                 if (State == true) {
@@ -115,7 +115,7 @@
         <tfoot>
             <tr>
                 <td colspan="9" align="right">
-                    <a href="#" onclick="print();">打 印</a>|
+                    <a href="#" class="print" >打 印</a>|
                     <%
                         int count = int.Parse(ViewData["pagecount"].ToString());
                         int p = Request["page"] == null ? 1 : int.Parse(Request["page"]);

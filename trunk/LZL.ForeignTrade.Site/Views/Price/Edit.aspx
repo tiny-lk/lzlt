@@ -146,16 +146,16 @@
             </tr>
             <tr>
                 <%= Html.Hidden("Price♂ID", Html.Encode(Model.ID.ToString()))%>
-                <td rowspan="5" align="center" valign="middle" style="width: 8%;">
+                <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     报价单基本信息
                 </td>
-                <td align="right">
+                <td align="right" style="width: 15%;">
                     报价单号：
                 </td>
                 <td align="left">
                     <%= Html.TextBox("Price♂Name",Html.Encode( Model.Name))%>
                 </td>
-                <td align="right">
+                <td align="right" style="width: 15%;">
                     报价单日期：
                 </td>
                 <td align="left">
@@ -333,8 +333,16 @@
                         if (Model.CustomerID != null)
                         {
                             var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCustomer(Model.CustomerID);
-                            Response.Write(Html.TextBox("_Price♂CustomerID", obj.NameCode));
-                            Response.Write(Html.Hidden("Price♂CustomerID", obj.ID.ToString()));
+                            if (obj != null)
+                            {
+                                Response.Write(Html.TextBox("_Price♂CustomerID", obj.NameCode));
+                                Response.Write(Html.Hidden("Price♂CustomerID", obj.ID.ToString()));
+                            }
+                            else
+                            {
+                                Response.Write(Html.TextBox("_Price♂CustomerID"));
+                                Response.Write(Html.Hidden("Price♂CustomerID"));
+                            }
                         }
                         else
                         {

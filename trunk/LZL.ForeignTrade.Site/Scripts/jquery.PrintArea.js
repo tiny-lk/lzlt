@@ -2,7 +2,7 @@
 (function($) {
     var printAreaCount = 0;
 
-    $.fn.printArea = function(addhtml) {
+    $.fn.printArea = function(istable) {
         var ele = $(this);
 
         var idPrefix = "printArea_";
@@ -18,7 +18,6 @@
         $(iframe).attr({ style: iframeStyle,
             id: iframeId
         });
-
         document.body.appendChild(iframe);
 
         var doc = iframe.contentWindow.document;
@@ -30,12 +29,11 @@
                 .each(function() {
                     doc.write('<link type="text/css" rel="stylesheet" href="' + $(this).attr("href") + '" >');
                 });
-
-        var coyphtml = $(ele).clone(true);
-        if (addhtml != null || addhtml != "") {
-            $(addhtml).append(coyphtml);
+        var valuehtml = $(ele).html();
+        if (istable != null) {
+            valuehtml = "<table width=100% style=vertical-align: middle;>" + $(ele).html() + "</table>";
         }
-        doc.write('<div class="' + $(ele).attr("class") + '">' + $(addhtml).html() + '</div>');
+        doc.write('<div class="' + $(ele).attr("class") + '">' + valuehtml + '</div>');
         doc.close();
         var frameWindow = iframe.contentWindow;
         frameWindow.close();

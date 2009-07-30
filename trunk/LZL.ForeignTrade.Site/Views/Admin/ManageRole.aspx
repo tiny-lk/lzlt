@@ -35,7 +35,6 @@
                 }
             });
 
-
             $("#Refresh").bind("click", function() {
                 window.location.href = '<%=Url.Content("~/Admin/ManageRole/") %>';
             });
