@@ -7,9 +7,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript">
-        function print() {
-            $("table > thead").printArea("<table width='100%'></table>");
-        }
+        $(document).ready(function() {
+            $(".print").bind("click", function() {
+                $("thead").printArea("true");
+            });
+        });
     </script>
 
     <table width="100%">
@@ -20,16 +22,16 @@
                 <td rowspan="8" align="center" valign="middle" style="width: 10%;">
                     客户基本信息
                 </td>
-                <td align="right" style="width: 20%;">
+                <td align="right" style="width: 15%;">
                     客户代码（简称）：
                 </td>
-                <td align="left" style="width: 25%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.Encode( Model.NameCode)%>
                 </td>
-                <td align="right" style="width: 20%;">
+                <td align="right" style="width: 15%;">
                     中文名称：
                 </td>
-                <td align="left" style="width: 25%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.Encode(Model.NameCn)%>
                 </td>
             </tr>
@@ -177,7 +179,7 @@
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
-                    <input type="button" value="打 印" onclick="print();" />
+                    <input type="button" value="打 印" class="print" />
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
                 </td>
             </tr>

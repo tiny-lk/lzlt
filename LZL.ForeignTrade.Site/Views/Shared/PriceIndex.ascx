@@ -62,7 +62,11 @@
         $("#reverseselect").bind("click", function() {
             $('table > tbody > tr').find("input[type='checkbox']").click();
         });
-
+        
+        $(".print").bind("click", function() {
+            $("table > tbody ").printArea("true");
+        });
+        
     });
 
     //查询数据信息
@@ -83,11 +87,6 @@
                 alert("列表数据错误！");
             }
         });
-    }
-
-    function print() {
-        var queryobject = this;
-        $(queryobject).closest("table > tbody ").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
     }
 
     function autocompletevalue(f) {
@@ -188,7 +187,10 @@
                     if (Model[i].CustomerID != null)
                     {
                         var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCustomer(Model[i].CustomerID);
-                        Response.Write(Html.ActionLink(obj.NameCode, "Details", "Customer", new { id = obj.ID.ToString() }, null));
+                        if (obj != null)
+                        {
+                            Response.Write(Html.ActionLink(obj.NameCode, "Details", "Customer", new { id = obj.ID.ToString() }, null));
+                        }
                     }
                 %>
             </td>
@@ -200,7 +202,10 @@
                     if (Model[i].CompanyID != null)
                     {
                         var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCompany(Model[i].CompanyID);
-                        Response.Write(Html.ActionLink(obj.Name, "Details", "Company", new { id = obj.ID.ToString() }));
+                        if (obj != null)
+                        {
+                            Response.Write(Html.ActionLink(obj.Name, "Details", "Company", new { id = obj.ID.ToString() }));
+                        }
                     }
                 %>
             </td>
@@ -212,7 +217,7 @@
     <tfoot>
         <tr>
             <td colspan="9" align="right">
-                <a href="#" onclick="print();">打 印</a>|
+                <a href="#" class="print">打 印</a>|
                 <%
                     int count = int.Parse(ViewData["pagecount"].ToString());
                     int p = Request["page"] == null ? 1 : int.Parse(Request["page"]);

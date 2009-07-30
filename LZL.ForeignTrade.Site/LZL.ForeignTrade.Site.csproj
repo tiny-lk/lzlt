@@ -238,6 +238,14 @@
     <Content Include="Views\Shared\PriceIndex.ascx" />
     <Content Include="Views\Shared\ProductIndex.ascx" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ExportContracts\Add.aspx" />
+    <Content Include="Views\ExportContracts\Details.aspx" />
+    <Content Include="Views\ExportContracts\Edit.aspx" />
+    <Content Include="Views\ExportContracts\ExportContracts.master" />
+    <Content Include="Views\ExportContracts\Index.aspx" />
+    <Content Include="Views\Shared\ExportContractsIndex.ascx" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -28,6 +28,7 @@
                                 $("#" + regionname).find("#" + groupid).append(checkedhtml);
                             }
                             else {
+                                $("#" + regionname).find("ul").parent().css("display", "");
                                 $("#" + regionname).find("ul").append(checkedhtml);
                             }
                         }

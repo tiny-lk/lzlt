@@ -72,16 +72,16 @@
             </tr>
             <tr>
                 <%= Html.Hidden("Product♂ID", Html.Encode(Model.ID.ToString()))%>
-                <td rowspan="5" align="center" valign="middle">
+                <td rowspan="5" align="center" valign="middle"  style="width:10%;">
                     商品介绍信息
                 </td>
-                <td align="right" style="width: 20%;">
+                <td align="right"  style="width:15%;">
                     商品代码（简称）：
                 </td>
                 <td align="left">
                     <%= Html.TextBox("Product♂NameCode",Html.Encode( Model.NameCode), new { validate = "required:true" })%>
                 </td>
-                <td align="right" style="width: 20%;">
+                <td align="right"  style="width:15%;">
                     中文名称：
                 </td>
                 <td align="left">
