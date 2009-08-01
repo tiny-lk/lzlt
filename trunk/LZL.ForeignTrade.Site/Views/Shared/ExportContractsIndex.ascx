@@ -27,11 +27,11 @@
         });
 
         //查询
-        $("#OK").bind("click", function() {
+        $("#OK").live("click", function() {
             loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
         });
 
-        $("#Delete").bind("click", function() {
+        $("#Delete").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var data = $(document).data('checkvalue').split("♂");
                 var ids = "";
@@ -46,18 +46,18 @@
             }
         });
 
-        $("#Edit").bind("click", function() {
+        $("#Edit").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
                 window.location.href = '<%=Url.Action("Edit","ExportContracts")%>' + '/' + id;
             }
         });
 
-        $("#Refresh").bind("click", function() {
+        $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1);
         });
 
-        $("#allselect").bind("click", function() {
+        $("#allselect").live("click", function() {
             $.each($('table > tbody > tr').find("input[type='checkbox']"), function(i, o) {
                 if ($(o).attr("checked") != true) {
                     $(o).click();
@@ -65,11 +65,11 @@
             })
         });
 
-        $("#reverseselect").bind("click", function() {
+        $("#reverseselect").live("click", function() {
             $('table > tbody > tr').find("input[type='checkbox']").click();
         });
 
-        $(".print").bind("click", function() {
+        $(".print").live("click", function() {
             $("table > tbody ").printArea("true");
         });
     });
@@ -102,7 +102,7 @@
                     scroll: true,
                     scrollHeight: 300,
                     dataType: 'json',
-                    extraParams: { t: "Product", f: f },
+                    extraParams: { t: "ExportContracts", f: f },
                     parse: function(data) {
                         var rows = [];
                         for (var i = 0; i < data.length; i++) {
@@ -125,7 +125,7 @@
             <td colspan="2">
                 <%=Html.DropDownList("quyerCondition",
                         new SelectList(new List<SelectListItem>() {
-                            new SelectListItem(){ Text="合同号", Value ="NameCode"},
+                            new SelectListItem(){ Text="合同号", Value ="Name"},
                             new SelectListItem(){Text="合同日期", Value ="Date"},
                              new SelectListItem(){Text="客户订单号", Value ="CustomerNo"}
                         }, "Value", "Text", "NameCode"))%>

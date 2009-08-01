@@ -359,8 +359,16 @@
                         if (Model.CompanyID != null)
                         {
                             var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCompany(Model.CompanyID);
-                            Response.Write(Html.TextBox("_Price°·CompanyID", obj.Name));
-                            Response.Write(Html.Hidden("Price°·CompanyID", obj.ID.ToString()));
+                            if (obj != null)
+                            {
+                                Response.Write(Html.TextBox("_Price°·CompanyID", obj.Name));
+                                Response.Write(Html.Hidden("Price°·CompanyID", obj.ID.ToString()));
+                            }
+                            else
+                            {
+                                Response.Write(Html.TextBox("_Price°·CompanyID"));
+                                Response.Write(Html.Hidden("Price°·CompanyID"));
+                            }
                         }
                         else
                         {

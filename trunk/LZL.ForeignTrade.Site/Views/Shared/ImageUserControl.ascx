@@ -11,7 +11,7 @@
             alert("添加完成！");
         });
 
-        $("#imageviewer").bind("click", function() {
+        $("#imageviewer").live("click", function() {
             $("#imageviewmodedialog").remove();
             $("body").append("<div id='imageviewmodedialog'><p style='color:Red;'>正在加载中...</p></div>");
             $("#imageviewmodedialog").dialog({

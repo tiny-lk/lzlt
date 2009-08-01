@@ -26,11 +26,11 @@
             }
         });
 
-        $("#OK").bind("click", function() {
+        $("#OK").live("click", function() {
             loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1, '<%=Request["type"] %>');
         });
 
-        $("#Delete").bind("click", function() {
+        $("#Delete").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var data = $(document).data('checkvalue').split("бс");
                 var ids = "";
@@ -45,18 +45,18 @@
             }
         });
 
-        $("#Edit").bind("click", function() {
+        $("#Edit").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
                 window.location.href = '<%=Url.Action("Edit","Customer")%>' + '/' + id;
             }
         });
 
-        $("#Refresh").bind("click", function() {
+        $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1, '<%=Request["type"]%>');
         });
 
-        $("#allselect").bind("click", function() {
+        $("#allselect").live("click", function() {
             $.each($('table > tbody > tr').find("input[type='checkbox']"), function(i, o) {
                 if ($(o).attr("checked") != true) {
                     $(o).click();
@@ -64,11 +64,11 @@
             })
         });
 
-        $("#reverseselect").bind("click", function() {
+        $("#reverseselect").live("click", function() {
             $('table > tbody > tr').find("input[type='checkbox']").click();
         });
 
-        $(".print").bind("click", function() {
+        $(".print").live("click", function() {
             $("table > tbody ").printArea("true");
         });
 

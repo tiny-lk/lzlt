@@ -20,7 +20,7 @@ namespace LZL.ForeignTrade.Controllers
             string sql = "select value Count(it." + quyerCondition + ") from " + entities.DefaultContainerName + "." + objectname + " as it ";
             if (!string.IsNullOrEmpty(queryvalue))
             {
-                sql += " where it." + quyerCondition + " like '" + queryvalue + "%'";
+                sql += " where it." + quyerCondition + " like '%" + queryvalue.Trim() + "%'";
             }
             var count = entities.CreateQuery<int>(sql).FirstOrDefault();
             return count;
@@ -107,7 +107,7 @@ namespace LZL.ForeignTrade.Controllers
             string sql = "select value it from " + entities.DefaultContainerName + ".ExportContracts as it ";
             if (!string.IsNullOrEmpty(queryvalue))
             {
-                sql += " where  it." + quyerCondition + " like '" + queryvalue + "%'";
+                sql += " where  it." + quyerCondition + " like '%" + queryvalue + "%'";
             }
             sql += " order by it." + quyerCondition;
             sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
