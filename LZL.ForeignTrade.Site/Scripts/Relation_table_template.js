@@ -13,7 +13,7 @@
         closeOnEscape: true,
         buttons: {
             确定: function() {
-                if ($(document).data("checkvalue") != null) {
+                if (!($(document).data("checkvalue") == null || $(document).data("checkvalue") == "")) {
                     $("#" + regionname).css("display", "");
                     $.each($(document).data("checkvalue").split("♂"), function(i, o) {
                         if (o != "undefined" && $("#" + regionname).find("input[value=" + o.split('|')[0] + "]").length == 0) {

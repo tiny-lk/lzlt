@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <table width="100%">
         <caption>
-            商品信息</caption>
+            报价单信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
@@ -17,16 +17,16 @@
                 <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     报价单基本信息
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     报价单号：
                 </td>
-                <td align="left" style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.Encode(Model.Name)%>
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     报价单日期：
                 </td>
-                <td align="left" style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.Encode(Model.Date)%>
                 </td>
             </tr>
@@ -115,7 +115,7 @@
                     报价单类型：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.PriceType)%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("报价单类型", Html.Encode(Model.PriceType))%>
                 </td>
                 <td align="right">
                     总报价金额：
@@ -224,14 +224,34 @@
                     <%= Html.Encode(Model.Note)%>
                 </td>
             </tr>
+            <% 
+                Model.PriceProduct.Load();
+                if (Model.PriceProduct.Count > 0)
+                {
+                    for (int i = 0; i < Model.PriceProduct.Count; i++)
+                    {
+                        Model.PriceProduct.ElementAt(i).ProductReference.Load();
+                    }
+                }
+            %>
             <!-- 产品信息 -->
-            <tr id="PriceProduct♂" style="display: none; text-align: left;">
+            <tr id="PriceProduct♂" style="<%=Model.PriceProduct.Count>0?"": "display: none"%>;
+                text-align: left;">
                 <td colspan="5">
                     <center style="text-align: center; font-size: x-large; font-weight: bolder;">
                         关联客户信息</center>
-                    <fieldset style="display: none; width: 95%;">
+                    <fieldset style="<%=Model.PriceProduct.Count>0?"": "display: none"%>; width: 95%;">
                         <legend>商品信息</legend>
                         <ul id="spxx" style="float: left; width: 100%; clear: both; position: relative;">
+                            <%
+                                for (int i = 0; i < Model.PriceProduct.Count(); i++)
+                                {
+                                    var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
+                                    Response.Write(string.Format(htmlstr,
+                                        @"<input type='checkbox' name='Product♂ID' checked='true' value='" + Model.PriceProduct.ElementAt(i).Product.ID.ToString() + "' />",
+                                        Html.ActionLink(Model.PriceProduct.ElementAt(i).Product.NameCode, "Details", "Product", new { id = Model.PriceProduct.ElementAt(i).Product.ID.ToString() }, null)));
+                                }
+                            %>
                         </ul>
                     </fieldset>
                 </td>

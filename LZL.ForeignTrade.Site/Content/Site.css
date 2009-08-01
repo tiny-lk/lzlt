@@ -223,7 +223,7 @@ legend
 
 input[type="text"]
 {
-    width: 200px;
+    width: 195px;
     border: 1px solid #3f6ebc;
 }
 textarea 
@@ -232,7 +232,7 @@ textarea
 }
 input[type="password"]
 {
-    width: 200px;
+    width: 195px;
     border: 1px solid #3f6ebc;
 }
 /* TABLE
