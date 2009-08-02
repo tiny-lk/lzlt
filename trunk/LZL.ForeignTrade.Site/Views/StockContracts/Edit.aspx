@@ -472,7 +472,7 @@
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <li><a href="#" onclick="openckht('StockContractsExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","ExportContracts")%>');">
-        关联出口合同信息</a></li>
+        关联出口合同</a></li>
     <li><a href="#" onclick="openspxx('StockContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');">
         关联商品信息</a></li>
 </asp:Content>
