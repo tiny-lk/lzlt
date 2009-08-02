@@ -44,6 +44,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.PrintArea.js")%>"></script>
 
+    <script type="text/javascript" src='<%= Url.Content("~/Scripts/jquery.treeview.js")%>'></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $.validator.setDefaults();
@@ -53,6 +55,12 @@
             init();
 
             checksettring();
+
+            $("#treemenu").treeview({
+                persist: "location",
+                collapsed: true,
+                unique: true
+            });
         })
         function init() {
             $("input[type='text'], input[type='password'], textarea").focus(function()
@@ -191,28 +199,38 @@
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>
             <div id="menucontainer">
-                <ul id="menu">
+            </div>
+        </div>
+        <div id="content">
+            <div id="menu">
+                <h2>
+                    功能列表</h2>
+                <ul id="treemenu">
                     <li>
                         <%= Html.ActionLink("主页", "Index", "Home") %></li>
-                    <li>
-                        <%= Html.ActionLink("报价单信息", "Index", "Price")%></li>
-                    <li>
-                        <%= Html.ActionLink("商品信息", "Index", "Product")%></li>
-                    <li>
-                        <%= Html.ActionLink("客户信息", "Index", "Customer")%></li>
-                    <li>
-                        <%= Html.ActionLink("出口合同信息", "Index", "ExportContracts")%></li>
-                    <li>
-                        <%= Html.ActionLink("采购合同信息", "Index", "StockContracts")%></li>
+                    <li class="open"><a href="#">业务功能</a>
+                        <ul>
+                            <li>
+                                <%= Html.ActionLink("报价单信息", "Index", "Price")%></li>
+                            <li>
+                                <%= Html.ActionLink("商品信息", "Index", "Product")%></li>
+                            <li>
+                                <%= Html.ActionLink("客户信息", "Index", "Customer")%></li>
+                            <li>
+                                <%= Html.ActionLink("出口合同信息", "Index", "ExportContracts")%></li>
+                            <li>
+                                <%= Html.ActionLink("采购合同信息", "Index", "StockContracts")%></li>
+                        </ul>
+                    </li>
                     <li>
                         <%= Html.ActionLink("管理", "Index", "Admin")%></li>
                     <li>
                         <%= Html.ActionLink("关于", "About", "Home")%></li>
                 </ul>
+                <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
             </div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
-        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-        <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
         <div id="footer">
             本网站版权归LZL所有！
         </div>

@@ -2,10 +2,11 @@
 	padding: 0;
 	margin: 0;
 	list-style: none;
+	white-space:nowrap;
+	line-height:16px;
 }
 
 .treeview ul {
-	background-color: white;
 	margin-top: 4px;
 }
 
@@ -29,7 +30,12 @@
 }
 
 .treeview a.selected {
-	background-color: #eee;
+	background-color: #eeca23;
+}
+
+.treeview a:hover 
+{
+	background-color: #f09f05;
 }
 
 #treecontrol { margin: 1em 0; display: none; }
