@@ -1,15 +1,25 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Product/Product.master" Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.Product>" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+<asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     商品详细信息
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").live("click", function() {
+                $("thead").printArea("true");
+            });
+        });
+    </script>
+
     <table width="100%">
         <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
             商品信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
+                    <input type="button" value="打 印" class="print" />
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Action("Index","Product")%>'" />
                 </td>
             </tr>
@@ -17,16 +27,16 @@
                 <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     商品介绍信息
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     商品代码（简称）：
                 </td>
-                <td align="left" style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.Encode( Model.NameCode)%>
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     中文名称：
                 </td>
-                <td align="left" style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.Encode(Model.NameCH)%>
                 </td>
             </tr>
@@ -271,11 +281,12 @@
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
+                    <input type="button" value="打 印" class="print" />
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Action("Index","Product")%>'" />
                 </td>
             </tr>
         </tfoot>
     </table>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
+<asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
 </asp:Content>

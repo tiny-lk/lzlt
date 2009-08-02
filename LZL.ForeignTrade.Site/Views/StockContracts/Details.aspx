@@ -1,10 +1,10 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/ExportContracts/ExportContracts.master"
-    Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.ExportContracts>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/StockContracts/StockContracts.master"
+    Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.StockContracts>" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    出口合同信息
+<asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
+    采购合同详细信息
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -14,47 +14,31 @@
         });
     </script>
 
-    <% using (Html.BeginForm())
-       { %>
     <table width="100%">
-        <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
-            出口合同信息</caption>
+        <caption>
+            采购合同信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
                     <input type="button" value="打 印" class="print" />
-                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
+                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/StockContracts/Index") %>'" />
                 </td>
             </tr>
             <tr>
                 <td rowspan="3" align="center" valign="middle" style="width: 10%;">
-                    出口合同简介
+                    采购合同简介
                 </td>
                 <td align="right" style="width: 15%;">
-                    出口合同号：
+                    采购合同号：
                 </td>
-                <td align="left">
-                    <%= Html.Encode(Html.Encode( Model.Name))%>
+                <td align="left" style="width: 30%;">
+                    <%= Html.Encode( Html.Encode( Model.Name))%>
                 </td>
                 <td align="right" style="width: 15%;">
-                    出口合同签约日期：
+                    采购合同签约日期：
                 </td>
-                <td align="left">
+                <td align="left" style="width: 30%;">
                     <%= Html.Encode(Model.Date.ToShortDateString())%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    客户订单号：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.CustomerNo)%>
-                </td>
-                <td align="right">
-                    合同类别：
-                </td>
-                <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("出口合同类型", Html.Encode(Model.Type))%>
                 </td>
             </tr>
             <tr>
@@ -90,6 +74,14 @@
                 </td>
             </tr>
             <tr>
+                <td align="right">
+                    合同类别：
+                </td>
+                <td align="left" colspan="3">
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("采购合同类型", Html.Encode(Model.Type))%>
+                </td>
+            </tr>
+            <tr>
                 <td align="center" rowspan="5" valign="middle">
                     商品信息汇总
                 </td>
@@ -97,7 +89,7 @@
                     总销售金额：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.TotalSalesAmount)%>
+                    <%=Html.Encode(Model.TotalSalesAmount)%>
                 </td>
                 <td align="right">
                     总包装数量：
@@ -111,13 +103,13 @@
                     英文包装单位：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("英文单位", Html.Encode(Model.TotalPackUnitEN))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("中文单位", Html.Encode(Model.TotalPackUnitCH))%>
                 </td>
                 <td align="right">
                     包装毛重(KG)：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.TotalPackGrossWeight)%>
+                    <%= Html.Encode(Model.TotalPackGrossWeight) %>
                 </td>
             </tr>
             <tr>
@@ -125,7 +117,7 @@
                     包装净重(KG)：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.TotalPackNetWeight)%>
+                    <%=Html.Encode(Model.TotalPackNetWeight)%>
                 </td>
                 <td align="right">
                     包装体积(CBM)：
@@ -139,7 +131,7 @@
                     商品总数量：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.TotalProductAmount)%>
+                    <%=Html.Encode(Model.TotalProductAmount)%>
                 </td>
                 <td align="right">
                     商品总单位：
@@ -168,7 +160,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="center" rowspan="5" valign="middle">
+                <td align="center" rowspan="2" valign="middle">
                     费用类条款
                 </td>
                 <td align="right">
@@ -178,26 +170,10 @@
                     <%= Html.Encode(Model.CurrencyType)%>
                 </td>
                 <td align="right">
-                    价格条款：
+                    付款日期：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.PriceClause)%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    价格条款补充说明：
-                </td>
-                <td align="left" colspan="3">
-                    <%= Html.Encode(Model.PriceClauseNote)%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    付款方式：
-                </td>
-                <td align="left" colspan="3">
-                    <%= Html.Encode(Model.ClauseType)%>
+                    <%= Html.Encode(Model.SubmitDate)%>
                 </td>
             </tr>
             <tr>
@@ -205,74 +181,24 @@
                     付款方式补充说明：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.Encode(Model.ClauseTypeNote)%>
+                    <%=Html.Encode(Model.PriceClauseNote)%>
                 </td>
             </tr>
             <tr>
-                <td align="right">
-                    信用证交付期限：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.SubmitDate)%>
-                </td>
-                <td align="right">
-                    投保险别：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.PolicyType)%>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" rowspan="6" valign="middle">
+                <td align="center" rowspan="3" valign="middle">
                     运输类条款
                 </td>
                 <td align="right">
-                    运抵国：
+                    交货日期：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.TansportCountry)%>
+                    <%= Html.Encode(Model.ConsignmentDate)%>
                 </td>
                 <td align="right">
-                    起运港口：
+                    交货地点：
                 </td>
                 <td align="left">
-                    <%= Html.Encode(Model.StartHaven)%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    转运港口：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.TransferHaven)%>
-                </td>
-                <td align="right">
-                    目的港口：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.EdnHaven)%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    运输方式：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.TransportMode)%>
-                </td>
-                <td align="right">
-                    出运日期：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.ShipmentDate)%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    允差（百分比）：
-                </td>
-                <td align="left" colspan="3">
-                    <%= Html.Encode(Model.ErrorValue)%>
+                    <%= Html.Encode(Model.ConsignmentAddress)%>
                 </td>
             </tr>
             <tr>
@@ -280,7 +206,7 @@
                     唛头：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.Encode(Model.Mark)%>
+                    <%=Html.Encode(Model.Mark)%>
                 </td>
             </tr>
             <tr>
@@ -288,7 +214,7 @@
                     包装要求：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.Encode(Model.PackRequire)%>
+                    <%=Html.Encode(Model.PackRequire)%>
                 </td>
             </tr>
             <tr>
@@ -299,68 +225,69 @@
                     合同综合条款：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.Encode(Model.ComprehensiveConvention)%>
+                    <%=Html.Encode(Model.ComprehensiveConvention)%>
                 </td>
             </tr>
             <% 
-                Model.ExportContractsPrice.Load();
-                if (Model.ExportContractsPrice.Count > 0)
+                Model.StockContractsExportContracts.Load();
+                if (Model.StockContractsExportContracts.Count > 0)
                 {
-                    for (int i = 0; i < Model.ExportContractsPrice.Count; i++)
+                    for (int i = 0; i < Model.StockContractsExportContracts.Count; i++)
                     {
-                        Model.ExportContractsPrice.ElementAt(i).PriceReference.Load();
+                        Model.StockContractsExportContracts.ElementAt(i).ExportContractsReference.Load();
                     }
                 }
             %>
-            <!-- 报价单信息 -->
-            <tr id="ExportContractsPrice♂" style="<%=Model.ExportContractsPrice.Count>0?"": "display: none"%>;
+            <!-- 出口合同信息 -->
+            <tr id="StockContractsExportContracts♂" style="<%=Model.StockContractsExportContracts.Count>0?"": "display: none"%>;
                 text-align: left;">
                 <td colspan="5">
                     <center style="text-align: center; font-size: x-large; font-weight: bolder;">
-                        报价单信息</center>
-                    <fieldset style="<%=Model.ExportContractsPrice.Count>0?"": "display: none"%>; width: 95%;">
-                        <legend>报价单信息</legend>
-                        <ul id="bjdxx" style="float: left; width: 100%; clear: both; position: relative;">
+                        出口合同信息</center>
+                    <fieldset style="<%=Model.StockContractsExportContracts.Count>0?"": "display: none"%>;
+                        width: 95%;">
+                        <legend>出口合同信息</legend>
+                        <ul id="ckhtxx" style="float: left; width: 100%; clear: both; position: relative;">
                             <%
-                                for (int i = 0; i < Model.ExportContractsPrice.Count(); i++)
+                                for (int i = 0; i < Model.StockContractsExportContracts.Count(); i++)
                                 {
                                     var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
                                     Response.Write(string.Format(htmlstr,
-                                        @"<input type='checkbox' name='Price♂ID' checked='true' value='" + Model.ExportContractsPrice.ElementAt(i).Price.ID.ToString() + "' />",
-                                        Html.ActionLink(Model.ExportContractsPrice.ElementAt(i).Price.Name, "Details", "Price", new { id = Model.ExportContractsPrice.ElementAt(i).Price.ID.ToString() }, null)));
+                                        @"<input type='checkbox' name='ExportContracts♂ID' checked='true'  value='" + Model.StockContractsExportContracts.ElementAt(i).ExportContracts.ID.ToString() + "' />",
+                                        Html.ActionLink(Model.StockContractsExportContracts.ElementAt(i).ExportContracts.Name, "Details", "ExportContracts", new { id = Model.StockContractsExportContracts.ElementAt(i).ExportContracts.ID.ToString() }, null)));
                                 }
                             %>
                         </ul>
                     </fieldset>
                 </td>
             </tr>
-            <!-- 报价单信息 -->
+            <!-- 出口合同信息 -->
             <% 
-                Model.ExportContractsProduct.Load();
-                if (Model.ExportContractsProduct.Count > 0)
+                Model.StockContractsProduct.Load();
+                if (Model.StockContractsProduct.Count > 0)
                 {
-                    for (int i = 0; i < Model.ExportContractsProduct.Count; i++)
+                    for (int i = 0; i < Model.StockContractsProduct.Count; i++)
                     {
-                        Model.ExportContractsProduct.ElementAt(i).ProductReference.Load();
+                        Model.StockContractsProduct.ElementAt(i).ProductReference.Load();
                     }
                 }
             %>
             <!-- 商品信息 -->
-            <tr id="ExportContractsProduct♂" style="<%=Model.ExportContractsProduct.Count>0?"": "display: none"%>;
+            <tr id="StockContractsProduct♂" style="<%=Model.StockContractsProduct.Count>0?"": "display: none"%>;
                 text-align: left;">
                 <td colspan="5">
                     <center style="text-align: center; font-size: x-large; font-weight: bolder;">
                         商品信息</center>
-                    <fieldset style="<%=Model.ExportContractsProduct.Count>0?"": "display: none"%>; width: 95%;">
+                    <fieldset style="<%=Model.StockContractsProduct.Count>0?"": "display: none"%>; width: 95%;">
                         <legend>商品信息</legend>
                         <ul id="spxx" style="float: left; width: 100%; clear: both; position: relative;">
                             <%
-                                for (int i = 0; i < Model.ExportContractsProduct.Count(); i++)
+                                for (int i = 0; i < Model.StockContractsProduct.Count(); i++)
                                 {
                                     var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
                                     Response.Write(string.Format(htmlstr,
-                                        @"<input type='checkbox' name='Product♂ID' checked='true' value='" + Model.ExportContractsProduct.ElementAt(i).Product.ID.ToString() + "' />",
-                                        Html.ActionLink(Model.ExportContractsProduct.ElementAt(i).Product.NameCode, "Details", "Product", new { id = Model.ExportContractsProduct.ElementAt(i).Product.ID.ToString() }, null)));
+                                        @"<input type='checkbox' name='Product♂ID' checked='true' value='" + Model.StockContractsProduct.ElementAt(i).Product.ID.ToString() + "' />",
+                                        Html.ActionLink(Model.StockContractsProduct.ElementAt(i).Product.NameCode, "Details", "Product", new { id = Model.StockContractsProduct.ElementAt(i).Product.ID.ToString() }, null)));
                                 }
                             %>
                         </ul>
@@ -373,13 +300,11 @@
             <tr>
                 <td colspan="5" align="right">
                     <input type="button" value="打 印" class="print" />
-                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
+                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/StockContracts/Index") %>'" />
                 </td>
             </tr>
         </tfoot>
     </table>
-    <%
-        } %>
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
+<asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
 </asp:Content>

@@ -7,18 +7,28 @@ using LZL.ForeignTrade.DataEntity;
 
 namespace LZL.ForeignTrade.Controllers
 {
-    public class ExportContractsController : Controller
+    public class StockContractsController : Controller
     {
         public ActionResult Index()
         {
             int pagecount = 1;
-            var querylist = DataHelper.GetExportContracts(string.Empty, string.Empty, 1, out pagecount);
+            var querylist = DataHelper.GetStockContracts(string.Empty, string.Empty, 1, out pagecount);
             ViewData["pagecount"] = pagecount;
             return View(querylist);
         }
         public ActionResult Add()
         {
             return View();
+        }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Add(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("Index");
         }
         public ActionResult Edit(string id)
         {
@@ -40,7 +50,7 @@ namespace LZL.ForeignTrade.Controllers
         {
             Entities _Entities = new Entities();
             Guid guid = new Guid(id);
-            return View(_Entities.ExportContracts.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+            return View(_Entities.StockContracts.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 
         public ActionResult Delete(string id)
@@ -50,44 +60,26 @@ namespace LZL.ForeignTrade.Controllers
             for (int i = 0; i < ids.Length; i++)
             {
                 Guid guid = new Guid(ids[i]);
-                var exportContracts = entities.ExportContracts.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+                var stockContracts = entities.StockContracts.Where(v => v.ID.Equals(guid)).FirstOrDefault();
 
-                exportContracts.ExportContractsPrice.Load();
-                var count = exportContracts.ExportContractsPrice.Count;
+                stockContracts.StockContractsExportContracts.Load();
+                var count = stockContracts.StockContractsExportContracts.Count;
                 for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(exportContracts.ExportContractsPrice.ElementAt(0));
+                    entities.DeleteObject(stockContracts.StockContractsExportContracts.ElementAt(0));
                 }
 
-                exportContracts.ExportContractsProduct.Load();
-                count = exportContracts.ExportContractsProduct.Count;
+                stockContracts.StockContractsProduct.Load();
+                count = stockContracts.StockContractsProduct.Count;
                 for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(exportContracts.ExportContractsProduct.ElementAt(0));
+                    entities.DeleteObject(stockContracts.StockContractsProduct.ElementAt(0));
                 }
-
-                exportContracts.StockContractsExportContracts.Load();
-                count = exportContracts.StockContractsExportContracts.Count;
-                for (int s = 0; s < count; s++)
-                {
-                    entities.DeleteObject(exportContracts.StockContractsExportContracts.ElementAt(0));
-                }
-
-                entities.DeleteObject(exportContracts);
+                entities.DeleteObject(stockContracts);
             }
             entities.SaveChanges();
             return RedirectToAction("Index", new { page = 1 });
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Add(FormCollection formvalues)
-        {
-            if (string.IsNullOrEmpty(formvalues["region"]))
-                return View();
-            Entities _Entities = new Entities();
-            SharedController.mainTable(formvalues, _Entities);
-            _Entities.SaveChanges();
-            return RedirectToAction("Index");
-        }
     }
 }

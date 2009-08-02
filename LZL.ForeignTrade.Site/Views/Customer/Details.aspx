@@ -8,7 +8,7 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $(".print").bind("click", function() {
+            $(".print").live("click", function() {
                 $("thead").printArea("true");
             });
         });
@@ -18,6 +18,12 @@
         <caption>
             客户信息</caption>
         <thead>
+            <tr>
+                <td colspan="5" align="right">
+                    <input type="button" value="打 印" class="print" />
+                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
+                </td>
+            </tr>
             <tr>
                 <td rowspan="8" align="center" valign="middle" style="width: 10%;">
                     客户基本信息

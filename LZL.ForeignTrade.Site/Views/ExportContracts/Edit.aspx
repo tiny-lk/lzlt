@@ -8,6 +8,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
+
     <script type="text/javascript">
         function openbjd(regionname, childobject, addid, url) {
             $.ajax({
@@ -112,6 +114,19 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            autocompletedictionary("ExportContracts♂CurrencyType", "货币类型");
+            autocompletedictionary("ExportContracts♂PriceClause", "价格条款");
+            autocompletedictionary("ExportContracts♂ClauseType", "付款方式");
+            autocompletedictionary("ExportContracts♂TansportCountry", "港口");
+            autocompletedictionary("ExportContracts♂StartHaven", "港口");
+            autocompletedictionary("ExportContracts♂EdnHaven", "港口");
+            autocompletedictionary("ExportContracts♂TransferHaven", "港口");
+            autocompletedictionary("ExportContracts♂TransportMode", "运输方式");
+        });
+    </script>
+
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
@@ -133,6 +148,7 @@
                 <td rowspan="3" align="center" valign="middle" style="width: 10%;">
                     出口合同简介
                 </td>
+                <%= Html.Hidden("ExportContracts♂ID", Html.Encode(Model.ID.ToString()))%>
                 <td align="right" style="width: 15%;">
                     出口合同号：
                 </td>

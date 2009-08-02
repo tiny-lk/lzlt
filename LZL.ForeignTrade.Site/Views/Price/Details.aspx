@@ -4,12 +4,22 @@
     报价详细信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".print").live("click", function() {
+                $("thead").printArea("true");
+            });
+        });
+    </script>
+
     <table width="100%">
         <caption>
             报价单信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
+                    <input type="button" value="打 印" class="print" />
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Price/Index") %>'" />
                 </td>
             </tr>
@@ -261,6 +271,7 @@
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
+                    <input type="button" value="打 印" class="print" />
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Price/Index") %>'" />
                 </td>
             </tr>

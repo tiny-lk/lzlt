@@ -57,17 +57,33 @@ namespace LZL.ForeignTrade.Controllers
             {
                 Guid guid = new Guid(ids[i]);
                 var product = entities.Product.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+
                 product.ProductCustomer.Load();
                 var count = product.ProductCustomer.Count;
                 for (int s = 0; s < count; s++)
                 {
                     entities.DeleteObject(product.ProductCustomer.ElementAt(0));
                 }
+
                 product.PriceProduct.Load();
                 count = product.PriceProduct.Count;
                 for (int s = 0; s < count; s++)
                 {
                     entities.DeleteObject(product.PriceProduct.ElementAt(0));
+                }
+
+                product.ExportContractsProduct.Load();
+                count = product.ExportContractsProduct.Count;
+                for (int s = 0; s < count; s++)
+                {
+                    entities.DeleteObject(product.ExportContractsProduct.ElementAt(0));
+                }
+
+                product.StockContractsProduct.Load();
+                count = product.StockContractsProduct.Count;
+                for (int s = 0; s < count; s++)
+                {
+                    entities.DeleteObject(product.StockContractsProduct.ElementAt(0));
                 }
                 entities.DeleteObject(product);
             }

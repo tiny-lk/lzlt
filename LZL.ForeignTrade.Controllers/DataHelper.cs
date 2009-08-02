@@ -47,7 +47,7 @@ namespace LZL.ForeignTrade.Controllers
 
             if (!string.IsNullOrEmpty(queryvalue))
             {
-                sql += " and  it." + quyerCondition + " like '" + queryvalue + "%'";
+                sql += " and  it." + quyerCondition + " like '%" + queryvalue + "%'";
             }
             sql += " order by it." + quyerCondition;
             sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
@@ -67,7 +67,7 @@ namespace LZL.ForeignTrade.Controllers
             string sql = "select value it from " + entities.DefaultContainerName + ".Product as it ";
             if (!string.IsNullOrEmpty(queryvalue))
             {
-                sql += " where  it." + quyerCondition + " like '" + queryvalue + "%'";
+                sql += " where  it." + quyerCondition + " like '%" + queryvalue + "%'";
             }
             sql += " order by it." + quyerCondition;
             sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
@@ -87,7 +87,7 @@ namespace LZL.ForeignTrade.Controllers
             string sql = "select value it from " + entities.DefaultContainerName + ".Price as it ";
             if (!string.IsNullOrEmpty(queryvalue))
             {
-                sql += " where  it." + quyerCondition + " like '" + queryvalue + "%'";
+                sql += " where  it." + quyerCondition + " like '%" + queryvalue + "%'";
             }
             sql += " order by it." + quyerCondition;
             sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
@@ -132,6 +132,26 @@ namespace LZL.ForeignTrade.Controllers
             sql += " order by it." + quyerCondition;
             sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
             var querylist = entities.CreateQuery<Dictionary>(sql).ToList();
+            return querylist;
+        }
+
+        public static List<StockContracts> GetStockContracts(string quyerCondition, string queryvalue, int? page, out int pagecount)
+        {
+            if (string.IsNullOrEmpty(quyerCondition))
+            {
+                quyerCondition = "Name";
+            }
+            Entities entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            pagecount = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "StockContracts")) / pagesize);
+            string sql = "select value it from " + entities.DefaultContainerName + ".StockContracts as it ";
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                sql += " where  it." + quyerCondition + " like '%" + queryvalue + "%'";
+            }
+            sql += " order by it." + quyerCondition;
+            sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
+            var querylist = entities.CreateQuery<StockContracts>(sql).ToList();
             return querylist;
         }
 

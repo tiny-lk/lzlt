@@ -73,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\GlobalAssemblyInfo.cs" />
     <Compile Include="SharedController.cs" />
+    <Compile Include="StockContractsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LZL.ForeignTrade.DataEntity\LZL.ForeignTrade.DataEntity.csproj">
