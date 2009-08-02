@@ -8,6 +8,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
+
     <script type="text/javascript">
         function openbjd(regionname, childobject, addid, url) {
             $.ajax({
@@ -109,6 +111,19 @@
                     $("input[name='ExportContracts♂CompanyID']").val("");
                 }
             });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            autocompletedictionary("ExportContracts♂CurrencyType", "货币类型");
+            autocompletedictionary("ExportContracts♂PriceClause", "价格条款");
+            autocompletedictionary("ExportContracts♂ClauseType", "付款方式");
+            autocompletedictionary("ExportContracts♂TansportCountry", "港口");
+            autocompletedictionary("ExportContracts♂StartHaven", "港口");
+            autocompletedictionary("ExportContracts♂EdnHaven", "港口");
+            autocompletedictionary("ExportContracts♂TransferHaven", "港口");
+            autocompletedictionary("ExportContracts♂TransportMode", "运输方式");
         });
     </script>
 

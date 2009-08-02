@@ -128,7 +128,7 @@
                             new SelectListItem(){ Text="合同号", Value ="Name"},
                             new SelectListItem(){Text="合同日期", Value ="Date"},
                              new SelectListItem(){Text="客户订单号", Value ="CustomerNo"}
-                        }, "Value", "Text", "NameCode"))%>
+                        }, "Value", "Text", "Name"))%>
             </td>
             <td colspan="6" align="left">
                 <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>

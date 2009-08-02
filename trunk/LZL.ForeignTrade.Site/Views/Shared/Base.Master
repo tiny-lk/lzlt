@@ -203,6 +203,8 @@
                     <li>
                         <%= Html.ActionLink("出口合同信息", "Index", "ExportContracts")%></li>
                     <li>
+                        <%= Html.ActionLink("采购合同信息", "Index", "StockContracts")%></li>
+                    <li>
                         <%= Html.ActionLink("管理", "Index", "Admin")%></li>
                     <li>
                         <%= Html.ActionLink("关于", "About", "Home")%></li>

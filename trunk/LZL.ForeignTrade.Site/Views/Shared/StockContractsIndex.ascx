@@ -1,4 +1,4 @@
-<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.Customer>>" %>
+<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.StockContracts>>" %>
 
 <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -8,7 +8,7 @@
     $(document).ready(function() {
         $(document).data("checkvalue", "");
         $(document).data("check", 0);
-
+        $("#queryvalue").val("");
         autocompletevalue($("#quyerCondition").val());
         $("#quyerCondition").bind("change", function() {
             $("#queryvalue").unbind(".autocomplete");
@@ -26,8 +26,9 @@
             }
         });
 
+        //查询
         $("#OK").live("click", function() {
-            loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1, '<%=Request["type"] %>');
+            loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
         });
 
         $("#Delete").live("click", function() {
@@ -40,7 +41,7 @@
                 ids = $.trim(ids.substr(0, ids.length - 1));
                 var State = confirm('你确认要删除 ' + ids + ' 吗？');
                 if (State == true) {
-                    window.location.href = '<%=Url.Action("Delete","Customer")%>' + '/' + ids;
+                    window.location.href = '<%=Url.Action("Delete","StockContracts")%>' + '/' + ids;
                 }
             }
         });
@@ -48,12 +49,12 @@
         $("#Edit").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
-                window.location.href = '<%=Url.Action("Edit","Customer")%>' + '/' + id;
+                window.location.href = '<%=Url.Action("Edit","StockContracts")%>' + '/' + id;
             }
         });
 
         $("#Refresh").live("click", function() {
-            loadlistdata(this, "", "", 1, '<%=Request["type"]%>');
+            loadlistdata(this, "", "", 1);
         });
 
         $("#allselect").live("click", function() {
@@ -67,21 +68,20 @@
         $("#reverseselect").live("click", function() {
             $('table > tbody > tr').find("input[type='checkbox']").click();
         });
-        
+
         $(".print").live("click", function() {
             $("table > tbody ").printArea("true");
         });
-        
     });
 
     //查询数据信息
-    function loadlistdata(obj, name, value, p, t) {
+    function loadlistdata(obj, name, value, p) {
         var tableobject = $(obj).closest("table");
         $.ajax({
             type: "get",
             dataType: "html",
-            data: { quyerCondition: name, queryvalue: encodeURI(value), page: p, type: t },
-            url: '<%=Url.Action("CustomerIndex","Shared")%>',
+            data: { quyerCondition: name, queryvalue: encodeURI(value), page: p },
+            url: '<%=Url.Action("StockContractsIndex","Shared")%>',
             success: function(data) {
                 $(tableobject).find("tfoot").html("");
                 $(tableobject).find("tfoot").append($(data).find("tfoot").html());
@@ -102,7 +102,7 @@
                     scroll: true,
                     scrollHeight: 300,
                     dataType: 'json',
-                    extraParams: { t: "Customer", f: f },
+                    extraParams: { t: "StockContracts", f: f },
                     parse: function(data) {
                         var rows = [];
                         for (var i = 0; i < data.length; i++) {
@@ -113,24 +113,21 @@
                     },
                     formatItem: function(row, i, n) { return row; }
                 });
-    }
+    } 
 </script>
 
 <input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
 <table width="100%" style="vertical-align: middle; text-align: center;">
     <caption>
-        客户信息</caption>
+        采购合同信息</caption>
     <thead>
         <tr>
             <td colspan="2">
                 <%=Html.DropDownList("quyerCondition",
                         new SelectList(new List<SelectListItem>() {
-                            new SelectListItem(){ Text="客户代码", Value ="NameCode"},
-                            new SelectListItem(){Text="客户中文名称", Value ="NameCn"},
-                             new SelectListItem(){Text="客户英文名称", Value ="NameEn"},
-                             new SelectListItem(){ Text="中文地址", Value ="Address"},
-                             new SelectListItem(){ Text ="英文地址", Value ="AddressEn"}
-                        }, "Value", "Text", "NameCode"))%>
+                            new SelectListItem(){ Text="合同号", Value ="Name"},
+                            new SelectListItem(){Text="签约日期", Value ="Date"}
+                        }, "Value", "Text", "Name"))%>
             </td>
             <td colspan="6" align="left">
                 <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
@@ -158,22 +155,19 @@
                 序号
             </td>
             <td>
+                合同号
+            </td>
+            <td>
+                合同日期
+            </td>
+            <td>
                 客户代码
             </td>
             <td>
-                客户中文名称
+                公司名称
             </td>
             <td>
-                客户英文名称
-            </td>
-            <td>
-                电话
-            </td>
-            <td>
-                客户类型
-            </td>
-            <td>
-                是否共享
+                合同类别
             </td>
         </tr>
         <%
@@ -182,30 +176,45 @@
             for (int i = 0; i < Model.Count; i++)
             {
         %>
-        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/Customer/Details/"+Html.Encode(Model[i].ID)) %>';}">
+        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/StockContracts/Details/"+Html.Encode(Model[i].ID)) %>';}">
             <td>
-                <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString() + "|" + Html.Encode(Model[i].NameCode)) })%>
+                <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString() + "|" + Html.Encode(Model[i].Name)) })%>
             </td>
             <td>
                 <%= (beginenumber+i).ToString()%>
             </td>
             <td>
-                <%= Html.Encode(Model[i].NameCode)%>
+                <%= Html.Encode(Model[i].Name)%>
             </td>
             <td>
-                <%= Html.Encode(Model[i].NameCn)%>
+                <%= Html.Encode( Model[i].Date.ToShortDateString())%>
             </td>
             <td>
-                <%= Html.Encode(Model[i].NameEn)%>
+                <%
+                    if (Model[i].CustomerID != null)
+                    {
+                        var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCustomer(Model[i].CustomerID);
+                        if (obj != null)
+                        {
+                            Response.Write(Html.ActionLink(obj.NameCode, "Details", "Customer", new { id = obj.ID.ToString() }, null));
+                        }
+                    }
+                %>
             </td>
             <td>
-                <%= Html.Encode(Model[i].Phone)%>
+                <%
+                    if (Model[i].CompanyID != null)
+                    {
+                        var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCompany(Model[i].CompanyID);
+                        if (obj != null)
+                        {
+                            Response.Write(Html.ActionLink(obj.Name, "Details", "Company", new { id = obj.ID.ToString() }, null));
+                        }
+                    }
+                %>
             </td>
             <td>
-                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("客户类型", Html.Encode(Model[i].TypeCode))%>
-            </td>
-            <td>
-                <%= Html.Encode(Model[i].IsShare ? "是" : "否")%>
+                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("采购合同类型", Html.Encode(Model[i].Type))%>
             </td>
         </tr>
         <%
@@ -227,11 +236,11 @@
                     {
                         if (p < count)
                         {
-                            Response.Write("上一页|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ",'" + Request["type"] + "')>下一页</a>");
+                            Response.Write("上一页|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ")>下一页</a>");
                         }
                         else
                         {
-                            Response.Write("<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page - 1) + ",'" + Request["type"] + "')>上一页</a>|下一页");
+                            Response.Write("<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page - 1) + ")>上一页</a>|下一页");
                         }
                     }
                     Response.Write("|当前页：第 <span style='font-weight:bolder; color:Red;'>" + p + "</span> 页|总页码：<span style='font-weight:bolder; color:Red;'>" + count + "</span> 页");
