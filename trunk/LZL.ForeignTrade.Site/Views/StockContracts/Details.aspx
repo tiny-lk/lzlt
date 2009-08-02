@@ -24,6 +24,8 @@
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/StockContracts/Index") %>'" />
                 </td>
             </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td rowspan="3" align="center" valign="middle" style="width: 10%;">
                     采购合同简介
@@ -295,7 +297,7 @@
                 </td>
             </tr>
             <!-- 商品信息 -->
-        </thead>
+        </tbody>
         <tfoot>
             <tr>
                 <td colspan="5" align="right">

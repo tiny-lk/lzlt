@@ -78,13 +78,13 @@
                 <td align="right"  style="width:15%;">
                     商品代码（简称）：
                 </td>
-                <td align="left">
+                <td align="left"  style="width:30%;">
                     <%= Html.TextBox("Product♂NameCode",Html.Encode( Model.NameCode), new { validate = "required:true" })%>
                 </td>
                 <td align="right"  style="width:15%;">
                     中文名称：
                 </td>
-                <td align="left">
+                <td align="left"  style="width:30%;">
                     <%= Html.TextBox("Product♂NameCH", Html.Encode(Model.NameCH))%>
                 </td>
             </tr>

@@ -145,13 +145,13 @@
                 <td align="right" style="width: 15%;">
                     采购合同号：
                 </td>
-                <td align="left">
+                <td align="left"  style="width:30%;">
                     <%= Html.TextBox("StockContracts♂Name",Html.Encode( Model.Name), new { validate = "required:true" })%>
                 </td>
                 <td align="right" style="width: 15%;">
                     采购合同签约日期：
                 </td>
-                <td align="left">
+                <td align="left"  style="width:30%;">
                     <%= Html.TextBox("StockContracts♂Date", Html.Encode(Model.Date.ToShortDateString()), new { validate = "date:true,required:true", Class = "calendar" })%>
                 </td>
             </tr>

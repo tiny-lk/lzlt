@@ -8,7 +8,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $(".print").live("click", function() {
-                $("thead").printArea("true");
+                $("table>tbody").printArea("true");
             });
         });
     </script>
@@ -23,6 +23,8 @@
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Price/Index") %>'" />
                 </td>
             </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     报价单基本信息
@@ -267,7 +269,7 @@
                 </td>
             </tr>
             <!-- 产品信息 -->
-        </thead>
+        </tbody>
         <tfoot>
             <tr>
                 <td colspan="5" align="right">

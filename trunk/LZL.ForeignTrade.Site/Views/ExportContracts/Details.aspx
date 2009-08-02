@@ -9,7 +9,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $(".print").live("click", function() {
-                $("thead").printArea("true");
+                $("table>tbody").printArea("true");
             });
         });
     </script>
@@ -17,7 +17,7 @@
     <% using (Html.BeginForm())
        { %>
     <table width="100%">
-        <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
+        <caption>
             出口合同信息</caption>
         <thead align="center">
             <tr>
@@ -26,6 +26,8 @@
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
                 </td>
             </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td rowspan="3" align="center" valign="middle" style="width: 10%;">
                     出口合同简介
@@ -368,7 +370,7 @@
                 </td>
             </tr>
             <!-- 商品信息 -->
-        </thead>
+        </tbody>
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
