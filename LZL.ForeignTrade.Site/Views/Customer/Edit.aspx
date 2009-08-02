@@ -42,13 +42,13 @@
                 <td align="right"  style="width:15%;">
                     客户代码（简称）：
                 </td>
-                <td align="left">
+                <td align="left"  style="width:30%;">
                     <%= Html.TextBox("Customer♂NameCode", Html.Encode(Model.NameCode), new { validate = "required:true" })%>
                 </td>
                 <td align="right"  style="width:15%;">
                     中文名称：
                 </td>
-                <td align="left">
+                <td align="left"  style="width:30%;">
                     <%= Html.TextBox("Customer♂NameCn", Html.Encode(Model.NameCn))%>
                 </td>
             </tr>

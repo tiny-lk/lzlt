@@ -135,13 +135,13 @@
                 <td align="right"  style="width:15%;">
                     报价单号：
                 </td>
-                <td align="left">
+                <td align="left"  style="width:30%;">
                     <%= Html.TextBox("Price♂Name", "", new { validate = "required:true" })%>
                 </td>
                 <td align="right"  style="width:15%;">
                     报价单日期：
                 </td>
-                <td align="left">
+                <td align="left"  style="width:30%;">
                     <%= Html.TextBox("Price♂Date", "", new { validate = "date:true", Class = "calendar" })%>
                 </td>
             </tr>

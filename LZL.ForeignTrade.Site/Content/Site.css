@@ -6,17 +6,19 @@ to use a different color start by replacing all instances of
 body
 {
     background-color: #5c87b2;
-    font-size: .75em;
-    font-family: Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
-    /*color: #696969;*/
+    font-size:12px;
+    font-family:Arial;
 }
 
 a:link
 {
     color: #034af3;
-    text-decoration: underline;
+}
+a
+{
+    text-decoration:none;
 }
 a:visited
 {
@@ -25,11 +27,11 @@ a:visited
 a:hover
 {
     color: #1d60ff;
-    text-decoration: none;
 }
 a:active
 {
     color: #12eb87;
+    text-decoration:none;
 }
 
 p, ul
@@ -44,7 +46,6 @@ h1, h2, h3, h4, h5, h6
 {
     font-size: 1em;
     color: #000;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1
@@ -105,7 +106,6 @@ page width. Or, you can specify an exact pixel width. */
     color: #fff;
     border: none;
     line-height: 2em;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 32px !important;
 }
 #content
