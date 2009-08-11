@@ -115,7 +115,7 @@ page width. Or, you can specify an exact pixel width. */
     background-color: #fef;
     position:relative;
 }
-#menu
+#treemenucss
 {
     position:relative;
     width:140px;
@@ -148,6 +148,65 @@ page width. Or, you can specify an exact pixel width. */
     background: #cc9;
     text-align: center;
 }
+
+/* TAB MENU   
+----------------------------------------------------------*/
+ul#menu
+{
+    padding: 0 0 2px;
+    position: relative;
+    margin: 0;
+    text-align: right;
+}
+
+ul#menu li
+{
+	padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+	background-color:Silver;
+    display: inline;
+    list-style: none;
+}
+
+ul#menu li#greeting
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    color: #fff;
+}
+
+ul#menu li a
+{
+    padding: 0px;
+    font-weight: bold;
+  
+    color: #034af3;
+}
+
+ul#menu li a:hover
+{
+    background-color:Transparent;
+    text-decoration: none;
+}
+
+ul#menu li a:active
+{
+    background-color: #a6e2a6;
+    text-decoration: none;
+}
+
+ul#menu li.selected a
+{
+    background-color: #fff;
+    color: #000;
+}
+
+/* FORM LAYOUT ELEMENTS   
+----------------------------------------------------------*/
 
 #sidebar
 {
