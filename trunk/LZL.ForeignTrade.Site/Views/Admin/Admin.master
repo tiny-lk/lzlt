@@ -13,7 +13,7 @@
         <h2>
             相关功能</h2>
         <div>
-            <ul>
+            <ul id="menu">
                 <li>
                     <%= Html.ActionLink("用户管理", "ManageUser", "Admin")%></li>
                 <li>

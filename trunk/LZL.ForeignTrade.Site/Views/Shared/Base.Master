@@ -198,11 +198,9 @@
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>
-            <div id="menucontainer">
-            </div>
         </div>
         <div id="content">
-            <div id="menu">
+            <div id="treemenucss">
                 <h2>
                     功能列表</h2>
                 <ul id="treemenu">
@@ -227,8 +225,8 @@
                     <li>
                         <%= Html.ActionLink("关于", "About", "Home")%></li>
                 </ul>
-                <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
             </div>
+            <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
         </div>
         <div id="footer">

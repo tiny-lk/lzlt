@@ -13,7 +13,7 @@
         <h2>
             相关功能</h2>
         <div>
-            <ul>
+            <ul id="menu">
                 <li>
                     <%= Html.ActionLink("添加采购合同", "Add", "StockContracts")%></li>
                 <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />

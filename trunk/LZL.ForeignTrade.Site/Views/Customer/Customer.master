@@ -13,7 +13,7 @@
         <h2>
             相关功能</h2>
         <div>
-            <ul>
+            <ul id="menu">
                 <li>商品信息</li>
                 <li>报 价 单</li>
                 <li>
