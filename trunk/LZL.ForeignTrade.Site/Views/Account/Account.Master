@@ -11,7 +11,7 @@
 <asp:Content ID="AccountSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
     <div id="sidebar">
         <h2>
-            Categories</h2>
+            账户信息</h2>
         <div>
             <ul id="menu">
                 <li>
