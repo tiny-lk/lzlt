@@ -121,7 +121,7 @@ page width. Or, you can specify an exact pixel width. */
     width:140px;
     float:left;
     overflow:auto;
-    background-color: #fef;
+    border:1px;
     height:550px;
      _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
@@ -153,10 +153,7 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    padding: 0 0 2px;
     position: relative;
-    margin: 0;
-    text-align: right;
 }
 
 ul#menu li
@@ -182,14 +179,13 @@ ul#menu li#greeting
 ul#menu li a
 {
     padding: 0px;
-    font-weight: bold;
-  
+    font-weight: bold; 
     color: #034af3;
 }
 
 ul#menu li a:hover
 {
-    background-color:Transparent;
+    background-color:ButtonHighlight;
     text-decoration: none;
 }
 
@@ -211,8 +207,6 @@ ul#menu li.selected a
 #sidebar
 {
     background-color: #fef;
-    margin-bottom: 30px;
-    float:left;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
 
