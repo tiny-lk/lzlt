@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="AccountController.cs" />
     <Compile Include="AdminController.cs" />
+    <Compile Include="AttachmentController.cs" />
     <Compile Include="CollectionHelper.cs" />
     <Compile Include="CustomerController.cs" />
     <Compile Include="DataHelper.cs" />
