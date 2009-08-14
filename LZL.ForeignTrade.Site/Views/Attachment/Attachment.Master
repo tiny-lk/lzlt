@@ -1,0 +1,24 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Base.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<asp:Content ID="AttachmentTitle" ContentPlaceHolderID="TitleContent" runat="server">
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+</asp:Content>
+<asp:Content ID="AttachmentContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="main">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+</asp:Content>
+<asp:Content ID="AttachmentSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
+    <div id="sidebar">
+        <h2>
+            资源管理</h2>
+        <div>
+            <ul id="menu">
+                <li>
+                    <%= Html.ActionLink("表格模板下载", "AttachmentDownload", "Attachment")%></li>
+                <li>
+                    <%= Html.ActionLink("资源管理", "AttachmentManager", "Attachment")%></li>
+            </ul>
+        </div>
+    </div>
+</asp:Content>
