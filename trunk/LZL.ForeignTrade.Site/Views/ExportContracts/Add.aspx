@@ -151,13 +151,13 @@
                 <td align="right" style="width: 15%;">
                     出口合同号：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("ExportContracts♂Name", "", new { validate = "required:true" })%>
                 </td>
                 <td align="right" style="width: 15%;">
                     出口合同签约日期：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("ExportContracts♂Date", "", new { validate = "date:true,required:true", Class = "calendar" })%>
                 </td>
             </tr>

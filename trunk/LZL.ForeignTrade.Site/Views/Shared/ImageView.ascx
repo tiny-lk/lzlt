@@ -13,7 +13,7 @@
         });
     });
 
-    function showimage(key) {
+    function showimage(key) 
         $("#image").find("img").attr("src", '<%=Url.Action("ShowImage", "Shared") %>' + "/" + key);
     }
 </script>
