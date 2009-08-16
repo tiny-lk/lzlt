@@ -76,6 +76,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs" />
     <Compile Include="SharedController.cs" />
     <Compile Include="StockContractsController.cs" />
+    <Compile Include="WarehouseController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LZL.ForeignTrade.DataEntity\LZL.ForeignTrade.DataEntity.csproj">
