@@ -155,6 +155,26 @@ namespace LZL.ForeignTrade.Controllers
             return querylist;
         }
 
+        public static List<Invoice> GetInvoices(string quyerCondition, string queryvalue, int? page, out int pagecount)
+        {
+            if (string.IsNullOrEmpty(quyerCondition))
+            {
+                quyerCondition = "Name";
+            }
+            Entities entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            pagecount = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Invoice")) / pagesize);
+            string sql = "select value it from " + entities.DefaultContainerName + ".Invoice as it ";
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                sql += " where  it." + quyerCondition + " like '%" + queryvalue + "%'";
+            }
+            sql += " order by it." + quyerCondition;
+            sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
+            var querylist = entities.CreateQuery<Invoice>(sql).ToList();
+            return querylist;
+        }
+
         /// <summary>
         /// 获取客户信息
         /// </summary>

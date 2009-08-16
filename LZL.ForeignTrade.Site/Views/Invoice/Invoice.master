@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Base.Master" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<asp:Content ID="InvoiceTitler" ContentPlaceHolderID="TitleContent" runat="server">
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+</asp:Content>
+<asp:Content ID="InvoiceMain" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="main">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+    </div>
+</asp:Content>
+<asp:Content ID="InvoiceSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
+    <div id="sidebar">
+        <h2>
+            相关功能</h2>
+        <div>
+            <ul>
+                <li>
+                    <%= Html.ActionLink("添加单据信息", "Add", "Invoice")%></li>
+                <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
+            </ul>
+        </div>
+    </div>
+</asp:Content>
