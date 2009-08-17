@@ -15,7 +15,6 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ExportContractsPrice_ExportContracts", "ExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.ExportContracts), "ExportContractsPrice", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ExportContractsPrice))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ExportContractsProduct_ExportContracts", "ExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.ExportContracts), "ExportContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ExportContractsProduct))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_InvoiceExportContracts_ExportContracts", "ExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.ExportContracts), "InvoiceExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.InvoiceExportContracts))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_ExportContracts", "ExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.ExportContracts), "StockContractsExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsExportContracts))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ExportContractsPrice_Price", "Price", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Price), "ExportContractsPrice", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ExportContractsPrice))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ExportContractsProduct_Product", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Product), "ExportContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ExportContractsProduct))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_InvoiceExportContracts_Invoice", "Invoice", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Invoice), "InvoiceExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.InvoiceExportContracts))]
@@ -25,11 +24,12 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_PriceProduct_Product", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Product), "PriceProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.PriceProduct))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ProductCustomer_Product", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Product), "ProductCustomer", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ProductCustomer))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsProduct_Product", "Product", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.Product), "StockContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsProduct))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsExportContracts))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsProduct_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsProduct))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_ExportContracts", "ExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.ExportContracts), "StockContractsExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsExportContracts))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsExportContracts))]
 
 // 原始文件名:
-// 生成日期: 2009/8/15 15:12:16
+// 生成日期: 2009/8/17 21:27:53
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -63,6 +63,36 @@ namespace LZL.ForeignTrade.DataEntity
             this.OnContextCreated();
         }
         partial void OnContextCreated();
+        /// <summary>
+        /// 架构中不存在 AccessoriesBuy 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<AccessoriesBuy> AccessoriesBuy
+        {
+            get
+            {
+                if ((this._AccessoriesBuy == null))
+                {
+                    this._AccessoriesBuy = base.CreateQuery<AccessoriesBuy>("[AccessoriesBuy]");
+                }
+                return this._AccessoriesBuy;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<AccessoriesBuy> _AccessoriesBuy;
+        /// <summary>
+        /// 架构中不存在 AccessoriesChildBuy 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<AccessoriesChildBuy> AccessoriesChildBuy
+        {
+            get
+            {
+                if ((this._AccessoriesChildBuy == null))
+                {
+                    this._AccessoriesChildBuy = base.CreateQuery<AccessoriesChildBuy>("[AccessoriesChildBuy]");
+                }
+                return this._AccessoriesChildBuy;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<AccessoriesChildBuy> _AccessoriesChildBuy;
         /// <summary>
         /// 架构中不存在 Company 的注释。
         /// </summary>
@@ -244,6 +274,21 @@ namespace LZL.ForeignTrade.DataEntity
         }
         private global::System.Data.Objects.ObjectQuery<Linkman> _Linkman;
         /// <summary>
+        /// 架构中不存在 MaterialBuy 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<MaterialBuy> MaterialBuy
+        {
+            get
+            {
+                if ((this._MaterialBuy == null))
+                {
+                    this._MaterialBuy = base.CreateQuery<MaterialBuy>("[MaterialBuy]");
+                }
+                return this._MaterialBuy;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<MaterialBuy> _MaterialBuy;
+        /// <summary>
         /// 架构中不存在 Memorandum 的注释。
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<Memorandum> Memorandum
@@ -334,21 +379,6 @@ namespace LZL.ForeignTrade.DataEntity
         }
         private global::System.Data.Objects.ObjectQuery<StockContracts> _StockContracts;
         /// <summary>
-        /// 架构中不存在 StockContractsExportContracts 的注释。
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<StockContractsExportContracts> StockContractsExportContracts
-        {
-            get
-            {
-                if ((this._StockContractsExportContracts == null))
-                {
-                    this._StockContractsExportContracts = base.CreateQuery<StockContractsExportContracts>("[StockContractsExportContracts]");
-                }
-                return this._StockContractsExportContracts;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<StockContractsExportContracts> _StockContractsExportContracts;
-        /// <summary>
         /// 架构中不存在 StockContractsProduct 的注释。
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<StockContractsProduct> StockContractsProduct
@@ -364,6 +394,21 @@ namespace LZL.ForeignTrade.DataEntity
         }
         private global::System.Data.Objects.ObjectQuery<StockContractsProduct> _StockContractsProduct;
         /// <summary>
+        /// 架构中不存在 TableAttachment 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<TableAttachment> TableAttachment
+        {
+            get
+            {
+                if ((this._TableAttachment == null))
+                {
+                    this._TableAttachment = base.CreateQuery<TableAttachment>("[TableAttachment]");
+                }
+                return this._TableAttachment;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<TableAttachment> _TableAttachment;
+        /// <summary>
         /// 架构中不存在 UserDepartRelation 的注释。
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<UserDepartRelation> UserDepartRelation
@@ -378,6 +423,65 @@ namespace LZL.ForeignTrade.DataEntity
             }
         }
         private global::System.Data.Objects.ObjectQuery<UserDepartRelation> _UserDepartRelation;
+        /// <summary>
+        /// 架构中不存在 WarehouseSale 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<WarehouseSale> WarehouseSale
+        {
+            get
+            {
+                if ((this._WarehouseSale == null))
+                {
+                    this._WarehouseSale = base.CreateQuery<WarehouseSale>("[WarehouseSale]");
+                }
+                return this._WarehouseSale;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<WarehouseSale> _WarehouseSale;
+        /// <summary>
+        /// 架构中不存在 WarehouseStore 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<WarehouseStore> WarehouseStore
+        {
+            get
+            {
+                if ((this._WarehouseStore == null))
+                {
+                    this._WarehouseStore = base.CreateQuery<WarehouseStore>("[WarehouseStore]");
+                }
+                return this._WarehouseStore;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<WarehouseStore> _WarehouseStore;
+        /// <summary>
+        /// 架构中不存在 StockContractsExportContracts 的注释。
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<StockContractsExportContracts> StockContractsExportContracts
+        {
+            get
+            {
+                if ((this._StockContractsExportContracts == null))
+                {
+                    this._StockContractsExportContracts = base.CreateQuery<StockContractsExportContracts>("[StockContractsExportContracts]");
+                }
+                return this._StockContractsExportContracts;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<StockContractsExportContracts> _StockContractsExportContracts;
+        /// <summary>
+        /// 架构中不存在 AccessoriesBuy 的注释。
+        /// </summary>
+        public void AddToAccessoriesBuy(AccessoriesBuy accessoriesBuy)
+        {
+            base.AddObject("AccessoriesBuy", accessoriesBuy);
+        }
+        /// <summary>
+        /// 架构中不存在 AccessoriesChildBuy 的注释。
+        /// </summary>
+        public void AddToAccessoriesChildBuy(AccessoriesChildBuy accessoriesChildBuy)
+        {
+            base.AddObject("AccessoriesChildBuy", accessoriesChildBuy);
+        }
         /// <summary>
         /// 架构中不存在 Company 的注释。
         /// </summary>
@@ -463,6 +567,13 @@ namespace LZL.ForeignTrade.DataEntity
             base.AddObject("Linkman", linkman);
         }
         /// <summary>
+        /// 架构中不存在 MaterialBuy 的注释。
+        /// </summary>
+        public void AddToMaterialBuy(MaterialBuy materialBuy)
+        {
+            base.AddObject("MaterialBuy", materialBuy);
+        }
+        /// <summary>
         /// 架构中不存在 Memorandum 的注释。
         /// </summary>
         public void AddToMemorandum(Memorandum memorandum)
@@ -505,18 +616,18 @@ namespace LZL.ForeignTrade.DataEntity
             base.AddObject("StockContracts", stockContracts);
         }
         /// <summary>
-        /// 架构中不存在 StockContractsExportContracts 的注释。
-        /// </summary>
-        public void AddToStockContractsExportContracts(StockContractsExportContracts stockContractsExportContracts)
-        {
-            base.AddObject("StockContractsExportContracts", stockContractsExportContracts);
-        }
-        /// <summary>
         /// 架构中不存在 StockContractsProduct 的注释。
         /// </summary>
         public void AddToStockContractsProduct(StockContractsProduct stockContractsProduct)
         {
             base.AddObject("StockContractsProduct", stockContractsProduct);
+        }
+        /// <summary>
+        /// 架构中不存在 TableAttachment 的注释。
+        /// </summary>
+        public void AddToTableAttachment(TableAttachment tableAttachment)
+        {
+            base.AddObject("TableAttachment", tableAttachment);
         }
         /// <summary>
         /// 架构中不存在 UserDepartRelation 的注释。
@@ -525,6 +636,462 @@ namespace LZL.ForeignTrade.DataEntity
         {
             base.AddObject("UserDepartRelation", userDepartRelation);
         }
+        /// <summary>
+        /// 架构中不存在 WarehouseSale 的注释。
+        /// </summary>
+        public void AddToWarehouseSale(WarehouseSale warehouseSale)
+        {
+            base.AddObject("WarehouseSale", warehouseSale);
+        }
+        /// <summary>
+        /// 架构中不存在 WarehouseStore 的注释。
+        /// </summary>
+        public void AddToWarehouseStore(WarehouseStore warehouseStore)
+        {
+            base.AddObject("WarehouseStore", warehouseStore);
+        }
+        /// <summary>
+        /// 架构中不存在 StockContractsExportContracts 的注释。
+        /// </summary>
+        public void AddToStockContractsExportContracts(StockContractsExportContracts stockContractsExportContracts)
+        {
+            base.AddObject("StockContractsExportContracts", stockContractsExportContracts);
+        }
+    }
+    /// <summary>
+    /// 架构中不存在 ForeignTradeModel.AccessoriesBuy 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="AccessoriesBuy")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class AccessoriesBuy : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 AccessoriesBuy 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static AccessoriesBuy CreateAccessoriesBuy(global::System.Guid id)
+        {
+            AccessoriesBuy accessoriesBuy = new AccessoriesBuy();
+            accessoriesBuy.ID = id;
+            return accessoriesBuy;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在属性 AccessoriesNo 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string AccessoriesNo
+        {
+            get
+            {
+                return this._AccessoriesNo;
+            }
+            set
+            {
+                this.OnAccessoriesNoChanging(value);
+                this.ReportPropertyChanging("AccessoriesNo");
+                this._AccessoriesNo = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("AccessoriesNo");
+                this.OnAccessoriesNoChanged();
+            }
+        }
+        private string _AccessoriesNo;
+        partial void OnAccessoriesNoChanging(string value);
+        partial void OnAccessoriesNoChanged();
+        /// <summary>
+        /// 架构中不存在属性 Zbmc 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Zbmc
+        {
+            get
+            {
+                return this._Zbmc;
+            }
+            set
+            {
+                this.OnZbmcChanging(value);
+                this.ReportPropertyChanging("Zbmc");
+                this._Zbmc = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Zbmc");
+                this.OnZbmcChanged();
+            }
+        }
+        private string _Zbmc;
+        partial void OnZbmcChanging(string value);
+        partial void OnZbmcChanged();
+        /// <summary>
+        /// 架构中不存在属性 ZbColor 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string ZbColor
+        {
+            get
+            {
+                return this._ZbColor;
+            }
+            set
+            {
+                this.OnZbColorChanging(value);
+                this.ReportPropertyChanging("ZbColor");
+                this._ZbColor = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("ZbColor");
+                this.OnZbColorChanged();
+            }
+        }
+        private string _ZbColor;
+        partial void OnZbColorChanging(string value);
+        partial void OnZbColorChanged();
+        /// <summary>
+        /// 架构中不存在属性 ZbCount 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> ZbCount
+        {
+            get
+            {
+                return this._ZbCount;
+            }
+            set
+            {
+                this.OnZbCountChanging(value);
+                this.ReportPropertyChanging("ZbCount");
+                this._ZbCount = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ZbCount");
+                this.OnZbCountChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _ZbCount;
+        partial void OnZbCountChanging(global::System.Nullable<decimal> value);
+        partial void OnZbCountChanged();
+        /// <summary>
+        /// 架构中不存在属性 ZbSize 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> ZbSize
+        {
+            get
+            {
+                return this._ZbSize;
+            }
+            set
+            {
+                this.OnZbSizeChanging(value);
+                this.ReportPropertyChanging("ZbSize");
+                this._ZbSize = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ZbSize");
+                this.OnZbSizeChanged();
+            }
+        }
+        private global::System.Nullable<int> _ZbSize;
+        partial void OnZbSizeChanging(global::System.Nullable<int> value);
+        partial void OnZbSizeChanged();
+        /// <summary>
+        /// 架构中不存在属性 InputDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> InputDate
+        {
+            get
+            {
+                return this._InputDate;
+            }
+            set
+            {
+                this.OnInputDateChanging(value);
+                this.ReportPropertyChanging("InputDate");
+                this._InputDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("InputDate");
+                this.OnInputDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _InputDate;
+        partial void OnInputDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnInputDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 ChangeDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> ChangeDate
+        {
+            get
+            {
+                return this._ChangeDate;
+            }
+            set
+            {
+                this.OnChangeDateChanging(value);
+                this.ReportPropertyChanging("ChangeDate");
+                this._ChangeDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ChangeDate");
+                this.OnChangeDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _ChangeDate;
+        partial void OnChangeDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnChangeDateChanged();
+    }
+    /// <summary>
+    /// 架构中不存在 ForeignTradeModel.AccessoriesChildBuy 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="AccessoriesChildBuy")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class AccessoriesChildBuy : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 AccessoriesChildBuy 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static AccessoriesChildBuy CreateAccessoriesChildBuy(global::System.Guid id)
+        {
+            AccessoriesChildBuy accessoriesChildBuy = new AccessoriesChildBuy();
+            accessoriesChildBuy.ID = id;
+            return accessoriesChildBuy;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在属性 AccessoriesId 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.Guid> AccessoriesId
+        {
+            get
+            {
+                return this._AccessoriesId;
+            }
+            set
+            {
+                this.OnAccessoriesIdChanging(value);
+                this.ReportPropertyChanging("AccessoriesId");
+                this._AccessoriesId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("AccessoriesId");
+                this.OnAccessoriesIdChanged();
+            }
+        }
+        private global::System.Nullable<global::System.Guid> _AccessoriesId;
+        partial void OnAccessoriesIdChanging(global::System.Nullable<global::System.Guid> value);
+        partial void OnAccessoriesIdChanged();
+        /// <summary>
+        /// 架构中不存在属性 AccessoriesType 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> AccessoriesType
+        {
+            get
+            {
+                return this._AccessoriesType;
+            }
+            set
+            {
+                this.OnAccessoriesTypeChanging(value);
+                this.ReportPropertyChanging("AccessoriesType");
+                this._AccessoriesType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("AccessoriesType");
+                this.OnAccessoriesTypeChanged();
+            }
+        }
+        private global::System.Nullable<int> _AccessoriesType;
+        partial void OnAccessoriesTypeChanging(global::System.Nullable<int> value);
+        partial void OnAccessoriesTypeChanged();
+        /// <summary>
+        /// 架构中不存在属性 AccessoriesName 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string AccessoriesName
+        {
+            get
+            {
+                return this._AccessoriesName;
+            }
+            set
+            {
+                this.OnAccessoriesNameChanging(value);
+                this.ReportPropertyChanging("AccessoriesName");
+                this._AccessoriesName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("AccessoriesName");
+                this.OnAccessoriesNameChanged();
+            }
+        }
+        private string _AccessoriesName;
+        partial void OnAccessoriesNameChanging(string value);
+        partial void OnAccessoriesNameChanged();
+        /// <summary>
+        /// 架构中不存在属性 Price 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> Price
+        {
+            get
+            {
+                return this._Price;
+            }
+            set
+            {
+                this.OnPriceChanging(value);
+                this.ReportPropertyChanging("Price");
+                this._Price = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Price");
+                this.OnPriceChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _Price;
+        partial void OnPriceChanging(global::System.Nullable<decimal> value);
+        partial void OnPriceChanged();
+        /// <summary>
+        /// 架构中不存在属性 Count 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> Count
+        {
+            get
+            {
+                return this._Count;
+            }
+            set
+            {
+                this.OnCountChanging(value);
+                this.ReportPropertyChanging("Count");
+                this._Count = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Count");
+                this.OnCountChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _Count;
+        partial void OnCountChanging(global::System.Nullable<decimal> value);
+        partial void OnCountChanged();
+        /// <summary>
+        /// 架构中不存在属性 Weight 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> Weight
+        {
+            get
+            {
+                return this._Weight;
+            }
+            set
+            {
+                this.OnWeightChanging(value);
+                this.ReportPropertyChanging("Weight");
+                this._Weight = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Weight");
+                this.OnWeightChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _Weight;
+        partial void OnWeightChanging(global::System.Nullable<decimal> value);
+        partial void OnWeightChanged();
+        /// <summary>
+        /// 架构中不存在属性 InputDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> InputDate
+        {
+            get
+            {
+                return this._InputDate;
+            }
+            set
+            {
+                this.OnInputDateChanging(value);
+                this.ReportPropertyChanging("InputDate");
+                this._InputDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("InputDate");
+                this.OnInputDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _InputDate;
+        partial void OnInputDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnInputDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 ChangeDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> ChangeDate
+        {
+            get
+            {
+                return this._ChangeDate;
+            }
+            set
+            {
+                this.OnChangeDateChanging(value);
+                this.ReportPropertyChanging("ChangeDate");
+                this._ChangeDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ChangeDate");
+                this.OnChangeDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _ChangeDate;
+        partial void OnChangeDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnChangeDateChanged();
     }
     /// <summary>
     /// 架构中不存在 ForeignTradeModel.Company 的注释。
@@ -4936,6 +5503,511 @@ namespace LZL.ForeignTrade.DataEntity
         }
     }
     /// <summary>
+    /// 架构中不存在 ForeignTradeModel.MaterialBuy 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="MaterialBuy")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class MaterialBuy : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 MaterialBuy 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static MaterialBuy CreateMaterialBuy(global::System.Guid id)
+        {
+            MaterialBuy materialBuy = new MaterialBuy();
+            materialBuy.ID = id;
+            return materialBuy;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在属性 YclNo 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string YclNo
+        {
+            get
+            {
+                return this._YclNo;
+            }
+            set
+            {
+                this.OnYclNoChanging(value);
+                this.ReportPropertyChanging("YclNo");
+                this._YclNo = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("YclNo");
+                this.OnYclNoChanged();
+            }
+        }
+        private string _YclNo;
+        partial void OnYclNoChanging(string value);
+        partial void OnYclNoChanged();
+        /// <summary>
+        /// 架构中不存在属性 YclType 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> YclType
+        {
+            get
+            {
+                return this._YclType;
+            }
+            set
+            {
+                this.OnYclTypeChanging(value);
+                this.ReportPropertyChanging("YclType");
+                this._YclType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("YclType");
+                this.OnYclTypeChanged();
+            }
+        }
+        private global::System.Nullable<int> _YclType;
+        partial void OnYclTypeChanging(global::System.Nullable<int> value);
+        partial void OnYclTypeChanged();
+        /// <summary>
+        /// 架构中不存在属性 YclCf 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string YclCf
+        {
+            get
+            {
+                return this._YclCf;
+            }
+            set
+            {
+                this.OnYclCfChanging(value);
+                this.ReportPropertyChanging("YclCf");
+                this._YclCf = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("YclCf");
+                this.OnYclCfChanged();
+            }
+        }
+        private string _YclCf;
+        partial void OnYclCfChanging(string value);
+        partial void OnYclCfChanged();
+        /// <summary>
+        /// 架构中不存在属性 BWeight 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> BWeight
+        {
+            get
+            {
+                return this._BWeight;
+            }
+            set
+            {
+                this.OnBWeightChanging(value);
+                this.ReportPropertyChanging("BWeight");
+                this._BWeight = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("BWeight");
+                this.OnBWeightChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _BWeight;
+        partial void OnBWeightChanging(global::System.Nullable<decimal> value);
+        partial void OnBWeightChanged();
+        /// <summary>
+        /// 架构中不存在属性 BColor 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string BColor
+        {
+            get
+            {
+                return this._BColor;
+            }
+            set
+            {
+                this.OnBColorChanging(value);
+                this.ReportPropertyChanging("BColor");
+                this._BColor = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("BColor");
+                this.OnBColorChanged();
+            }
+        }
+        private string _BColor;
+        partial void OnBColorChanging(string value);
+        partial void OnBColorChanged();
+        /// <summary>
+        /// 架构中不存在属性 BCount 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> BCount
+        {
+            get
+            {
+                return this._BCount;
+            }
+            set
+            {
+                this.OnBCountChanging(value);
+                this.ReportPropertyChanging("BCount");
+                this._BCount = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("BCount");
+                this.OnBCountChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _BCount;
+        partial void OnBCountChanging(global::System.Nullable<decimal> value);
+        partial void OnBCountChanged();
+        /// <summary>
+        /// 架构中不存在属性 BPrice 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> BPrice
+        {
+            get
+            {
+                return this._BPrice;
+            }
+            set
+            {
+                this.OnBPriceChanging(value);
+                this.ReportPropertyChanging("BPrice");
+                this._BPrice = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("BPrice");
+                this.OnBPriceChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _BPrice;
+        partial void OnBPriceChanging(global::System.Nullable<decimal> value);
+        partial void OnBPriceChanged();
+        /// <summary>
+        /// 架构中不存在属性 Bgh 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Bgh
+        {
+            get
+            {
+                return this._Bgh;
+            }
+            set
+            {
+                this.OnBghChanging(value);
+                this.ReportPropertyChanging("Bgh");
+                this._Bgh = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Bgh");
+                this.OnBghChanged();
+            }
+        }
+        private string _Bgh;
+        partial void OnBghChanging(string value);
+        partial void OnBghChanged();
+        /// <summary>
+        /// 架构中不存在属性 LwWeight 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> LwWeight
+        {
+            get
+            {
+                return this._LwWeight;
+            }
+            set
+            {
+                this.OnLwWeightChanging(value);
+                this.ReportPropertyChanging("LwWeight");
+                this._LwWeight = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("LwWeight");
+                this.OnLwWeightChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _LwWeight;
+        partial void OnLwWeightChanging(global::System.Nullable<decimal> value);
+        partial void OnLwWeightChanged();
+        /// <summary>
+        /// 架构中不存在属性 LwColor 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string LwColor
+        {
+            get
+            {
+                return this._LwColor;
+            }
+            set
+            {
+                this.OnLwColorChanging(value);
+                this.ReportPropertyChanging("LwColor");
+                this._LwColor = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("LwColor");
+                this.OnLwColorChanged();
+            }
+        }
+        private string _LwColor;
+        partial void OnLwColorChanging(string value);
+        partial void OnLwColorChanged();
+        /// <summary>
+        /// 架构中不存在属性 LwCount 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> LwCount
+        {
+            get
+            {
+                return this._LwCount;
+            }
+            set
+            {
+                this.OnLwCountChanging(value);
+                this.ReportPropertyChanging("LwCount");
+                this._LwCount = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("LwCount");
+                this.OnLwCountChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _LwCount;
+        partial void OnLwCountChanging(global::System.Nullable<decimal> value);
+        partial void OnLwCountChanged();
+        /// <summary>
+        /// 架构中不存在属性 LwPrice 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> LwPrice
+        {
+            get
+            {
+                return this._LwPrice;
+            }
+            set
+            {
+                this.OnLwPriceChanging(value);
+                this.ReportPropertyChanging("LwPrice");
+                this._LwPrice = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("LwPrice");
+                this.OnLwPriceChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _LwPrice;
+        partial void OnLwPriceChanging(global::System.Nullable<decimal> value);
+        partial void OnLwPriceChanged();
+        /// <summary>
+        /// 架构中不存在属性 LwGh 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string LwGh
+        {
+            get
+            {
+                return this._LwGh;
+            }
+            set
+            {
+                this.OnLwGhChanging(value);
+                this.ReportPropertyChanging("LwGh");
+                this._LwGh = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("LwGh");
+                this.OnLwGhChanged();
+            }
+        }
+        private string _LwGh;
+        partial void OnLwGhChanging(string value);
+        partial void OnLwGhChanged();
+        /// <summary>
+        /// 架构中不存在属性 SpWeight 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> SpWeight
+        {
+            get
+            {
+                return this._SpWeight;
+            }
+            set
+            {
+                this.OnSpWeightChanging(value);
+                this.ReportPropertyChanging("SpWeight");
+                this._SpWeight = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SpWeight");
+                this.OnSpWeightChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _SpWeight;
+        partial void OnSpWeightChanging(global::System.Nullable<decimal> value);
+        partial void OnSpWeightChanged();
+        /// <summary>
+        /// 架构中不存在属性 SpColor 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string SpColor
+        {
+            get
+            {
+                return this._SpColor;
+            }
+            set
+            {
+                this.OnSpColorChanging(value);
+                this.ReportPropertyChanging("SpColor");
+                this._SpColor = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("SpColor");
+                this.OnSpColorChanged();
+            }
+        }
+        private string _SpColor;
+        partial void OnSpColorChanging(string value);
+        partial void OnSpColorChanged();
+        /// <summary>
+        /// 架构中不存在属性 SpCount 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> SpCount
+        {
+            get
+            {
+                return this._SpCount;
+            }
+            set
+            {
+                this.OnSpCountChanging(value);
+                this.ReportPropertyChanging("SpCount");
+                this._SpCount = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SpCount");
+                this.OnSpCountChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _SpCount;
+        partial void OnSpCountChanging(global::System.Nullable<decimal> value);
+        partial void OnSpCountChanged();
+        /// <summary>
+        /// 架构中不存在属性 SpPrice 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> SpPrice
+        {
+            get
+            {
+                return this._SpPrice;
+            }
+            set
+            {
+                this.OnSpPriceChanging(value);
+                this.ReportPropertyChanging("SpPrice");
+                this._SpPrice = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SpPrice");
+                this.OnSpPriceChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _SpPrice;
+        partial void OnSpPriceChanging(global::System.Nullable<decimal> value);
+        partial void OnSpPriceChanged();
+        /// <summary>
+        /// 架构中不存在属性 SpGh 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string SpGh
+        {
+            get
+            {
+                return this._SpGh;
+            }
+            set
+            {
+                this.OnSpGhChanging(value);
+                this.ReportPropertyChanging("SpGh");
+                this._SpGh = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("SpGh");
+                this.OnSpGhChanged();
+            }
+        }
+        private string _SpGh;
+        partial void OnSpGhChanging(string value);
+        partial void OnSpGhChanged();
+        /// <summary>
+        /// 架构中不存在属性 InputDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> InputDate
+        {
+            get
+            {
+                return this._InputDate;
+            }
+            set
+            {
+                this.OnInputDateChanging(value);
+                this.ReportPropertyChanging("InputDate");
+                this._InputDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("InputDate");
+                this.OnInputDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _InputDate;
+        partial void OnInputDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnInputDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 ChangeDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> ChangeDate
+        {
+            get
+            {
+                return this._ChangeDate;
+            }
+            set
+            {
+                this.OnChangeDateChanging(value);
+                this.ReportPropertyChanging("ChangeDate");
+                this._ChangeDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ChangeDate");
+                this.OnChangeDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _ChangeDate;
+        partial void OnChangeDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnChangeDateChanged();
+    }
+    /// <summary>
     /// 架构中不存在 ForeignTradeModel.Memorandum 的注释。
     /// </summary>
     /// <KeyProperties>
@@ -7362,27 +8434,6 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnComprehensiveConventionChanging(string value);
         partial void OnComprehensiveConventionChanged();
         /// <summary>
-        /// 架构中不存在 StockContractsExportContracts 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_StockContracts", "StockContractsExportContracts")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<StockContractsExportContracts> StockContractsExportContracts
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<StockContractsExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContractsExportContracts");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<StockContractsExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContractsExportContracts", value);
-                }
-            }
-        }
-        /// <summary>
         /// 架构中不存在 StockContractsProduct 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_StockContractsProduct_StockContracts", "StockContractsProduct")]
@@ -7403,122 +8454,24 @@ namespace LZL.ForeignTrade.DataEntity
                 }
             }
         }
-    }
-    /// <summary>
-    /// 架构中不存在 ForeignTradeModel.StockContractsExportContracts 的注释。
-    /// </summary>
-    /// <KeyProperties>
-    /// ID
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="StockContractsExportContracts")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class StockContractsExportContracts : global::System.Data.Objects.DataClasses.EntityObject
-    {
         /// <summary>
-        /// 创建新的 StockContractsExportContracts 对象。
+        /// 架构中不存在 StockContractsExportContracts 的注释。
         /// </summary>
-        /// <param name="id">ID 的初始值。</param>
-        public static StockContractsExportContracts CreateStockContractsExportContracts(global::System.Guid id)
-        {
-            StockContractsExportContracts stockContractsExportContracts = new StockContractsExportContracts();
-            stockContractsExportContracts.ID = id;
-            return stockContractsExportContracts;
-        }
-        /// <summary>
-        /// 架构中不存在属性 ID 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid ID
-        {
-            get
-            {
-                return this._ID;
-            }
-            set
-            {
-                this.OnIDChanging(value);
-                this.ReportPropertyChanging("ID");
-                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ID");
-                this.OnIDChanged();
-            }
-        }
-        private global::System.Guid _ID;
-        partial void OnIDChanging(global::System.Guid value);
-        partial void OnIDChanged();
-        /// <summary>
-        /// 架构中不存在 ExportContracts 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_ExportContracts", "ExportContracts")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_StockContracts", "StockContractsExportContracts")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public ExportContracts ExportContracts
+        public global::System.Data.Objects.DataClasses.EntityCollection<StockContractsExportContracts> StockContractsExportContracts
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<ExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts", "ExportContracts").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<ExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts", "ExportContracts").Value = value;
-            }
-        }
-        /// <summary>
-        /// 架构中不存在 ExportContracts 的注释。
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<ExportContracts> ExportContractsReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<ExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts", "ExportContracts");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<StockContractsExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContractsExportContracts");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<ExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts", "ExportContracts", value);
-                }
-            }
-        }
-        /// <summary>
-        /// 架构中不存在 StockContracts 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_StockContracts", "StockContracts")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public StockContracts StockContracts
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<StockContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContracts").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<StockContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContracts").Value = value;
-            }
-        }
-        /// <summary>
-        /// 架构中不存在 StockContracts 的注释。
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<StockContracts> StockContractsReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<StockContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContracts");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<StockContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContracts", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<StockContractsExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContractsExportContracts", value);
                 }
             }
         }
@@ -7643,6 +8596,166 @@ namespace LZL.ForeignTrade.DataEntity
         }
     }
     /// <summary>
+    /// 架构中不存在 ForeignTradeModel.TableAttachment 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="TableAttachment")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class TableAttachment : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 TableAttachment 对象。
+        /// </summary>
+        /// <param name="id">id 的初始值。</param>
+        public static TableAttachment CreateTableAttachment(global::System.Guid id)
+        {
+            TableAttachment tableAttachment = new TableAttachment();
+            tableAttachment.id = id;
+            return tableAttachment;
+        }
+        /// <summary>
+        /// 架构中不存在属性 id 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                this.OnidChanging(value);
+                this.ReportPropertyChanging("id");
+                this._id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("id");
+                this.OnidChanged();
+            }
+        }
+        private global::System.Guid _id;
+        partial void OnidChanging(global::System.Guid value);
+        partial void OnidChanged();
+        /// <summary>
+        /// 架构中不存在属性 KeyName 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string KeyName
+        {
+            get
+            {
+                return this._KeyName;
+            }
+            set
+            {
+                this.OnKeyNameChanging(value);
+                this.ReportPropertyChanging("KeyName");
+                this._KeyName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("KeyName");
+                this.OnKeyNameChanged();
+            }
+        }
+        private string _KeyName;
+        partial void OnKeyNameChanging(string value);
+        partial void OnKeyNameChanged();
+        /// <summary>
+        /// 架构中不存在属性 FileName 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileName
+        {
+            get
+            {
+                return this._FileName;
+            }
+            set
+            {
+                this.OnFileNameChanging(value);
+                this.ReportPropertyChanging("FileName");
+                this._FileName = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("FileName");
+                this.OnFileNameChanged();
+            }
+        }
+        private string _FileName;
+        partial void OnFileNameChanging(string value);
+        partial void OnFileNameChanged();
+        /// <summary>
+        /// 架构中不存在属性 FileExt 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileExt
+        {
+            get
+            {
+                return this._FileExt;
+            }
+            set
+            {
+                this.OnFileExtChanging(value);
+                this.ReportPropertyChanging("FileExt");
+                this._FileExt = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("FileExt");
+                this.OnFileExtChanged();
+            }
+        }
+        private string _FileExt;
+        partial void OnFileExtChanging(string value);
+        partial void OnFileExtChanged();
+        /// <summary>
+        /// 架构中不存在属性 FileData 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] FileData
+        {
+            get
+            {
+                return global::System.Data.Objects.DataClasses.StructuralObject.GetValidValue(this._FileData);
+            }
+            set
+            {
+                this.OnFileDataChanging(value);
+                this.ReportPropertyChanging("FileData");
+                this._FileData = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("FileData");
+                this.OnFileDataChanged();
+            }
+        }
+        private byte[] _FileData;
+        partial void OnFileDataChanging(byte[] value);
+        partial void OnFileDataChanged();
+        /// <summary>
+        /// 架构中不存在属性 Notes 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Notes
+        {
+            get
+            {
+                return this._Notes;
+            }
+            set
+            {
+                this.OnNotesChanging(value);
+                this.ReportPropertyChanging("Notes");
+                this._Notes = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Notes");
+                this.OnNotesChanged();
+            }
+        }
+        private string _Notes;
+        partial void OnNotesChanging(string value);
+        partial void OnNotesChanged();
+    }
+    /// <summary>
     /// 架构中不存在 ForeignTradeModel.UserDepartRelation 的注释。
     /// </summary>
     /// <KeyProperties>
@@ -7732,5 +8845,536 @@ namespace LZL.ForeignTrade.DataEntity
         private string _DepartId;
         partial void OnDepartIdChanging(string value);
         partial void OnDepartIdChanged();
+    }
+    /// <summary>
+    /// 架构中不存在 ForeignTradeModel.WarehouseSale 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="WarehouseSale")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class WarehouseSale : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 WarehouseSale 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static WarehouseSale CreateWarehouseSale(global::System.Guid id)
+        {
+            WarehouseSale warehouseSale = new WarehouseSale();
+            warehouseSale.ID = id;
+            return warehouseSale;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在属性 SaleDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> SaleDate
+        {
+            get
+            {
+                return this._SaleDate;
+            }
+            set
+            {
+                this.OnSaleDateChanging(value);
+                this.ReportPropertyChanging("SaleDate");
+                this._SaleDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SaleDate");
+                this.OnSaleDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _SaleDate;
+        partial void OnSaleDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnSaleDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 SaleCount 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> SaleCount
+        {
+            get
+            {
+                return this._SaleCount;
+            }
+            set
+            {
+                this.OnSaleCountChanging(value);
+                this.ReportPropertyChanging("SaleCount");
+                this._SaleCount = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SaleCount");
+                this.OnSaleCountChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _SaleCount;
+        partial void OnSaleCountChanging(global::System.Nullable<decimal> value);
+        partial void OnSaleCountChanged();
+        /// <summary>
+        /// 架构中不存在属性 SalePrice 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> SalePrice
+        {
+            get
+            {
+                return this._SalePrice;
+            }
+            set
+            {
+                this.OnSalePriceChanging(value);
+                this.ReportPropertyChanging("SalePrice");
+                this._SalePrice = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SalePrice");
+                this.OnSalePriceChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _SalePrice;
+        partial void OnSalePriceChanging(global::System.Nullable<decimal> value);
+        partial void OnSalePriceChanged();
+        /// <summary>
+        /// 架构中不存在属性 SaleWeight 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> SaleWeight
+        {
+            get
+            {
+                return this._SaleWeight;
+            }
+            set
+            {
+                this.OnSaleWeightChanging(value);
+                this.ReportPropertyChanging("SaleWeight");
+                this._SaleWeight = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SaleWeight");
+                this.OnSaleWeightChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _SaleWeight;
+        partial void OnSaleWeightChanging(global::System.Nullable<decimal> value);
+        partial void OnSaleWeightChanged();
+        /// <summary>
+        /// 架构中不存在属性 SaleType 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> SaleType
+        {
+            get
+            {
+                return this._SaleType;
+            }
+            set
+            {
+                this.OnSaleTypeChanging(value);
+                this.ReportPropertyChanging("SaleType");
+                this._SaleType = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("SaleType");
+                this.OnSaleTypeChanged();
+            }
+        }
+        private global::System.Nullable<int> _SaleType;
+        partial void OnSaleTypeChanging(global::System.Nullable<int> value);
+        partial void OnSaleTypeChanged();
+        /// <summary>
+        /// 架构中不存在属性 SaleNo 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string SaleNo
+        {
+            get
+            {
+                return this._SaleNo;
+            }
+            set
+            {
+                this.OnSaleNoChanging(value);
+                this.ReportPropertyChanging("SaleNo");
+                this._SaleNo = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("SaleNo");
+                this.OnSaleNoChanged();
+            }
+        }
+        private string _SaleNo;
+        partial void OnSaleNoChanging(string value);
+        partial void OnSaleNoChanged();
+        /// <summary>
+        /// 架构中不存在属性 InputDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> InputDate
+        {
+            get
+            {
+                return this._InputDate;
+            }
+            set
+            {
+                this.OnInputDateChanging(value);
+                this.ReportPropertyChanging("InputDate");
+                this._InputDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("InputDate");
+                this.OnInputDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _InputDate;
+        partial void OnInputDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnInputDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 ChangeDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> ChangeDate
+        {
+            get
+            {
+                return this._ChangeDate;
+            }
+            set
+            {
+                this.OnChangeDateChanging(value);
+                this.ReportPropertyChanging("ChangeDate");
+                this._ChangeDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ChangeDate");
+                this.OnChangeDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _ChangeDate;
+        partial void OnChangeDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnChangeDateChanged();
+    }
+    /// <summary>
+    /// 架构中不存在 ForeignTradeModel.WarehouseStore 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="WarehouseStore")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class WarehouseStore : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 WarehouseStore 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static WarehouseStore CreateWarehouseStore(global::System.Guid id)
+        {
+            WarehouseStore warehouseStore = new WarehouseStore();
+            warehouseStore.ID = id;
+            return warehouseStore;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在属性 Type 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> Type
+        {
+            get
+            {
+                return this._Type;
+            }
+            set
+            {
+                this.OnTypeChanging(value);
+                this.ReportPropertyChanging("Type");
+                this._Type = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Type");
+                this.OnTypeChanged();
+            }
+        }
+        private global::System.Nullable<int> _Type;
+        partial void OnTypeChanging(global::System.Nullable<int> value);
+        partial void OnTypeChanged();
+        /// <summary>
+        /// 架构中不存在属性 No 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string No
+        {
+            get
+            {
+                return this._No;
+            }
+            set
+            {
+                this.OnNoChanging(value);
+                this.ReportPropertyChanging("No");
+                this._No = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("No");
+                this.OnNoChanged();
+            }
+        }
+        private string _No;
+        partial void OnNoChanging(string value);
+        partial void OnNoChanged();
+        /// <summary>
+        /// 架构中不存在属性 Count 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> Count
+        {
+            get
+            {
+                return this._Count;
+            }
+            set
+            {
+                this.OnCountChanging(value);
+                this.ReportPropertyChanging("Count");
+                this._Count = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Count");
+                this.OnCountChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _Count;
+        partial void OnCountChanging(global::System.Nullable<decimal> value);
+        partial void OnCountChanged();
+        /// <summary>
+        /// 架构中不存在属性 Weight 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<decimal> Weight
+        {
+            get
+            {
+                return this._Weight;
+            }
+            set
+            {
+                this.OnWeightChanging(value);
+                this.ReportPropertyChanging("Weight");
+                this._Weight = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Weight");
+                this.OnWeightChanged();
+            }
+        }
+        private global::System.Nullable<decimal> _Weight;
+        partial void OnWeightChanging(global::System.Nullable<decimal> value);
+        partial void OnWeightChanged();
+        /// <summary>
+        /// 架构中不存在属性 InputDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> InputDate
+        {
+            get
+            {
+                return this._InputDate;
+            }
+            set
+            {
+                this.OnInputDateChanging(value);
+                this.ReportPropertyChanging("InputDate");
+                this._InputDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("InputDate");
+                this.OnInputDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _InputDate;
+        partial void OnInputDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnInputDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 ChangeDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> ChangeDate
+        {
+            get
+            {
+                return this._ChangeDate;
+            }
+            set
+            {
+                this.OnChangeDateChanging(value);
+                this.ReportPropertyChanging("ChangeDate");
+                this._ChangeDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ChangeDate");
+                this.OnChangeDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _ChangeDate;
+        partial void OnChangeDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnChangeDateChanged();
+    }
+    /// <summary>
+    /// 架构中不存在 ForeignTradeModel.StockContractsExportContracts 的注释。
+    /// </summary>
+    /// <KeyProperties>
+    /// ID
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="StockContractsExportContracts")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class StockContractsExportContracts : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// 创建新的 StockContractsExportContracts 对象。
+        /// </summary>
+        /// <param name="id">ID 的初始值。</param>
+        public static StockContractsExportContracts CreateStockContractsExportContracts(global::System.Guid id)
+        {
+            StockContractsExportContracts stockContractsExportContracts = new StockContractsExportContracts();
+            stockContractsExportContracts.ID = id;
+            return stockContractsExportContracts;
+        }
+        /// <summary>
+        /// 架构中不存在属性 ID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return this._ID;
+            }
+            set
+            {
+                this.OnIDChanging(value);
+                this.ReportPropertyChanging("ID");
+                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("ID");
+                this.OnIDChanged();
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+        /// <summary>
+        /// 架构中不存在 ExportContracts 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_ExportContracts", "ExportContracts")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public ExportContracts ExportContracts
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<ExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts", "ExportContracts").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<ExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts", "ExportContracts").Value = value;
+            }
+        }
+        /// <summary>
+        /// 架构中不存在 ExportContracts 的注释。
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<ExportContracts> ExportContractsReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<ExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts", "ExportContracts");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<ExportContracts>("ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts", "ExportContracts", value);
+                }
+            }
+        }
+        /// <summary>
+        /// 架构中不存在 StockContracts 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_StockContracts", "StockContracts")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public StockContracts StockContracts
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<StockContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContracts").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<StockContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContracts").Value = value;
+            }
+        }
+        /// <summary>
+        /// 架构中不存在 StockContracts 的注释。
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<StockContracts> StockContractsReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<StockContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContracts");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<StockContracts>("ForeignTradeModel.FK_StockContractsExportContracts_StockContracts", "StockContracts", value);
+                }
+            }
+        }
     }
 }
