@@ -223,7 +223,7 @@
                             <li>
                                 <%= Html.ActionLink("资源管理", "AttachmentDownload", "Attachment")%></li>
                             <li>
-                                <%= Html.ActionLink("仓库管理", "WarehouseManager", "Attachment")%></li>
+                                <%= Html.ActionLink("仓库管理", "WarehouseManager", "Warehouse")%></li>
                         </ul>
                     </li>
                     <li>
