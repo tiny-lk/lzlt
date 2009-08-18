@@ -13,7 +13,7 @@
         <h2>
             相关功能</h2>
         <div>
-            <ul>
+            <ul  id="menu">
                 <li>
                     <%= Html.ActionLink("添加单据信息", "Add", "Invoice")%></li>
                 <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
