@@ -274,6 +274,9 @@
     <Content Include="Views\Warehouse\WarehouseManager.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\body_backdrop.gif" />
+    <Content Include="Content\images\table_head.gif" />
+    <Content Include="Content\images\toolbarbackgroup.gif" />
     <Content Include="Views\Warehouse\Warehouse.Master" />
   </ItemGroup>
   <ItemGroup>

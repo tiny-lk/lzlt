@@ -4,14 +4,12 @@
     <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
 </asp:Content>
 <asp:Content ID="PriceMain" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="main">
-        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-    </div>
+    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 </asp:Content>
 <asp:Content ID="PriceSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
+    <fieldset>
+        <legend title="相关功能">相关功能</legend>
     <div id="sidebar">
-        <h2>
-            相关功能</h2>
         <div>
             <ul id="menu">
                 <li>
@@ -20,4 +18,5 @@
             </ul>
         </div>
     </div>
+    </fieldset>
 </asp:Content>

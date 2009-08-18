@@ -4,8 +4,8 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body
-{
-    background-color: #5c87b2;
+{    background-image:url(images/body_backdrop.gif);
+    background-repeat:repeat;
     margin: 0;
     padding: 0;
     font-size:12px;
@@ -85,7 +85,7 @@ first child of the left and right table columns */
 page width. Or, you can specify an exact pixel width. */
 .page
 {
-    width: 990px;
+    width:98%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -94,51 +94,54 @@ page width. Or, you can specify an exact pixel width. */
 {
     position: relative;
     margin-bottom: 0px;
-    color: #000;
     padding: 0;
-    background-color: #5c87b2;
 }
 #header h1
 {
     font-weight: bold;
     padding: 5px 0;
     margin: 0;
-    color: #fff;
     border: none;
     line-height: 2em;
     font-size: 32px !important;
 }
 #content
 {
-    width:990px;
+    width:100%;
     float:left;
-    background-color: #fef;
     position:relative;
 }
 #treemenucss
 {
-    position:relative;
-    width:140px;
+    background-color:White;
+    border: 1px solid #3d9202;
+    width:14%;
     float:left;
-    overflow:auto;
-    border:1px;
-    height:550px;
+    height:570px;
+    padding :5px;
      _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
-#main
+.main
 {
-    width:830px;
-    padding: 10px;
-    background-color: #fff;
-    float: left;
+    background-color:White;
+    border: 1px solid #3d9202;
+    margin-left:2px;
+    width:83%;
+    float:right;
+    padding :5px 5px 20px 5px;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
+.toolbar
+{
+    height:21px;    
+}
+
 #mainindex
 {
     padding: 10px;
     background-color: #fff;
     float:left;
-    width:830px;
+     width:84%;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
 }
 #footer
@@ -162,7 +165,6 @@ ul#menu li
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-	background-color:Silver;
     display: inline;
     list-style: none;
 }
@@ -173,14 +175,12 @@ ul#menu li#greeting
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-    color: #fff;
 }
 
 ul#menu li a
 {
     padding: 0px;
     font-weight: bold; 
-    color: #034af3;
 }
 
 ul#menu li a:hover
@@ -198,7 +198,6 @@ ul#menu li a:active
 ul#menu li.selected a
 {
     background-color: #fff;
-    color: #000;
 }
 
 /* FORM LAYOUT ELEMENTS   
@@ -213,13 +212,7 @@ ul#menu li.selected a
 fieldset
 {
     margin: 1px 0;
-    padding: 1em;
-    border: 1px solid #CCC;
-}
-
-fieldset p
-{
-    margin: 2px 12px 10px 10px;
+    padding: 2px;
 }
 
 fieldset label
@@ -234,23 +227,24 @@ fieldset label.inline
 
 legend
 {
-    font-size: 1.1em;
-    font-weight: 600;
-    padding: 2px 4px 8px 4px;
+    font-weight:bold;
+    margin-left:10px;
 }
 
 input[type="text"]
 {
-    width: 200px;
+    width:90%;
     border: 1px solid #3f6ebc;
 }
+
 textarea 
 {
     border: 1px solid #3f6ebc;
 }
+
 input[type="password"]
 {
-    width: 200px;
+     width:90%;
     border: 1px solid #3f6ebc;
 }
 /* TABLE
@@ -261,7 +255,6 @@ table
 
     border: solid 1px #8f884d;
     border-collapse: collapse;
-    text-align: center;
 }
  caption
 {
@@ -276,7 +269,10 @@ table td
     border: solid 1px #8f884d;
     line-height:21px;
 }
-
+table tfoot
+{
+    border-bottom-style:none;
+}
 table th
 {
     padding: 6px 5px;
@@ -284,6 +280,7 @@ table th
     background-color: #8f884d;
     border: solid 1px #8f884d;
 }
+
 .mouseover
 {
     background-color: #efe9b5;
@@ -298,7 +295,6 @@ table th
    width:100%;
    margin-bottom:5px;
    border-collapse: collapse; 
-   text-align: center;
 }
 .dynamictable td
 {
@@ -309,7 +305,13 @@ table th
 {
     padding: 6px 5px;
     text-align: left;
-     border:solid 1px #8f884d;
+    border:solid 1px #8f884d;
+}
+
+.dynamictable tfoot
+{
+    border-bottom-style:none;
+    border-collapse: collapse; 
 }
 
 /* MISC  
@@ -342,24 +344,20 @@ div#title
     display: block;
     text-align: right;
     margin: 10px;
-    color: White;
 }
 
 #logindisplay a:link
 {
-    color: white;
     text-decoration: underline;
 }
 
 #logindisplay a:visited
 {
-    color: white;
     text-decoration: underline;
 }
 
 #logindisplay a:hover
 {
-    color: white;
     text-decoration: none;
 }
 

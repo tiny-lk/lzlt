@@ -4,20 +4,18 @@
     <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
 </asp:Content>
 <asp:Content ID="ProductMain" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="main">
-        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-    </div>
+    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 </asp:Content>
 <asp:Content ID="ProducteSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
-    <div id="sidebar">
-        <h2>
-            相关功能</h2>
-        <div>
-            <ul id="menu">
-                <li>
-                    <%= Html.ActionLink("添加商品信息", "Add", "Product")%></li>
-                <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
-            </ul>
+    <fieldset>
+        <div id="sidebar">
+            <div>
+                <ul id="menu">
+                    <li>
+                        <%= Html.ActionLink("添加商品信息", "Add", "Product")%></li>
+                    <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
+                </ul>
+            </div>
         </div>
-    </div>
+    </fieldset>
 </asp:Content>
