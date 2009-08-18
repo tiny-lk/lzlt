@@ -19,11 +19,9 @@
                 <li>
                     <%= Html.ActionLink("原材料采购", "MateriaBuy", "Warehouse")%></li>
                 <li>
-                    <%= Html.ActionLink("原材料消耗", "MateriaSale", "Warehouse")%></li>
-                <li>
                     <%= Html.ActionLink("辅料采购", "AccessoriesBuy", "Warehouse")%></li>
                 <li>
-                    <%= Html.ActionLink("辅料消耗", "AccessoriesSale", "Warehouse")%></li>
+                    <%= Html.ActionLink("库存销货", "WarehouseSale", "Warehouse")%></li>
             </ul>
         </div>
     </div>

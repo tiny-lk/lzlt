@@ -1,12 +1,12 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Warehouse/Warehouse.Master"
-    Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.WarehouseStore>>" %>
+    Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.WarehouseSale>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    仓库一览
+    原材料消耗
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
-        仓库一览</h2>
+        原材料消耗</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -32,25 +32,46 @@
             });
 
             $("#OK").bind("click", function() {
-                if ($("#queryvalue").val() != "") {
-                    $('form').submit();
+                loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
+            });
+
+            //查询数据信息
+            function loadlistdata(obj, name, value, p) {
+                var tableobject = $(obj).closest("table");
+                $.ajax({
+                    type: "get",
+                    dataType: "html",
+                    data: { quyerCondition: name, queryvalue: value, page: p },
+                    url: '<%=Url.Action("WarehouseSale","Warehouse")%>',
+                    success: function(data) {
+                        $(tableobject).find("tfoot").html("");
+                        $(tableobject).find("tfoot").append($(data).find("tfoot").html());
+                        $(tableobject).find("tbody").html("");
+                        $(tableobject).find("tbody").append($(data).find("tbody").html());
+                    },
+                    error: function(err) {
+                        alert("列表数据错误！");
+                    }
+                });
+            }
+
+            $("#Add").bind("click", function() {
+                window.location.href = '<%=Url.Content("~/Warehouse/AddWarehouseSale/") %>';
+            });
+
+            $("#Delete").bind("click", function() {
+                var State = confirm('你确认要删除' + $(document).data('checkvalue') + '吗？');
+                if (State == true) {
+                    window.location.href = '<%=Url.Content("~/Warehouse/DeleteWarehouseSale/") %>' + $(document).data('checkvalue');
                 }
             });
 
-            $("#ManageMateria").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/MateriaBuy/") %>';
-            });
-
-            $("#ManageAccessories").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/AccessoriesBuy/") %>' + $(document).data('checkvalue');
-            });
-
-            $("#WarehouseSale").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/WarehouseSale/") %>' + $(document).data('checkvalue');
+            $("#Edit").bind("click", function() {
+                window.location.href = '<%=Url.Content("~/Warehouse/EditWarehouseSale/") %>' + $(document).data('checkvalue');
             });
 
             $("#Refresh").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/WarehouseManager") %>';
+                window.location.href = '<%=Url.Content("~/Warehouse/WarehouseSale") %>';
             });
 
             $("#allselect").bind("click", function() {
@@ -102,12 +123,20 @@
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
         <thead>
             <tr>
-                <td colspan="6" align="right">
-                    <input type="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" id="ManageMateria" value="原材料管理"/>
-                    <input type="button" id="ManageAccessories" value="辅料管理" />
-                    <input type="button" id="WarehouseSale" value="库存销货"/>
-                    <input type="button" id="Refresh" value="刷 新" />
+                <td colspan="2">
+                    <%=Html.DropDownList("quyerCondition",
+                        new SelectList(new List<SelectListItem>() {
+                            new SelectListItem(){ Text="类别", Value ="Type"}
+                        }, "Value", "Text", "Name"))%>
+                </td>
+                <td colspan="7" align="left">
+                    <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
+                    <div style="float: right;">
+                        <input type="button" id="OK" value="查 询" disabled="disabled" />
+                        <input type="button" id="Add" value="添加" />
+                        <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                        <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                        <input type="button" id="Refresh" value="刷 新" />
                 </td>
             </tr>
         </thead>
@@ -120,16 +149,25 @@
                     序号
                 </td>
                 <td>
-                    类别（原材料、辅料）
+                    编号
                 </td>
                 <td>
-                    编号
+                    类别
+                </td>
+                <td>
+                    单价
                 </td>
                 <td>
                     数量
                 </td>
                 <td>
                     重量
+                </td>
+                <td>
+                    日期
+                </td>
+                <td>
+                    输入日期
                 </td>
             </tr>
             <%
@@ -138,7 +176,8 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
             %>
-            <tr>
+            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/EditWarehouseSale/"+Html.Encode(Model[i].ID)) %>'"
+                title="双击查看详细信息">
                 <td>
                     <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
                 </td>
@@ -146,25 +185,35 @@
                     <%= (beginenumber+i).ToString()%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].Type)%>
+                    <%= Html.Encode(Model[i].SaleNo)%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].No)%>
+                    <%= Html.Encode(Model[i].SaleType)%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].Count)%>
+                    <%= Html.Encode(Model[i].SalePrice)%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].Weight)%>
+                    <%= Html.Encode(Model[i].SaleCount)%>
+                </td>
+                <td>
+                    <%= Html.Encode(Model[i].SaleWeight)%>
+                </td>
+                <td>
+                    <%= Html.Encode(Model[i].SaleDate)%>
+                </td>
+                <td>
+                    <%= Html.Encode(Model[i].InputDate)%>
                 </td>
             </tr>
-            <% 
+            <%
                 }
+            
             %>
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="9" align="right">
+                <td colspan="10" align="right">
                     <a href="#" onclick="print();">打 印</a>|
                     <%
                         int count = int.Parse(ViewData["pagecount"].ToString());
@@ -177,11 +226,11 @@
                         {
                             if (p < count)
                             {
-                                Response.Write("上一页|" + Html.ActionLink("下一页", "WarehouseManager", "Warehouse", new { page = p + 1 }, null));
+                                Response.Write("上一页|" + Html.ActionLink("下一页", "WarehouseSale", "Warehouse", new { page = p + 1 }, null));
                             }
                             else
                             {
-                                Response.Write(Html.ActionLink("上一页", "WarehouseManager", "Warehouse", new { page = p - 1 }, null) + "|下一页");
+                                Response.Write(Html.ActionLink("上一页", "WarehouseSale", "Warehouse", new { page = p - 1 }, null) + "|下一页");
                             }
                         }
                         Response.Write("|当前页：第 <span style='font-weight:bolder; color:Red;'>" + p + "</span> 页|总页码：<span style='font-weight:bolder; color:Red;'>" + count + "</span> 页");
