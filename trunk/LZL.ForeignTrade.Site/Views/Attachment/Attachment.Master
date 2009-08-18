@@ -4,21 +4,20 @@
     <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
 </asp:Content>
 <asp:Content ID="AttachmentContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div id="main">
-        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
-    </div>
+    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 </asp:Content>
 <asp:Content ID="AttachmentSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
-    <div id="sidebar">
-        <h2>
-            资源管理</h2>
-        <div>
-            <ul id="menu">
-                <li>
-                    <%= Html.ActionLink("表格模板下载", "AttachmentDownload", "Attachment")%></li>
-                <li>
-                    <%= Html.ActionLink("资源管理", "AttachmentManager", "Attachment")%></li>
-            </ul>
+    <fieldset>
+        <legend title="相关功能">相关功能</legend>
+        <div id="sidebar">
+            <div>
+                <ul id="menu">
+                    <li>
+                        <%= Html.ActionLink("表格模板下载", "AttachmentDownload", "Attachment")%></li>
+                    <li>
+                        <%= Html.ActionLink("资源管理", "AttachmentManager", "Attachment")%></li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </fieldset>
 </asp:Content>

@@ -9,20 +9,21 @@
     </div>
 </asp:Content>
 <asp:Content ID="AttachmentSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
-    <div id="sidebar">
-        <h2>
-            仓库进销存管理</h2>
-        <div>
-            <ul id="menu">
-                <li>
-                    <%= Html.ActionLink("仓库一览", "WarehouseManager", "Warehouse")%></li>
-                <li>
-                    <%= Html.ActionLink("原材料采购", "MateriaBuy", "Warehouse")%></li>
-                <li>
-                    <%= Html.ActionLink("辅料采购", "AccessoriesBuy", "Warehouse")%></li>
-                <li>
-                    <%= Html.ActionLink("库存销货", "WarehouseSale", "Warehouse")%></li>
-            </ul>
+    <fieldset>
+        <legend title="相关功能">相关功能</legend>
+        <div id="sidebar">
+            <div>
+                <ul id="menu">
+                    <li>
+                        <%= Html.ActionLink("仓库一览", "WarehouseManager", "Warehouse")%></li>
+                    <li>
+                        <%= Html.ActionLink("原材料采购", "MateriaBuy", "Warehouse")%></li>
+                    <li>
+                        <%= Html.ActionLink("辅料采购", "AccessoriesBuy", "Warehouse")%></li>
+                    <li>
+                        <%= Html.ActionLink("库存销货", "WarehouseSale", "Warehouse")%></li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </fieldset>
 </asp:Content>
