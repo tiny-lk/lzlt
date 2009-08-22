@@ -47,12 +47,50 @@ namespace LZL.ForeignTrade.Controllers
         }
 
         /// <summary>
+        /// Adds the materia.
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddMateria(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+            {
+                return View();
+            }
+
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("MateriaBuy");
+        }
+
+        /// <summary>
         /// Edits the materia.
         /// </summary>
+        /// <param name="id">The id.</param>
         /// <returns></returns>
-        public ActionResult EditMateria()
+        public ActionResult EditMateria(string id)
         {
-            return View();
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.MaterialBuy.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Edits the dictionary.---add by lj
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditMateria(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("MateriaBuy");
         }
 
         /// <summary>
