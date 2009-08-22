@@ -179,7 +179,7 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
             %>
-            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/EditDictionary/"+Html.Encode(Model[i].ID)) %>'"
+            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/EditMateria/"+Html.Encode(Model[i].ID)) %>'"
                 title="双击查看详细信息">
                 <td>
                     <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
