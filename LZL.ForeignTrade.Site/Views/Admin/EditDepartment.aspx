@@ -1,15 +1,14 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.master" Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.Department>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	编辑部门
+    编辑部门
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>编辑部门</h2>
-<% using (Html.BeginForm())
+    <h2>
+        编辑部门</h2>
+    <% using (Html.BeginForm())
        { %>
-        <!-- 标识子表区域名称(表格名称、实体对象名称) -->
+    <!-- 标识子表区域名称(表格名称、实体对象名称) -->
     <input type="hidden" name="region" value="Department♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Department♂objectname" value="LZL.ForeignTrade.DataEntity.Department,LZL.ForeignTrade.DataEntity" />
