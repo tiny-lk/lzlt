@@ -135,12 +135,50 @@ namespace LZL.ForeignTrade.Controllers
         }
 
         /// <summary>
+        /// Adds the materia.
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddAccessories(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+            {
+                return View();
+            }
+
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("AccessoriesBuy");
+        }
+
+        /// <summary>
         /// Edits the accessories.
         /// </summary>
+        /// <param name="id">The id.</param>
         /// <returns></returns>
-        public ActionResult EditAccessories()
+        public ActionResult EditAccessories(string id)
         {
-            return View();
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.AccessoriesBuy.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Edits the dictionary.---add by lj
+        /// </summary>
+        /// <param name="formvalues">The formvalues.</param>
+        /// <returns></returns>
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditAccessories(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("AccessoriesBuy");
         }
 
         /// <summary>
