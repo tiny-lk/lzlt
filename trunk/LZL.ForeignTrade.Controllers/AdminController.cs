@@ -166,8 +166,19 @@ namespace LZL.ForeignTrade.Controllers
         {
             Entities _Entities = new Entities();
             int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "Type", "", "Dictionary")) / pagesize);
-            var dictionarys = _Entities.Dictionary.OrderBy(v => v.Type).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
+
+            List<Dictionary> lstDic = new List<Dictionary>();
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                lstDic = _Entities.Dictionary.Where(v => v.Type.Equals(queryvalue)).OrderBy(v => v.Type).ToList();
+            }
+            else
+            {
+                lstDic = _Entities.Dictionary.OrderBy(v => v.Type).ToList();
+            }
+
+            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)lstDic.Count) / pagesize);
+            var dictionarys = lstDic.Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList() ;
             return View(dictionarys);
         }
 
