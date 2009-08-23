@@ -150,7 +150,7 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
             %>
-            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/EditAccessoriesBuy/"+Html.Encode(Model[i].ID)) %>'"
+            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/EditAccessories/"+Html.Encode(Model[i].ID)) %>'"
                 title="双击查看详细信息">
                 <td>
                     <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
@@ -173,10 +173,7 @@
                 <td>
                     <%= Html.Encode(Model[i].ZbSize)%>
                 </td>
-                <td>
-                    <a href="<%=Url.Content("~/Warehouse/ManageUserRelation/"+Html.Encode(Model[i].ID)) %>">
-                        关联</a>
-                </td>
+                
             </tr>
             <% 
                 }
