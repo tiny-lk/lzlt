@@ -35,24 +35,24 @@
                 </td>
             </tr>
             <tr>
-                <td rowspan="8" align="center" valign="middle" style="width:10%;">
+                <td rowspan="8" align="center" valign="middle" style="width: 10%;">
                     客户基本信息
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     客户代码（简称）：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Customer♂NameCode", "", new { validate = "required:true"})%>
                 </td>
-                <td align="right" style="width:15%;">
+                <td align="right" style="width: 15%;">
                     中文名称：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Customer♂NameCn")%>
                 </td>
             </tr>
             <tr>
-                <td align="right" >
+                <td align="right">
                     英文名称：
                 </td>
                 <td align="left">
@@ -171,8 +171,8 @@
                 <td colspan="5">
                 </td>
             </tr>
+            <!-- 备忘录区域 -->
         </thead>
-        <!-- 备忘录区域 -->
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
@@ -186,6 +186,7 @@
     <%} %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="addcontrol(this,'LinkmanControl','Linkman♂',1)">添加联系人信息</a></li>
-    <li><a href="#" onclick="addcontrol(this,'MemorandumControl','Memorandum♂',1)">备忘录</a></li>
+    <a href="#" onclick="addcontrol(this,'LinkmanControl','Linkman♂',1)" class="button">
+        联系人</a> <a href="#" onclick="addcontrol(this,'MemorandumControl','Memorandum♂',1)"
+            class="button">备忘录</a>
 </asp:Content>

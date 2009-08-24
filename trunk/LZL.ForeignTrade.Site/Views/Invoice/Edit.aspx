@@ -153,7 +153,7 @@
             <tr>
                 <td rowspan="7" align="center" valign="middle" style="width: 10%;">
                     发票简介
-                     <%= Html.Hidden("Invoice♂ID", Html.Encode(Model.ID.ToString()))%>
+                    <%= Html.Hidden("Invoice♂ID", Html.Encode(Model.ID.ToString()))%>
                 </td>
                 <td align="right" style="width: 15%;">
                     发票号：
@@ -748,8 +748,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');">
-        关联出口合同</a></li>
-    <li><a href="#" onclick="openspxx('InvoiceProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');">
-        关联商品信息</a></li>
+    <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
+        class="button">出口合同</a> <a href="#" onclick="openspxx('InvoiceProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');"
+            class="button">商品信息</a>
 </asp:Content>

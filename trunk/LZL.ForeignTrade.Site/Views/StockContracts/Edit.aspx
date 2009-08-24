@@ -141,17 +141,17 @@
                 <td rowspan="3" align="center" valign="middle" style="width: 10%;">
                     采购合同简介
                 </td>
-                  <%= Html.Hidden("StockContracts♂ID", Html.Encode(Model.ID.ToString()))%>
+                <%= Html.Hidden("StockContracts♂ID", Html.Encode(Model.ID.ToString()))%>
                 <td align="right" style="width: 15%;">
                     采购合同号：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("StockContracts♂Name",Html.Encode( Model.Name), new { validate = "required:true" })%>
                 </td>
                 <td align="right" style="width: 15%;">
                     采购合同签约日期：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("StockContracts♂Date", Html.Encode(Model.Date.ToShortDateString()), new { validate = "date:true,required:true", Class = "calendar" })%>
                 </td>
             </tr>
@@ -471,8 +471,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="openckht('StockContractsExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","ExportContracts")%>');">
-        关联出口合同</a></li>
-    <li><a href="#" onclick="openspxx('StockContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');">
-        关联商品信息</a></li>
+    <a href="#" onclick="openckht('StockContractsExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","ExportContracts")%>');"
+        class="button">关联出口合同</a> <a href="#" onclick="openspxx('StockContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');"
+            class="button">关联商品信息</a>
 </asp:Content>

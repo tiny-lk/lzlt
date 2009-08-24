@@ -86,10 +86,10 @@
 
             $(document).data("checkvalue", "");
             $(document).data("check", 0);
-            $.each($($("table > tbody > tr").find("input[type='checkbox']").find("input[name='select']")), function(i, o) {
+            $.each($($("table > tbody > tr").find("input[type = 'checkbox'][name = 'select']")), function(i, o) {
                 $(o).attr("checked", "");
             });
-            $($("table > tbody > tr").find("input[type='checkbox']")).find("input[name='select']").live("click", function() {
+            $($("table > tbody > tr").find("input[type = 'checkbox'][name = 'select']")).live("click", function() {
                 if ($(document).data("check") == null || $(document).data("check") == "" || $(document).data("check") == 'undefined') {
                     $(document).data("check", 0);
                 }

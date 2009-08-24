@@ -16,18 +16,22 @@ a:link
 {
     color: #034af3;
 }
+
 a
 {
     text-decoration:none;
 }
+
 a:visited
 {
     color: #505abc;
 }
+
 a:hover
 {
     color: #1d60ff;
 }
+
 a:active
 {
     color: #12eb87;
@@ -152,63 +156,39 @@ page width. Or, you can specify an exact pixel width. */
     text-align: center;
 }
 
-/* TAB MENU   
-----------------------------------------------------------*/
-ul#menu
-{
-    position: relative;
-}
-
-ul#menu li
-{
-	padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    display: inline;
-    list-style: none;
-}
-
-ul#menu li#greeting
-{
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-}
-
-ul#menu li a
-{
-    padding: 0px;
-    font-weight: bold; 
-}
-
-ul#menu li a:hover
-{
-    background-color:ButtonHighlight;
-    text-decoration: none;
-}
-
-ul#menu li a:active
-{
-    background-color: #a6e2a6;
-    text-decoration: none;
-}
-
-ul#menu li.selected a
-{
-    background-color: #fff;
-}
-
-/* FORM LAYOUT ELEMENTS   
-----------------------------------------------------------*/
-
 #sidebar
 {
     background-color: #fef;
     _height: 1px; /* only IE6 applies CSS properties starting with an underscrore */
+    height:30px;
+   
+}
+#sidebar a
+{
+    color:Black;
+    display:block;
+    float:left;
+    position:relative;
+    margin-left :5px;
+}
+#sidebar a:visited
+{
+    color:Black;
+    display:block;
 }
 
+#sidebar a:hover
+{
+   color:Black;
+   display:block;
+}
+
+#sidebar a:active
+{
+    color:Black;
+    text-decoration:none;
+    display:block;
+}
 fieldset
 {
     margin: 1px 0;
@@ -233,7 +213,7 @@ legend
 
 input[type="text"]
 {
-    width:90%;
+    width:88%;
     border: 1px solid #3f6ebc;
 }
 
@@ -244,15 +224,40 @@ textarea
 
 input[type="password"]
 {
-     width:90%;
+    width:88%;
     border: 1px solid #3f6ebc;
 }
-/* TABLE
-----------------------------------------------------------*/
+
+input[type="button"],input[type="reset"],input[type="submit"]
+{
+    background-image:url(images/button.gif);
+    background-repeat:no-repeat;
+    border: 0px none;
+    width:66px;
+    height:22px;
+    cursor:pointer;
+    vertical-align:bottom;
+    font-weight:bold;
+}
+.button
+{
+    background-image:url(images/button.gif);
+    background-repeat:no-repeat;
+    border: 0px none;
+    width:66px;
+    height:22px;
+    vertical-align:bottom;
+    font-weight:bold;
+    text-align:center;
+    display:block;
+    line-height:22px;
+    color:Black;
+}
+
 
 table
 {
-
+    text-align:center;
     border: solid 1px #8f884d;
     border-collapse: collapse;
 }

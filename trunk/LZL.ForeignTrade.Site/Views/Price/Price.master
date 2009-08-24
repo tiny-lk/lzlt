@@ -8,15 +8,10 @@
 </asp:Content>
 <asp:Content ID="PriceSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
     <fieldset>
-        <legend title="相关功能">相关功能</legend>
-    <div id="sidebar">
-        <div>
-            <ul id="menu">
-                <li>
-                    <%= Html.ActionLink("添加报价单", "Add", "Price")%></li>
-                <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
-            </ul>
+        <legend>相关功能</legend>
+        <div id="sidebar">
+            <%= Html.ActionLink("添 加", "Add", "Price", null, new { Class="button"})%>
+            <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
         </div>
-    </div>
     </fieldset>
 </asp:Content>
