@@ -7,6 +7,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
+
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
 
     <script type="text/javascript">
@@ -132,16 +134,16 @@
                 <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     报价单基本信息
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     报价单号：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Price♂Name", "", new { validate = "required:true" })%>
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     报价单日期：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Price♂Date", "", new { validate = "date:true", Class = "calendar" })%>
                 </td>
             </tr>
@@ -348,6 +350,12 @@
                 </td>
             </tr>
             <!-- 产品信息 -->
+            <!-- 商品包装信息 -->
+            <tr id="ProductPack♂" style="display: none;">
+                <td colspan="5">
+                </td>
+            </tr>
+            <!-- 商品包装信息 -->
         </thead>
         <tfoot>
             <tr>
@@ -363,6 +371,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="ChildContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="opengys('PriceProduct♂','Product♂ID','01','spxx','<%=Url.Action("Details","Product")%>');">
-        关联商品信息</a></li>
+    <a href="#" onclick="opengys('PriceProduct♂','Product♂ID','01','spxx','<%=Url.Action("Details","Product")%>');"
+        class="button">关联商品</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1)"
+            class="button">商品包装</a>
 </asp:Content>

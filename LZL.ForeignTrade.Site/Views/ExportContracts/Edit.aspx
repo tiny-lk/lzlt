@@ -152,13 +152,13 @@
                 <td align="right" style="width: 15%;">
                     出口合同号：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("ExportContracts♂Name",Html.Encode( Model.Name), new { validate = "required:true" })%>
                 </td>
                 <td align="right" style="width: 15%;">
                     出口合同签约日期：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("ExportContracts♂Date", Html.Encode(Model.Date.ToShortDateString()), new { validate = "date:true,required:true", Class = "calendar" })%>
                 </td>
             </tr>
@@ -558,8 +558,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="openbjd('ExportContractsPrice♂','Price♂ID','bjdxx','<%=Url.Action("Details","Price")%>');">
-        关联报价信息</a></li>
-    <li><a href="#" onclick="openspxx('ExportContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');">
-        关联商品信息</a></li>
+    <a href="#" onclick="openbjd('ExportContractsPrice♂','Price♂ID','bjdxx','<%=Url.Action("Details","Price")%>');"
+        class="button">关联报价信息</a> <a href="#" onclick="openspxx('ExportContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');"
+            class="button">关联商品信息</a>
 </asp:Content>

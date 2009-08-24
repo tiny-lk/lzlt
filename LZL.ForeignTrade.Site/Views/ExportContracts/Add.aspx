@@ -467,8 +467,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="openbjd('ExportContractsPrice♂','Price♂ID','bjdxx','<%=Url.Action("Details","Price")%>');">
-        关联报价信息</a></li>
-    <li><a href="#" onclick="openspxx('ExportContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');">
-        关联商品信息</a></li>
+    <a href="#" onclick="openbjd('ExportContractsPrice♂','Price♂ID','bjdxx','<%=Url.Action("Details","Price")%>');"
+        class='button'>报价信息</a> <a href="#" onclick="openspxx('ExportContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');"
+            class='button'>商品信息</a>
 </asp:Content>

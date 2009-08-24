@@ -487,7 +487,7 @@
                     <fieldset style="<%=Model.InvoiceExportContracts.Count>0?"": "display: none"%>; width: 95%;">
                         <legend>出口合同信息</legend>
                         <ul id="ckhtxx" style="float: left; width: 100%; clear: both; position: relative;">
-                              <%
+                            <%
                                 for (int i = 0; i < Model.InvoiceExportContracts.Count(); i++)
                                 {
                                     var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
@@ -520,7 +520,7 @@
                     <fieldset style="<%=Model.InvoiceProduct.Count>0?"": "display: none"%>; width: 95%;">
                         <legend>商品信息</legend>
                         <ul id="spxx" style="float: left; width: 100%; clear: both; position: relative;">
-                      <%
+                            <%
                                 for (int i = 0; i < Model.InvoiceProduct.Count(); i++)
                                 {
                                     var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";

@@ -209,6 +209,25 @@ namespace LZL.ForeignTrade.Controllers
                 return new Company();
             }
         }
+
+        /// <summary>
+        /// 获取产品信息
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns></returns>
+        public static Product GetProduct(Guid? id)
+        {
+            if (id != null)
+            {
+                Entities entities = new Entities();
+                return entities.Product.Where(v => v.ID.Equals(id.Value)).FirstOrDefault();
+            }
+            else
+            {
+                return new Product();
+            }
+        }
+
         public static string GetDictionaryName(string type, string value)
         {
             if (string.IsNullOrEmpty(value))

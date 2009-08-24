@@ -269,6 +269,22 @@
                 </td>
             </tr>
             <!-- 产品信息 -->
+            <!-- 商品包装信息 -->
+            <tr id="ProductPack♂" style="display: none;">
+                <td colspan="5">
+                    <%
+                        Model.ProductPack.Load();
+                        if (Model.ProductPack.Count > 0)
+                        {
+                            ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
+                            viewdictionary2.Add("number", Model.ProductPack.Count);
+                            viewdictionary2.Add("Details", true);
+                            Html.RenderPartial("ProductPackControl", Model.ProductPack.ToList(), viewdictionary2);
+                        }
+                    %>
+                </td>
+            </tr>
+            <!-- 商品包装信息 -->
         </tbody>
         <tfoot>
             <tr>

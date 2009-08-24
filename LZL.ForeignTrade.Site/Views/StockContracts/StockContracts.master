@@ -10,13 +10,8 @@
     <fieldset>
         <legend title="相关功能">相关功能</legend>
         <div id="sidebar">
-            <div>
-                <ul id="menu">
-                    <li>
-                        <%= Html.ActionLink("添加采购合同", "Add", "StockContracts")%></li>
-                    <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
-                </ul>
-            </div>
+            <%= Html.ActionLink("添 加", "Add", "StockContracts", null, new { Class="button"})%>
+            <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
         </div>
     </fieldset>
 </asp:Content>

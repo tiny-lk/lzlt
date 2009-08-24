@@ -7,6 +7,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
+
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
 
     <script type="text/javascript">
@@ -152,13 +154,13 @@
                 <td align="right" style="width: 15%;">
                     报价单号：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Price♂Name",Html.Encode( Model.Name))%>
                 </td>
                 <td align="right" style="width: 15%;">
                     报价单日期：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Price♂Date", Html.Encode(Model.Date), new { validate = "date:true", Class = "calendar" })%>
                 </td>
             </tr>
@@ -431,6 +433,22 @@
                 </td>
             </tr>
             <!-- 产品信息 -->
+            <!-- 商品包装信息 -->
+            <tr id="ProductPack♂" style="display: none;">
+                <td colspan="5">
+                    <%
+                        Model.ProductPack.Load();
+                        if (Model.ProductPack.Count > 0)
+                        {
+                            ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
+                            viewdictionary2.Add("number", Model.ProductPack.Count);
+                            viewdictionary2.Add("FK", "Price");//报价单信息
+                            Html.RenderPartial("ProductPackControl", Model.ProductPack.ToList(), viewdictionary2);
+                        }
+                    %>
+                </td>
+            </tr>
+            <!-- 商品包装信息 -->
         </thead>
         <tfoot>
             <tr>
@@ -447,6 +465,7 @@
     %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="opengys('PriceProduct♂','Product♂ID','01','spxx','<%=Url.Action("Details","Product")%>');">
-        关联商品信息</a></li>
+    <a href="#" onclick="opengys('PriceProduct♂','Product♂ID','01','spxx','<%=Url.Action("Details","Product")%>');"
+        class="button">商品信息</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1)"
+            class="button">商品包装</a>
 </asp:Content>

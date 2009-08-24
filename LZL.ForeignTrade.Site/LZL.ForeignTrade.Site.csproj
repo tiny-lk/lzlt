@@ -275,8 +275,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\body_backdrop.gif" />
+    <Content Include="Content\images\button.gif" />
     <Content Include="Content\images\table_head.gif" />
     <Content Include="Content\images\toolbarbackgroup.gif" />
+    <Content Include="Views\Shared\ProductPackControl.ascx" />
     <Content Include="Views\Warehouse\Warehouse.Master" />
   </ItemGroup>
   <ItemGroup>

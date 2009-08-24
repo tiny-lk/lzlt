@@ -43,19 +43,19 @@
                 </td>
             </tr>
             <tr>
-                <td rowspan="5" align="center" valign="middle"  style="width:10%;">
+                <td rowspan="5" align="center" valign="middle" style="width: 10%;">
                     商品介绍信息
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     商品代码（简称）：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Product♂NameCode", "", new { validate = "required:true" })%>
                 </td>
-                <td align="right"  style="width:15%;">
+                <td align="right" style="width: 15%;">
                     中文名称：
                 </td>
-                <td align="left"  style="width:30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Product♂NameCH")%>
                 </td>
             </tr>
@@ -281,9 +281,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Customer")%>');">
-        供应商信息</a></li>
-    <li><a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Customer")%>');">
-        客户商品信息</a></li>
-    <li>商品图片</li>
+    <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Customer")%>');"
+        class="button">供应商</a> <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Customer")%>');"
+            class="button">客户商品</a> <a href="#" class="button">商品图片</a>
 </asp:Content>

@@ -652,8 +652,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <li><a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');">
-        关联出口合同</a></li>
-    <li><a href="#" onclick="openspxx('InvoiceProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');">
-        关联商品信息</a></li>
+    <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
+        class="button">出口合同</a> <a href="#" onclick="openspxx('InvoiceProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');"
+            class="button">商品信息</a>
 </asp:Content>
