@@ -8,6 +8,8 @@
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
 
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
+
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
 
     <script type="text/javascript">
@@ -452,6 +454,12 @@
                 </td>
             </tr>
             <!-- 商品信息 -->
+            <!-- 商品包装信息 -->
+            <tr id="ProductPack♂" style="display: none;">
+                <td colspan="5">
+                </td>
+            </tr>
+            <!-- 商品包装信息 -->
         </thead>
         <tfoot>
             <tr>
@@ -469,5 +477,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openbjd('ExportContractsPrice♂','Price♂ID','bjdxx','<%=Url.Action("Details","Price")%>');"
         class='button'>报价信息</a> <a href="#" onclick="openspxx('ExportContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');"
-            class='button'>商品信息</a>
+            class='button'>商品信息</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'ExportContracts')"
+                class="button">商品包装</a>
 </asp:Content>

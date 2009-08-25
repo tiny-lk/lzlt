@@ -23,10 +23,11 @@ namespace LZL.ForeignTrade.Controllers
         /// <param name="number">显示数量</param>
         /// <param name="name">控件名称</param>
         /// <returns>返回联系人控件信息</returns>
-        public ActionResult GetShareControl(string name, int? number)
+        public ActionResult GetShareControl(string name, string fk, int? number)
         {
             ViewData["number"] = number ?? 1;
-            return View(name,null);
+            ViewData["FK"] = string.IsNullOrEmpty(fk) ? null : fk;
+            return View(name, null);
         }
 
         public JsonResult GetAutocompleteValue(string t, string f)
