@@ -1,25 +1,4 @@
-﻿//添加控件信息
-function addcontrol(obj, controlname, region, num) {
-    if ($("#" + region).find("div[id = 'regioncontent']").length <= 0) {
-        $.ajax({
-            type: "get",
-            dataType: "html",
-            data: { name: controlname, number: num },
-            url: '/Shared/GetShareControl', //获取控件信息
-            success: function(data) {
-                $("#" + region).find("div[id='regioncontent']").remove();
-                $("#" + region).find("div[id='region']").remove();
-                $("#" + region).children().append($(data));
-                init(); //重新初始化
-                $("#" + region).css("display", "");
-            },
-            error: function(err) {
-                alert("添加" + controlname + "表单错误！");
-            }
-        });
-    }
-}
-
+﻿
 //添加区域模版
 function addregion(regionname) {
     var obj = $(regionname).closest("div[id='regioncontent']").siblings("div[id='region']");

@@ -466,6 +466,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="opengys('PriceProduct♂','Product♂ID','01','spxx','<%=Url.Action("Details","Product")%>');"
-        class="button">商品信息</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1)"
+        class="button">商品信息</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Price')"
             class="button">商品包装</a>
 </asp:Content>

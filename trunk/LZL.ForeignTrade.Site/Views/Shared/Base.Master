@@ -184,6 +184,30 @@
         }
     </script>
 
+    <script type="text/javascript">
+        //添加控件信息
+        function addcontrol(obj, controlname, region, num, fk) {
+            if ($("#" + region).find("div[id = 'regioncontent']").length <= 0) {
+                $.ajax({
+                    type: "get",
+                    dataType: "html",
+                    data: { name: controlname, number: num, fk: fk },
+                    url: '<%=Url.Action("GetShareControl", "Shared")%>', //获取控件信息
+                    success: function(data) {
+                        $("#" + region).find("div[id='regioncontent']").remove();
+                        $("#" + region).find("div[id='region']").remove();
+                        $("#" + region).children().append($(data));
+                        init(); //重新初始化
+                        $("#" + region).css("display", "");
+                    },
+                    error: function(err) {
+                        alert("添加" + controlname + "表单错误！");
+                    }
+                });
+            }
+        }
+    </script>
+
 </head>
 <body>
     <%
