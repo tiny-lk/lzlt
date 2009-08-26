@@ -31,9 +31,10 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_ProductPack_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "ProductPack", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.ProductPack))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsExportContracts))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsProduct_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsProduct))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesBuy", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.AccessoriesBuy), "AccessoriesChildBuy", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.AccessoriesChildBuy))]
 
 // 原始文件名:
-// 生成日期: 2009/8/23 13:27:20
+// 生成日期: 2009/8/26 13:35:37
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -889,6 +890,27 @@ namespace LZL.ForeignTrade.DataEntity
         private global::System.Nullable<global::System.DateTime> _ChangeDate;
         partial void OnChangeDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnChangeDateChanged();
+        /// <summary>
+        /// 架构中不存在 AccessoriesChildBuy 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesChildBuy")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityCollection<AccessoriesChildBuy> AccessoriesChildBuy
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<AccessoriesChildBuy>("ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesChildBuy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<AccessoriesChildBuy>("ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesChildBuy", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// 架构中不存在 ForeignTradeModel.AccessoriesChildBuy 的注释。
@@ -934,29 +956,6 @@ namespace LZL.ForeignTrade.DataEntity
         private global::System.Guid _ID;
         partial void OnIDChanging(global::System.Guid value);
         partial void OnIDChanged();
-        /// <summary>
-        /// 架构中不存在属性 AccessoriesId 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.Guid> AccessoriesId
-        {
-            get
-            {
-                return this._AccessoriesId;
-            }
-            set
-            {
-                this.OnAccessoriesIdChanging(value);
-                this.ReportPropertyChanging("AccessoriesId");
-                this._AccessoriesId = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("AccessoriesId");
-                this.OnAccessoriesIdChanged();
-            }
-        }
-        private global::System.Nullable<global::System.Guid> _AccessoriesId;
-        partial void OnAccessoriesIdChanging(global::System.Nullable<global::System.Guid> value);
-        partial void OnAccessoriesIdChanged();
         /// <summary>
         /// 架构中不存在属性 AccessoriesType 的注释。
         /// </summary>
@@ -1118,6 +1117,43 @@ namespace LZL.ForeignTrade.DataEntity
         private global::System.Nullable<global::System.DateTime> _ChangeDate;
         partial void OnChangeDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnChangeDateChanged();
+        /// <summary>
+        /// 架构中不存在 AccessoriesBuy 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesBuy")]
+        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
+        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public AccessoriesBuy AccessoriesBuy
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<AccessoriesBuy>("ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesBuy").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<AccessoriesBuy>("ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesBuy").Value = value;
+            }
+        }
+        /// <summary>
+        /// 架构中不存在 AccessoriesBuy 的注释。
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<AccessoriesBuy> AccessoriesBuyReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<AccessoriesBuy>("ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesBuy");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<AccessoriesBuy>("ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesBuy", value);
+                }
+            }
+        }
     }
     /// <summary>
     /// 架构中不存在 ForeignTradeModel.Company 的注释。
