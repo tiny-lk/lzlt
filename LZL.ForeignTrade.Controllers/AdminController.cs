@@ -18,7 +18,7 @@ namespace LZL.ForeignTrade.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("ManageUser");
         }
 
         #region 用户管理

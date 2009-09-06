@@ -9,21 +9,12 @@
 <asp:Content ID="AdminSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
     <fieldset>
         <legend title="相关功能">相关功能</legend>
-    <div id="sidebar">
-        <div>
-            <ul id="menu">
-                <li>
-                    <%= Html.ActionLink("用户管理", "ManageUser", "Admin")%></li>
-                <li>
-                    <%= Html.ActionLink("角色管理", "ManageRole", "Admin")%></li>
-                <li>
-                    <%= Html.ActionLink("数据字典管理", "ManageDictionary", "Admin")%></li>
-                <li>
-                    <%= Html.ActionLink("部门管理", "ManageDepartment", "Admin")%></li>
-                <li>
-                    <%= Html.ActionLink("公司管理", "ManageCompany", "Admin")%></li>
-            </ul>
+        <div id="sidebar">
+            <%= Html.ActionLink("用户管理", "ManageUser", "Admin", null, new { Class = "button" })%>
+            <%= Html.ActionLink("角色管理", "ManageRole", "Admin", null, new { Class = "button" })%>
+            <%= Html.ActionLink("数据字典", "ManageDictionary", "Admin", null, new { Class = "button" })%>
+            <%= Html.ActionLink("部门管理", "ManageDepartment", "Admin", null, new { Class = "button" })%>
+            <%= Html.ActionLink("公司管理", "ManageCompany", "Admin", null, new { Class = "button" })%>
         </div>
-    </div>
     </fieldset>
 </asp:Content>
