@@ -10,14 +10,8 @@
     <fieldset>
         <legend title="相关功能">相关功能</legend>
         <div id="sidebar">
-            <div>
-                <ul id="menu">
-                    <li>
-                        <%= Html.ActionLink("表格模板下载", "AttachmentDownload", "Attachment")%></li>
-                    <li>
-                        <%= Html.ActionLink("资源管理", "AttachmentManager", "Attachment")%></li>
-                </ul>
-            </div>
+            <%= Html.ActionLink("模板下载", "AttachmentDownload", "Attachment", null, new { Class = "button" })%>
+            <%= Html.ActionLink("资源管理", "AttachmentManager", "Attachment", null, new { Class = "button" })%>
         </div>
     </fieldset>
 </asp:Content>
