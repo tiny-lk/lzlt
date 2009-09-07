@@ -5,23 +5,24 @@
     资源下载
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        资源下载</h2>
-    <div style="text-align: center">
-        <table style="width: 100%">
+    <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+        <caption>
+            资源下载</caption>
+        <thead>
             <tr>
-                <th>
+                <td>
                     文件名称
-                </th>
-                <th>
+                </td>
+                <td>
                     下载
-                </th>
+                </td>
             </tr>
-            <%
-                string strFileContent = string.Empty;
-                foreach (string strFile in (List<string>)ViewData["Resource"])
-                {
-                    strFileContent += string.Format(@"<tr>
+        </thead>
+        <%
+            string strFileContent = string.Empty;
+            foreach (string strFile in (List<string>)ViewData["Resource"])
+            {
+                strFileContent += string.Format(@"<tr>
                     <td>
                         {0}
                     </td>
@@ -29,9 +30,8 @@
                         <a href='../Views/Attachment/ResourceFolder/{0}'>下载</a>
                     </td>
                 </tr>", strFile);
-                }
-                Response.Write(strFileContent);
-            %>
-        </table>
-    </div>
+            }
+            Response.Write(strFileContent);
+        %>
+    </table>
 </asp:Content>

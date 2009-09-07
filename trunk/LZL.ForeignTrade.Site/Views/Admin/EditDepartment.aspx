@@ -4,8 +4,6 @@
     编辑部门
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        编辑部门</h2>
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
@@ -13,6 +11,8 @@
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Department♂objectname" value="LZL.ForeignTrade.DataEntity.Department,LZL.ForeignTrade.DataEntity" />
     <table width="100%">
+        <caption>
+            编辑部门</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">

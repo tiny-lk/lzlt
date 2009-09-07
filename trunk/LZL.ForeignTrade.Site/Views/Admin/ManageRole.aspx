@@ -4,8 +4,6 @@
     角色管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        角色管理</h2>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -45,6 +43,8 @@
     <% using (Html.BeginForm())
        { %>
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+        <caption>
+            角色管理</caption>
         <thead>
             <tr>
                 <td colspan="3" align="right">

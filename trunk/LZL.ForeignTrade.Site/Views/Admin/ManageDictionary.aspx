@@ -4,8 +4,6 @@
     数据字典管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        数据字典管理</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -36,7 +34,7 @@
 
             //查询数据信息
             function loadlistdata(obj, name, value, p) {
-                var tableobject = $(obj).closest("table"); 
+                var tableobject = $(obj).closest("table");
                 $.ajax({
                     type: "get",
                     dataType: "html",
@@ -120,6 +118,8 @@
     <% using (Html.BeginForm())
        { %>
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+        <caption>
+            数据字典管理</caption>
         <thead>
             <tr>
                 <td colspan="2">

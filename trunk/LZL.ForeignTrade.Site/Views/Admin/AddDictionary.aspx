@@ -4,8 +4,6 @@
     添加数据字典内容
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        添加数据字典内容</h2>
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
@@ -13,6 +11,8 @@
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Dictionary♂objectname" value="LZL.ForeignTrade.DataEntity.Dictionary,LZL.ForeignTrade.DataEntity" />
     <table width="100%">
+        <caption>
+            添加数据字典内容</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
@@ -45,7 +45,7 @@
                     <%= Html.TextBox("Dictionary♂Code")%>
                 </td>
             </tr>
-           <%-- <tr>
+            <%-- <tr>
                 <td align="right">
                     父编码：
                 </td>

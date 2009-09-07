@@ -1,12 +1,9 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.master" Inherits="System.Web.Mvc.ViewPage<System.Web.Security.MembershipUserCollection>" %>
 
-
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     用户关联管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        用户关联管理</h2>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -38,6 +35,8 @@
        { %>
     <%= Html.Hidden("DepartId", Html.ViewContext.RequestContext.RouteData.Values["id"])%>
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+        <caption>
+            用户关联管理</caption>
         <thead>
             <tr>
                 <td>
@@ -69,7 +68,7 @@
             <tr id="user-<%= membershipUser.UserName %>">
                 <td>
                     <%
-                       bool bNoData = false;
+                        bool bNoData = false;
                         foreach (LZL.ForeignTrade.DataEntity.UserDepartRelation objUser in (List<LZL.ForeignTrade.DataEntity.UserDepartRelation>)ViewData["UserRelation"])
                         {
                             if (objUser.UserId == membershipUser.UserName)
@@ -79,7 +78,7 @@
                         }
 
                         Response.Write(Html.CheckBox("select", bNoData, new { value = Html.Encode(membershipUser.UserName.ToString()) }));
-                   %>
+                    %>
                 </td>
                 <td>
                     <%= membershipUser.UserName%>

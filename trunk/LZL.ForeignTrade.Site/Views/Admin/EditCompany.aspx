@@ -4,8 +4,6 @@
     编辑公司信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        编辑公司信息</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/Relation_table_template.js")%>"></script>
 
@@ -16,6 +14,8 @@
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Company♂objectname" value="LZL.ForeignTrade.DataEntity.Company,LZL.ForeignTrade.DataEntity" />
     <table width="100%">
+        <caption>
+            编辑公司信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
