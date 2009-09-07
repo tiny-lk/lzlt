@@ -15,11 +15,19 @@
 
     <% using (Html.BeginForm())
        { %>
-    <h2>
-        添加角色</h2>
-    <p>
-        角色名称：<%= Html.TextBox("rolename")%></p>
-    <p>
-        <input type="submit" value="确 定" /><input id="Back" type="button" value="返 回" /></p>
+    <table width="100%">
+        <caption>
+            添加角色</caption>
+        <tr>
+            <td>
+                角色名称：<%= Html.TextBox("rolename")%>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="确 定" /><input id="Back" type="button" value="返 回" />
+            </td>
+        </tr>
+    </table>
     <%} %>
 </asp:Content>

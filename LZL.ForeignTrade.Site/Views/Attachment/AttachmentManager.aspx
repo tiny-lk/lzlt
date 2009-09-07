@@ -5,8 +5,6 @@
     资源管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        资源管理</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -129,6 +127,8 @@
     <% using (Html.BeginForm())
        { %>
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+        <caption>
+            资源管理</caption>
         <thead>
             <tr>
                 <td colspan="7" align="right">

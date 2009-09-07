@@ -4,8 +4,6 @@
     添加部门
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        添加部门</h2>
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
@@ -14,6 +12,8 @@
     <input type="hidden" name="Department♂objectname" value="LZL.ForeignTrade.DataEntity.Department,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Department♂ParentId", Html.ViewContext.RequestContext.RouteData.Values["id"])%>
     <table width="100%">
+        <caption>
+            添加部门</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
@@ -38,7 +38,6 @@
                     <%= Html.TextBox("Department♂OrderField")%>
                 </td>
             </tr>
-            
         </thead>
         <!-- 备忘录区域 -->
         <tfoot>

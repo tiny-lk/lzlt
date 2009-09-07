@@ -4,8 +4,6 @@
     子部门管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        子部门管理</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -106,6 +104,8 @@
     <% using (Html.BeginForm())
        { %>
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+        <caption>
+            子部门管理</caption>
         <thead>
             <tr>
                 <td colspan="4" align="right">
