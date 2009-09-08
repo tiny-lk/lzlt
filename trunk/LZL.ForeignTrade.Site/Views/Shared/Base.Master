@@ -100,7 +100,10 @@
                     if ($(document).data("check") == 1) {
                         $(document).data("checkvalue", $(this).val());
                     } else {
-                        $(document).data("checkvalue", $(this).val() + "♂" + $(document).data("checkvalue"));
+                    //add by lj
+                        if ($(document).data("checkvalue").indexOf($(this).val()) == -1) {
+                            $(document).data("checkvalue", $(this).val() + "♂" + $(document).data("checkvalue"));
+                        }
                     }
                 } else {
                     $(this).closest("tr").removeClass("select");
