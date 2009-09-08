@@ -2,7 +2,9 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $(document).data("checkvalue", "");
+
+        // $(document).data("checkvalue", "");
+
         $(document).data("check", 0);
         $("#queryvalue").val("");
         autocompletevalue($("#quyerCondition").val());
@@ -27,7 +29,7 @@
             loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
         });
 
-        $("#Delete").live("click", function() {
+        $("#Delete").bind("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var data = $(document).data('checkvalue').split("бс");
                 var ids = "";
