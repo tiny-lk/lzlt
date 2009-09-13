@@ -23,6 +23,8 @@
 
         $("#OK").live("click", function() {
             loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
+            $(document).data("checkvalue", "");
+            $(document).data("check", 0);
         });
 
         $("#Delete").live("click", function() {
@@ -66,7 +68,7 @@
         $(".print").live("click", function() {
             $("table > tbody ").printArea("true");
         });
-        
+
     });
 
     //查询数据信息
@@ -110,6 +112,7 @@
                 });
     }
 </script>
+
 <input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
 <table width="100%" id="PriceIndex">
     <caption>

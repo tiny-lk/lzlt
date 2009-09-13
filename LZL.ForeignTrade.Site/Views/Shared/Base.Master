@@ -53,7 +53,6 @@
             $($("form")).validate();
             $.datepicker.setDefaults($.extend({ showMonthAfterYear: false }, $.datepicker.regional['zh-CN']));
             init();
-
             checksettring();
 
             $("#treemenu").treeview({
@@ -84,6 +83,14 @@
                 $(this).removeClass("mouseover");
             });
 
+            //alert($(document).data("check"));
+//            $("input[value='查 询']").bind("mouseup", function() {
+//                $(document).data("checkvalue", "");
+//                $(document).data("check", 0);
+//                alert( $(document).data("check")+"dddd");
+//            });
+
+
             $(document).data("checkvalue", "");
             $(document).data("check", 0);
             $.each($($("table > tbody > tr").find("input[type = 'checkbox'][name = 'select']")), function(i, o) {
@@ -100,7 +107,7 @@
                     if ($(document).data("check") == 1) {
                         $(document).data("checkvalue", $(this).val());
                     } else {
-                    //add by lj
+                        //confirm the value of checkvalue contain current data (add by lj)
                         if ($(document).data("checkvalue").indexOf($(this).val()) == -1) {
                             $(document).data("checkvalue", $(this).val() + "♂" + $(document).data("checkvalue"));
                         }
@@ -118,6 +125,11 @@
                         $(document).data("checkvalue", array.join('♂'));
                     }
                 }
+
+                //redefine the value of object with check  (add by lj)
+                //                alert($(document).data("checkvalue").split('♂'));
+                //                alert($(document).data("checkvalue").split('♂').length);
+                //$(document).data("check", $(document).data("checkvalue").split('♂').length);
 
                 if (Number($(document).data("check")) == 1) {
                     $(document).find("input[check='1']").attr("disabled", "");

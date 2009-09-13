@@ -2,9 +2,6 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-
-        // $(document).data("checkvalue", "");
-
         $(document).data("check", 0);
         $("#queryvalue").val("");
         autocompletevalue($("#quyerCondition").val());
@@ -27,6 +24,8 @@
         //查询
         $("#OK").live("click", function() {
             loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
+            $(document).data("checkvalue", "");
+            $(document).data("check", 0);
         });
 
         $("#Delete").bind("click", function() {
@@ -126,8 +125,8 @@
                 <%=Html.DropDownList("quyerCondition",
                         new SelectList(new List<SelectListItem>() {
                             new SelectListItem(){ Text="客户代码", Value ="NameCode"},
-                            new SelectListItem(){Text="客户中文名称", Value ="NameCH"},
-                             new SelectListItem(){Text="客户英文名称", Value ="NameEH"},
+                            new SelectListItem(){Text="商品中文名称", Value ="NameCH"},
+                             new SelectListItem(){Text="商品英文名称", Value ="NameEH"},
                              new SelectListItem(){ Text="商品条码", Value ="CustomsCode"}
                         }, "Value", "Text", "NameCode"))%>
             </td>

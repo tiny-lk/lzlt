@@ -1,4 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.Invoice>>" %>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $(document).data("checkvalue", "");
@@ -24,6 +25,8 @@
         //≤È—Ø
         $("#OK").live("click", function() {
             loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
+            $(document).data("checkvalue", "");
+            $(document).data("check", 0);
         });
 
         $("#Delete").live("click", function() {
@@ -230,4 +233,3 @@
         </tr>
     </tfoot>
 </table>
-
