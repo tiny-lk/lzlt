@@ -30,6 +30,8 @@
 
             $("#OK").bind("click", function() {
                 loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
+                $(document).data("checkvalue", "");
+                $(document).data("check", 0);
             });
 
             //查询数据信息
