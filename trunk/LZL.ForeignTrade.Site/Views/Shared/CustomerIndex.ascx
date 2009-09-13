@@ -28,6 +28,8 @@
 
         $("#OK").live("click", function() {
             loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1, '<%=Request["type"] %>');
+            $(document).data("checkvalue", "");
+            $(document).data("check", 0);
         });
 
         $("#Delete").live("click", function() {
@@ -67,11 +69,11 @@
         $("#reverseselect").live("click", function() {
             $('table > tbody > tr').find("input[type='checkbox']").click();
         });
-        
+
         $(".print").live("click", function() {
             $("table > tbody ").printArea("true");
         });
-        
+
     });
 
     //查询数据信息
