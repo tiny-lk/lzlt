@@ -170,7 +170,7 @@ namespace LZL.ForeignTrade.Controllers
             List<Dictionary> lstDic = new List<Dictionary>();
             if (!string.IsNullOrEmpty(queryvalue))
             {
-                lstDic = _Entities.Dictionary.Where(v => v.Type.Equals(queryvalue)).OrderBy(v => v.Type).ToList();
+                lstDic = _Entities.Dictionary.Where(v => v.Type.IndexOf(queryvalue)>=0).OrderBy(v => v.Type).ToList();
             }
             else
             {
