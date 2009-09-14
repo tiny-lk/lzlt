@@ -137,7 +137,7 @@
                         <input type="button" id="Add" value="Ìí¼Ó" />
                         <input type="button" id="Edit" value="±à ¼­" disabled="disabled" check="1" />
                         <input type="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
-                        <input type="button" id="Refresh" value="Ë¢ ÐÂ" />
+                        <input type="button" id="Refresh" value="Ë¢ ÐÂ" /></div>
                 </td>
             </tr>
         </thead>
