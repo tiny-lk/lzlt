@@ -31,6 +31,8 @@
 
             $("#OK").bind("click", function() {
                 loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
+                $(document).data("checkvalue", "");
+                $(document).data("check", 0);
             });
 
             //查询数据信息
@@ -65,7 +67,7 @@
             });
 
             $("#Refresh").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/WarehouseSale") %>';
+                loadlistdata(this, "", "", 1);
             });
 
             $("#allselect").bind("click", function() {
@@ -90,6 +92,26 @@
             $('table > tbody > tr').find("input[type='checkbox']").click();
         }
 
+        //查询数据信息
+        function loadlistdata(obj, name, value, p) {
+            var tableobject = $(obj).closest("table");
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { quyerCondition: name, queryvalue: value, page: p },
+                url: '<%=Url.Action("WarehouseSale","Warehouse")%>',
+                success: function(data) {
+                    $(tableobject).find("tfoot").html("");
+                    $(tableobject).find("tfoot").append($(data).find("tfoot").html());
+                    $(tableobject).find("tbody").html("");
+                    $(tableobject).find("tbody").append($(data).find("tbody").html());
+                },
+                error: function(err) {
+                    alert("列表数据错误！");
+                }
+            });
+        }
+
         function autocompletevalue(f) {
             $("#queryvalue").autocomplete('<%=Url.Action("GetAutocompleteValue","Shared")%>',
                 { max: 20,
@@ -98,7 +120,7 @@
                     scroll: true,
                     scrollHeight: 300,
                     dataType: 'json',
-                    extraParams: { t: "Customer", f: f },
+                    extraParams: { t: "WarehouseSale", f: f },
                     parse: function(data) {
                         var rows = [];
                         for (var i = 0; i < data.length; i++) {
@@ -122,8 +144,8 @@
                 <td colspan="2">
                     <%=Html.DropDownList("quyerCondition",
                         new SelectList(new List<SelectListItem>() {
-                            new SelectListItem(){ Text="类别", Value ="Type"}
-                        }, "Value", "Text", "Name"))%>
+                            new SelectListItem(){ Text="编号", Value ="SaleNo"}
+                        }, "Value", "Text", "SaleNo"))%>
                 </td>
                 <td colspan="7" align="left">
                     <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
@@ -132,6 +154,7 @@
                         <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
                         <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                         <input type="button" id="Refresh" value="刷 新" />
+                    </div>
                 </td>
             </tr>
         </thead>

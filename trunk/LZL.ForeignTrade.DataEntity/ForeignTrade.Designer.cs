@@ -36,7 +36,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsProduct_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsProduct))]
 
 // 原始文件名:
-// 生成日期: 2009/9/18 16:59:58
+// 生成日期: 2009/9/20 16:20:51
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -130,21 +130,6 @@ namespace LZL.ForeignTrade.DataEntity
             }
         }
         private global::System.Data.Objects.ObjectQuery<Customer> _Customer;
-        /// <summary>
-        /// 架构中不存在 DataRole 的注释。
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<DataRole> DataRole
-        {
-            get
-            {
-                if ((this._DataRole == null))
-                {
-                    this._DataRole = base.CreateQuery<DataRole>("[DataRole]");
-                }
-                return this._DataRole;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<DataRole> _DataRole;
         /// <summary>
         /// 架构中不存在 Department 的注释。
         /// </summary>
@@ -532,13 +517,6 @@ namespace LZL.ForeignTrade.DataEntity
         public void AddToCustomer(Customer customer)
         {
             base.AddObject("Customer", customer);
-        }
-        /// <summary>
-        /// 架构中不存在 DataRole 的注释。
-        /// </summary>
-        public void AddToDataRole(DataRole dataRole)
-        {
-            base.AddObject("DataRole", dataRole);
         }
         /// <summary>
         /// 架构中不存在 Department 的注释。
@@ -2140,97 +2118,6 @@ namespace LZL.ForeignTrade.DataEntity
                 }
             }
         }
-    }
-    /// <summary>
-    /// 架构中不存在 ForeignTradeModel.DataRole 的注释。
-    /// </summary>
-    /// <KeyProperties>
-    /// ID
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="DataRole")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class DataRole : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// 创建新的 DataRole 对象。
-        /// </summary>
-        /// <param name="id">ID 的初始值。</param>
-        public static DataRole CreateDataRole(global::System.Guid id)
-        {
-            DataRole dataRole = new DataRole();
-            dataRole.ID = id;
-            return dataRole;
-        }
-        /// <summary>
-        /// 架构中不存在属性 ID 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Guid ID
-        {
-            get
-            {
-                return this._ID;
-            }
-            set
-            {
-                this.OnIDChanging(value);
-                this.ReportPropertyChanging("ID");
-                this._ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("ID");
-                this.OnIDChanged();
-            }
-        }
-        private global::System.Guid _ID;
-        partial void OnIDChanging(global::System.Guid value);
-        partial void OnIDChanged();
-        /// <summary>
-        /// 架构中不存在属性 UserID 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserID
-        {
-            get
-            {
-                return this._UserID;
-            }
-            set
-            {
-                this.OnUserIDChanging(value);
-                this.ReportPropertyChanging("UserID");
-                this._UserID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("UserID");
-                this.OnUserIDChanged();
-            }
-        }
-        private string _UserID;
-        partial void OnUserIDChanging(string value);
-        partial void OnUserIDChanged();
-        /// <summary>
-        /// 架构中不存在属性 User2_ID 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string User2_ID
-        {
-            get
-            {
-                return this._User2_ID;
-            }
-            set
-            {
-                this.OnUser2_IDChanging(value);
-                this.ReportPropertyChanging("User2_ID");
-                this._User2_ID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("User2_ID");
-                this.OnUser2_IDChanged();
-            }
-        }
-        private string _User2_ID;
-        partial void OnUser2_IDChanging(string value);
-        partial void OnUser2_IDChanged();
     }
     /// <summary>
     /// 架构中不存在 ForeignTradeModel.Department 的注释。

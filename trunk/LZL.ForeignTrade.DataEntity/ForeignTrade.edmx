@@ -10,7 +10,6 @@
           <EntitySet Name="AccessoriesChildBuy" EntityType="ForeignTradeModel.Store.AccessoriesChildBuy" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Company" EntityType="ForeignTradeModel.Store.Company" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Customer" EntityType="ForeignTradeModel.Store.Customer" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="DataRole" EntityType="ForeignTradeModel.Store.DataRole" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Department" EntityType="ForeignTradeModel.Store.Department" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Dictionary" EntityType="ForeignTradeModel.Store.Dictionary" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ExportContracts" EntityType="ForeignTradeModel.Store.ExportContracts" store:Type="Tables" Schema="dbo" />
@@ -216,14 +215,6 @@
           <Property Name="TypeCode" Type="nvarchar" MaxLength="50" />
           <Property Name="IsShare" Type="bit" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" />
-        </EntityType>
-        <EntityType Name="DataRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserID" Type="nvarchar" MaxLength="40" />
-          <Property Name="User2_ID" Type="nvarchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -956,7 +947,6 @@
           <EntitySet Name="AccessoriesChildBuy" EntityType="ForeignTradeModel.AccessoriesChildBuy" />
           <EntitySet Name="Company" EntityType="ForeignTradeModel.Company" />
           <EntitySet Name="Customer" EntityType="ForeignTradeModel.Customer" />
-          <EntitySet Name="DataRole" EntityType="ForeignTradeModel.DataRole" />
           <EntitySet Name="Department" EntityType="ForeignTradeModel.Department" />
           <EntitySet Name="Dictionary" EntityType="ForeignTradeModel.Dictionary" />
           <EntitySet Name="ExportContracts" EntityType="ForeignTradeModel.ExportContracts" />
@@ -1159,14 +1149,6 @@
           <NavigationProperty Name="Linkman" Relationship="ForeignTradeModel.FK_LINKMAN_CUSTOMER" FromRole="Customer" ToRole="Linkman" />
           <NavigationProperty Name="Memorandum" Relationship="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" FromRole="Customer" ToRole="Memorandum" />
           <NavigationProperty Name="ProductCustomer" Relationship="ForeignTradeModel.FK_ProductCustomer_Customer" FromRole="Customer" ToRole="ProductCustomer" />
-        </EntityType>
-        <EntityType Name="DataRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="UserID" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
-          <Property Name="User2_ID" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -1785,15 +1767,6 @@
                 <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
                 <ScalarProperty Name="IsShare" ColumnName="IsShare" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DataRole">
-            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.DataRole)">
-              <MappingFragment StoreEntitySet="DataRole">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="User2_ID" ColumnName="User2_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2461,7 +2434,6 @@
         <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesChildBuy" Width="1.5" PointX="11" PointY="3" Height="2.7341113281249996" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.Company" Width="1.5" PointX="8.75" PointY="6.75" Height="4.2622688802083317" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.Customer" Width="1.5" PointX="3.75" PointY="12.5" Height="5.2173673502604174" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.DataRole" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5879931640625" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.Department" Width="1.5" PointX="5.75" PointY="8.75" Height="1.7790128580729174" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.Dictionary" Width="1.5" PointX="0.75" PointY="11.75" Height="1.9700325520833317" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.ExportContracts" Width="1.5" PointX="0.75" PointY="31.875" Height="8.464702148437496" IsExpanded="true" />
@@ -2483,7 +2455,7 @@
         <EntityTypeShape EntityType="ForeignTradeModel.StockContractsExportContracts" Width="1.5" PointX="3" PointY="39.125" Height="1.587993164062496" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.StockContractsProduct" Width="1.5" PointX="3" PointY="9.25" Height="1.5879931640624996" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.TableAttachment" Width="1.5" PointX="13.75" PointY="6.75" Height="2.1610522460937496" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.UserDepartRelation" Width="1.5" PointX="2.75" PointY="0.75" Height="1.5879931640625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.UserDepartRelation" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5879931640625" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.WarehouseSale" Width="1.5" PointX="14" PointY="2.875" Height="2.9251310221354156" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.vm_Warehouse" Width="1.5" PointX="13.75" PointY="9.75" Height="1.9700325520833317" IsExpanded="true" />
         <AssociationConnector Association="ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy" ManuallyRouted="false">
