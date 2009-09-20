@@ -25,6 +25,8 @@
     <input type="hidden" name="region" value="Customer♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Customer♂objectname" value="LZL.ForeignTrade.DataEntity.Customer,LZL.ForeignTrade.DataEntity" />
+    <%= Html.Hidden("Customer♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("Customer♂iseditdate", "EditDate")%>
     <table width="100%">
         <thead align="center">
             <tr>

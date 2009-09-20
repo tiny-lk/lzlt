@@ -119,6 +119,8 @@
     <input type="hidden" name="region" value="Price♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Price♂objectname" value="LZL.ForeignTrade.DataEntity.Price,LZL.ForeignTrade.DataEntity" />
+    <%= Html.Hidden("Price♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("Price♂iseditdate", "EditDate")%>
     <table width="100%">
         <caption>
             商品信息</caption>

@@ -9,6 +9,8 @@
     <input type="hidden" name="Memorandum♂objectname" value="LZL.ForeignTrade.DataEntity.Memorandum,LZL.ForeignTrade.DataEntity" />
     <!-- 标识子表外键实体对象名称、外键字段名称 -->
     <input type="hidden" name="Memorandum♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "Customer" :ViewData["FK"] %>' />
+    <%= Html.Hidden("Memorandum♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("Memorandum♂iseditdate", "EditDate")%>
     <center>
         <h3>
             备忘录动态区域</h3>
@@ -41,10 +43,10 @@
             <td align="center" valign="middle" rowspan="2" style="width: 10%;">
                 备忘录信息
             </td>
-            <td  style="width:15%;" align="right">
+            <td style="width: 15%;" align="right">
                 日期：
             </td>
-            <td align="right" style="width:30%;">
+            <td align="right" style="width: 30%;">
                 <%
                     if (Model == null)
                     {
@@ -63,10 +65,10 @@
                     }
                 %>
             </td>
-            <td  style="width:15%;" align="right">
+            <td style="width: 15%;" align="right">
                 主题：
             </td>
-            <td align="right" style="width:30%;">
+            <td align="right" style="width: 30%;">
                 <%
                     if (Model == null)
                     {

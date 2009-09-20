@@ -139,6 +139,8 @@
     <input type="hidden" name="region" value="Invoice♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Invoice♂objectname" value="LZL.ForeignTrade.DataEntity.Invoice,LZL.ForeignTrade.DataEntity" />
+    <%= Html.Hidden("Invoice♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("Invoice♂iseditdate", "EditDate")%>
     <table width="100%">
         <caption>
             发票（单据）信息</caption>
