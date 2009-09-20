@@ -237,7 +237,6 @@ input[type="button"],input[type="reset"],input[type="submit"]
     height:22px;
     cursor:pointer;
     vertical-align:bottom;
-    font-weight:bold;
 }
 .button
 {
@@ -247,7 +246,6 @@ input[type="button"],input[type="reset"],input[type="submit"]
     width:66px;
     height:22px;
     vertical-align:bottom;
-    font-weight:bold;
     text-align:center;
     display:block;
     line-height:22px;

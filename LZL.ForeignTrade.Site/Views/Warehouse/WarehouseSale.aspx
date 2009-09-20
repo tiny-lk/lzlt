@@ -5,8 +5,6 @@
     原材料消耗
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        原材料消耗</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -54,10 +52,6 @@
                     }
                 });
             }
-
-            $("#Add").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/AddWarehouseSale/") %>';
-            });
 
             $("#Delete").bind("click", function() {
                 var State = confirm('你确认要删除' + $(document).data('checkvalue') + '吗？');
@@ -121,6 +115,8 @@
     <% using (Html.BeginForm())
        { %>
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+        <caption>
+            原材料消耗</caption>
         <thead>
             <tr>
                 <td colspan="2">
@@ -133,7 +129,6 @@
                     <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
                     <div style="float: right;">
                         <input type="button" id="OK" value="查 询" disabled="disabled" />
-                        <input type="button" id="Add" value="添加" />
                         <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
                         <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                         <input type="button" id="Refresh" value="刷 新" />
@@ -150,9 +145,6 @@
                 </td>
                 <td>
                     编号
-                </td>
-                <td>
-                    类别
                 </td>
                 <td>
                     单价
@@ -176,7 +168,7 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
             %>
-            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/EditWarehouseSale/"+Html.Encode(Model[i].ID)) %>'"
+            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/DetailsWarehouseSale/"+Html.Encode(Model[i].ID)) %>'"
                 title="双击查看详细信息">
                 <td>
                     <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
@@ -188,9 +180,6 @@
                     <%= Html.Encode(Model[i].SaleNo)%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].SaleType)%>
-                </td>
-                <td>
                     <%= Html.Encode(Model[i].SalePrice)%>
                 </td>
                 <td>
@@ -200,10 +189,10 @@
                     <%= Html.Encode(Model[i].SaleWeight)%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].SaleDate)%>
+                    <%= Html.Encode(Model[i].SaleDate.GetValueOrDefault().ToShortDateString())%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].InputDate)%>
+                    <%= Html.Encode(Model[i].CreateDate.ToShortDateString())%>
                 </td>
             </tr>
             <%
