@@ -30,9 +30,9 @@
             });
 
             $("#OK").bind("click", function() {
-                if ($("#queryvalue").val() != "") {
-                    $('form').submit();
-                }
+                loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
+                $(document).data("checkvalue", "");
+                $(document).data("check", 0);
             });
 
             $("#Add").bind("click", function() {
@@ -51,11 +51,11 @@
             });
 
             $("#AddSale").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/AddWarehouseSale/") %>' + $(document).data('checkvalue')+"?type=0";
+                window.location.href = '<%=Url.Content("~/Warehouse/AddWarehouseSale/") %>' + $(document).data('checkvalue') + "?type=0";
             });
 
             $("#Refresh").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/AccessoriesBuy") %>';
+                loadlistdata(this, "", "", 1);
             });
 
             $("#allselect").bind("click", function() {
@@ -80,6 +80,26 @@
             $('table > tbody > tr').find("input[type='checkbox']").click();
         }
 
+        //查询数据信息
+        function loadlistdata(obj, name, value, p) {
+            var tableobject = $(obj).closest("table");
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { quyerCondition: name, queryvalue: encodeURI(value), page: p },
+                url: '<%=Url.Action("AccessoriesBuy","Warehouse")%>',
+                success: function(data) {
+                    $(tableobject).find("tfoot").html("");
+                    $(tableobject).find("tfoot").append($(data).find("tfoot").html());
+                    $(tableobject).find("tbody").html("");
+                    $(tableobject).find("tbody").append($(data).find("tbody").html());
+                },
+                error: function(err) {
+                    alert("列表数据错误！");
+                }
+            });
+        }
+
         function autocompletevalue(f) {
             $("#queryvalue").autocomplete('<%=Url.Action("GetAutocompleteValue","Shared")%>',
                 { max: 20,
@@ -88,7 +108,7 @@
                     scroll: true,
                     scrollHeight: 300,
                     dataType: 'json',
-                    extraParams: { t: "Customer", f: f },
+                    extraParams: { t: "AccessoriesBuy", f: f },
                     parse: function(data) {
                         var rows = [];
                         for (var i = 0; i < data.length; i++) {
@@ -104,18 +124,28 @@
 
     <% using (Html.BeginForm())
        { %>
-    <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+    <table width="100%" style="vertical-align: middle; text-align: center;">
         <caption>
             辅料采购</caption>
         <thead>
             <tr>
-                <td colspan="7" align="right">
-                    <input type="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" id="AddSale" value="添加销货" disabled="disabled" check="1" />
-                    <input type="button" id="Add" value="添加" />
-                    <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
-                    <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
-                    <input type="button" id="Refresh" value="刷 新" />
+                <td colspan="2">
+                    <%=Html.DropDownList("quyerCondition",
+                        new SelectList(new List<SelectListItem>() {
+                            new SelectListItem(){ Text="编 号", Value ="AccessoriesNo"},
+                            new SelectListItem(){ Text="名 称", Value ="Zbmc"}
+                        }, "Value", "Text", "AccessoriesNo"))%>
+                </td>
+                <td colspan="8" align="left">
+                    <%= Html.TextBox("queryvalue", "", new { style = "width:330px;" })%>
+                    <div style="float: right;">
+                        <input type="button" id="OK" value="查 询" disabled="disabled" />
+                        <input type="button" id="AddSale" value="添加销货" disabled="disabled" check="1" />
+                        <input type="button" id="Add" value="添加" />
+                        <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                        <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                        <input type="button" id="Refresh" value="刷 新" />
+                    </div>
                 </td>
             </tr>
         </thead>

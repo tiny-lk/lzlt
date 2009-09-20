@@ -268,7 +268,7 @@
   <ItemGroup>
     <Content Include="Views\Attachment\Attachment.Master" />
     <Content Include="Views\Warehouse\AccessoriesBuy.aspx" />
-    <Content Include="Views\Warehouse\MateriaBuy.aspx" />
+    <Content Include="Views\Warehouse\MaterialBuy.aspx" />
     <Content Include="Views\Warehouse\WarehouseManager.aspx" />
   </ItemGroup>
   <ItemGroup>

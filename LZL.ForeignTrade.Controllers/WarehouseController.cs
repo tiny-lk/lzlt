@@ -17,24 +17,30 @@ namespace LZL.ForeignTrade.Controllers
         /// <returns></returns>
         public ActionResult WarehouseManager(string quyerCondition, string queryvalue, int? page)
         {
-            Entities _Entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "No", "", "vm_Warehouse")) / pagesize);
-            var warehouseStore = _Entities.vm_Warehouse.OrderBy(v => v.No).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
-            return View(warehouseStore);
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetWarehouseManager(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View(querylist);
         }
 
         /// <summary>
         /// 原材料存储
         /// </summary>
         /// <returns></returns>
-        public ActionResult MateriaBuy(string quyerCondition, string queryvalue, int? page)
+        public ActionResult MaterialBuy(string quyerCondition, string queryvalue, int? page)
         {
-            Entities _Entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "YclNo", "", "MaterialBuy")) / pagesize);
-            var companys = _Entities.MaterialBuy.OrderBy(v => v.YclNo).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
-            return View(companys);
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetMaterialBuy(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View(querylist);
         }
 
         /// <summary>
@@ -62,7 +68,7 @@ namespace LZL.ForeignTrade.Controllers
             Entities _Entities = new Entities();
             SharedController.mainTable(formvalues, _Entities);
             _Entities.SaveChanges();
-            return RedirectToAction("MateriaBuy");
+            return RedirectToAction("MaterialBuy");
         }
 
         public ActionResult DetailsMateria(string id)
@@ -97,7 +103,7 @@ namespace LZL.ForeignTrade.Controllers
             Entities _Entities = new Entities();
             SharedController.mainTable(formvalues, _Entities);
             _Entities.SaveChanges();
-            return RedirectToAction("MateriaBuy");
+            return RedirectToAction("MaterialBuy");
         }
 
         /// <summary>
@@ -116,7 +122,7 @@ namespace LZL.ForeignTrade.Controllers
                 entities.DeleteObject(dictionary);
             }
             entities.SaveChanges();
-            return RedirectToAction("MateriaBuy", new { page = 1 });
+            return RedirectToAction("MaterialBuy", new { page = 1 });
         }
 
         /// <summary>
@@ -125,11 +131,14 @@ namespace LZL.ForeignTrade.Controllers
         /// <returns></returns>
         public ActionResult AccessoriesBuy(string quyerCondition, string queryvalue, int? page)
         {
-            Entities _Entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "AccessoriesNo", "", "AccessoriesBuy")) / pagesize);
-            var companys = _Entities.AccessoriesBuy.OrderBy(v => v.AccessoriesNo).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
-            return View(companys);
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetAccessoriesBuy(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View(querylist);
         }
 
         /// <summary>
@@ -219,11 +228,14 @@ namespace LZL.ForeignTrade.Controllers
         /// <returns></returns>
         public ActionResult WarehouseSale(string quyerCondition, string queryvalue, int? page)
         {
-            Entities _Entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "SaleNo", "", "WarehouseSale")) / pagesize);
-            var companys = _Entities.WarehouseSale.OrderBy(v => v.SaleNo).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
-            return View(companys);
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetWarehouseSale(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View(querylist);
         }
 
         public ActionResult DetailsWarehouseSale(string id)

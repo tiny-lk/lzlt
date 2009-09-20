@@ -11,7 +11,7 @@
         <thead>
             <tr>
                 <td colspan="7" align="right">
-                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MateriaBuy") %>'" />
+                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MaterialBuy") %>'" />
                 </td>
             </tr>
             <tr>
@@ -155,7 +155,7 @@
         <tfoot>
             <tr>
                 <td colspan="7" align="right">
-                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MateriaBuy") %>'" />
+                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MaterialBuy") %>'" />
                 </td>
             </tr>
         </tfoot>

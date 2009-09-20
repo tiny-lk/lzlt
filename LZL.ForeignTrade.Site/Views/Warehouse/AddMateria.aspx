@@ -31,7 +31,7 @@
                 <td colspan="7" align="right">
                     <input type="submit" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MateriaBuy") %>'" />
+                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MaterialBuy") %>'" />
                 </td>
             </tr>
             <tr>
@@ -180,7 +180,7 @@
                 <td colspan="7" align="right">
                     <input type="submit" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MateriaBuy") %>'" />
+                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MaterialBuy") %>'" />
                 </td>
             </tr>
         </tfoot>

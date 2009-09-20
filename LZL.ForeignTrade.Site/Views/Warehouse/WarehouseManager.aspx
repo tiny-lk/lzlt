@@ -30,13 +30,13 @@
             });
 
             $("#OK").bind("click", function() {
-                if ($("#queryvalue").val() != "") {
-                    $('form').submit();
-                }
+                loadlistdata(this, $("#quyerCondition").val(), $("#queryvalue").val(), 1);
+                $(document).data("checkvalue", "");
+                $(document).data("check", 0);
             });
 
             $("#Refresh").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/WarehouseManager") %>';
+                loadlistdata(this, "", "", 1);
             });
 
             $("#allselect").bind("click", function() {
@@ -61,6 +61,26 @@
             $('table > tbody > tr').find("input[type='checkbox']").click();
         }
 
+        //查询数据信息
+        function loadlistdata(obj, name, value, p) {
+            var tableobject = $(obj).closest("table");
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { quyerCondition: name, queryvalue: value, page: p },
+                url: '<%=Url.Action("WarehouseManager","Warehouse")%>',
+                success: function(data) {
+                    $(tableobject).find("tfoot").html("");
+                    $(tableobject).find("tfoot").append($(data).find("tfoot").html());
+                    $(tableobject).find("tbody").html("");
+                    $(tableobject).find("tbody").append($(data).find("tbody").html());
+                },
+                error: function(err) {
+                    alert("列表数据错误！");
+                }
+            });
+        }
+
         function autocompletevalue(f) {
             $("#queryvalue").autocomplete('<%=Url.Action("GetAutocompleteValue","Shared")%>',
                 { max: 20,
@@ -69,7 +89,7 @@
                     scroll: true,
                     scrollHeight: 300,
                     dataType: 'json',
-                    extraParams: { t: "Customer", f: f },
+                    extraParams: { t: "vm_Warehouse", f: f },
                     parse: function(data) {
                         var rows = [];
                         for (var i = 0; i < data.length; i++) {
@@ -80,8 +100,8 @@
                     },
                     formatItem: function(row, i, n) { return row; }
                 });
-            }
-        
+        }
+
         function detailsWarehouse(type, id) {
             if (type == "0") {
                 window.location.href = '<%=Url.Action("DetailsAccessories","Warehouse")%>' + "/" + id;
@@ -98,9 +118,19 @@
             仓库一览</caption>
         <thead>
             <tr>
-                <td colspan="6" align="right">
-                    <input type="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" id="Refresh" value="刷 新" />
+                <td colspan="2">
+                    <%=Html.DropDownList("quyerCondition",
+                        new SelectList(new List<SelectListItem>() {
+                            new SelectListItem(){ Text="编号", Value ="No"},
+                              new SelectListItem(){ Text="类型", Value ="Name"}
+                        }, "Value", "Text", "No"))%>
+                </td>
+                <td colspan="4" align="left">
+                    <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
+                    <div style="float: right;">
+                        <input type="button" id="OK" value="查 询" disabled="disabled" />
+                        <input type="button" id="Refresh" value="刷 新" />
+                    </div>
                 </td>
             </tr>
         </thead>
