@@ -36,7 +36,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsProduct_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsProduct))]
 
 // 原始文件名:
-// 生成日期: 2009/9/20 16:20:51
+// 生成日期: 2009/9/20 19:23:42
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -1195,10 +1195,12 @@ namespace LZL.ForeignTrade.DataEntity
         /// 创建新的 Company 对象。
         /// </summary>
         /// <param name="id">ID 的初始值。</param>
-        public static Company CreateCompany(global::System.Guid id)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static Company CreateCompany(global::System.Guid id, global::System.DateTime createDate)
         {
             Company company = new Company();
             company.ID = id;
+            company.CreateDate = createDate;
             return company;
         }
         /// <summary>
@@ -1592,6 +1594,52 @@ namespace LZL.ForeignTrade.DataEntity
         private string _Note;
         partial void OnNoteChanging(string value);
         partial void OnNoteChanged();
+        /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
     }
     /// <summary>
     /// 架构中不存在 ForeignTradeModel.Customer 的注释。
@@ -1610,12 +1658,14 @@ namespace LZL.ForeignTrade.DataEntity
         /// <param name="id">ID 的初始值。</param>
         /// <param name="nameCode">NameCode 的初始值。</param>
         /// <param name="isShare">IsShare 的初始值。</param>
-        public static Customer CreateCustomer(global::System.Guid id, string nameCode, bool isShare)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static Customer CreateCustomer(global::System.Guid id, string nameCode, bool isShare, global::System.DateTime createDate)
         {
             Customer customer = new Customer();
             customer.ID = id;
             customer.NameCode = nameCode;
             customer.IsShare = isShare;
+            customer.CreateDate = createDate;
             return customer;
         }
         /// <summary>
@@ -2056,6 +2106,52 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnCreateTimeChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnCreateTimeChanged();
         /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
+        /// <summary>
         /// 架构中不存在 Linkman 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_LINKMAN_CUSTOMER", "Linkman")]
@@ -2387,12 +2483,14 @@ namespace LZL.ForeignTrade.DataEntity
         /// <param name="id">ID 的初始值。</param>
         /// <param name="name">Name 的初始值。</param>
         /// <param name="date">Date 的初始值。</param>
-        public static ExportContracts CreateExportContracts(global::System.Guid id, string name, global::System.DateTime date)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static ExportContracts CreateExportContracts(global::System.Guid id, string name, global::System.DateTime date, global::System.DateTime createDate)
         {
             ExportContracts exportContracts = new ExportContracts();
             exportContracts.ID = id;
             exportContracts.Name = name;
             exportContracts.Date = date;
+            exportContracts.CreateDate = createDate;
             return exportContracts;
         }
         /// <summary>
@@ -3178,6 +3276,52 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnComprehensiveConventionChanging(string value);
         partial void OnComprehensiveConventionChanged();
         /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
+        /// <summary>
         /// 架构中不存在 ExportContractsPrice 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_ExportContractsPrice_ExportContracts", "ExportContractsPrice")]
@@ -3536,10 +3680,12 @@ namespace LZL.ForeignTrade.DataEntity
         /// 创建新的 Image 对象。
         /// </summary>
         /// <param name="id">ID 的初始值。</param>
-        public static Image CreateImage(global::System.Guid id)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static Image CreateImage(global::System.Guid id, global::System.DateTime createDate)
         {
             Image image = new Image();
             image.ID = id;
+            image.CreateDate = createDate;
             return image;
         }
         /// <summary>
@@ -3726,6 +3872,52 @@ namespace LZL.ForeignTrade.DataEntity
         private string _TypeCode;
         partial void OnTypeCodeChanging(string value);
         partial void OnTypeCodeChanged();
+        /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
     }
     /// <summary>
     /// 架构中不存在 ForeignTradeModel.Invoice 的注释。
@@ -3744,12 +3936,14 @@ namespace LZL.ForeignTrade.DataEntity
         /// <param name="id">ID 的初始值。</param>
         /// <param name="name">Name 的初始值。</param>
         /// <param name="date">Date 的初始值。</param>
-        public static Invoice CreateInvoice(global::System.Guid id, string name, global::System.DateTime date)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static Invoice CreateInvoice(global::System.Guid id, string name, global::System.DateTime date, global::System.DateTime createDate)
         {
             Invoice invoice = new Invoice();
             invoice.ID = id;
             invoice.Name = name;
             invoice.Date = date;
+            invoice.CreateDate = createDate;
             return invoice;
         }
         /// <summary>
@@ -5087,6 +5281,52 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnOceanNoteChanging(string value);
         partial void OnOceanNoteChanged();
         /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
+        /// <summary>
         /// 架构中不存在 InvoiceExportContracts 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_InvoiceExportContracts_Invoice", "InvoiceExportContracts")]
@@ -5403,10 +5643,12 @@ namespace LZL.ForeignTrade.DataEntity
         /// 创建新的 Linkman 对象。
         /// </summary>
         /// <param name="id">ID 的初始值。</param>
-        public static Linkman CreateLinkman(global::System.Guid id)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static Linkman CreateLinkman(global::System.Guid id, global::System.DateTime createDate)
         {
             Linkman linkman = new Linkman();
             linkman.ID = id;
+            linkman.CreateDate = createDate;
             return linkman;
         }
         /// <summary>
@@ -5593,6 +5835,52 @@ namespace LZL.ForeignTrade.DataEntity
         private string _Note;
         partial void OnNoteChanging(string value);
         partial void OnNoteChanged();
+        /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
         /// <summary>
         /// 架构中不存在 Customer 的注释。
         /// </summary>
@@ -6172,10 +6460,12 @@ namespace LZL.ForeignTrade.DataEntity
         /// 创建新的 Memorandum 对象。
         /// </summary>
         /// <param name="id">ID 的初始值。</param>
-        public static Memorandum CreateMemorandum(global::System.Guid id)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static Memorandum CreateMemorandum(global::System.Guid id, global::System.DateTime createDate)
         {
             Memorandum memorandum = new Memorandum();
             memorandum.ID = id;
+            memorandum.CreateDate = createDate;
             return memorandum;
         }
         /// <summary>
@@ -6271,6 +6561,52 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnDateChanged();
         /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
+        /// <summary>
         /// 架构中不存在 Customer 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_MEMORANDUM_CUSTOMER", "Customer")]
@@ -6324,11 +6660,13 @@ namespace LZL.ForeignTrade.DataEntity
         /// </summary>
         /// <param name="id">ID 的初始值。</param>
         /// <param name="name">Name 的初始值。</param>
-        public static Price CreatePrice(global::System.Guid id, string name)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static Price CreatePrice(global::System.Guid id, string name, global::System.DateTime createDate)
         {
             Price price = new Price();
             price.ID = id;
             price.Name = name;
+            price.CreateDate = createDate;
             return price;
         }
         /// <summary>
@@ -6930,6 +7268,52 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnNoteChanging(string value);
         partial void OnNoteChanged();
         /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
+        /// <summary>
         /// 架构中不存在 ExportContractsPrice 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_ExportContractsPrice_Price", "ExportContractsPrice")]
@@ -7151,11 +7535,13 @@ namespace LZL.ForeignTrade.DataEntity
         /// </summary>
         /// <param name="id">ID 的初始值。</param>
         /// <param name="isShare">IsShare 的初始值。</param>
-        public static Product CreateProduct(global::System.Guid id, bool isShare)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static Product CreateProduct(global::System.Guid id, bool isShare, global::System.DateTime createDate)
         {
             Product product = new Product();
             product.ID = id;
             product.IsShare = isShare;
+            product.CreateDate = createDate;
             return product;
         }
         /// <summary>
@@ -7779,6 +8165,52 @@ namespace LZL.ForeignTrade.DataEntity
         private string _Note;
         partial void OnNoteChanging(string value);
         partial void OnNoteChanged();
+        /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
         /// <summary>
         /// 架构中不存在 ExportContractsProduct 的注释。
         /// </summary>
@@ -8697,12 +9129,14 @@ namespace LZL.ForeignTrade.DataEntity
         /// <param name="id">ID 的初始值。</param>
         /// <param name="name">Name 的初始值。</param>
         /// <param name="date">Date 的初始值。</param>
-        public static StockContracts CreateStockContracts(global::System.Guid id, string name, global::System.DateTime date)
+        /// <param name="createDate">CreateDate 的初始值。</param>
+        public static StockContracts CreateStockContracts(global::System.Guid id, string name, global::System.DateTime date, global::System.DateTime createDate)
         {
             StockContracts stockContracts = new StockContracts();
             stockContracts.ID = id;
             stockContracts.Name = name;
             stockContracts.Date = date;
+            stockContracts.CreateDate = createDate;
             return stockContracts;
         }
         /// <summary>
@@ -9257,6 +9691,52 @@ namespace LZL.ForeignTrade.DataEntity
         private string _ComprehensiveConvention;
         partial void OnComprehensiveConventionChanging(string value);
         partial void OnComprehensiveConventionChanged();
+        /// <summary>
+        /// 架构中不存在属性 CreateDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.DateTime CreateDate
+        {
+            get
+            {
+                return this._CreateDate;
+            }
+            set
+            {
+                this.OnCreateDateChanging(value);
+                this.ReportPropertyChanging("CreateDate");
+                this._CreateDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreateDate");
+                this.OnCreateDateChanged();
+            }
+        }
+        private global::System.DateTime _CreateDate;
+        partial void OnCreateDateChanging(global::System.DateTime value);
+        partial void OnCreateDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 EditDate 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.DateTime> EditDate
+        {
+            get
+            {
+                return this._EditDate;
+            }
+            set
+            {
+                this.OnEditDateChanging(value);
+                this.ReportPropertyChanging("EditDate");
+                this._EditDate = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("EditDate");
+                this.OnEditDateChanged();
+            }
+        }
+        private global::System.Nullable<global::System.DateTime> _EditDate;
+        partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnEditDateChanged();
         /// <summary>
         /// 架构中不存在 ProductPack 的注释。
         /// </summary>

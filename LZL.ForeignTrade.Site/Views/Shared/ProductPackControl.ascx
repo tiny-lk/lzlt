@@ -9,6 +9,8 @@
     <input type="hidden" name="ProductPack♂objectname" value="LZL.ForeignTrade.DataEntity.ProductPack,LZL.ForeignTrade.DataEntity" />
     <!-- 标识子表外键实体对象名称、外键字段名称 -->
     <input type="hidden" name="ProductPack♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "ExportContracts" :ViewData["FK"] %>' />
+    <%= Html.Hidden("ProductPack♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("ProductPack♂iseditdate", "EditDate")%>
     <center>
         <h3>
             商品包装信息动态区域</h3>

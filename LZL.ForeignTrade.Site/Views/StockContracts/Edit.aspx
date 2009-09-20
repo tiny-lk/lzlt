@@ -128,6 +128,8 @@
     <input type="hidden" name="region" value="StockContracts♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="StockContracts♂objectname" value="LZL.ForeignTrade.DataEntity.StockContracts,LZL.ForeignTrade.DataEntity" />
+    <%= Html.Hidden("StockContracts♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("StockContracts♂iseditdate", "EditDate")%>
     <table width="100%">
         <caption>
             采购合同信息</caption>

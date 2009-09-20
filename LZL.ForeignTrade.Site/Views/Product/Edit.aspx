@@ -59,6 +59,8 @@
     <input type="hidden" name="region" value="Product♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Product♂objectname" value="LZL.ForeignTrade.DataEntity.Product,LZL.ForeignTrade.DataEntity" />
+    <%= Html.Hidden("Product♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("Product♂iseditdate", "EditDate")%>
     <table width="100%">
         <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
             商品信息</caption>

@@ -9,6 +9,8 @@
     <input type="hidden" name="Linkman♂objectname" value="LZL.ForeignTrade.DataEntity.Linkman,LZL.ForeignTrade.DataEntity" />
     <!-- 标识子表外键实体对象名称、外键字段名称 -->
     <input type="hidden" name="Linkman♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "Customer" :ViewData["FK"] %>' />
+    <%= Html.Hidden("Linkman♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("Linkman♂iseditdate", "EditDate")%>
     <center>
         <h3>
             联系人动态区域</h3>
@@ -42,10 +44,10 @@
             <td align="center" valign="middle" rowspan="4" style="width: 10%;">
                 联系人信息
             </td>
-            <td align="right"  style="width:15%;">
+            <td align="right" style="width: 15%;">
                 联系人：
             </td>
-            <td align="left" style="width:30%;">
+            <td align="left" style="width: 30%;">
                 <%
                     if (Model == null)
                     {
@@ -64,10 +66,10 @@
                     }
                 %>
             </td>
-            <td align="right"  style="width:15%;">
+            <td align="right" style="width: 15%;">
                 职位：
             </td>
-            <td align="left" style="width:30%;">
+            <td align="left" style="width: 30%;">
                 <%
                     if (Model == null)
                     {

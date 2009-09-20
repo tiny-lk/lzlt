@@ -135,6 +135,8 @@
     <input type="hidden" name="region" value="ExportContracts♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="ExportContracts♂objectname" value="LZL.ForeignTrade.DataEntity.ExportContracts,LZL.ForeignTrade.DataEntity" />
+    <%= Html.Hidden("ExportContracts♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("ExportContracts♂iseditdate", "EditDate")%>
     <table width="100%">
         <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
             出口合同信息</caption>
