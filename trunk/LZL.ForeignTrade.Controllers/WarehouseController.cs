@@ -19,8 +19,8 @@ namespace LZL.ForeignTrade.Controllers
         {
             Entities _Entities = new Entities();
             int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "No", "", "WarehouseStore")) / pagesize);
-            var warehouseStore = _Entities.WarehouseStore.OrderBy(v => v.No).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
+            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "No", "", "vm_Warehouse")) / pagesize);
+            var warehouseStore = _Entities.vm_Warehouse.OrderBy(v => v.No).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
             return View(warehouseStore);
         }
 
@@ -63,6 +63,13 @@ namespace LZL.ForeignTrade.Controllers
             SharedController.mainTable(formvalues, _Entities);
             _Entities.SaveChanges();
             return RedirectToAction("MateriaBuy");
+        }
+
+        public ActionResult DetailsMateria(string id)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.MaterialBuy.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 
         /// <summary>
@@ -146,11 +153,17 @@ namespace LZL.ForeignTrade.Controllers
             {
                 return View();
             }
-
             Entities _Entities = new Entities();
             SharedController.mainTable(formvalues, _Entities);
             _Entities.SaveChanges();
             return RedirectToAction("AccessoriesBuy");
+        }
+
+        public ActionResult DetailsAccessories(string id)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.AccessoriesBuy.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 
         /// <summary>
@@ -213,22 +226,33 @@ namespace LZL.ForeignTrade.Controllers
             return View(companys);
         }
 
-        /// <summary>
-        /// Adds the warehouse sale.
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult AddWarehouseSale()
+        public ActionResult DetailsWarehouseSale(string id)
         {
-            return View();
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.WarehouseSale.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 
         /// <summary>
         /// Edits the warehouse sale.
         /// </summary>
         /// <returns></returns>
-        public ActionResult EditWarehouseSale()
+        public ActionResult EditWarehouseSale(string id)
         {
-            return View();
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.WarehouseSale.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditWarehouseSale(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("WarehouseSale");
         }
 
         /// <summary>
@@ -249,5 +273,32 @@ namespace LZL.ForeignTrade.Controllers
             entities.SaveChanges();
             return RedirectToAction("WarehouseSale", new { page = 1 });
         }
+
+        public ActionResult AddWarehouseSale(string id, int? type)
+        {
+            ViewData["id"] = id;
+            if (type == 0)
+            {
+                ViewData["FK"]="AccessoriesBuy";
+            }
+            else
+            {
+                ViewData["FK"] = "Materialbuy";
+            }
+            ViewData["number"] = 1;
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddWarehouseSale(FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+            return RedirectToAction("WarehouseSale");
+        }
+
     }
 }

@@ -2,11 +2,9 @@
     Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.MaterialBuy>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    编辑原材料信息
+    原材料信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        编辑原材料信息</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
 
@@ -27,6 +25,7 @@
     <input type="hidden" name="MaterialBuy♂objectname" value="LZL.ForeignTrade.DataEntity.MaterialBuy,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("MaterialBuy♂ID", Html.Encode(Model.ID.ToString()))%>
     <table width="100%">
+    <caption>原材料信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="7" align="right">

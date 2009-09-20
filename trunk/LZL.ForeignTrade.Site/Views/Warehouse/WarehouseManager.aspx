@@ -1,12 +1,10 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Warehouse/Warehouse.Master"
-    Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.WarehouseStore>>" %>
+    Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.vm_Warehouse>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     仓库一览
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        仓库一览</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -35,18 +33,6 @@
                 if ($("#queryvalue").val() != "") {
                     $('form').submit();
                 }
-            });
-
-            $("#ManageMateria").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/MateriaBuy/") %>';
-            });
-
-            $("#ManageAccessories").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/AccessoriesBuy/") %>' + $(document).data('checkvalue');
-            });
-
-            $("#WarehouseSale").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/WarehouseSale/") %>' + $(document).data('checkvalue');
             });
 
             $("#Refresh").bind("click", function() {
@@ -94,19 +80,26 @@
                     },
                     formatItem: function(row, i, n) { return row; }
                 });
-        } 
+            }
+        
+        function detailsWarehouse(type, id) {
+            if (type == "0") {
+                window.location.href = '<%=Url.Action("DetailsAccessories","Warehouse")%>' + "/" + id;
+            } else {
+                window.location.href = '<%=Url.Action("DetailsMateria","Warehouse") %>' + "/" + id;
+            }
+        }
     </script>
 
     <% using (Html.BeginForm())
        { %>
-    <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+    <table width="100%" style="vertical-align: middle; text-align: center;">
+        <caption>
+            仓库一览</caption>
         <thead>
             <tr>
                 <td colspan="6" align="right">
                     <input type="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" id="ManageMateria" value="原材料管理"/>
-                    <input type="button" id="ManageAccessories" value="辅料管理" />
-                    <input type="button" id="WarehouseSale" value="库存销货"/>
                     <input type="button" id="Refresh" value="刷 新" />
                 </td>
             </tr>
@@ -120,16 +113,13 @@
                     序号
                 </td>
                 <td>
-                    类别（原材料、辅料）
+                    类型
                 </td>
                 <td>
                     编号
                 </td>
                 <td>
                     数量
-                </td>
-                <td>
-                    重量
                 </td>
             </tr>
             <%
@@ -138,7 +128,8 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
             %>
-            <tr>
+            <tr ondblclick="detailsWarehouse('<%= Html.Encode(Model[i].Type) %>','<%=Html.Encode(Model[i].ID.ToString()) %>')"
+                title="双击查看详细信息">
                 <td>
                     <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
                 </td>
@@ -146,16 +137,13 @@
                     <%= (beginenumber+i).ToString()%>
                 </td>
                 <td>
-                    <%= Html.Encode(Model[i].Type)%>
+                    <%= Html.Encode(Model[i].Name)%>
                 </td>
                 <td>
                     <%= Html.Encode(Model[i].No)%>
                 </td>
                 <td>
                     <%= Html.Encode(Model[i].Count)%>
-                </td>
-                <td>
-                    <%= Html.Encode(Model[i].Weight)%>
                 </td>
             </tr>
             <% 

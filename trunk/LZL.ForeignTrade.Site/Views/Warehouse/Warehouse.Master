@@ -12,18 +12,11 @@
     <fieldset>
         <legend title="相关功能">相关功能</legend>
         <div id="sidebar">
-            <div>
-                <ul id="menu">
-                    <li>
-                        <%= Html.ActionLink("仓库一览", "WarehouseManager", "Warehouse")%></li>
-                    <li>
-                        <%= Html.ActionLink("原材料采购", "MateriaBuy", "Warehouse")%></li>
-                    <li>
-                        <%= Html.ActionLink("辅料采购", "AccessoriesBuy", "Warehouse")%></li>
-                    <li>
-                        <%= Html.ActionLink("库存销货", "WarehouseSale", "Warehouse")%></li>
-                </ul>
-            </div>
+            <%= Html.ActionLink("仓库一览", "WarehouseManager", "Warehouse", null, new { Class = "button" })%>
+            <%= Html.ActionLink("原材料采购", "MateriaBuy", "Warehouse", null, new { Class = "button" })%>
+            <%= Html.ActionLink("辅料采购", "AccessoriesBuy", "Warehouse", null, new { Class = "button" })%>
+            <%= Html.ActionLink("库存销货", "WarehouseSale", "Warehouse", null, new { Class = "button" })%>
+            <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
         </div>
     </fieldset>
 </asp:Content>

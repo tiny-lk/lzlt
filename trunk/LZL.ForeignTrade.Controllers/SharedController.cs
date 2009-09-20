@@ -107,6 +107,8 @@ namespace LZL.ForeignTrade.Controllers
                         (regions[i] + "objectname").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                         (regions[i] + "fk").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                         (regions[i] + "id").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                        (regions[i] + "iscreatedate").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                         (regions[i] + "iseditdate").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                          regions[i].Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase)))
                     {
                         if (tableobj != null)
@@ -156,14 +158,28 @@ namespace LZL.ForeignTrade.Controllers
                     }
                     if (string.IsNullOrEmpty(formvalues[regions[i] + "id"]))
                     {
+                        if (!string.IsNullOrEmpty(formvalues[regions[i] + "iscreatedate"]))
+                        {
+                            ClassHelper.SetPropertyValue(tableobj, formvalues[regions[i] + "iscreatedate"], DateTime.Now); 
+                        }
+
+                        //添加状态
                         entities.AddObject(tableobj.GetType().Name, tableobj);
+                    }
+                    else
+                    {
+                        //编辑状态
+                        if (!string.IsNullOrEmpty(formvalues[regions[i] + "iseditdate"]))
+                        {
+                            ClassHelper.SetPropertyValue(tableobj, formvalues[regions[i] + "iseditdate"], DateTime.Now);
+                        }
                     }
 
                     for (int f = 0; f < fkregions.Length; f++)
                     {
                         string childregionname = fkregions[f].Substring(0, fkregions[f].IndexOf("♂") + 1);//子表对象
                         //判断是否存在pfk
-                        var pfkname = fkregions[i].Replace("♂fk", "♂pfk");
+                        var pfkname = fkregions[f].Replace("♂fk", "♂pfk");
                         if ((!string.IsNullOrEmpty(formvalues[pfkname]) && formvalues[pfkname].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
                             || (formvalues[fkregions[f]].Equals(tableobj.GetType().Name, StringComparison.CurrentCultureIgnoreCase))
                             )
@@ -232,6 +248,8 @@ namespace LZL.ForeignTrade.Controllers
                         (region + "fk").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                         (region + "id").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                         (region + "pfk").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                         (region + "iscreatedate").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                         (region + "iseditdate").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                          region.Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase)))
                     {
                         if (tableobj != null)
@@ -290,7 +308,19 @@ namespace LZL.ForeignTrade.Controllers
 
                 if (string.IsNullOrEmpty(formvalues[region + "id"]) || string.IsNullOrEmpty(formvalues[region + "id"].Split(new[] { ',' })[s]))
                 {
+                    if (!string.IsNullOrEmpty(formvalues[region + "iscreatedate"]))
+                    {
+                        ClassHelper.SetPropertyValue(tableobj, formvalues[region + "iscreatedate"], DateTime.Now);
+                    }
                     entities.AddObject(tableobj.GetType().Name, tableobj);
+                }
+                else
+                {
+                    //编辑状态
+                    if (!string.IsNullOrEmpty(formvalues[region + "iseditdate"]))
+                    {
+                        ClassHelper.SetPropertyValue(tableobj, formvalues[region + "iseditdate"], DateTime.Now);
+                    }
                 }
 
                 if (s == regioncount - 1)

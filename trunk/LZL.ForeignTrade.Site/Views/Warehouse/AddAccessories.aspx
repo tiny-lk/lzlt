@@ -5,10 +5,10 @@
     添加辅料
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        添加辅料</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -24,12 +24,16 @@
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="AccessoriesBuy♂objectname" value="LZL.ForeignTrade.DataEntity.AccessoriesBuy,LZL.ForeignTrade.DataEntity" />
     <table width="100%">
+        <caption>
+            辅料信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="7" align="right">
                     <input type="submit" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                         type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/AccessoriesBuy") %>'" />
+                    <%= Html.Hidden("AccessoriesBuy♂iscreatedate", "CreateDate")%>
+                    <%= Html.Hidden("AccessoriesBuy♂iseditdate", "EditDate")%>
                 </td>
             </tr>
             <tr>
@@ -42,8 +46,7 @@
             </tr>
             <tr>
                 <td rowspan="2">
-                    主<br />
-                    标
+                    主 标
                 </td>
                 <td align="right">
                     名称：
@@ -74,8 +77,13 @@
                 <td>
                 </td>
             </tr>
+            <!-- 其它辅助资料 -->
+            <tr id="AccessoriesChildBuy♂" style="display: none;">
+                <td colspan="5">
+                </td>
+            </tr>
+            <!-- 其它辅助资料 -->
         </thead>
-        <!-- 备忘录区域 -->
         <tfoot>
             <tr>
                 <td colspan="7" align="right">
@@ -87,4 +95,8 @@
         </tfoot>
     </table>
     <%} %>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="ChildActionContent" ID="ChildActionContent" runat="server">
+    <a href="#" onclick="addcontrol(this,'OtherAccessories','AccessoriesChildBuy♂',1,'AccessoriesBuy')"
+        class="button">其它辅助</a>
 </asp:Content>

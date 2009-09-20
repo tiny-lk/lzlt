@@ -276,6 +276,8 @@
     <Content Include="Content\images\button.gif" />
     <Content Include="Content\images\table_head.gif" />
     <Content Include="Content\images\toolbarbackgroup.gif" />
+    <Content Include="Views\Shared\AttachmentUpload.ascx" />
+    <Content Include="Views\Shared\OtherAccessories.ascx" />
     <Content Include="Views\Admin\AddCompany.aspx" />
     <Content Include="Views\Admin\AddDepartment.aspx" />
     <Content Include="Views\Admin\EditCompany.aspx" />
@@ -287,6 +289,15 @@
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\OtherAccessoriesControl.ascx" />
     <Content Include="Views\Shared\ProductPackControl.ascx" />
+    <Content Include="Views\Warehouse\AddAccessories.aspx" />
+    <Content Include="Views\Warehouse\AddMateria.aspx" />
+    <Content Include="Views\Warehouse\AddWarehouseSale.aspx" />
+    <Content Include="Views\Warehouse\DetailsAccessories.aspx" />
+    <Content Include="Views\Warehouse\DetailsMateria.aspx" />
+    <Content Include="Views\Warehouse\DetailsWarehouseSale.aspx" />
+    <Content Include="Views\Warehouse\EditAccessories.aspx" />
+    <Content Include="Views\Warehouse\EditMateria.aspx" />
+    <Content Include="Views\Warehouse\EditWarehouseSale.aspx" />
     <Content Include="Views\Warehouse\AddAccessories.aspx" />
     <Content Include="Views\Warehouse\AddMateria.aspx" />
     <Content Include="Views\Warehouse\AddWarehouseSale.aspx" />

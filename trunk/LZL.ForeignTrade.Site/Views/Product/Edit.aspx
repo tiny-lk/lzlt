@@ -61,7 +61,7 @@
     <input type="hidden" name="Product♂objectname" value="LZL.ForeignTrade.DataEntity.Product,LZL.ForeignTrade.DataEntity" />
     <table width="100%">
         <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
-            编辑商品信息</caption>
+            商品信息</caption>
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">

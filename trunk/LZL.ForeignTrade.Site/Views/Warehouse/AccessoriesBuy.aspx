@@ -5,8 +5,6 @@
     辅料采购
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        辅料采购</h2>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery.autocomplete.js")%>"></script>
 
@@ -41,10 +39,6 @@
                 window.location.href = '<%=Url.Content("~/Warehouse/AddAccessories/") %>';
             });
 
-            $("#AddOtherAccessories").bind("click", function() {
-                window.location.href = '<%=Url.Content("~/Warehouse/ManageChildAccessories/") %>' + $(document).data('checkvalue');
-            });
-
             $("#Delete").bind("click", function() {
                 var State = confirm('你确认要删除' + $(document).data('checkvalue') + '吗？');
                 if (State == true) {
@@ -54,6 +48,10 @@
 
             $("#Edit").bind("click", function() {
                 window.location.href = '<%=Url.Content("~/Warehouse/EditAccessories/") %>' + $(document).data('checkvalue');
+            });
+
+            $("#AddSale").bind("click", function() {
+                window.location.href = '<%=Url.Content("~/Warehouse/AddWarehouseSale/") %>' + $(document).data('checkvalue')+"?type=0";
             });
 
             $("#Refresh").bind("click", function() {
@@ -107,13 +105,14 @@
     <% using (Html.BeginForm())
        { %>
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+        <caption>
+            辅料采购</caption>
         <thead>
             <tr>
                 <td colspan="7" align="right">
                     <input type="button" id="OK" value="查 询" disabled="disabled" />
+                    <input type="button" id="AddSale" value="添加销货" disabled="disabled" check="1" />
                     <input type="button" id="Add" value="添加" />
-                    <input type="button" id="AddOtherAccessories" value="添加其他辅件" disabled="disabled"
-                        check="1" />
                     <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
                     <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                     <input type="button" id="Refresh" value="刷 新" />
@@ -150,7 +149,7 @@
                 for (int i = 0; i < Model.Count; i++)
                 {
             %>
-            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/EditAccessories/"+Html.Encode(Model[i].ID)) %>'"
+            <tr ondblclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/DetailsAccessories/"+Html.Encode(Model[i].ID)) %>'"
                 title="双击查看详细信息">
                 <td>
                     <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString())})%>
@@ -173,7 +172,6 @@
                 <td>
                     <%= Html.Encode(Model[i].ZbSize)%>
                 </td>
-                
             </tr>
             <% 
                 }
