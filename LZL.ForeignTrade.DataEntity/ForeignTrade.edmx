@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ForeignTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="ForeignTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="ForeignTradeModelStoreContainer">
           <EntitySet Name="AccessoriesBuy" EntityType="ForeignTradeModel.Store.AccessoriesBuy" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AccessoriesChildBuy" EntityType="ForeignTradeModel.Store.AccessoriesChildBuy" store:Type="Tables" Schema="dbo" />
@@ -560,6 +560,8 @@
           <Property Name="ExportContractsID" Type="uniqueidentifier" />
           <Property Name="StockContractsID" Type="uniqueidentifier" />
           <Property Name="InvoiceID" Type="uniqueidentifier" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
         </EntityType>
         <EntityType Name="StockContracts">
           <Key>
@@ -957,8 +959,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ForeignTradeModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -1531,7 +1532,8 @@
           <NavigationProperty Name="Invoice" Relationship="ForeignTradeModel.FK_ProductPack_Invoice" FromRole="ProductPack" ToRole="Invoice" />
           <NavigationProperty Name="Price" Relationship="ForeignTradeModel.FK_ProductPack_Price" FromRole="ProductPack" ToRole="Price" />
           <NavigationProperty Name="StockContracts" Relationship="ForeignTradeModel.FK_ProductPack_StockContracts" FromRole="ProductPack" ToRole="StockContracts" />
-        </EntityType>
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="EditDate" Type="DateTime" Nullable="true" /></EntityType>
         <EntityType Name="StockContracts">
           <Key>
             <PropertyRef Name="ID" />
@@ -2130,6 +2132,8 @@
           <EntitySetMapping Name="ProductPack">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.ProductPack)">
               <MappingFragment StoreEntitySet="ProductPack">
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductAmount" ColumnName="ProductAmount" />
