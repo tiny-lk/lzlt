@@ -7,11 +7,8 @@
     <asp:ContentPlaceHolder ID="MainContent" runat="server" />
 </asp:Content>
 <asp:Content ID="CustomerSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
-    <fieldset>
-    <legend>相关功能</legend>
-        <div id="sidebar">
-            <%= Html.ActionLink("添 加", "Add", "Customer",null, new { Class = "button" })%>
-            <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
-        </div>
-    </fieldset>
+    <div id="sidebar">
+        <%= Html.ActionLink("添 加", "Add", "Customer",null, new { Class = "button" })%>
+        <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
+    </div>
 </asp:Content>

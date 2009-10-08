@@ -74,7 +74,6 @@
     <Content Include="Global.asax" />
     <Content Include="Views\Account\UserProfile.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
     <Content Include="Scripts\jquery-1.3.2.min.js" />
     <Content Include="Scripts\jquery-1.3.2-vsdoc.js" />
@@ -272,10 +271,31 @@
     <Content Include="Views\Warehouse\WarehouseManager.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\blue\blue.css" />
+    <Content Include="Content\blue\images\banner-bg.jpg" />
+    <Content Include="Content\blue\images\banner01.jpg" />
+    <Content Include="Content\blue\images\bq-bg.jpg" />
+    <Content Include="Content\blue\images\bq-bg02.jpg" />
+    <Content Include="Content\blue\images\button01.gif" />
+    <Content Include="Content\blue\images\button02.gif" />
+    <Content Include="Content\blue\images\button03.gif" />
+    <Content Include="Content\blue\images\dl-info.jpg" />
+    <Content Include="Content\blue\images\frame-bg.jpg" />
+    <Content Include="Content\blue\images\frame-bg01.jpg" />
+    <Content Include="Content\blue\images\frame-bg02.jpg" />
+    <Content Include="Content\blue\images\in-dt.gif" />
+    <Content Include="Content\blue\images\jiao-left-xia.gif" />
+    <Content Include="Content\blue\images\jiao-left.gif" />
+    <Content Include="Content\blue\images\jiao-right-xia.gif" />
+    <Content Include="Content\blue\images\jiao-right.gif" />
+    <Content Include="Content\blue\images\linkbar01.gif" />
+    <Content Include="Content\blue\images\linkbar02.gif" />
+    <Content Include="Content\blue\images\linkbar03.gif" />
     <Content Include="Content\images\body_backdrop.gif" />
     <Content Include="Content\images\button.gif" />
     <Content Include="Content\images\table_head.gif" />
     <Content Include="Content\images\toolbarbackgroup.gif" />
+    <Content Include="Scripts\jquery.corner.js" />
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\OtherAccessories.ascx" />
     <Content Include="Views\Admin\AddCompany.aspx" />

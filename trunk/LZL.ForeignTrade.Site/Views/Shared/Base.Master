@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head runat="server">
-    <link href="<%= Url.Content("~/Content/Site.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%= Url.Content("~/Content/blue/blue.css")%>" rel="stylesheet" type="text/css" />
     <link href="<%= Url.Content("~/Content/jquery.autocomplete.css")%>" rel="stylesheet"
         type="text/css" />
     <link href="<%= Url.Content("~/Content/themes/base/ui.all.css")%>" rel="stylesheet"
@@ -46,6 +46,8 @@
 
     <script type="text/javascript" src='<%= Url.Content("~/Scripts/jquery.treeview.js")%>'></script>
 
+    <script type="text/javascript" src='<%= Url.Content("~/Scripts/jquery.corner.js")%>'></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $.validator.setDefaults();
@@ -60,6 +62,9 @@
                 collapsed: true,
                 unique: true
             });
+
+            $("#sidebar").corner("round 6px").parent().css('padding', '1px').corner("round 6px cc:#78b5e1");
+            $(this)
         })
         function init() {
             $("input[type='text'], input[type='password'], textarea").focus(function()
@@ -84,11 +89,11 @@
             });
 
             //alert($(document).data("check"));
-//            $("input[value='查 询']").bind("mouseup", function() {
-//                $(document).data("checkvalue", "");
-//                $(document).data("check", 0);
-//                alert( $(document).data("check")+"dddd");
-//            });
+            //            $("input[value='查 询']").bind("mouseup", function() {
+            //                $(document).data("checkvalue", "");
+            //                $(document).data("check", 0);
+            //                alert( $(document).data("check")+"dddd");
+            //            });
 
 
             $(document).data("checkvalue", "");
@@ -230,18 +235,20 @@
     %>
     <div class="page">
         <div id="header">
-            <div id="title">
-                <h1>
-                    诚诺外贸管理系统</h1>
+            <div class="handercontent">
             </div>
+        </div>
+        <div class="info">
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>
         </div>
-        <div id="content">
-            <div id="treemenucss">
-                <fieldset>
-                    <legend title="相关功能">相关功能</legend>
+        <div class="maincontent">
+            <div class="content">
+                <div id="tree">
+                    功能信息
+                </div>
+                <div id="treecontent">
                     <ul id="treemenu">
                         <li>
                             <%= Html.ActionLink("主页", "Index", "Home") %></li>
@@ -270,11 +277,13 @@
                         <li>
                             <%= Html.ActionLink("关于", "About", "Home")%></li>
                     </ul>
-                </fieldset>
-            </div>
-            <div class="main">
-                <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
-                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </div>
+                <div class="main">
+                    <div id="sidebarparent">
+                        <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
+                    </div>
+                    <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                </div>
             </div>
         </div>
         <div id="footer">
