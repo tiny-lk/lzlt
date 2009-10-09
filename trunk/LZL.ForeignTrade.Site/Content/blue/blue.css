@@ -268,6 +268,7 @@ input[type="button"],input[type="reset"],input[type="submit"]
     cursor:pointer;
     vertical-align:bottom;
 }
+
 .button
 {
     background-image:url(images/linkbar01.gif);
@@ -282,6 +283,33 @@ input[type="button"],input[type="reset"],input[type="submit"]
     color:Black;
 }
 
+.button2
+{
+    background-image:url(images/linkbar02.gif);
+    background-repeat:no-repeat;
+    border: 0px none;
+    width:59px;
+    height:21px;
+    vertical-align:bottom;
+    text-align:center;
+    display:block;
+    line-height:22px;
+    color:Black;
+ }
+    
+.button3
+{
+    background-image:url(images/linkbar03.gif);
+    background-repeat:no-repeat;
+    border: 0px none;
+    width:59px;
+    height:21px;
+    vertical-align:bottom;
+    text-align:center;
+    display:block;
+    line-height:22px;
+    color:Black;
+}
 
 table
 {
