@@ -64,7 +64,13 @@
             });
 
             $("#sidebar").corner("round 6px").parent().css('padding', '1px').corner("round 6px cc:#78b5e1");
-            $(this)
+
+            $(".button").live("mouseover", function() {
+                $(this).addClass("button2");
+            }).live("mouseout", function() {
+                $(this).removeClass("button2");
+            });
+
         })
         function init() {
             $("input[type='text'], input[type='password'], textarea").focus(function()
