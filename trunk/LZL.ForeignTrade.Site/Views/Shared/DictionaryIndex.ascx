@@ -62,7 +62,7 @@
         $(".print").live("click", function() {
             $("table > tbody ").printArea("true");
         });
-        
+
     });
 
     //查询数据信息
@@ -96,17 +96,15 @@
                 <%=Html.DropDownList("quyerCondition", LZL.ForeignTrade.Controllers.DataHelper.GetAllDictionary(Server.UrlDecode(Request["queryvalue"])), "请选择")%>
             </td>
             <td colspan="2" align="left">
-                <div style="float: right;">
-                    <% if (ViewData["simple"] == null)
-                       {
-                    %>
-                    <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
-                    <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
-                    <%
-                        }
-                    %>
-                    <input type="button" id="Refresh" value="刷 新" />
-                </div>
+                <% if (ViewData["simple"] == null)
+                   {
+                %>
+                <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                <%
+                    }
+                %>
+                <input type="button" id="Refresh" value="刷 新" />
             </td>
         </tr>
     </thead>
