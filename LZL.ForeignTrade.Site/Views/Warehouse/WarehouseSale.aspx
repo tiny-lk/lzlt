@@ -148,13 +148,11 @@
                         }, "Value", "Text", "SaleNo"))%>
                 </td>
                 <td colspan="7" align="left">
-                    <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
-                    <div style="float: right;">
-                        <input type="button" id="OK" value="²é Ñ¯" disabled="disabled" />
-                        <input type="button" id="Edit" value="±à ¼­" disabled="disabled" check="1" />
-                        <input type="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
-                        <input type="button" id="Refresh" value="Ë¢ ÐÂ" />
-                    </div>
+                    <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
+                    <input type="button" id="OK" value="²é Ñ¯" disabled="disabled" />
+                    <input type="button" id="Edit" value="±à ¼­" disabled="disabled" check="1" />
+                    <input type="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
+                    <input type="button" id="Refresh" value="Ë¢ ÐÂ" />
                 </td>
             </tr>
         </thead>
