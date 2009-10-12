@@ -282,6 +282,33 @@ input[type="button"],input[type="reset"],input[type="submit"]
     line-height:22px;
     color:Black;
 }
+.button4
+{
+    background-image:url(images/linkbar04.gif);
+    background-repeat:no-repeat;
+    border: 0px none;
+    width:84px;
+    height:21px;
+    vertical-align:bottom;
+    text-align:center;
+    display:block;
+    line-height:22px;
+    color:Black;
+}
+
+.button5
+{
+    background-image:url(images/linkbar05.gif);
+    background-repeat:no-repeat;
+    border: 0px none;
+    width:84px;
+    height:21px;
+    vertical-align:bottom;
+    text-align:center;
+    display:block;
+    line-height:22px;
+    color:Black;
+}
 
 .button2
 {
@@ -337,11 +364,13 @@ table tfoot
 
 .mouseover
 {
-    background-color: #efe9b5;
+    background-color: #d3ecf9;
+     color:#000000;
 }
 .select
 {
-    background-color: #e0d686;
+    background-color: #b8d1f0;
+    color:#344d6b;
 }
 .dynamictable
 {

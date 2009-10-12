@@ -30,12 +30,14 @@
 }
 
 .treeview a.selected {
-	background-color: #b19916;
+	background-color: #bde8fe;
+	color:#344d6b;
 }
 
 .treeview a:hover 
 {
-	background-color: #f09f05;
+	background-color: #eef0ef;
+	color:#595b5a;
 }
 
 #treecontrol { margin: 1em 0; display: none; }
