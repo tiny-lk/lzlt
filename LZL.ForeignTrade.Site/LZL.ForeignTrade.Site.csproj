@@ -291,6 +291,8 @@
     <Content Include="Content\blue\images\linkbar01.gif" />
     <Content Include="Content\blue\images\linkbar02.gif" />
     <Content Include="Content\blue\images\linkbar03.gif" />
+    <Content Include="Content\blue\images\linkbar04.gif" />
+    <Content Include="Content\blue\images\linkbar05.gif" />
     <Content Include="Content\images\body_backdrop.gif" />
     <Content Include="Content\images\button.gif" />
     <Content Include="Content\images\table_head.gif" />
