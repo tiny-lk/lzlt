@@ -13,7 +13,7 @@
         <%= Html.ActionLink("仓库一览", "WarehouseManager", "Warehouse", null, new { Class = "button" })%>
         <%= Html.ActionLink("原材料采购", "MaterialBuy", "Warehouse", null, new { Class = "button4" })%>
         <%= Html.ActionLink("辅料采购", "AccessoriesBuy", "Warehouse", null, new { Class = "button" })%>
-        <%= Html.ActionLink("库存销货", "WarehouseSale", "Warehouse", null, new { Class = "button" })%>
+        <%= Html.ActionLink("生产管理", "WarehouseSale", "Warehouse", null, new { Class = "button" })%>
         <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
     </div>
 </asp:Content>

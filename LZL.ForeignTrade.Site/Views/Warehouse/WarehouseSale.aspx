@@ -2,7 +2,7 @@
     Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.WarehouseSale>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    原材料消耗
+    生产管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -138,7 +138,7 @@
        { %>
     <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
         <caption>
-            原材料消耗</caption>
+            生产管理</caption>
         <thead>
             <tr>
                 <td colspan="2">
