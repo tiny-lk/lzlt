@@ -464,9 +464,11 @@ namespace LZL.ForeignTrade.Controllers
             ViewData["pagecount"] = pagecount;
             return View("InvoiceIndex", querylist);
         }
-        public ActionResult ImageUserControl(string fid)
+
+        public ActionResult ImageUserControl(string fid, string name)
         {
             ViewData["fid"] = fid;
+            ViewData["typename"] = name;
             return View("ImageUserControl");
         }
 
@@ -475,7 +477,7 @@ namespace LZL.ForeignTrade.Controllers
         {
             Image image = new Image();
             image.ID =  Guid.NewGuid();
-            image.Name = form["Name"];
+            image.Name = form["FileName"];
             image.FK_ID = new Guid(form["fid"]);
             image.Note = form["Note"];
             image.TypeCode = form["TypeCode"];
@@ -488,8 +490,11 @@ namespace LZL.ForeignTrade.Controllers
                 image.FileName = Attachment.FileName.Substring(Attachment.FileName.LastIndexOf("\\") + 1);
             }
             Entities entities = new Entities();
+            image.CreateDate = DateTime.Now;
+            image.EditDate = DateTime.Now;
             entities.AddToImage(image);
             entities.SaveChanges();
+
             ViewData["fid"] = form["fid"];
         }
 
@@ -511,7 +516,7 @@ namespace LZL.ForeignTrade.Controllers
             var tree = string.Empty;
             for (int i = 0; i < treedictionary.Count; i++)
             {
-                tree = "<li id='" + treedictionary.ElementAt(i).ID.ToString() + "'><span class='folder'>" + treedictionary.ElementAt(i).Name + "</span>";
+                tree = "<li id='" + treedictionary.ElementAt(i).ID.ToString() + "'><span class='folder'>" +treedictionary.ElementAt(i).Name + "</span>";
                 if (treedictionary.ElementAt(i).Pid != null)
                 {
                     builderDictionary(treedictionary, treedictionary.ElementAt(i).Pid.GetValueOrDefault(), tree, images);
@@ -524,8 +529,9 @@ namespace LZL.ForeignTrade.Controllers
                         tree += "<ul>";
                         for (int j = 0; j < imagecode.Count; j++)
                         {
+                            string name = string.IsNullOrEmpty(imagecode[j].Name) ? imagecode[j].FileName : imagecode[j].Name;
                             tree += "<li id='" + imagecode[j].ID.ToString() + "'>";
-                            tree += "<a href='#' onclick=showimage('" + imagecode[j].ID.ToString() + "')><span class='file'>" + imagecode[j].Name + "</span></a></li>";
+                            tree += "<a href='#' onclick=showimage('" + imagecode[j].ID.ToString() + "')><span class='file'>" + name + "</span></a></li>";
                         }
                         tree += "</ul>";
                     }
@@ -558,8 +564,9 @@ namespace LZL.ForeignTrade.Controllers
                             tree += "<ul>";
                             for (int j = 0; j < imagecode.Count; j++)
                             {
+                                string name = string.IsNullOrEmpty(imagecode[j].Name) ? imagecode[j].FileName : imagecode[j].Name;
                                 tree += "<li id='" + imagecode[j].ID.ToString() + "'>";
-                                tree += "<a href='#' onclick=showimage('" + imagecode[j].ID.ToString() + "')><span class='file'>" + imagecode[j].Name + "</span></a></li>";
+                                tree += "<a href='#' onclick=showimage('" + imagecode[j].ID.ToString() + "')><span class='file'>" + name + "</span></a></li>";
                             }
                             tree += "</ul>";
                         }
@@ -577,6 +584,20 @@ namespace LZL.ForeignTrade.Controllers
             Guid fguid = new Guid(id);
             var images = entities.Image.Where(v => v.ID.Equals(fguid)).OrderBy(v => v.TypeCode).FirstOrDefault();
             return File(images.Attachment, "image/" + images.ExtensName);
+        }
+
+        public ActionResult DeleteImage(string imageid, string fid, string imagetype)
+        {
+            if (!string.IsNullOrEmpty(imageid))
+            {
+                Entities entities = new Entities();
+                Guid fguid = new Guid(imageid);
+                Image image = entities.Image.Where(v => v.ID == fguid).FirstOrDefault();
+                entities.DeleteObject(image);
+                entities.SaveChanges();
+            }
+
+            return RedirectToAction("ImageView", new { imagetype = imagetype, fid = fid });
         }
 
     }

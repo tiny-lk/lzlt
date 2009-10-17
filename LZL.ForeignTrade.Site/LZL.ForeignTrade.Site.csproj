@@ -319,12 +319,6 @@
     <Content Include="Views\Warehouse\EditAccessories.aspx" />
     <Content Include="Views\Warehouse\EditMateria.aspx" />
     <Content Include="Views\Warehouse\EditWarehouseSale.aspx" />
-    <Content Include="Views\Warehouse\AddAccessories.aspx" />
-    <Content Include="Views\Warehouse\AddMateria.aspx" />
-    <Content Include="Views\Warehouse\AddWarehouseSale.aspx" />
-    <Content Include="Views\Warehouse\EditAccessories.aspx" />
-    <Content Include="Views\Warehouse\EditMateria.aspx" />
-    <Content Include="Views\Warehouse\EditWarehouseSale.aspx" />
     <Content Include="Views\Warehouse\Warehouse.Master" />
     <Content Include="Views\Warehouse\WarehouseSale.aspx" />
   </ItemGroup>

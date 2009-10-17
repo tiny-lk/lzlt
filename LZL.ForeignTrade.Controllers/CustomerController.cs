@@ -26,6 +26,7 @@ namespace LZL.ForeignTrade.Controllers
             var querylist = DataHelper.GetCustomers(string.Empty, string.Empty, 1, string.Empty, out pagecount);
             ViewData["pagecount"] = pagecount;
             return View(querylist);
+
         }
 
         public ActionResult Add()
