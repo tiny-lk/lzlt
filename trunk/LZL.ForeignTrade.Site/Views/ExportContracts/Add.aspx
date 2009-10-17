@@ -196,73 +196,6 @@
                 </td>
             </tr>
             <tr>
-                <td align="center" rowspan="5" valign="middle">
-                    商品信息汇总
-                </td>
-                <td align="right">
-                    总销售金额：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("ExportContracts♂TotalSalesAmount", "", new { validate = "number:true" })%>
-                </td>
-                <td align="right">
-                    总包装数量：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("ExportContracts♂TotalPackAmount", "", new { validate = "digits:true" })%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    英文包装单位：
-                </td>
-                <td align="left">
-                    <%= Html.DropDownList("ExportContracts♂TotalPackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择")%>
-                </td>
-                <td align="right">
-                    包装毛重(KG)：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("ExportContracts♂TotalPackGrossWeight", "", new { validate = "number:true" })%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    包装净重(KG)：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("ExportContracts♂TotalPackNetWeight", "", new { validate = "number:true" })%>
-                </td>
-                <td align="right">
-                    包装体积(CBM)：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("ExportContracts♂TotalPackBulk", "", new { validate = "number:true" })%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    商品总数量：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("ExportContracts♂TotalProductAmount", "", new { validate = "digits:true" })%>
-                </td>
-                <td align="right">
-                    商品总单位：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("ExportContracts♂TotalUnit")%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    商品总数量(不同单位)：
-                </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextBox("ExportContracts♂TotalDifferentUnit")%>
-                </td>
-            </tr>
-            <tr>
                 <td align="center" rowspan="1" valign="middle">
                     其它信息
                 </td>
@@ -270,7 +203,7 @@
                     备注信息：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextArea("ExportContracts♂Note", new { style = "width:99%; height:60px;" })%>
+                    <%= Html.TextArea("ExportContracts♂Note", new { style = "width:99%; height:40px;" })%>
                 </td>
             </tr>
             <tr>
@@ -295,7 +228,7 @@
                     价格条款补充说明：
                 </td>
                 <td align="left" colspan="3">
-                    <%= Html.TextArea("ExportContracts♂PriceClauseNote", new { style = "width:99%; height:60px;" })%>
+                    <%= Html.TextArea("ExportContracts♂PriceClauseNote", new { style = "width:99%; height:40px;" })%>
                 </td>
             </tr>
             <tr>
@@ -370,7 +303,7 @@
                     出运日期：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("ExportContracts♂ShipmentDate", "", new { validate = "date:true", Class = "calendar" })%>
+                    <%= Html.TextBox("ExportContracts♂ShipmentDate", "", new { validate = "date:true,required:true", Class = "calendar" })%>
                 </td>
             </tr>
             <tr>
@@ -408,6 +341,13 @@
                     <%= Html.TextArea("ExportContracts♂ComprehensiveConvention", new { style = "width:99%; height:40px;" })%>
                 </td>
             </tr>
+            <!-- 商品包装信息 -->
+            <tr id="ProductPack♂" style="display: none;">
+                <td colspan="5">
+                </td>
+            </tr>
+            <!-- 商品包装信息 -->
+            
             <!-- 报价单信息 -->
             <tr id="ExportContractsPrice♂" style="display: none; text-align: left;">
                 <td colspan="5">
@@ -456,12 +396,6 @@
                 </td>
             </tr>
             <!-- 商品信息 -->
-            <!-- 商品包装信息 -->
-            <tr id="ProductPack♂" style="display: none;">
-                <td colspan="5">
-                </td>
-            </tr>
-            <!-- 商品包装信息 -->
         </thead>
         <tfoot>
             <tr>

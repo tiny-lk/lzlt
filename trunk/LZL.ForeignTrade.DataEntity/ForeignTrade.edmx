@@ -219,6 +219,7 @@
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
+          <Property Name="BankAddress" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -1174,7 +1175,7 @@
           <NavigationProperty Name="Linkman" Relationship="ForeignTradeModel.FK_LINKMAN_CUSTOMER" FromRole="Customer" ToRole="Linkman" />
           <NavigationProperty Name="Memorandum" Relationship="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" FromRole="Customer" ToRole="Memorandum" />
           <NavigationProperty Name="ProductCustomer" Relationship="ForeignTradeModel.FK_ProductCustomer_Customer" FromRole="Customer" ToRole="ProductCustomer" />
-        </EntityType>
+          <Property Name="BankAddress" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="ID" />
@@ -1792,6 +1793,7 @@
           <EntitySetMapping Name="Customer">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Customer)">
               <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="BankAddress" ColumnName="BankAddress" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameCode" ColumnName="NameCode" />
                 <ScalarProperty Name="NameCn" ColumnName="NameCn" />

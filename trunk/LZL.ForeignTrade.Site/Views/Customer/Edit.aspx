@@ -148,7 +148,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="center" valign="middle">
+                <td align="center" valign="middle" rowspan="2">
                     财务信息
                 </td>
                 <td align="right">
@@ -162,6 +162,14 @@
                 </td>
                 <td align="left">
                     <%= Html.TextBox("Customer♂BankCode", Html.Encode(Model.BankCode), new { validate = "creditcard:true" })%>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    开户银行地址：
+                </td>
+                <td align="left" colspan="3">
+                    <%= Html.TextBox("Customer♂BankAddress", Html.Encode(Model.BankAddress))%>
                 </td>
             </tr>
             <!-- 联系人区域 -->

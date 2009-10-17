@@ -131,7 +131,8 @@
                             new SelectListItem(){Text="客户中文名称", Value ="NameCn"},
                              new SelectListItem(){Text="客户英文名称", Value ="NameEn"},
                              new SelectListItem(){ Text="中文地址", Value ="Address"},
-                             new SelectListItem(){ Text ="英文地址", Value ="AddressEn"}
+                             new SelectListItem(){ Text ="英文地址", Value ="AddressEn"},
+                             new SelectListItem(){ Text ="开户帐号", Value ="BankCode"}
                         }, "Value", "Text", "NameCode"))%>
             </td>
             <td colspan="6" align="left">
@@ -227,7 +228,14 @@
                     {
                         if (p < count)
                         {
-                            Response.Write("上一页|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ",'" + Request["type"] + "')>下一页</a>");
+                            if (p == 1)
+                            {
+                                Response.Write("上一页|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ",'" + Request["type"] + "')>下一页</a>");
+                            }
+                            else
+                            {
+                                Response.Write("<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page - 1) + ",'" + Request["type"] + "')>上一页</a>|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ",'" + Request["type"] + "')>下一页</a>");
+                            }
                         }
                         else
                         {

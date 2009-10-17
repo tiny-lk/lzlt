@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LZL.ForeignTrade.DataEntity;
+using System.Configuration;
+using ZhouBo.Core;
 
 namespace LZL.ForeignTrade.Controllers
 {
@@ -15,8 +18,11 @@ namespace LZL.ForeignTrade.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            ViewData["Message"] = "欢迎进入诚诺外贸管理系统！";
-
+            Entities entities = new Entities();
+            double day = BasicOperate.GetDouble(ConfigurationManager.AppSettings["departreminder"], true);
+            DateTime starttime = DateTime.Now.AddDays(-(day+1));
+            DateTime endtime = DateTime.Now.AddDays(1);
+            ViewData["pcxx"] = entities.ExportContracts.Where(v => v.ShipmentDate >= starttime && v.ShipmentDate <= endtime).ToList();
             return View();
         }
 

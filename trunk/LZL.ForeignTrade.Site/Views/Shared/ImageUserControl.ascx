@@ -6,7 +6,6 @@
     $(document).ready(function() {
         $("#imageform").ajaxForm(function() {
             $("input[name='Name']").val("");
-            $("input[name='TypeCode']").val("");
             $("textarea[name='Note']").val("");
             alert("添加完成！");
         });
@@ -30,7 +29,7 @@
             $.ajax({
                 type: "get",
                 dataType: "html",
-                data: { fid: $("#fid").val(), imagetype: encodeURI('商品图片类型') },
+                data: { fid: $("#fid").val(), imagetype: encodeURI('<%=ZhouBo.Core.BasicOperate.GetString( ViewData["typename"],true)%>') },
                 url: '<%=Url.Action("ImageView","Shared")%>',
                 success: function(data) {
                     $("#imageviewmodedialog").children().remove();
@@ -44,15 +43,12 @@
 
         $("#imageform").validate({
             rules: {
-                Name: {
-                    required: true
-                },
                 TypeCode: {
                     required: true
                 },
                 Attachment: {
                     required: true,
-                    accept: "png|jpe?g|gif"
+                    accept: "png|jpe?g|gif|bmp"
                 }
             }
         });
@@ -73,13 +69,13 @@
             附件名称：
         </td>
         <td align="left">
-            <%=Html.TextBox("Name")%>
+            <%=Html.TextBox("FileName")%>
         </td>
         <td align="right">
             附件类型：
         </td>
         <td align="left">
-            <%=Html.TextBox("TypeCode")%>
+            <%= Html.DropDownList("TypeCode", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary(ZhouBo.Core.BasicOperate.GetString( ViewData["typename"],true)))%>
         </td>
     </tr>
     <tr>
@@ -102,7 +98,7 @@
         <td colspan="5" align="right">
             <span style="color: Red;">注:图片不大于3M。</span>
             <input type="button" value="查 看" id="imageviewer" />
-            <input type="submit" value="添 加" />
+            <input type="submit" value="添 加"  />
         </td>
     </tr>
 </table>

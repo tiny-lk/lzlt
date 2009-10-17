@@ -36,7 +36,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsProduct_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsProduct))]
 
 // 原始文件名:
-// 生成日期: 2009/9/20 19:35:17
+// 生成日期: 2009/10/17 10:02:36
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -2151,6 +2151,29 @@ namespace LZL.ForeignTrade.DataEntity
         private global::System.Nullable<global::System.DateTime> _EditDate;
         partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnEditDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 BankAddress 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string BankAddress
+        {
+            get
+            {
+                return this._BankAddress;
+            }
+            set
+            {
+                this.OnBankAddressChanging(value);
+                this.ReportPropertyChanging("BankAddress");
+                this._BankAddress = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("BankAddress");
+                this.OnBankAddressChanged();
+            }
+        }
+        private string _BankAddress;
+        partial void OnBankAddressChanging(string value);
+        partial void OnBankAddressChanged();
         /// <summary>
         /// 架构中不存在 Linkman 的注释。
         /// </summary>

@@ -5,7 +5,7 @@
     $("#modedialog").dialog({
         bgiframe: true,
         modal: true,
-        width: 600,
+        width: 720,
         height: 'auto',
         position: 'center',
         resizable: true,

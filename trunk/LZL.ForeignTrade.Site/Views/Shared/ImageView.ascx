@@ -1,6 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<LZL.ForeignTrade.DataEntity.Image>" %>
 
-
 <script type="text/javascript" src='<%= Url.Content("~/Scripts/jquery.treeview.js")%>'></script>
 
 <script type="text/javascript">
@@ -13,8 +12,25 @@
         });
     });
 
-    function showimage(key) 
+    function showimage(key) {
         $("#image").find("img").attr("src", '<%=Url.Action("ShowImage", "Shared") %>' + "/" + key);
+    }
+
+    function deleteimage(id) {
+        $.ajax({
+            type: "get",
+            dataType: "html",
+            data: { imageid: id, fid: '<%= Request["fid"] %>', imagetype: '<%= Request["imagetype"]%>' },
+            url: '<%=Url.Action("DeleteImage","Shared")%>',
+            success: function(data) {
+                $("#imageview").children().remove();
+                $("#imageview").append(data);
+            },
+            error: function() {
+                alert("É¾³ýÊ§°Ü£¡");
+            }
+        });
+
     }
 </script>
 
@@ -23,6 +39,8 @@
         <ul id="treenavigation">
             <%=ViewData["tree"] %>
         </ul>
+        <a href="#" onclick="deleteimage('<%= Model==null?"":Model.ID.ToString() %>');" class="button">
+            É¾³ý</a>
     </div>
     <div id="image" style="float: left; width: 800px;">
         <%
@@ -35,7 +53,7 @@
         %>
         <center>
             <img src='<%=Url.Action("ShowImage", "Shared", new { id = Model.ID.ToString() }) %>'
-                alt="Í¼Æ¬ÐÅÏ¢" style="cursor: move;" title='<%= Html.Encode( Model.Note) %>' />
+                alt="Í¼Æ¬ÐÅÏ¢" style="cursor: move;" title='<%=  Html.Encode( Model.Note) %>' />
         </center>
         <%
             }  

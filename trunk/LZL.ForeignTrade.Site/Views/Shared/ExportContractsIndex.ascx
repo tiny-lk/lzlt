@@ -128,11 +128,10 @@
                 <%=Html.DropDownList("quyerCondition",
                         new SelectList(new List<SelectListItem>() {
                             new SelectListItem(){ Text="合同号", Value ="Name"},
-                            new SelectListItem(){Text="合同日期", Value ="Date"},
                              new SelectListItem(){Text="客户订单号", Value ="CustomerNo"}
                         }, "Value", "Text", "Name"))%>
             </td>
-            <td colspan="6" align="left">
+            <td colspan="7" align="left">
                 <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
                 <input type="button" id="OK" value="查 询" disabled="disabled" />
                 <% if (ViewData["simple"] == null)
@@ -172,6 +171,9 @@
             </td>
             <td>
                 合同类别
+            </td>
+            <td>
+                出运日期
             </td>
         </tr>
         <%
@@ -223,6 +225,9 @@
             <td>
                 <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("出口合同类型", Html.Encode(Model[i].Type))%>
             </td>
+            <td>
+                <%= Html.Encode(Model[i].ShipmentDate == null ? "" : Model[i].ShipmentDate.Value.ToShortDateString())%>
+            </td>
         </tr>
         <%
             }
@@ -243,7 +248,15 @@
                     {
                         if (p < count)
                         {
-                            Response.Write("上一页|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ")>下一页</a>");
+                            if (p == 1)
+                            {
+                                Response.Write("上一页|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ")>下一页</a>");
+                            }
+                            else
+                            {
+                                Response.Write("<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page - 1) + ")>上一页</a>|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ")>下一页</a>");
+                            }
+
                         }
                         else
                         {

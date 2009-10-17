@@ -62,7 +62,6 @@
                 collapsed: true,
                 unique: true
             });
-
             $("#sidebar").corner("round 6px").parent().css('padding', '1px').corner("round 6px cc:#78b5e1");
 
             $(".button").live("mouseover", function() {
@@ -261,8 +260,6 @@
                         <li class="open"><a href="#">业务功能</a>
                             <ul>
                                 <li>
-                                    <%= Html.ActionLink("报价单信息", "Index", "Price")%></li>
-                                <li>
                                     <%= Html.ActionLink("商品信息", "Index", "Product")%></li>
                                 <li>
                                     <%= Html.ActionLink("客户信息", "Index", "Customer")%></li>
@@ -270,6 +267,8 @@
                                     <%= Html.ActionLink("出口合同信息", "Index", "ExportContracts")%></li>
                                 <li>
                                     <%= Html.ActionLink("采购合同信息", "Index", "StockContracts")%></li>
+                                <li>
+                                    <%= Html.ActionLink("报价单信息", "Index", "Price")%></li>
                                 <li>
                                     <%= Html.ActionLink("发票单证管理", "Index", "Invoice")%></li>
                                 <li>

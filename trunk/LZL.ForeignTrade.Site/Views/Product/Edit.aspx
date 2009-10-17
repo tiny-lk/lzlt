@@ -22,13 +22,23 @@
                 }
             });
         }
-        function addImage(key) {
+        
+        $(document).ready(function() {
+            $("#Product♂PackBulk").bind("dblclick", function() {
+                var tj = Number($("#Product♂PackLength").val()) * Number($("#Product♂PackWidth").val()) * Number($("#Product♂PackWidth").val());
+                if (tj != 0) {
+                    $("#Product♂PackBulk").val(tj.toFixed(2));
+                }
+            });
+        });
+        
+        function addImage(key,n) {
             $("#imagemodedialog").remove();
             $("body").append("<div id='imagemodedialog'></div>");
             $.ajax({
                 type: "get",
                 dataType: "html",
-                data: { fid: key },
+                data: { fid: key, name: n },
                 url: '<%=Url.Action("ImageUserControl","Shared")%>',
                 success: function(data) {
                     $("#imagemodedialog").dialog({
@@ -348,6 +358,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Customer")%>');"
         class="button">供应商</a> <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Customer")%>');"
-            class="button">客户商品</a> <a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>');"
+            class="button">客户商品</a> <a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>','商品图片类型');"
                 class="button">商品图片</a>
 </asp:Content>
