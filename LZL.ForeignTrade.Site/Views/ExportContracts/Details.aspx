@@ -5,7 +5,6 @@
     出口合同信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
     <script type="text/javascript">
         $(document).ready(function() {
             $(".print").live("click", function() {

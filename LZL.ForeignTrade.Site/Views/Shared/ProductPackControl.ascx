@@ -105,7 +105,7 @@
                 <td align="right" style="width: 15%;">
                     商品代码：
                 </td>
-                <td align="left" colspan="3">
+                <td align="left" colspan="3" >
                     <%
                         if (Model == null)
                         {
@@ -145,10 +145,10 @@
                 <td align="center" valign="middle" rowspan="10" style="width: 10%;">
                     包装信息
                 </td>
-                <td align="right">
+                <td align="right" style="width: 15%;">
                     商品数量：
                 </td>
-                <td align="left">
+                <td align="left" style="width: 30%;">
                     <%
                         if (Model == null)
                         {
@@ -167,10 +167,10 @@
                         }
                     %>
                 </td>
-                <td align="right">
+                <td align="right" style="width: 15%;">
                     （单件包装）商品数量：
                 </td>
-                <td align="left">
+                <td align="left" style="width: 30%;">
                     <%
                         if (Model == null)
                         {
