@@ -74,8 +74,6 @@
                 <td align="left">
                     <%= Html.TextBox("AccessoriesBuy♂ZbSize")%><a href="#" onclick="LoadDictionaryPanel('尺码',true,this)">选择</a>
                 </td>
-                <td>
-                </td>
             </tr>
             <!-- 其它辅助资料 -->
             <tr id="AccessoriesChildBuy♂" style="display: none;">

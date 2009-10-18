@@ -10,7 +10,7 @@
             原材料信息</caption>
         <thead>
             <tr>
-                <td colspan="7" align="right">
+                <td colspan="5" align="right">
                     <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/MaterialBuy") %>'" />
                 </td>
             </tr>
@@ -30,20 +30,22 @@
                 <td align="left">
                     <%=Html.Encode(Model.YclType)%>
                 </td>
+            </tr>
+            <tr>
                 <td align="right">
                     成分：
                 </td>
                 <td align="left">
                     <%=Html.Encode(Model.YclCf)%>
                 </td>
-            </tr>
-            <tr>
                 <td align="right">
                     重量：
                 </td>
                 <td align="left">
                     <%=Html.Encode(Model.BWeight)%>
                 </td>
+            </tr>
+            <tr>
                 <td align="right">
                     颜色：
                 </td>
@@ -73,84 +75,22 @@
                 <td colspan="2">
                 </td>
             </tr>
-            <tr>
-                <td rowspan="2">
-                    罗纹
-                </td>
-                <td align="right">
-                    重量：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.LwWeight)%>
-                </td>
-                <td align="right">
-                    颜色：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.LwColor)%>
-                </td>
-                <td align="right">
-                    数量：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.LwCount)%>
+            <!-- 其它辅助资料 -->
+            <tr id="SubMaterialBuy♂" style="display: none;">
+                <td colspan="5">
+                    <%
+                        Model.SubMaterialBuy.Load();
+                        if (Model.SubMaterialBuy.Count > 0)
+                        {
+                            ViewDataDictionary viewdictionary = new ViewDataDictionary();
+                            viewdictionary.Add("number", Model.SubMaterialBuy.Count);
+                            viewdictionary.Add("Details", true);
+                            Html.RenderPartial("OtherMaterialBuy", Model.SubMaterialBuy.ToList(), viewdictionary);
+                        }
+                    %>
                 </td>
             </tr>
-            <tr>
-                <td align="right">
-                    单价：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.LwPrice)%>
-                </td>
-                <td align="right">
-                    缸号：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.LwGh)%>
-                </td>
-                <td colspan="2">
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="2">
-                    松片
-                </td>
-                <td align="right">
-                    重量：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.SpWeight)%>
-                </td>
-                <td align="right">
-                    颜色：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.SpColor)%>
-                </td>
-                <td align="right">
-                    数量：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.SpCount)%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    单价：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.SpPrice)%>
-                </td>
-                <td align="right">
-                    缸号：
-                </td>
-                <td align="left">
-                    <%=Html.Encode(Model.SpGh)%>
-                </td>
-                <td colspan="2">
-                </td>
-            </tr>
+            <!-- 其它辅助资料 -->
         </thead>
         <tfoot>
             <tr>

@@ -309,6 +309,7 @@
     <Content Include="Views\Admin\ManageDepartment.aspx" />
     <Content Include="Views\Admin\ManageUserRelation.aspx" />
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
+    <Content Include="Views\Shared\OtherMaterialBuy.ascx" />
     <Content Include="Views\Shared\ProductPackControl.ascx" />
     <Content Include="Views\Warehouse\AddAccessories.aspx" />
     <Content Include="Views\Warehouse\AddMateria.aspx" />

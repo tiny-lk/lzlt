@@ -41,7 +41,7 @@
             }
         %>
         <tr>
-            <td align="center" valign="middle" rowspan="4" style="width: 10%;">
+            <td align="center" valign="middle" rowspan="3" style="width: 10%;">
                 其它信息
             </td>
             <td align="right" style="width: 15%;">

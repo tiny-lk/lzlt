@@ -136,7 +136,7 @@
                             new SelectListItem(){ Text="类别", Value ="YclType"}
                         }, "Value", "Text", "YclNo"))%>
                 </td>
-                <td colspan="8" align="left">
+                <td colspan="3" align="left">
                     <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
                     <input type="button" id="OK" value="查 询" disabled="disabled" />
                     <input type="button" id="Add" value="添加" />
@@ -164,21 +164,6 @@
                 <td>
                     成分
                 </td>
-                <td>
-                    布料重量
-                </td>
-                <td>
-                    布料数量
-                </td>
-                <td>
-                    布料颜色
-                </td>
-                <td>
-                    布料单价
-                </td>
-                <td>
-                    布料缸号
-                </td>
             </tr>
             <%
                 int page = string.IsNullOrEmpty(Request["page"]) ? 1 : int.Parse(Request["page"]);
@@ -203,21 +188,6 @@
                 <td>
                     <%= Html.Encode(Model[i].YclCf)%>
                 </td>
-                <td>
-                    <%= Html.Encode(Model[i].BWeight)%>
-                </td>
-                <td>
-                    <%= Html.Encode(Model[i].BCount)%>
-                </td>
-                <td>
-                    <%= Html.Encode(Model[i].BColor)%>
-                </td>
-                <td>
-                    <%= Html.Encode(Model[i].BPrice)%>
-                </td>
-                <td>
-                    <%= Html.Encode(Model[i].Bgh)%>
-                </td>
             </tr>
             <%
                 }
@@ -226,7 +196,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="10" align="right">
+                <td colspan="5" align="right">
                     <a href="#" onclick="print();">打 印</a>|
                     <%
                         int count = int.Parse(ViewData["pagecount"].ToString());
