@@ -13,6 +13,37 @@
             autocompletedictionary("MaterialBuy♂YclType", "材料类别");
             autocompletedictionary("MaterialBuy♂BColor", "布料颜色");
         });
+
+        function addImage(key, n) {
+            $("#imagemodedialog").remove();
+            $("body").append("<div id='imagemodedialog'></div>");
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { fid: key, name: n },
+                url: '<%=Url.Action("ImageUserControl","Shared")%>',
+                success: function(data) {
+                    $("#imagemodedialog").dialog({
+                        bgiframe: true,
+                        height: 140,
+                        modal: true,
+                        width: 700,
+                        height: 'auto',
+                        position: 'center',
+                        resizable: true,
+                        draggable: true,
+                        closeOnEscape: true
+                    });
+                    $("#imagemodedialog").append(data);
+                    $("#imagemodedialog").dialog();
+                    $("#imagemodedialog").dialog('open');
+                },
+                error: function() {
+                    alert("添加表单数据失败！");
+                }
+            });
+        }
+        
     </script>
 
     <% using (Html.BeginForm())
@@ -46,7 +77,7 @@
                 <td align="right" style="width: 15%;">
                     类别：
                 </td>
-                <td align="left"  style="width: 30%;">
+                <td align="left" style="width: 30%;">
                     <%= Html.TextBox("MaterialBuy♂YclType", Html.Encode(Model.YclType))%><a href="#"
                         onclick="LoadDictionaryPanel('材料类别',true,this)">选择</a>
                 </td>
@@ -123,5 +154,6 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ChildActionContent" ID="ChildActionContent" runat="server">
     <a href="#" onclick="addcontrol(this,'OtherMaterialBuy','SubMaterialBuy♂',1,'MaterialBuy')"
-        class="button">其它原料</a>
+        class="button">其它原料</a> <a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>','原材料图片类型');"
+            class="button4">原材料图片</a>
 </asp:Content>

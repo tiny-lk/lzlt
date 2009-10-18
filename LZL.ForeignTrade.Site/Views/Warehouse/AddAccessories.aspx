@@ -41,7 +41,7 @@
                     编号：
                 </td>
                 <td align="left" colspan="5">
-                    <%= Html.TextBox("AccessoriesBuy♂AccessoriesNo", "", new { validate = "required:true", style = "width: 500px" })%>
+                    <%= Html.TextBox("AccessoriesBuy♂AccessoriesNo", "", new { validate = "required:true"})%>
                 </td>
             </tr>
             <tr>
@@ -52,7 +52,7 @@
                     名称：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("AccessoriesBuy♂Zbmc")%>
+                    <%= Html.TextBox("AccessoriesBuy♂Zbmc","", new { validate = "required:true"})%>
                 </td>
                 <td align="right">
                     颜色：
@@ -96,5 +96,5 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ChildActionContent" ID="ChildActionContent" runat="server">
     <a href="#" onclick="addcontrol(this,'OtherAccessories','AccessoriesChildBuy♂',1,'AccessoriesBuy')"
-        class="button">其它辅助</a>
+        class="button">其它辅助</a> 
 </asp:Content>

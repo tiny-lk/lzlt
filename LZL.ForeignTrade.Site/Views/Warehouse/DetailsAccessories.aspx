@@ -5,6 +5,39 @@
     辅料信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <script type="text/javascript">
+        function addImage(key, n) {
+            $("#imagemodedialog").remove();
+            $("body").append("<div id='imagemodedialog'></div>");
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { fid: key, name: n },
+                url: '<%=Url.Action("ImageUserControl","Shared")%>',
+                success: function(data) {
+                    $("#imagemodedialog").dialog({
+                        bgiframe: true,
+                        height: 140,
+                        modal: true,
+                        width: 700,
+                        height: 'auto',
+                        position: 'center',
+                        resizable: true,
+                        draggable: true,
+                        closeOnEscape: true
+                    });
+                    $("#imagemodedialog").append(data);
+                    $("#imagemodedialog").dialog();
+                    $("#imagemodedialog").dialog('open');
+                },
+                error: function() {
+                    alert("添加表单数据失败！");
+                }
+            });
+        }
+    </script>
+
     <table width="100%">
         <caption>
             辅料信息</caption>
@@ -80,4 +113,6 @@
     </table>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
+    <a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>','辅助采购类型');"
+        class="button4">辅助采购图片</a>
 </asp:Content>
