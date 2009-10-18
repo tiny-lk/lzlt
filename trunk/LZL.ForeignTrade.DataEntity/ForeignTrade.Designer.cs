@@ -38,7 +38,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsProduct_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsProduct", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsProduct))]
 
 // 原始文件名:
-// 生成日期: 2009/10/18 18:58:47
+// 生成日期: 2009/10/18 23:59:10
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -1028,6 +1028,29 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnIDChanging(global::System.Guid value);
         partial void OnIDChanged();
         /// <summary>
+        /// 架构中不存在属性 CustomerID 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<global::System.Guid> CustomerID
+        {
+            get
+            {
+                return this._CustomerID;
+            }
+            set
+            {
+                this.OnCustomerIDChanging(value);
+                this.ReportPropertyChanging("CustomerID");
+                this._CustomerID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CustomerID");
+                this.OnCustomerIDChanged();
+            }
+        }
+        private global::System.Nullable<global::System.Guid> _CustomerID;
+        partial void OnCustomerIDChanging(global::System.Nullable<global::System.Guid> value);
+        partial void OnCustomerIDChanged();
+        /// <summary>
         /// 架构中不存在属性 AccessoriesType 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
@@ -1143,6 +1166,29 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnWeightChanging(global::System.Nullable<double> value);
         partial void OnWeightChanged();
         /// <summary>
+        /// 架构中不存在属性 Note 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Note
+        {
+            get
+            {
+                return this._Note;
+            }
+            set
+            {
+                this.OnNoteChanging(value);
+                this.ReportPropertyChanging("Note");
+                this._Note = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Note");
+                this.OnNoteChanged();
+            }
+        }
+        private string _Note;
+        partial void OnNoteChanging(string value);
+        partial void OnNoteChanged();
+        /// <summary>
         /// 架构中不存在属性 CreateDate 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
@@ -1189,52 +1235,6 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnEditDateChanged();
         /// <summary>
-        /// 架构中不存在属性 CustomerID 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Nullable<global::System.Guid> CustomerID
-        {
-            get
-            {
-                return this._CustomerID;
-            }
-            set
-            {
-                this.OnCustomerIDChanging(value);
-                this.ReportPropertyChanging("CustomerID");
-                this._CustomerID = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("CustomerID");
-                this.OnCustomerIDChanged();
-            }
-        }
-        private global::System.Nullable<global::System.Guid> _CustomerID;
-        partial void OnCustomerIDChanging(global::System.Nullable<global::System.Guid> value);
-        partial void OnCustomerIDChanged();
-        /// <summary>
-        /// 架构中不存在属性 Note 的注释。
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Note
-        {
-            get
-            {
-                return this._Note;
-            }
-            set
-            {
-                this.OnNoteChanging(value);
-                this.ReportPropertyChanging("Note");
-                this._Note = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Note");
-                this.OnNoteChanged();
-            }
-        }
-        private string _Note;
-        partial void OnNoteChanging(string value);
-        partial void OnNoteChanged();
-        /// <summary>
         /// 架构中不存在 AccessoriesBuy 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_AccessoriesChildBuy_AccessoriesBuy", "AccessoriesBuy")]
@@ -1277,7 +1277,6 @@ namespace LZL.ForeignTrade.DataEntity
     /// </summary>
     /// <KeyProperties>
     /// ID
-    /// CreateDate
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="ForeignTradeModel", Name="ColorWarehouseSale")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -1598,7 +1597,7 @@ namespace LZL.ForeignTrade.DataEntity
         /// <summary>
         /// 架构中不存在属性 CreateDate 的注释。
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
         public global::System.DateTime CreateDate
         {

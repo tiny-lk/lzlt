@@ -23,10 +23,23 @@ namespace LZL.ForeignTrade.Controllers
         /// <param name="number">显示数量</param>
         /// <param name="name">控件名称</param>
         /// <returns>返回联系人控件信息</returns>
-        public ActionResult GetShareControl(string name, string fk, int? number)
+        public ActionResult GetShareControl(string name, string fk, int? number,string p)
         {
             ViewData["number"] = number ?? 1;
             ViewData["FK"] = string.IsNullOrEmpty(fk) ? null : fk;
+            if (!string.IsNullOrEmpty(p) && p != "undefined")
+            {
+                string[] parameters = p.Split(new char[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < parameters.Length; i++)
+                {
+                    string key = parameters[i].Substring(0, parameters[i].IndexOf("="));
+                    string v = parameters[i].Substring(parameters[i].LastIndexOf("=")+1);
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        ViewData[key] = v;
+                    }
+                }
+            }
             return View(name, null);
         }
 
@@ -109,6 +122,8 @@ namespace LZL.ForeignTrade.Controllers
                         (regions[i] + "id").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                         (regions[i] + "iscreatedate").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                          (regions[i] + "iseditdate").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                         (regions[i] + "propertyobject").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                         (regions[i] + "propertyobjectvalue").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                          regions[i].Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase)))
                     {
                         if (tableobj != null)
@@ -135,6 +150,16 @@ namespace LZL.ForeignTrade.Controllers
                         }
                     }
                 }
+
+                if (!(string.IsNullOrEmpty(formvalues[(regions[i] + "propertyobject")]) &&
+                    string.IsNullOrEmpty(formvalues[(regions[i] + "propertyobjectvalue")])))// 如果是多个问题先不处理到时候用♂符号进行分割
+                {
+                    var sql = "select value it from " + entities.DefaultContainerName + "." + formvalues[regions[i] + "propertyobject"] + " as it ";
+                    sql += " where it.ID=Guid'" + formvalues[regions[i] + "propertyobjectvalue"] + "'";
+                    object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
+                    ClassHelper.SetPropertyValue(tableobj, propertyobject.GetType().Name, propertyobject);//设置属性对象
+                }
+
                 if (tableobj != null)
                 {
                     var propertyinfo = (from p in tableobj.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public)
@@ -276,6 +301,16 @@ namespace LZL.ForeignTrade.Controllers
                         }
                     }
                 }
+
+                if (!(string.IsNullOrEmpty(formvalues[(region + "propertyobject")]) &&
+                      string.IsNullOrEmpty(formvalues[(region + "propertyobjectvalue")])))// 如果是多个问题先不处理到时候用♂符号进行分割
+                {
+                    var sql = "select value it from " + entities.DefaultContainerName + "." + formvalues[region + "propertyobject"] + " as it ";
+                    sql += " where it.ID=Guid'" + formvalues[region + "propertyobjectvalue"] + "'";
+                    object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
+                    ClassHelper.SetPropertyValue(tableobj, propertyobject.GetType().Name, propertyobject);//设置属性对象
+                }
+
                 var propertyinfo = (from p in tableobj.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public)
                                     where p.GetGetMethod(false) != null
                                     let attribute = (EdmScalarPropertyAttribute)Attribute.GetCustomAttribute(p, typeof(EdmScalarPropertyAttribute))
@@ -291,7 +326,7 @@ namespace LZL.ForeignTrade.Controllers
                         }
                         else
                         {
-                            Guid guid = new Guid(formvalues[region + "id"].Split(new[] { ',' })[s]);//子表ID
+                            Guid guid = new Guid(formvalues[region + "id"].Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries)[s]);//子表ID
                             guids.Add(guid);
                         }
                     }

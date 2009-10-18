@@ -5,31 +5,30 @@
     销货信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
+
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
+
     <% using (Html.BeginForm())
        { %>
     <div id="region">
-        <!-- 标识子表添加总数 -->
-        <input type="hidden" value='1' name="WarehouseSale♂regioncount" id="WarehouseSale♂regioncount" />
         <!-- 标识子表区域名称(表格名称、实体对象名称) -->
         <input type="hidden" name="region" value="WarehouseSale♂" />
         <!-- 标识子表实体对象类 -->
         <input type="hidden" name="WarehouseSale♂objectname" value="LZL.ForeignTrade.DataEntity.WarehouseSale,LZL.ForeignTrade.DataEntity" />
-        <!-- 标识子表外键实体对象名称、外键字段名称 -->
-        <input type="hidden" name="WarehouseSale♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "AccessoriesBuy" :ViewData["FK"] %>' />
         <%= Html.Hidden("WarehouseSale♂iscreatedate", "CreateDate")%>
         <%= Html.Hidden("WarehouseSale♂iseditdate", "EditDate")%>
     </div>
-    <input type="hidden" name="AccessoriesBuy♂objectname" value="LZL.ForeignTrade.DataEntity.AccessoriesBuy,LZL.ForeignTrade.DataEntity" />
     <%
-        Response.Write(Html.Hidden("region", ViewData["FK"] + "♂"));
-        Response.Write(Html.Hidden(ViewData["FK"] + "♂objectname", "LZL.ForeignTrade.DataEntity." + ViewData["FK"] + ",LZL.ForeignTrade.DataEntity"));
-        Response.Write(Html.Hidden(ViewData["FK"] + "♂ID", ViewData["id"]));
+        Response.Write(Html.Hidden("WarehouseSale♂propertyobject", ViewData["FK"]));
+        Response.Write(Html.Hidden("WarehouseSale♂propertyobjectvalue", ViewData["id"]));
     %>
     <table class="dynamictable">
         <caption>
             销货信息</caption>
         <tr>
-            <td align="center" valign="middle" rowspan="4" style="width: 10%;">
+            <td align="center" rowspan="3" style="width: 10%;">
                 销货信息
             </td>
             <td align="right" style="width: 15%;">
@@ -67,6 +66,12 @@
                 <%=Html.TextBox("WarehouseSale♂SaleNo")%>
             </td>
         </tr>
+        <!-- 生产情况区域 -->
+        <tr id="ColorWarehouseSale♂" style="display: none;">
+            <td colspan="5">
+            </td>
+        </tr>
+        <!-- 生产情况区域 -->
         <tfoot>
             <tr>
                 <td colspan="7" align="right">
@@ -79,4 +84,16 @@
     <%} %>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
+    <a href="#" onclick="addcontrol(this,'ColorWarehouseSale','ColorWarehouseSale♂',1,'WarehouseSale','type=<%=Request["type"]%>')"
+        class="button4">
+        <% 
+            if (Request["type"] == "1")
+            {
+                Response.Write("生产原材料");
+            }
+            else
+            {
+                Response.Write("生产辅料");
+            }             
+        %></a>
 </asp:Content>

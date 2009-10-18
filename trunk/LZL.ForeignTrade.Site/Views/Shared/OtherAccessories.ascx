@@ -110,12 +110,14 @@
                     if (Model == null)
                     {
                         Response.Write(Html.TextBox("AccessoriesChildBuy♂AccessoriesName", "", new { validate = "required:true" }));
+                        Response.Write("<a href=# onclick=LoadDictionaryPanel('辅料名称',true,this)>选择</a>");
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
                             Response.Write(Html.TextBox("AccessoriesChildBuy♂AccessoriesName", Html.Encode(Model[i].AccessoriesName), new { validate = "required:true" }));
+                            Response.Write("<a href=# onclick=LoadDictionaryPanel('辅料名称',true,this)>选择</a>");
                         }
                         else
                         {

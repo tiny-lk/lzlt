@@ -8,7 +8,7 @@
         $(document).data("check", 0);
         $("#quyerCondition").bind("change", function() {
             if ($(this).val() != null && $(this).val() != "") {
-                loadlistdata(this, $(this).val(), $(this).find("option:selected").text(), 1);
+                loadlistdata(this, "Type", $(this).find("option:selected").text(), 1);
             }
             else {
                 loadlistdata(this, "", "", 1);
