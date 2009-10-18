@@ -295,7 +295,7 @@ namespace LZL.ForeignTrade.Controllers
             }
             else
             {
-                ViewData["FK"] = "Materialbuy";
+                ViewData["FK"] = "MaterialBuy";
             }
             ViewData["number"] = 1;
             return View();

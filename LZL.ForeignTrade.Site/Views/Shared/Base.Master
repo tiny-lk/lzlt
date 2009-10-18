@@ -212,11 +212,15 @@
     <script type="text/javascript">
         //添加控件信息
         function addcontrol(obj, controlname, region, num, fk) {
+            addcontrol(obj, controlname, region, num, fk, "");
+        }
+        //添加控件信息
+        function addcontrol(obj, controlname, region, num, fk, otherparameter) {
             if ($("#" + region).find("div[id = 'regioncontent']").length <= 0) {
                 $.ajax({
                     type: "get",
                     dataType: "html",
-                    data: { name: controlname, number: num, fk: fk },
+                    data: { name: controlname, number: num, fk: fk, p: otherparameter },
                     url: '<%=Url.Action("GetShareControl", "Shared")%>', //获取控件信息
                     success: function(data) {
                         $("#" + region).find("div[id='regioncontent']").remove();

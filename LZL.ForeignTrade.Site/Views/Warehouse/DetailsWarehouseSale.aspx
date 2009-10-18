@@ -47,6 +47,22 @@
                 <%=Html.Encode(Model.SaleNo)%>
             </td>
         </tr>
+        <!-- 生产情况区域 -->
+        <tr id="ColorWarehouseSale♂" style="display: none;">
+            <td colspan="5">
+                <%
+                    Model.ColorWarehouseSale.Load();
+                    if (Model.ColorWarehouseSale.Count > 0)
+                    {
+                        ViewDataDictionary viewdictionary = new ViewDataDictionary();
+                        viewdictionary.Add("number", Model.ColorWarehouseSale.Count);
+                        viewdictionary.Add("Details", true);
+                        Html.RenderPartial("ColorWarehouseSale", Model.ColorWarehouseSale.ToList(), viewdictionary);
+                    }
+                %>
+            </td>
+        </tr>
+        <!-- 生产情况区域 -->
         <tfoot>
             <tr>
                 <td colspan="7" align="right">

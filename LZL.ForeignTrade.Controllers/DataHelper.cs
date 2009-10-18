@@ -334,14 +334,19 @@ namespace LZL.ForeignTrade.Controllers
             var tempvalues = entities.Dictionary.Select(v => v.Type).Distinct().ToList();
             for (int i = 0; i < tempvalues.Count; i++)
             {
-                SelectListItem item = new SelectListItem() { Text = tempvalues[i], Value = "Type" };
+                string name = tempvalues[i].Trim();
+                SelectListItem item = new SelectListItem();
+                item.Text = name;
+                item.Value = item.Text;
                 if (!string.IsNullOrEmpty(select) && tempvalues[i].Equals(select, StringComparison.CurrentCultureIgnoreCase))
                 {
                     item.Selected = true;
                 }
                 selectitem.Add(item);
             }
-            return new SelectList(selectitem, "Value", "Text");
+            SelectList selectList = new SelectList(selectitem, "Text", "Value", select);
+            
+            return selectList;
         }
 
         public static SelectList GetDictionary(string name, string selectvalue)
