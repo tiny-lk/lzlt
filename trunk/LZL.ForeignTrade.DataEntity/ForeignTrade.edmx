@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ForeignTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="ForeignTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="ForeignTradeModelStoreContainer">
           <EntitySet Name="AccessoriesBuy" EntityType="ForeignTradeModel.Store.AccessoriesBuy" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AccessoriesChildBuy" EntityType="ForeignTradeModel.Store.AccessoriesChildBuy" store:Type="Tables" Schema="dbo" />
@@ -190,12 +190,14 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerID" Type="uniqueidentifier" />
           <Property Name="AccessoriesId" Type="uniqueidentifier" />
           <Property Name="AccessoriesType" Type="nvarchar" MaxLength="50" />
           <Property Name="AccessoriesName" Type="nvarchar" MaxLength="50" />
           <Property Name="Price" Type="float" />
           <Property Name="Count" Type="float" />
           <Property Name="Weight" Type="float" />
+          <Property Name="Note" Type="text" />
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="EditDate" Type="datetime" />
         </EntityType>
@@ -1045,8 +1047,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ForeignTradeModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -1218,7 +1219,8 @@
           <Property Name="CreateDate" Type="DateTime" />
           <Property Name="EditDate" Type="DateTime" />
           <NavigationProperty Name="AccessoriesBuy" Relationship="ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy" FromRole="AccessoriesChildBuy" ToRole="AccessoriesBuy" />
-        </EntityType>
+          <Property Name="CustomerID" Type="Guid" Nullable="true" />
+          <Property Name="Note" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="ColorWarehouseSale">
           <Key>
             <PropertyRef Name="ID" />
@@ -1891,6 +1893,8 @@
           <EntitySetMapping Name="AccessoriesChildBuy">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.AccessoriesChildBuy)">
               <MappingFragment StoreEntitySet="AccessoriesChildBuy">
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="AccessoriesType" ColumnName="AccessoriesType" />
                 <ScalarProperty Name="AccessoriesName" ColumnName="AccessoriesName" />

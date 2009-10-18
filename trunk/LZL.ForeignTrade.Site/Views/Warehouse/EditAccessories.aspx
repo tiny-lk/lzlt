@@ -15,6 +15,35 @@
             autocompletedictionary("AccessoriesBuy♂ZbColor", "布料颜色");
             autocompletedictionary("AccessoriesBuy♂ZbSize", "尺码");
         });
+        function addImage(key, n) {
+            $("#imagemodedialog").remove();
+            $("body").append("<div id='imagemodedialog'></div>");
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { fid: key, name: n },
+                url: '<%=Url.Action("ImageUserControl","Shared")%>',
+                success: function(data) {
+                    $("#imagemodedialog").dialog({
+                        bgiframe: true,
+                        height: 140,
+                        modal: true,
+                        width: 700,
+                        height: 'auto',
+                        position: 'center',
+                        resizable: true,
+                        draggable: true,
+                        closeOnEscape: true
+                    });
+                    $("#imagemodedialog").append(data);
+                    $("#imagemodedialog").dialog();
+                    $("#imagemodedialog").dialog('open');
+                },
+                error: function() {
+                    alert("添加表单数据失败！");
+                }
+            });
+        }
     </script>
 
     <% using (Html.BeginForm())
@@ -36,22 +65,22 @@
                 </td>
             </tr>
             <tr>
+                <td rowspan="3" style="width: 10%;">
+                    主 标
+                </td>
                 <td align="right">
                     编号：
                 </td>
-                <td align="left" colspan="5">
-                    <%= Html.TextBox("AccessoriesBuy♂AccessoriesNo", Html.Encode(Model.AccessoriesNo), new { validate = "required:true",style = "width: 500px" })%>
+                <td align="left" colspan="4">
+                    <%= Html.TextBox("AccessoriesBuy♂AccessoriesNo", Html.Encode(Model.AccessoriesNo), new { validate = "required:true"})%>
                 </td>
             </tr>
             <tr>
-                <td rowspan="2" style="width: 10%;">
-                    主 标
-                </td>
                 <td align="right" style="width: 15%;">
                     名称：
                 </td>
                 <td align="left" style="width: 30%;">
-                    <%= Html.TextBox("AccessoriesBuy♂Zbmc", Html.Encode(Model.Zbmc))%>
+                    <%= Html.TextBox("AccessoriesBuy♂Zbmc", Html.Encode(Model.Zbmc), new { validate = "required:true"})%>
                 </td>
                 <td align="right" style="width: 15%;">
                     颜色：
@@ -106,5 +135,6 @@
 </asp:Content>
 <asp:Content ContentPlaceHolderID="ChildActionContent" ID="ChildActionContent" runat="server">
     <a href="#" onclick="addcontrol(this,'OtherAccessories','AccessoriesChildBuy♂',1,'AccessoriesBuy')"
-        class="button">其它辅助</a>
+        class="button">其它辅助</a> <a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>','辅助采购类型');"
+            class="button4">辅助采购图片</a>
 </asp:Content>
