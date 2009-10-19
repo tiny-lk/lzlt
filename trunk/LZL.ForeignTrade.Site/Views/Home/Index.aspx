@@ -4,7 +4,7 @@
     主页
 </asp:Content>
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div>
+    <div style="position:relative; float:left;">
         <table>
             <tr>
                 <td>
@@ -59,6 +59,69 @@
                     </td>
                     <td>
                         <%=Html.ActionLink("详 细","Details","ExportContracts",new{ID=exportsContracts[i].ID },null) %>
+                    </td>
+                </tr>
+                <%
+                    }
+                %>
+            </tbody>
+        </table>
+    </div>
+    <div style="position:relative; float:left; margin-left:5px;">
+        <table>
+            <tr>
+                <td>
+                    编号
+                </td>
+                <td>
+                    发票号
+                </td>
+                <td>
+                    发票日期
+                </td>
+                <td>
+                    出口合同号
+                </td>
+                <td>
+                    客户信息
+                </td>
+                <td>
+                    详细
+                </td>
+            </tr>
+            <tbody listmouse="listmouseovercss">
+                <%
+                    List<LZL.ForeignTrade.DataEntity.Invoice> invoices = (List<LZL.ForeignTrade.DataEntity.Invoice>)ViewData["skts"];
+                    for (int i = 0; i < invoices.Count; i++)
+                    {
+                %>
+                <tr>
+                    <td>
+                        <%= i+1 %>
+                    </td>
+                    <td>
+                        <%= Html.Encode(invoices[i].Name)%>
+                    </td>
+                    <td>
+                        <%= Html.Encode( invoices[i].Date!=null ?invoices[i].Date.ToShortDateString():string.Empty)%>
+                    </td>
+                    <td>
+                    <%= Html.Encode(invoices[i].ExportContractsName)%>
+                    </td>
+                    <td>
+                        <%
+                            if (invoices[i].CompanyID != null)
+                            {
+                                var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCustomer(invoices[i].CompanyID);
+                                if (obj != null)
+                                {
+                                    Response.Write(Html.Encode(obj.NameCode));
+                                }
+                            }
+                        %>
+                    </td>
+                    <td>
+                        <%=Html.ActionLink("详 细", "Details", "Invoices", new { ID = exportsContracts[i].ID }, null)%>
                     </td>
                 </tr>
                 <%
