@@ -119,7 +119,7 @@
 </script>
 
 <input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
-<table width="100%" style="vertical-align: middle; text-align: center;">
+<table width="100%"  class="list">
     <caption>
         采购合同信息</caption>
     <thead>

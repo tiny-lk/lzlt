@@ -24,7 +24,7 @@
         Response.Write(Html.Hidden("WarehouseSale♂propertyobject", ViewData["FK"]));
         Response.Write(Html.Hidden("WarehouseSale♂propertyobjectvalue", ViewData["id"]));
     %>
-    <table class="dynamictable">
+    <table class="list">
         <caption>
             销货信息</caption>
         <tr>

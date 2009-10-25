@@ -130,7 +130,7 @@
     <input type="hidden" name="StockContracts♂objectname" value="LZL.ForeignTrade.DataEntity.StockContracts,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("StockContracts♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("StockContracts♂iseditdate", "EditDate")%>
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             采购合同信息</caption>
         <thead align="center">

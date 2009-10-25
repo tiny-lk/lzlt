@@ -23,7 +23,7 @@
     <% 
         Response.Write(Html.Hidden("WarehouseSale♂ID", Html.Encode(Model.ID)));
     %>
-    <table class="dynamictable">
+    <table  class="list">
         <caption>
             销货信息</caption>
         <tr>

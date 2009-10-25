@@ -27,7 +27,7 @@
     <input type="hidden" name="Customer¡áobjectname" value="LZL.ForeignTrade.DataEntity.Customer,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Customer¡áiscreatedate", "CreateDate")%>
     <%= Html.Hidden("Customer¡áiseditdate", "EditDate")%>
-    <table width="100%">
+    <table width="100%"  class="list">
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">

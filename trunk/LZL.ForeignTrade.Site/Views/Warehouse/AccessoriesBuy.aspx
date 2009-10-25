@@ -124,7 +124,7 @@
 
     <% using (Html.BeginForm())
        { %>
-    <table width="100%" style="vertical-align: middle; text-align: center;">
+    <table width="100%" class="list">
         <caption>
             ∏®¡œ≤…π∫</caption>
         <thead>

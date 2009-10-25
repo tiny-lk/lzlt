@@ -14,7 +14,7 @@
         });
     </script>
 
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             客户信息</caption>
         <thead>

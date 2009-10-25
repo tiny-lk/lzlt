@@ -114,7 +114,7 @@
 </script>
 
 <input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
-<table width="100%" id="PriceIndex">
+<table width="100%" id="PriceIndex" class="list">
     <caption>
         报价单信息</caption>
     <thead>

@@ -5,7 +5,7 @@
     销货信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table class="dynamictable">
+    <table  class="list">
         <caption>
             销货信息</caption>
         <tr>

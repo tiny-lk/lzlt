@@ -53,7 +53,7 @@
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="MaterialBuy♂objectname" value="LZL.ForeignTrade.DataEntity.MaterialBuy,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("MaterialBuy♂ID", Html.Encode(Model.ID.ToString()))%>
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             原材料信息</caption>
         <thead align="center">

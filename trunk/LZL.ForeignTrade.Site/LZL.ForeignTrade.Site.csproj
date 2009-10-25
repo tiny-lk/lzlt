@@ -56,7 +56,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -298,6 +297,7 @@
     <Content Include="Content\images\table_head.gif" />
     <Content Include="Content\images\toolbarbackgroup.gif" />
     <Content Include="Scripts\jquery.corner.js" />
+    <Content Include="Views\Invoice\BusinessInvoice.aspx" />
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\ColorWarehouseSale.ascx" />
     <Content Include="Views\Shared\OtherAccessories.ascx" />

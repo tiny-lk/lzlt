@@ -287,7 +287,6 @@ namespace LZL.ForeignTrade.Controllers
                 return new Company();
             }
         }
-
         /// <summary>
         /// 获取产品信息
         /// </summary>
@@ -305,6 +304,8 @@ namespace LZL.ForeignTrade.Controllers
                 return new Product();
             }
         }
+
+        
 
         public static string GetDictionaryName(string type, string value)
         {
@@ -358,7 +359,7 @@ namespace LZL.ForeignTrade.Controllers
                 var tempvalues = entities.Dictionary.Where(v => v.Type.Equals(name, StringComparison.CurrentCultureIgnoreCase)).OrderBy(v => v.Code).ToList();
                 for (int i = 0; i < tempvalues.Count; i++)
                 {
-                    SelectListItem item = new SelectListItem() { Text = tempvalues[i].Name, Value = tempvalues[i].Code };
+                    SelectListItem item = new SelectListItem() { Text = tempvalues[i].Name, Value = tempvalues[i].ID.ToString() };
                     if (!string.IsNullOrEmpty(selectvalue) && item.Value.Equals(selectvalue, StringComparison.CurrentCultureIgnoreCase))
                     {
                         item.Selected = true;

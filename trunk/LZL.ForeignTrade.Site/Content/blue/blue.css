@@ -338,7 +338,7 @@ input[type="button"],input[type="reset"],input[type="submit"]
     color:Black;
 }
 
-table
+.list
 {
     text-align:center;
     border: solid 1px #488dca;
@@ -351,13 +351,13 @@ table
     font-weight: bolder;
     padding: 0 0 10px 0;
 }
-table td
+.list td
 {
     padding: 5px;
     border: solid 1px #88b6dd;
     line-height:21px;
 }
-table tfoot
+.list tfoot
 {
     border-bottom-style:none;
 }

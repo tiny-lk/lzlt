@@ -51,6 +51,13 @@
             }
         });
 
+        $("#BusinessInvoice").live("click", function() {
+            if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
+                var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
+                window.location.href = '<%=Url.Action("BusinessInvoice","Invoice")%>' + '/' + id;
+            }
+        });
+        
         $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1);
         });
@@ -117,7 +124,7 @@
 </script>
 
 <input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
-<table width="100%" id="productindex">
+<table width="100%" id="productindex" class="list">
     <caption>
         发票信息</caption>
     <thead>
@@ -137,6 +144,7 @@
                    {
                 %>
                 <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                <input type="button" id="BusinessInvoice" value="商业发票" disabled="disabled" check="1" />
                 <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                 <%
                     }

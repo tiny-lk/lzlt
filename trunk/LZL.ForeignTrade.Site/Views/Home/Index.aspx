@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
     <div style="position:relative; float:left;">
-        <table>
+        <table class="list">
             <tr>
                 <td>
                     编号
@@ -68,7 +68,7 @@
         </table>
     </div>
     <div style="position:relative; float:left; margin-left:5px;">
-        <table>
+        <table class="list">
             <tr>
                 <td>
                     编号

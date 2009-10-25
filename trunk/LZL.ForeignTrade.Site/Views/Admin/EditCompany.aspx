@@ -13,7 +13,9 @@
     <input type="hidden" name="region" value="Company♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Company♂objectname" value="LZL.ForeignTrade.DataEntity.Company,LZL.ForeignTrade.DataEntity" />
-    <table width="100%">
+    <%= Html.Hidden("Company♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("Company♂iseditdate", "EditDate")%>
+    <table width="100%"  class="list">
         <caption>
             编辑公司信息</caption>
         <thead align="center">
@@ -29,50 +31,52 @@
                 <td align="right">
                     公司简称：
                 </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextBox("Company♂Name", Html.Encode(Model.Name), new { style = "width: 500px" })%>
+                <td align="left" >
+                    <%= Html.TextBox("Company♂Name", Html.Encode(Model.Name))%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     中文名称：
                 </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextBox("Company♂NameCH", Html.Encode(Model.NameCH), new { style = "width: 500px" })%>
+                <td align="left" >
+                    <%= Html.TextBox("Company♂NameCH", Html.Encode(Model.NameCH))%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     英文名称：
                 </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextBox("Company♂NameEH", Html.Encode(Model.NameEH), new { style = "width: 500px" })%>
+                <td align="left" >
+                    <%= Html.TextBox("Company♂NameEH", Html.Encode(Model.NameEH))%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     中文地址：
                 </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextBox("Company♂AddressCH", Html.Encode(Model.AddressCH), new { style = "width: 500px" })%>
+                <td align="left" >
+                    <%= Html.TextBox("Company♂AddressCH", Html.Encode(Model.AddressCH))%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     英文地址：
                 </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextBox("Company♂AddressEH", Html.Encode(Model.AddressEH), new { style = "width: 500px" })%>
+                <td align="left" >
+                    <%= Html.TextBox("Company♂AddressEH", Html.Encode(Model.AddressEH))%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     邮政编码：
                 </td>
-                <td align="left">
+                <td align="left" >
                     <%= Html.TextBox("Company♂DakCode", Html.Encode(Model.DakCode))%>
                 </td>
-                <td align="right">
+            </tr>
+            <tr>
+                <td align="right" >
                     电话：
                 </td>
                 <td align="left">
@@ -83,10 +87,12 @@
                 <td align="right">
                     传真：
                 </td>
-                <td align="left">
+                <td align="left" >
                     <%= Html.TextBox("Company♂Fax", Html.Encode(Model.Fax))%>
                 </td>
-                <td align="right">
+            </tr>
+            <tr>
+                <td align="right" >
                     网址：
                 </td>
                 <td align="left">
@@ -97,9 +103,11 @@
                 <td align="right">
                     Email：
                 </td>
-                <td align="left">
+                <td align="left" >
                     <%= Html.TextBox("Company♂Email", Html.Encode(Model.Email))%>
                 </td>
+            </tr>
+            <tr>
                 <td align="right">
                     开户银行：
                 </td>
@@ -111,15 +119,15 @@
                 <td align="right">
                     银行帐号：
                 </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextBox("Company♂BankCode", Html.Encode(Model.BankCode), new { style = "width: 500px" })%>
+                <td align="left" >
+                    <%= Html.TextBox("Company♂BankCode", Html.Encode(Model.BankCode))%>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     公司徽标：
                 </td>
-                <td align="left" colspan="3">
+                <td align="left" >
                     <%= Html.TextBox("Company♂Badge", Html.Encode(Model.Badge))%>
                 </td>
             </tr>
@@ -127,8 +135,24 @@
                 <td align="right">
                     公司签章：
                 </td>
-                <td align="left" colspan="3">
+                <td align="left" >
                     <%= Html.TextBox("Company♂Logo", Html.Encode(Model.Logo))%>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    备注：
+                </td>
+                <td align="left" >
+                    <%= Html.TextBox("Company♂Note", Html.Encode(Model.Note), new { style = "width:99%; height:40px;" })%>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    是系统默认：
+                </td>
+                <td align="left" >
+                    <%= Html.CheckBox("Company♂IsSystem", Model.IsSystem.GetValueOrDefault())%>
                 </td>
             </tr>
         </thead>

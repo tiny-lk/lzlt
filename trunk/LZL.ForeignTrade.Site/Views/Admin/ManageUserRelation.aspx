@@ -34,7 +34,7 @@
     <% using (Html.BeginForm())
        { %>
     <%= Html.Hidden("DepartId", Html.ViewContext.RequestContext.RouteData.Values["id"])%>
-    <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+    <table width="100%" class="list">
         <caption>
             用户关联管理</caption>
         <thead>

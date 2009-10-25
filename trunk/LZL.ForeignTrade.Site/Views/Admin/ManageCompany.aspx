@@ -99,7 +99,7 @@
 
     <% using (Html.BeginForm())
        { %>
-    <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+    <table width="100%" class="list">
         <caption>
             公司信息管理</caption>
         <thead>

@@ -42,7 +42,7 @@
         }
     </script>
 
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
             商品信息</caption>
         <thead align="center">

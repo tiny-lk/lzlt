@@ -113,7 +113,7 @@
 
     <% using (Html.BeginForm())
        { %>
-    <table width="100%" style="vertical-align: middle; text-align: center;">
+    <table width="100%" class="list">
         <caption>
             ≤÷ø‚“ª¿¿</caption>
         <thead>
