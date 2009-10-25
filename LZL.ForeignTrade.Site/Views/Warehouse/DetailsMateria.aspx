@@ -38,7 +38,7 @@
         }
     </script>
 
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             原材料信息</caption>
         <thead>

@@ -82,5 +82,15 @@ namespace LZL.ForeignTrade.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// 商业发票打印
+        /// </summary>
+        /// <param name="id">打印的ID</param>
+        /// <returns></returns>
+        public ActionResult BusinessInvoice(string id)
+        {
+            return View();
+        }
+
     }
 }

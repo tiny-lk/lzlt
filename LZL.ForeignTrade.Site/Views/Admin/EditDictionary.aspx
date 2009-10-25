@@ -10,7 +10,7 @@
     <input type="hidden" name="region" value="Dictionary♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Dictionary♂objectname" value="LZL.ForeignTrade.DataEntity.Dictionary,LZL.ForeignTrade.DataEntity" />
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             编辑数据字典信息</caption>
         <thead align="center">

@@ -10,7 +10,9 @@
     <input type="hidden" name="region" value="Company♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Company♂objectname" value="LZL.ForeignTrade.DataEntity.Company,LZL.ForeignTrade.DataEntity" />
-    <table width="100%">
+    <%= Html.Hidden("Company♂iscreatedate", "CreateDate")%>
+    <%= Html.Hidden("Company♂iseditdate", "EditDate")%>
+    <table width="100%"  class="list">
         <caption>
             添加公司信息</caption>
         <thead align="center">
@@ -26,7 +28,7 @@
                     公司简称：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Company♂Name")%>
+                    <%= Html.TextBox("Company♂Name","", new { validate = "required:true" })%>
                 </td>
             </tr>
             <tr>
@@ -34,7 +36,7 @@
                     中文名称：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Company♂NameCH")%>
+                    <%= Html.TextBox("Company♂NameCH","", new { validate = "required:true" })%>
                 </td>
             </tr>
             <tr>
@@ -42,7 +44,7 @@
                     英文名称：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Company♂NameEH")%>
+                    <%= Html.TextBox("Company♂NameEH","", new { validate = "required:true" })%>
                 </td>
             </tr>
             <tr>
@@ -90,7 +92,7 @@
                     网址：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Company♂Internet")%>
+                    <%= Html.TextBox("Company♂Internet","", new { validate = "url:true" })%>
                 </td>
             </tr>
             <tr>
@@ -98,7 +100,7 @@
                     Email：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Company♂Email")%>
+                    <%= Html.TextBox("Company♂Email","", new { validate = "email:true" })%>
                 </td>
             </tr>
             <tr>
@@ -106,7 +108,7 @@
                     开户银行：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Company♂Bank")%>
+                    <%= Html.DropDownList("Company♂Bank", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("银行类别",""), "请选择")%>
                 </td>
             </tr>
             <tr>
@@ -114,7 +116,7 @@
                     银行帐号：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Company♂BankCode")%>
+                    <%= Html.TextBox("Company♂BankCode","", new { validate = "creditcard:true" })%>
                 </td>
             </tr>
             <tr>
@@ -131,6 +133,22 @@
                 </td>
                 <td align="left">
                     <%= Html.TextBox("Company♂Logo")%>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    备注：
+                </td>
+                <td align="left" colspan="3">
+                    <%= Html.TextArea("Company♂Note","", new { style = "width:99%; height:40px;" })%>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    是系统默认：
+                </td>
+                <td align="left" colspan="3">
+                    <%= Html.CheckBox("Company♂IsSystem")%>
                 </td>
             </tr>
         </thead>

@@ -15,7 +15,7 @@
 
     <% using (Html.BeginForm())
        { %>
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             出口合同信息</caption>
         <thead align="center">

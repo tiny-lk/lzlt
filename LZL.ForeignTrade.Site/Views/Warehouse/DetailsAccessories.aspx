@@ -38,7 +38,7 @@
         }
     </script>
 
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             ∏®¡œ–≈œ¢</caption>
         <thead align="center">

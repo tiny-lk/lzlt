@@ -10,7 +10,7 @@
     <input type="hidden" name="region" value="Department♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Department♂objectname" value="LZL.ForeignTrade.DataEntity.Department,LZL.ForeignTrade.DataEntity" />
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             编辑部门</caption>
         <thead align="center">

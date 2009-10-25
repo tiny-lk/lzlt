@@ -25,7 +25,7 @@
     <input type="hidden" name="region" value="MaterialBuy♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="MaterialBuy♂objectname" value="LZL.ForeignTrade.DataEntity.MaterialBuy,LZL.ForeignTrade.DataEntity" />
-    <table width="100%">
+    <table width="100%"  class="list">
         <thead>
             <tr>
                 <td colspan="5" align="right">

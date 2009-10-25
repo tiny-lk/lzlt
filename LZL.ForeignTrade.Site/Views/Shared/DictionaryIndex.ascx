@@ -87,7 +87,7 @@
 </script>
 
 <input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
-<table width="100%" style="vertical-align: middle; text-align: center;">
+<table width="100%" class="list">
     <caption>
         数据字段信息</caption>
     <thead>

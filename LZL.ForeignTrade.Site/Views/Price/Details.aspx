@@ -13,7 +13,7 @@
         });
     </script>
 
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             报价单信息</caption>
         <thead align="center">

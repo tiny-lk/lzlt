@@ -14,7 +14,7 @@
         });
     </script>
 
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             采购合同信息</caption>
         <thead align="center">

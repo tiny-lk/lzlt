@@ -15,7 +15,7 @@
 
     <% using (Html.BeginForm())
        { %>
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             Ìí¼Ó½ÇÉ«</caption>
         <tr>

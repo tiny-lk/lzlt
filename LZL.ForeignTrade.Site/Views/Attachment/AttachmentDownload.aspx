@@ -5,7 +5,7 @@
     资源下载
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table width="100%" style="vertical-align: middle; text-align: center;" summary="User Grid">
+    <table width="100%"  class="list">
         <caption>
             资源下载</caption>
         <thead>

@@ -141,7 +141,7 @@
     <input type="hidden" name="Invoice♂objectname" value="LZL.ForeignTrade.DataEntity.Invoice,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Invoice♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("Invoice♂iseditdate", "EditDate")%>
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
             发票（单据）信息</caption>
         <thead align="center">

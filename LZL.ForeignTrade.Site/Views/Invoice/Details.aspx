@@ -4,7 +4,7 @@
     显示发票（单证）信息
 </asp:Content>
 <asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             发票（单据）信息</caption>
         <thead align="center">

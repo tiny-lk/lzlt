@@ -116,7 +116,7 @@
 </script>
 
 <input type="hidden" name="simple" class="simple" value='<%=ViewData["simple"]==null?"":ViewData["simple"].ToString()%>' />
-<table width="100%" id="productindex">
+<table width="100%" id="productindex" class="list">
     <caption>
         商品信息</caption>
     <thead>

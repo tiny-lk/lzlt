@@ -11,7 +11,7 @@
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Department♂objectname" value="LZL.ForeignTrade.DataEntity.Department,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Department♂ParentId", Html.ViewContext.RequestContext.RouteData.Values["id"])%>
-    <table width="100%">
+    <table width="100%"  class="list">
         <caption>
             添加部门</caption>
         <thead align="center">
