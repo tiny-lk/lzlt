@@ -43,11 +43,11 @@ namespace LZL.ForeignTrade.Controllers
                     entities.DeleteObject(invoice.InvoiceExportContracts.ElementAt(0));
                 }
 
-                invoice.InvoiceProduct.Load();
-                count = invoice.InvoiceProduct.Count;
+                invoice.ProductSummary.Load();
+                count = invoice.ProductSummary.Count;
                 for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(invoice.InvoiceProduct.ElementAt(0));
+                    entities.DeleteObject(invoice.ProductSummary.ElementAt(0));
                 }
                 entities.DeleteObject(invoice);
             }
@@ -87,9 +87,13 @@ namespace LZL.ForeignTrade.Controllers
         /// </summary>
         /// <param name="id">打印的ID</param>
         /// <returns></returns>
-        public ActionResult BusinessInvoice(string id)
+        public FileContentResult BusinessInvoice(string id)
         {
-            return View();
+
+            string path = Server.MapPath("~/DocTemplate/Template/invoice.doc");
+            string targetpath = Server.MapPath("~/DocTemplate/Print/");
+            WordInvoiceHelper.Instance.BuilderInvoice(new Guid(id), path, targetpath);
+            return null;
         }
 
     }

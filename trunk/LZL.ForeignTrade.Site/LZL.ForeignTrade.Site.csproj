@@ -312,6 +312,7 @@
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\OtherMaterialBuy.ascx" />
     <Content Include="Views\Shared\ProductPackControl.ascx" />
+    <Content Include="Views\Shared\ProductSummaryControl.ascx" />
     <Content Include="Views\Warehouse\AddAccessories.aspx" />
     <Content Include="Views\Warehouse\AddMateria.aspx" />
     <Content Include="Views\Warehouse\AddWarehouseSale.aspx" />
@@ -325,6 +326,10 @@
     <Content Include="Views\Warehouse\WarehouseSale.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DocTemplate\Template\invoice.doc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DocTemplate\Print\" />
     <Folder Include="Views\Attachment\ResourceFolder\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -65,33 +65,13 @@ namespace LZL.ForeignTrade.Controllers
                     entities.DeleteObject(product.ProductCustomer.ElementAt(0));
                 }
 
-                product.PriceProduct.Load();
-                count = product.PriceProduct.Count;
+                product.ProductSummary.Load();
+                count = product.ProductSummary.Count;
                 for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(product.PriceProduct.ElementAt(0));
+                    entities.DeleteObject(product.ProductSummary.ElementAt(0));
                 }
 
-                product.ExportContractsProduct.Load();
-                count = product.ExportContractsProduct.Count;
-                for (int s = 0; s < count; s++)
-                {
-                    entities.DeleteObject(product.ExportContractsProduct.ElementAt(0));
-                }
-
-                product.StockContractsProduct.Load();
-                count = product.StockContractsProduct.Count;
-                for (int s = 0; s < count; s++)
-                {
-                    entities.DeleteObject(product.StockContractsProduct.ElementAt(0));
-                }
-
-                product.InvoiceProduct.Load();
-                count = product.InvoiceProduct.Count;
-                for (int s = 0; s < count; s++)
-                {
-                    entities.DeleteObject(product.InvoiceProduct.ElementAt(0));
-                }
                 entities.DeleteObject(product);
             }
             entities.SaveChanges();

@@ -56,12 +56,14 @@
             $.datepicker.setDefaults($.extend({ showMonthAfterYear: false }, $.datepicker.regional['zh-CN']));
             init();
             checksettring();
-
             $("#treemenu").treeview({
                 persist: "location",
                 collapsed: true,
                 unique: true
             });
+
+            $(".tabs").tabs();
+
             $("#sidebar").corner("round 6px").parent().css('padding', '1px').corner("round 6px cc:#78b5e1");
 
             $(".button").live("mouseover", function() {
@@ -159,6 +161,8 @@
     </script>
 
     <script type="text/javascript">
+
+        //Type类型 s 加载简单模型 o对象本身
         function LoadDictionaryPanel(type, s, o) {
             var object = $(o).parent().find("input[type='text']");
             $("#DictionaryPaneldialog").remove();
@@ -182,6 +186,10 @@
                             $.each($(document).data("checkvalue").split("♂"), function(i, o) {
                                 $(object).val(o.split("|")[1]);
                             });
+
+                            $(document).data("checkvalue", "");
+                            $(document).data("check", 0);
+
                             $("#DictionaryPaneldialog").children().remove();
                             $(this).dialog('close');
                         } else {
@@ -191,6 +199,7 @@
                     }
                 }
             });
+
             $.ajax({
                 type: "get",
                 dataType: "html",
@@ -200,12 +209,75 @@
                     $("#DictionaryPaneldialog").append(data);
                 },
                 error: function(err) {
-                    alert("添加" + controlname + "表单错误！");
+                    alert("添加表单错误！");
                 }
             });
 
             $("#DictionaryPaneldialog").dialog();
             $("#DictionaryPaneldialog").dialog('open');
+        }
+    </script>
+
+    <script type="text/javascript">
+        function LoadControlList(obj, name) {
+            var txtobject = $(obj).parent().find("input[type='text']"); //txt文本对象
+            var hidobject = $(obj).parent().find("input[type='hidden']"); //hidden对象
+            $("#ListPaneldialog").remove();
+            $("body").append("<div id='ListPaneldialog'></div>");
+            $("#ListPaneldialog").dialog({
+                bgiframe: true,
+                modal: true,
+                width: 950,
+                height: 600,
+                position: 'center',
+                resizable: true,
+                draggable: true,
+                closeOnEscape: true,
+                buttons: {
+                    确定: function() {
+                        if (!($(document).data("checkvalue") == null || $(document).data("checkvalue") == "")) {
+                            if ($(document).data("checkvalue").split("♂").length != 1) {
+                                alert("请选择一条数据！");
+                                return;
+                            }
+                            $.each($(document).data("checkvalue").split("♂"), function(i, o) {
+                                $(txtobject).val(o.split("|")[1]);
+
+                                $.each(hidobject, function(j, o2) {
+                                    if ($(o2).attr("novalue") == null) {
+                                        $(o2).val(o.split("|")[0]);
+                                    }
+                                });
+                                //对值只运行设置novalue为null的
+                            });
+
+                            $(document).data("checkvalue", "");
+                            $(document).data("check", 0);
+                            $("#ListPaneldialog").children().remove();
+                            $(this).dialog('close');
+                        } else {
+                            alert("选择不能为空！");
+                        }
+
+                    }
+                }
+            });
+
+            $.ajax({
+                type: "get",
+                dataType: "html",
+                data: { quyerCondition: "", queryvalue: "", simple: true, page: 1 },
+                url: '/Shared/' + name, //获取控件信息
+                success: function(data) {
+                    $("#ListPaneldialog").append(data);
+                },
+                error: function(err) {
+                    alert("添加表单错误！");
+                }
+            });
+
+            $("#ListPaneldialog").dialog();
+            $("#ListPaneldialog").dialog('open');
         }
     </script>
 
