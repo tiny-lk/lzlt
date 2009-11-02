@@ -59,11 +59,11 @@ namespace LZL.ForeignTrade.Controllers
                     entities.DeleteObject(exportContracts.ExportContractsPrice.ElementAt(0));
                 }
 
-                exportContracts.ExportContractsProduct.Load();
-                count = exportContracts.ExportContractsProduct.Count;
+                exportContracts.ProductSummary.Load();
+                count = exportContracts.ProductSummary.Count;
                 for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(exportContracts.ExportContractsProduct.ElementAt(0));
+                    entities.DeleteObject(exportContracts.ProductSummary.ElementAt(0));
                 }
 
                 exportContracts.StockContractsExportContracts.Load();

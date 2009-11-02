@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ForeignTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+    <Schema Namespace="ForeignTradeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
         <EntityContainer Name="ForeignTradeModelStoreContainer">
           <EntitySet Name="AccessoriesBuy" EntityType="ForeignTradeModel.Store.AccessoriesBuy" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AccessoriesChildBuy" EntityType="ForeignTradeModel.Store.AccessoriesChildBuy" store:Type="Tables" Schema="dbo" />
@@ -15,22 +15,19 @@
           <EntitySet Name="Dictionary" EntityType="ForeignTradeModel.Store.Dictionary" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ExportContracts" EntityType="ForeignTradeModel.Store.ExportContracts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ExportContractsPrice" EntityType="ForeignTradeModel.Store.ExportContractsPrice" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ExportContractsProduct" EntityType="ForeignTradeModel.Store.ExportContractsProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Image" EntityType="ForeignTradeModel.Store.Image" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Invoice" EntityType="ForeignTradeModel.Store.Invoice" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="InvoiceExportContracts" EntityType="ForeignTradeModel.Store.InvoiceExportContracts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="InvoiceProduct" EntityType="ForeignTradeModel.Store.InvoiceProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Linkman" EntityType="ForeignTradeModel.Store.Linkman" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MaterialBuy" EntityType="ForeignTradeModel.Store.MaterialBuy" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Memorandum" EntityType="ForeignTradeModel.Store.Memorandum" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Price" EntityType="ForeignTradeModel.Store.Price" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PriceProduct" EntityType="ForeignTradeModel.Store.PriceProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product" EntityType="ForeignTradeModel.Store.Product" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductCustomer" EntityType="ForeignTradeModel.Store.ProductCustomer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductPack" EntityType="ForeignTradeModel.Store.ProductPack" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductSummary" EntityType="ForeignTradeModel.Store.ProductSummary" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StockContracts" EntityType="ForeignTradeModel.Store.StockContracts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StockContractsExportContracts" EntityType="ForeignTradeModel.Store.StockContractsExportContracts" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="StockContractsProduct" EntityType="ForeignTradeModel.Store.StockContractsProduct" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SubMaterialBuy" EntityType="ForeignTradeModel.Store.SubMaterialBuy" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TableAttachment" EntityType="ForeignTradeModel.Store.TableAttachment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserDepartRelation" EntityType="ForeignTradeModel.Store.UserDepartRelation" store:Type="Tables" Schema="dbo" />
@@ -60,14 +57,6 @@
             <End Role="Price" EntitySet="Price" />
             <End Role="ExportContractsPrice" EntitySet="ExportContractsPrice" />
           </AssociationSet>
-          <AssociationSet Name="FK_ExportContractsProduct_ExportContracts" Association="ForeignTradeModel.Store.FK_ExportContractsProduct_ExportContracts">
-            <End Role="ExportContracts" EntitySet="ExportContracts" />
-            <End Role="ExportContractsProduct" EntitySet="ExportContractsProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ExportContractsProduct_Product" Association="ForeignTradeModel.Store.FK_ExportContractsProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ExportContractsProduct" EntitySet="ExportContractsProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_InvoiceExportContracts_ExportContracts" Association="ForeignTradeModel.Store.FK_InvoiceExportContracts_ExportContracts">
             <End Role="ExportContracts" EntitySet="ExportContracts" />
             <End Role="InvoiceExportContracts" EntitySet="InvoiceExportContracts" />
@@ -76,14 +65,6 @@
             <End Role="Invoice" EntitySet="Invoice" />
             <End Role="InvoiceExportContracts" EntitySet="InvoiceExportContracts" />
           </AssociationSet>
-          <AssociationSet Name="FK_InvoiceProduct_Invoice" Association="ForeignTradeModel.Store.FK_InvoiceProduct_Invoice">
-            <End Role="Invoice" EntitySet="Invoice" />
-            <End Role="InvoiceProduct" EntitySet="InvoiceProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InvoiceProduct_Product" Association="ForeignTradeModel.Store.FK_InvoiceProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="InvoiceProduct" EntitySet="InvoiceProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_LINKMAN_CUSTOMER" Association="ForeignTradeModel.Store.FK_LINKMAN_CUSTOMER">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Linkman" EntitySet="Linkman" />
@@ -91,14 +72,6 @@
           <AssociationSet Name="FK_MEMORANDUM_CUSTOMER" Association="ForeignTradeModel.Store.FK_MEMORANDUM_CUSTOMER">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Memorandum" EntitySet="Memorandum" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PriceProduct_Price" Association="ForeignTradeModel.Store.FK_PriceProduct_Price">
-            <End Role="Price" EntitySet="Price" />
-            <End Role="PriceProduct" EntitySet="PriceProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PriceProduct_Product" Association="ForeignTradeModel.Store.FK_PriceProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="PriceProduct" EntitySet="PriceProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductCustomer_Customer" Association="ForeignTradeModel.Store.FK_ProductCustomer_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -124,6 +97,26 @@
             <End Role="StockContracts" EntitySet="StockContracts" />
             <End Role="ProductPack" EntitySet="ProductPack" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductSummary_ExportContracts" Association="ForeignTradeModel.Store.FK_ProductSummary_ExportContracts">
+            <End Role="ExportContracts" EntitySet="ExportContracts" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSummary_Invoice" Association="ForeignTradeModel.Store.FK_ProductSummary_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSummary_Price" Association="ForeignTradeModel.Store.FK_ProductSummary_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSummary_Product" Association="ForeignTradeModel.Store.FK_ProductSummary_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSummary_StockContracts" Association="ForeignTradeModel.Store.FK_ProductSummary_StockContracts">
+            <End Role="StockContracts" EntitySet="StockContracts" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
+          </AssociationSet>
           <AssociationSet Name="FK_StockContractsExportContracts_ExportContracts" Association="ForeignTradeModel.Store.FK_StockContractsExportContracts_ExportContracts">
             <End Role="ExportContracts" EntitySet="ExportContracts" />
             <End Role="StockContractsExportContracts" EntitySet="StockContractsExportContracts" />
@@ -131,14 +124,6 @@
           <AssociationSet Name="FK_StockContractsExportContracts_StockContracts" Association="ForeignTradeModel.Store.FK_StockContractsExportContracts_StockContracts">
             <End Role="StockContracts" EntitySet="StockContracts" />
             <End Role="StockContractsExportContracts" EntitySet="StockContractsExportContracts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StockContractsProduct_Product" Association="ForeignTradeModel.Store.FK_StockContractsProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="StockContractsProduct" EntitySet="StockContractsProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StockContractsProduct_StockContracts" Association="ForeignTradeModel.Store.FK_StockContractsProduct_StockContracts">
-            <End Role="StockContracts" EntitySet="StockContracts" />
-            <End Role="StockContractsProduct" EntitySet="StockContractsProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_SubMaterialBuy_MaterialBuy" Association="ForeignTradeModel.Store.FK_SubMaterialBuy_MaterialBuy">
             <End Role="MaterialBuy" EntitySet="MaterialBuy" />
@@ -322,14 +307,6 @@
           <Property Name="ExportContractsID" Type="uniqueidentifier" />
           <Property Name="PriceID" Type="uniqueidentifier" />
         </EntityType>
-        <EntityType Name="ExportContractsProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ExportContractsID" Type="uniqueidentifier" />
-          <Property Name="ProductID" Type="uniqueidentifier" />
-        </EntityType>
         <EntityType Name="Image">
           <Key>
             <PropertyRef Name="ID" />
@@ -357,9 +334,9 @@
           <Property Name="CurrencyType" Type="nvarchar" MaxLength="10" />
           <Property Name="PriceClause" Type="nvarchar" MaxLength="10" />
           <Property Name="PriceClauseNote" Type="text" />
-          <Property Name="ClauseType" Type="nvarchar" MaxLength="10" />
+          <Property Name="ClauseType" Type="nvarchar" MaxLength="50" />
           <Property Name="ClauseTypeNote" Type="text" />
-          <Property Name="Trade" Type="nvarchar" MaxLength="10" />
+          <Property Name="Trade" Type="nvarchar" MaxLength="50" />
           <Property Name="CustomerID" Type="uniqueidentifier" />
           <Property Name="CompanyID" Type="uniqueidentifier" />
           <Property Name="CreditCardNo" Type="nvarchar" MaxLength="255" />
@@ -417,14 +394,6 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="InvoiceID" Type="uniqueidentifier" />
           <Property Name="ExportContractsID" Type="uniqueidentifier" />
-        </EntityType>
-        <EntityType Name="InvoiceProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="InvoiceID" Type="uniqueidentifier" />
-          <Property Name="ProductID" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Linkman">
           <Key>
@@ -503,15 +472,6 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
         </EntityType>
-        <EntityType Name="PriceProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PriceID" Type="uniqueidentifier" />
-          <Property Name="ProductID" Type="uniqueidentifier" />
-          <Property Name="Note" Type="text" />
-        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID" />
@@ -587,6 +547,26 @@
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="ProductSummary">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InvoiceID" Type="uniqueidentifier" />
+          <Property Name="PriceID" Type="uniqueidentifier" />
+          <Property Name="ExportContractsID" Type="uniqueidentifier" />
+          <Property Name="StockContractsID" Type="uniqueidentifier" />
+          <Property Name="ProductID" Type="uniqueidentifier" />
+          <Property Name="CustomsCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="UnitEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExportPrice" Type="float" />
+          <Property Name="ExportAmount" Type="float" />
+          <Property Name="DescriptionEN" Type="nvarchar(max)" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="StockContracts">
           <Key>
             <PropertyRef Name="ID" />
@@ -625,14 +605,6 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="StockContractsID" Type="uniqueidentifier" />
           <Property Name="ExportContractsID" Type="uniqueidentifier" />
-        </EntityType>
-        <EntityType Name="StockContractsProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="StockContractsID" Type="uniqueidentifier" />
-          <Property Name="ProductID" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="SubMaterialBuy">
           <Key>
@@ -748,30 +720,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ExportContractsProduct_ExportContracts">
-          <End Role="ExportContracts" Type="ForeignTradeModel.Store.ExportContracts" Multiplicity="0..1" />
-          <End Role="ExportContractsProduct" Type="ForeignTradeModel.Store.ExportContractsProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ExportContracts">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ExportContractsProduct">
-              <PropertyRef Name="ExportContractsID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ExportContractsProduct_Product">
-          <End Role="Product" Type="ForeignTradeModel.Store.Product" Multiplicity="0..1" />
-          <End Role="ExportContractsProduct" Type="ForeignTradeModel.Store.ExportContractsProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ExportContractsProduct">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_InvoiceExportContracts_ExportContracts">
           <End Role="ExportContracts" Type="ForeignTradeModel.Store.ExportContracts" Multiplicity="0..1" />
           <End Role="InvoiceExportContracts" Type="ForeignTradeModel.Store.InvoiceExportContracts" Multiplicity="*" />
@@ -796,30 +744,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_InvoiceProduct_Invoice">
-          <End Role="Invoice" Type="ForeignTradeModel.Store.Invoice" Multiplicity="0..1" />
-          <End Role="InvoiceProduct" Type="ForeignTradeModel.Store.InvoiceProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Invoice">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="InvoiceProduct">
-              <PropertyRef Name="InvoiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InvoiceProduct_Product">
-          <End Role="Product" Type="ForeignTradeModel.Store.Product" Multiplicity="0..1" />
-          <End Role="InvoiceProduct" Type="ForeignTradeModel.Store.InvoiceProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="InvoiceProduct">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_LINKMAN_CUSTOMER">
           <End Role="Customer" Type="ForeignTradeModel.Store.Customer" Multiplicity="0..1" />
           <End Role="Linkman" Type="ForeignTradeModel.Store.Linkman" Multiplicity="*" />
@@ -841,30 +765,6 @@
             </Principal>
             <Dependent Role="Memorandum">
               <PropertyRef Name="FK_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PriceProduct_Price">
-          <End Role="Price" Type="ForeignTradeModel.Store.Price" Multiplicity="0..1" />
-          <End Role="PriceProduct" Type="ForeignTradeModel.Store.PriceProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Price">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PriceProduct">
-              <PropertyRef Name="PriceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PriceProduct_Product">
-          <End Role="Product" Type="ForeignTradeModel.Store.Product" Multiplicity="0..1" />
-          <End Role="PriceProduct" Type="ForeignTradeModel.Store.PriceProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PriceProduct">
-              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -940,6 +840,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductSummary_ExportContracts">
+          <End Role="ExportContracts" Type="ForeignTradeModel.Store.ExportContracts" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.Store.ProductSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExportContracts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductSummary">
+              <PropertyRef Name="ExportContractsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSummary_Invoice">
+          <End Role="Invoice" Type="ForeignTradeModel.Store.Invoice" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.Store.ProductSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductSummary">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSummary_Price">
+          <End Role="Price" Type="ForeignTradeModel.Store.Price" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.Store.ProductSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductSummary">
+              <PropertyRef Name="PriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSummary_Product">
+          <End Role="Product" Type="ForeignTradeModel.Store.Product" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.Store.ProductSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductSummary">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSummary_StockContracts">
+          <End Role="StockContracts" Type="ForeignTradeModel.Store.StockContracts" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.Store.ProductSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockContracts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductSummary">
+              <PropertyRef Name="StockContractsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_StockContractsExportContracts_ExportContracts">
           <End Role="ExportContracts" Type="ForeignTradeModel.Store.ExportContracts" Multiplicity="0..1" />
           <End Role="StockContractsExportContracts" Type="ForeignTradeModel.Store.StockContractsExportContracts" Multiplicity="*" />
@@ -960,30 +920,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="StockContractsExportContracts">
-              <PropertyRef Name="StockContractsID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StockContractsProduct_Product">
-          <End Role="Product" Type="ForeignTradeModel.Store.Product" Multiplicity="0..1" />
-          <End Role="StockContractsProduct" Type="ForeignTradeModel.Store.StockContractsProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StockContractsProduct">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StockContractsProduct_StockContracts">
-          <End Role="StockContracts" Type="ForeignTradeModel.Store.StockContracts" Multiplicity="0..1" />
-          <End Role="StockContractsProduct" Type="ForeignTradeModel.Store.StockContractsProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StockContracts">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="StockContractsProduct">
               <PropertyRef Name="StockContractsID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1024,8 +960,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ForeignTradeModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
@@ -1039,27 +974,23 @@
           <EntitySet Name="Dictionary" EntityType="ForeignTradeModel.Dictionary" />
           <EntitySet Name="ExportContracts" EntityType="ForeignTradeModel.ExportContracts" />
           <EntitySet Name="ExportContractsPrice" EntityType="ForeignTradeModel.ExportContractsPrice" />
-          <EntitySet Name="ExportContractsProduct" EntityType="ForeignTradeModel.ExportContractsProduct" />
           <EntitySet Name="Image" EntityType="ForeignTradeModel.Image" />
           <EntitySet Name="Invoice" EntityType="ForeignTradeModel.Invoice" />
           <EntitySet Name="InvoiceExportContracts" EntityType="ForeignTradeModel.InvoiceExportContracts" />
-          <EntitySet Name="InvoiceProduct" EntityType="ForeignTradeModel.InvoiceProduct" />
           <EntitySet Name="Linkman" EntityType="ForeignTradeModel.Linkman" />
           <EntitySet Name="MaterialBuy" EntityType="ForeignTradeModel.MaterialBuy" />
           <EntitySet Name="Memorandum" EntityType="ForeignTradeModel.Memorandum" />
           <EntitySet Name="Price" EntityType="ForeignTradeModel.Price" />
-          <EntitySet Name="PriceProduct" EntityType="ForeignTradeModel.PriceProduct" />
           <EntitySet Name="Product" EntityType="ForeignTradeModel.Product" />
           <EntitySet Name="ProductCustomer" EntityType="ForeignTradeModel.ProductCustomer" />
           <EntitySet Name="ProductPack" EntityType="ForeignTradeModel.ProductPack" />
+          <EntitySet Name="ProductSummary" EntityType="ForeignTradeModel.ProductSummary" />
           <EntitySet Name="StockContracts" EntityType="ForeignTradeModel.StockContracts" />
           <EntitySet Name="StockContractsExportContracts" EntityType="ForeignTradeModel.StockContractsExportContracts" />
-          <EntitySet Name="StockContractsProduct" EntityType="ForeignTradeModel.StockContractsProduct" />
           <EntitySet Name="SubMaterialBuy" EntityType="ForeignTradeModel.SubMaterialBuy" />
           <EntitySet Name="TableAttachment" EntityType="ForeignTradeModel.TableAttachment" />
           <EntitySet Name="UserDepartRelation" EntityType="ForeignTradeModel.UserDepartRelation" />
           <EntitySet Name="WarehouseSale" EntityType="ForeignTradeModel.WarehouseSale" />
-          <EntitySet Name="vm_Warehouse" EntityType="ForeignTradeModel.vm_Warehouse" />
           <AssociationSet Name="FK_AccessoriesChildBuy_AccessoriesBuy" Association="ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy">
             <End Role="AccessoriesBuy" EntitySet="AccessoriesBuy" />
             <End Role="AccessoriesChildBuy" EntitySet="AccessoriesChildBuy" />
@@ -1088,10 +1019,6 @@
             <End Role="ExportContracts" EntitySet="ExportContracts" />
             <End Role="ExportContractsPrice" EntitySet="ExportContractsPrice" />
           </AssociationSet>
-          <AssociationSet Name="FK_ExportContractsProduct_ExportContracts" Association="ForeignTradeModel.FK_ExportContractsProduct_ExportContracts">
-            <End Role="ExportContracts" EntitySet="ExportContracts" />
-            <End Role="ExportContractsProduct" EntitySet="ExportContractsProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_InvoiceExportContracts_ExportContracts" Association="ForeignTradeModel.FK_InvoiceExportContracts_ExportContracts">
             <End Role="ExportContracts" EntitySet="ExportContracts" />
             <End Role="InvoiceExportContracts" EntitySet="InvoiceExportContracts" />
@@ -1099,6 +1026,10 @@
           <AssociationSet Name="FK_ProductPack_ExportContracts" Association="ForeignTradeModel.FK_ProductPack_ExportContracts">
             <End Role="ExportContracts" EntitySet="ExportContracts" />
             <End Role="ProductPack" EntitySet="ProductPack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSummary_ExportContracts" Association="ForeignTradeModel.FK_ProductSummary_ExportContracts">
+            <End Role="ExportContracts" EntitySet="ExportContracts" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
           </AssociationSet>
           <AssociationSet Name="FK_StockContractsExportContracts_ExportContracts" Association="ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts">
             <End Role="ExportContracts" EntitySet="ExportContracts" />
@@ -1108,25 +1039,17 @@
             <End Role="Price" EntitySet="Price" />
             <End Role="ExportContractsPrice" EntitySet="ExportContractsPrice" />
           </AssociationSet>
-          <AssociationSet Name="FK_ExportContractsProduct_Product" Association="ForeignTradeModel.FK_ExportContractsProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ExportContractsProduct" EntitySet="ExportContractsProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_InvoiceExportContracts_Invoice" Association="ForeignTradeModel.FK_InvoiceExportContracts_Invoice">
             <End Role="Invoice" EntitySet="Invoice" />
             <End Role="InvoiceExportContracts" EntitySet="InvoiceExportContracts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_InvoiceProduct_Invoice" Association="ForeignTradeModel.FK_InvoiceProduct_Invoice">
-            <End Role="Invoice" EntitySet="Invoice" />
-            <End Role="InvoiceProduct" EntitySet="InvoiceProduct" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductPack_Invoice" Association="ForeignTradeModel.FK_ProductPack_Invoice">
             <End Role="Invoice" EntitySet="Invoice" />
             <End Role="ProductPack" EntitySet="ProductPack" />
           </AssociationSet>
-          <AssociationSet Name="FK_InvoiceProduct_Product" Association="ForeignTradeModel.FK_InvoiceProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="InvoiceProduct" EntitySet="InvoiceProduct" />
+          <AssociationSet Name="FK_ProductSummary_Invoice" Association="ForeignTradeModel.FK_ProductSummary_Invoice">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
           </AssociationSet>
           <AssociationSet Name="FK_SubMaterialBuy_MaterialBuy" Association="ForeignTradeModel.FK_SubMaterialBuy_MaterialBuy">
             <End Role="MaterialBuy" EntitySet="MaterialBuy" />
@@ -1136,39 +1059,35 @@
             <End Role="MaterialBuy" EntitySet="MaterialBuy" />
             <End Role="WarehouseSale" EntitySet="WarehouseSale" />
           </AssociationSet>
-          <AssociationSet Name="FK_PriceProduct_Price" Association="ForeignTradeModel.FK_PriceProduct_Price">
-            <End Role="Price" EntitySet="Price" />
-            <End Role="PriceProduct" EntitySet="PriceProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProductPack_Price" Association="ForeignTradeModel.FK_ProductPack_Price">
             <End Role="Price" EntitySet="Price" />
             <End Role="ProductPack" EntitySet="ProductPack" />
           </AssociationSet>
-          <AssociationSet Name="FK_PriceProduct_Product" Association="ForeignTradeModel.FK_PriceProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="PriceProduct" EntitySet="PriceProduct" />
+          <AssociationSet Name="FK_ProductSummary_Price" Association="ForeignTradeModel.FK_ProductSummary_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductCustomer_Product" Association="ForeignTradeModel.FK_ProductCustomer_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductCustomer" EntitySet="ProductCustomer" />
           </AssociationSet>
-          <AssociationSet Name="FK_StockContractsProduct_Product" Association="ForeignTradeModel.FK_StockContractsProduct_Product">
+          <AssociationSet Name="FK_ProductSummary_Product" Association="ForeignTradeModel.FK_ProductSummary_Product">
             <End Role="Product" EntitySet="Product" />
-            <End Role="StockContractsProduct" EntitySet="StockContractsProduct" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductPack_StockContracts" Association="ForeignTradeModel.FK_ProductPack_StockContracts">
             <End Role="StockContracts" EntitySet="StockContracts" />
             <End Role="ProductPack" EntitySet="ProductPack" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductSummary_StockContracts" Association="ForeignTradeModel.FK_ProductSummary_StockContracts">
+            <End Role="StockContracts" EntitySet="StockContracts" />
+            <End Role="ProductSummary" EntitySet="ProductSummary" />
+          </AssociationSet>
           <AssociationSet Name="FK_StockContractsExportContracts_StockContracts" Association="ForeignTradeModel.FK_StockContractsExportContracts_StockContracts">
             <End Role="StockContracts" EntitySet="StockContracts" />
             <End Role="StockContractsExportContracts" EntitySet="StockContractsExportContracts" />
           </AssociationSet>
-          <AssociationSet Name="FK_StockContractsProduct_StockContracts" Association="ForeignTradeModel.FK_StockContractsProduct_StockContracts">
-            <End Role="StockContracts" EntitySet="StockContracts" />
-            <End Role="StockContractsProduct" EntitySet="StockContractsProduct" />
-          </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="vm_Warehouse" EntityType="ForeignTradeModel.vm_Warehouse" /></EntityContainer>
         <EntityType Name="AccessoriesBuy">
           <Key>
             <PropertyRef Name="ID" />
@@ -1335,9 +1254,9 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" />
           <NavigationProperty Name="ExportContractsPrice" Relationship="ForeignTradeModel.FK_ExportContractsPrice_ExportContracts" FromRole="ExportContracts" ToRole="ExportContractsPrice" />
-          <NavigationProperty Name="ExportContractsProduct" Relationship="ForeignTradeModel.FK_ExportContractsProduct_ExportContracts" FromRole="ExportContracts" ToRole="ExportContractsProduct" />
           <NavigationProperty Name="InvoiceExportContracts" Relationship="ForeignTradeModel.FK_InvoiceExportContracts_ExportContracts" FromRole="ExportContracts" ToRole="InvoiceExportContracts" />
           <NavigationProperty Name="ProductPack" Relationship="ForeignTradeModel.FK_ProductPack_ExportContracts" FromRole="ExportContracts" ToRole="ProductPack" />
+          <NavigationProperty Name="ProductSummary" Relationship="ForeignTradeModel.FK_ProductSummary_ExportContracts" FromRole="ExportContracts" ToRole="ProductSummary" />
           <NavigationProperty Name="StockContractsExportContracts" Relationship="ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts" FromRole="ExportContracts" ToRole="StockContractsExportContracts" />
         </EntityType>
         <EntityType Name="ExportContractsPrice">
@@ -1347,14 +1266,6 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="ExportContracts" Relationship="ForeignTradeModel.FK_ExportContractsPrice_ExportContracts" FromRole="ExportContractsPrice" ToRole="ExportContracts" />
           <NavigationProperty Name="Price" Relationship="ForeignTradeModel.FK_ExportContractsPrice_Price" FromRole="ExportContractsPrice" ToRole="Price" />
-        </EntityType>
-        <EntityType Name="ExportContractsProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="ExportContracts" Relationship="ForeignTradeModel.FK_ExportContractsProduct_ExportContracts" FromRole="ExportContractsProduct" ToRole="ExportContracts" />
-          <NavigationProperty Name="Product" Relationship="ForeignTradeModel.FK_ExportContractsProduct_Product" FromRole="ExportContractsProduct" ToRole="Product" />
         </EntityType>
         <EntityType Name="Image">
           <Key>
@@ -1383,9 +1294,9 @@
           <Property Name="CurrencyType" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="PriceClause" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="PriceClauseNote" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="ClauseType" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="ClauseType" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="ClauseTypeNote" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="Trade" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Trade" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CustomerID" Type="Guid" />
           <Property Name="CompanyID" Type="Guid" />
           <Property Name="CreditCardNo" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
@@ -1436,8 +1347,8 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" />
           <NavigationProperty Name="InvoiceExportContracts" Relationship="ForeignTradeModel.FK_InvoiceExportContracts_Invoice" FromRole="Invoice" ToRole="InvoiceExportContracts" />
-          <NavigationProperty Name="InvoiceProduct" Relationship="ForeignTradeModel.FK_InvoiceProduct_Invoice" FromRole="Invoice" ToRole="InvoiceProduct" />
           <NavigationProperty Name="ProductPack" Relationship="ForeignTradeModel.FK_ProductPack_Invoice" FromRole="Invoice" ToRole="ProductPack" />
+          <NavigationProperty Name="ProductSummary" Relationship="ForeignTradeModel.FK_ProductSummary_Invoice" FromRole="Invoice" ToRole="ProductSummary" />
         </EntityType>
         <EntityType Name="InvoiceExportContracts">
           <Key>
@@ -1446,14 +1357,6 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="ExportContracts" Relationship="ForeignTradeModel.FK_InvoiceExportContracts_ExportContracts" FromRole="InvoiceExportContracts" ToRole="ExportContracts" />
           <NavigationProperty Name="Invoice" Relationship="ForeignTradeModel.FK_InvoiceExportContracts_Invoice" FromRole="InvoiceExportContracts" ToRole="Invoice" />
-        </EntityType>
-        <EntityType Name="InvoiceProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Invoice" Relationship="ForeignTradeModel.FK_InvoiceProduct_Invoice" FromRole="InvoiceProduct" ToRole="Invoice" />
-          <NavigationProperty Name="Product" Relationship="ForeignTradeModel.FK_InvoiceProduct_Product" FromRole="InvoiceProduct" ToRole="Product" />
         </EntityType>
         <EntityType Name="Linkman">
           <Key>
@@ -1534,17 +1437,8 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" />
           <NavigationProperty Name="ExportContractsPrice" Relationship="ForeignTradeModel.FK_ExportContractsPrice_Price" FromRole="Price" ToRole="ExportContractsPrice" />
-          <NavigationProperty Name="PriceProduct" Relationship="ForeignTradeModel.FK_PriceProduct_Price" FromRole="Price" ToRole="PriceProduct" />
           <NavigationProperty Name="ProductPack" Relationship="ForeignTradeModel.FK_ProductPack_Price" FromRole="Price" ToRole="ProductPack" />
-        </EntityType>
-        <EntityType Name="PriceProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Note" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Price" Relationship="ForeignTradeModel.FK_PriceProduct_Price" FromRole="PriceProduct" ToRole="Price" />
-          <NavigationProperty Name="Product" Relationship="ForeignTradeModel.FK_PriceProduct_Product" FromRole="PriceProduct" ToRole="Product" />
+          <NavigationProperty Name="ProductSummary" Relationship="ForeignTradeModel.FK_ProductSummary_Price" FromRole="Price" ToRole="ProductSummary" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -1579,11 +1473,8 @@
           <Property Name="Note" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" />
-          <NavigationProperty Name="ExportContractsProduct" Relationship="ForeignTradeModel.FK_ExportContractsProduct_Product" FromRole="Product" ToRole="ExportContractsProduct" />
-          <NavigationProperty Name="InvoiceProduct" Relationship="ForeignTradeModel.FK_InvoiceProduct_Product" FromRole="Product" ToRole="InvoiceProduct" />
-          <NavigationProperty Name="PriceProduct" Relationship="ForeignTradeModel.FK_PriceProduct_Product" FromRole="Product" ToRole="PriceProduct" />
           <NavigationProperty Name="ProductCustomer" Relationship="ForeignTradeModel.FK_ProductCustomer_Product" FromRole="Product" ToRole="ProductCustomer" />
-          <NavigationProperty Name="StockContractsProduct" Relationship="ForeignTradeModel.FK_StockContractsProduct_Product" FromRole="Product" ToRole="StockContractsProduct" />
+          <NavigationProperty Name="ProductSummary" Relationship="ForeignTradeModel.FK_ProductSummary_Product" FromRole="Product" ToRole="ProductSummary" />
         </EntityType>
         <EntityType Name="ProductCustomer">
           <Key>
@@ -1626,6 +1517,26 @@
           <NavigationProperty Name="Price" Relationship="ForeignTradeModel.FK_ProductPack_Price" FromRole="ProductPack" ToRole="Price" />
           <NavigationProperty Name="StockContracts" Relationship="ForeignTradeModel.FK_ProductPack_StockContracts" FromRole="ProductPack" ToRole="StockContracts" />
         </EntityType>
+        <EntityType Name="ProductSummary">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CustomsCode" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="UnitEN" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ExportPrice" Type="Double" />
+          <Property Name="ExportAmount" Type="Double" />
+          <Property Name="DescriptionEN" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="EditDate" Type="DateTime" />
+          <NavigationProperty Name="ExportContracts" Relationship="ForeignTradeModel.FK_ProductSummary_ExportContracts" FromRole="ProductSummary" ToRole="ExportContracts" />
+          <NavigationProperty Name="Invoice" Relationship="ForeignTradeModel.FK_ProductSummary_Invoice" FromRole="ProductSummary" ToRole="Invoice" />
+          <NavigationProperty Name="Price" Relationship="ForeignTradeModel.FK_ProductSummary_Price" FromRole="ProductSummary" ToRole="Price" />
+          <NavigationProperty Name="Product" Relationship="ForeignTradeModel.FK_ProductSummary_Product" FromRole="ProductSummary" ToRole="Product" />
+          <NavigationProperty Name="StockContracts" Relationship="ForeignTradeModel.FK_ProductSummary_StockContracts" FromRole="ProductSummary" ToRole="StockContracts" />
+        </EntityType>
         <EntityType Name="StockContracts">
           <Key>
             <PropertyRef Name="ID" />
@@ -1657,8 +1568,8 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" />
           <NavigationProperty Name="ProductPack" Relationship="ForeignTradeModel.FK_ProductPack_StockContracts" FromRole="StockContracts" ToRole="ProductPack" />
+          <NavigationProperty Name="ProductSummary" Relationship="ForeignTradeModel.FK_ProductSummary_StockContracts" FromRole="StockContracts" ToRole="ProductSummary" />
           <NavigationProperty Name="StockContractsExportContracts" Relationship="ForeignTradeModel.FK_StockContractsExportContracts_StockContracts" FromRole="StockContracts" ToRole="StockContractsExportContracts" />
-          <NavigationProperty Name="StockContractsProduct" Relationship="ForeignTradeModel.FK_StockContractsProduct_StockContracts" FromRole="StockContracts" ToRole="StockContractsProduct" />
         </EntityType>
         <EntityType Name="StockContractsExportContracts">
           <Key>
@@ -1667,14 +1578,6 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <NavigationProperty Name="ExportContracts" Relationship="ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts" FromRole="StockContractsExportContracts" ToRole="ExportContracts" />
           <NavigationProperty Name="StockContracts" Relationship="ForeignTradeModel.FK_StockContractsExportContracts_StockContracts" FromRole="StockContractsExportContracts" ToRole="StockContracts" />
-        </EntityType>
-        <EntityType Name="StockContractsProduct">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="ForeignTradeModel.FK_StockContractsProduct_Product" FromRole="StockContractsProduct" ToRole="Product" />
-          <NavigationProperty Name="StockContracts" Relationship="ForeignTradeModel.FK_StockContractsProduct_StockContracts" FromRole="StockContractsProduct" ToRole="StockContracts" />
         </EntityType>
         <EntityType Name="SubMaterialBuy">
           <Key>
@@ -1728,18 +1631,6 @@
           <NavigationProperty Name="ColorWarehouseSale" Relationship="ForeignTradeModel.FK_ColorWarehouseSale_WarehouseSale" FromRole="WarehouseSale" ToRole="ColorWarehouseSale" />
           <NavigationProperty Name="MaterialBuy" Relationship="ForeignTradeModel.FK_WarehouseSale_MaterialBuy" FromRole="WarehouseSale" ToRole="MaterialBuy" />
         </EntityType>
-        <EntityType Name="vm_Warehouse">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Type" />
-            <PropertyRef Name="Name" />
-          </Key>
-          <Property Name="ID" Type="Guid" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
-          <Property Name="No" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Count" Type="Double" />
-        </EntityType>
         <Association Name="FK_AccessoriesChildBuy_AccessoriesBuy">
           <End Role="AccessoriesBuy" Type="ForeignTradeModel.AccessoriesBuy" Multiplicity="0..1" />
           <End Role="AccessoriesChildBuy" Type="ForeignTradeModel.AccessoriesChildBuy" Multiplicity="*" />
@@ -1768,10 +1659,6 @@
           <End Role="ExportContracts" Type="ForeignTradeModel.ExportContracts" Multiplicity="0..1" />
           <End Role="ExportContractsPrice" Type="ForeignTradeModel.ExportContractsPrice" Multiplicity="*" />
         </Association>
-        <Association Name="FK_ExportContractsProduct_ExportContracts">
-          <End Role="ExportContracts" Type="ForeignTradeModel.ExportContracts" Multiplicity="0..1" />
-          <End Role="ExportContractsProduct" Type="ForeignTradeModel.ExportContractsProduct" Multiplicity="*" />
-        </Association>
         <Association Name="FK_InvoiceExportContracts_ExportContracts">
           <End Role="ExportContracts" Type="ForeignTradeModel.ExportContracts" Multiplicity="0..1" />
           <End Role="InvoiceExportContracts" Type="ForeignTradeModel.InvoiceExportContracts" Multiplicity="*" />
@@ -1779,6 +1666,10 @@
         <Association Name="FK_ProductPack_ExportContracts">
           <End Role="ExportContracts" Type="ForeignTradeModel.ExportContracts" Multiplicity="0..1" />
           <End Role="ProductPack" Type="ForeignTradeModel.ProductPack" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ProductSummary_ExportContracts">
+          <End Role="ExportContracts" Type="ForeignTradeModel.ExportContracts" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.ProductSummary" Multiplicity="*" />
         </Association>
         <Association Name="FK_StockContractsExportContracts_ExportContracts">
           <End Role="ExportContracts" Type="ForeignTradeModel.ExportContracts" Multiplicity="0..1" />
@@ -1788,25 +1679,17 @@
           <End Role="Price" Type="ForeignTradeModel.Price" Multiplicity="0..1" />
           <End Role="ExportContractsPrice" Type="ForeignTradeModel.ExportContractsPrice" Multiplicity="*" />
         </Association>
-        <Association Name="FK_ExportContractsProduct_Product">
-          <End Role="Product" Type="ForeignTradeModel.Product" Multiplicity="0..1" />
-          <End Role="ExportContractsProduct" Type="ForeignTradeModel.ExportContractsProduct" Multiplicity="*" />
-        </Association>
         <Association Name="FK_InvoiceExportContracts_Invoice">
           <End Role="Invoice" Type="ForeignTradeModel.Invoice" Multiplicity="0..1" />
           <End Role="InvoiceExportContracts" Type="ForeignTradeModel.InvoiceExportContracts" Multiplicity="*" />
-        </Association>
-        <Association Name="FK_InvoiceProduct_Invoice">
-          <End Role="Invoice" Type="ForeignTradeModel.Invoice" Multiplicity="0..1" />
-          <End Role="InvoiceProduct" Type="ForeignTradeModel.InvoiceProduct" Multiplicity="*" />
         </Association>
         <Association Name="FK_ProductPack_Invoice">
           <End Role="Invoice" Type="ForeignTradeModel.Invoice" Multiplicity="0..1" />
           <End Role="ProductPack" Type="ForeignTradeModel.ProductPack" Multiplicity="*" />
         </Association>
-        <Association Name="FK_InvoiceProduct_Product">
-          <End Role="Product" Type="ForeignTradeModel.Product" Multiplicity="0..1" />
-          <End Role="InvoiceProduct" Type="ForeignTradeModel.InvoiceProduct" Multiplicity="*" />
+        <Association Name="FK_ProductSummary_Invoice">
+          <End Role="Invoice" Type="ForeignTradeModel.Invoice" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.ProductSummary" Multiplicity="*" />
         </Association>
         <Association Name="FK_SubMaterialBuy_MaterialBuy">
           <End Role="MaterialBuy" Type="ForeignTradeModel.MaterialBuy" Multiplicity="0..1" />
@@ -1816,39 +1699,44 @@
           <End Role="MaterialBuy" Type="ForeignTradeModel.MaterialBuy" Multiplicity="0..1" />
           <End Role="WarehouseSale" Type="ForeignTradeModel.WarehouseSale" Multiplicity="*" />
         </Association>
-        <Association Name="FK_PriceProduct_Price">
-          <End Role="Price" Type="ForeignTradeModel.Price" Multiplicity="0..1" />
-          <End Role="PriceProduct" Type="ForeignTradeModel.PriceProduct" Multiplicity="*" />
-        </Association>
         <Association Name="FK_ProductPack_Price">
           <End Role="Price" Type="ForeignTradeModel.Price" Multiplicity="0..1" />
           <End Role="ProductPack" Type="ForeignTradeModel.ProductPack" Multiplicity="*" />
         </Association>
-        <Association Name="FK_PriceProduct_Product">
-          <End Role="Product" Type="ForeignTradeModel.Product" Multiplicity="0..1" />
-          <End Role="PriceProduct" Type="ForeignTradeModel.PriceProduct" Multiplicity="*" />
+        <Association Name="FK_ProductSummary_Price">
+          <End Role="Price" Type="ForeignTradeModel.Price" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.ProductSummary" Multiplicity="*" />
         </Association>
         <Association Name="FK_ProductCustomer_Product">
           <End Role="Product" Type="ForeignTradeModel.Product" Multiplicity="0..1" />
           <End Role="ProductCustomer" Type="ForeignTradeModel.ProductCustomer" Multiplicity="*" />
         </Association>
-        <Association Name="FK_StockContractsProduct_Product">
+        <Association Name="FK_ProductSummary_Product">
           <End Role="Product" Type="ForeignTradeModel.Product" Multiplicity="0..1" />
-          <End Role="StockContractsProduct" Type="ForeignTradeModel.StockContractsProduct" Multiplicity="*" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.ProductSummary" Multiplicity="*" />
         </Association>
         <Association Name="FK_ProductPack_StockContracts">
           <End Role="StockContracts" Type="ForeignTradeModel.StockContracts" Multiplicity="0..1" />
           <End Role="ProductPack" Type="ForeignTradeModel.ProductPack" Multiplicity="*" />
         </Association>
+        <Association Name="FK_ProductSummary_StockContracts">
+          <End Role="StockContracts" Type="ForeignTradeModel.StockContracts" Multiplicity="0..1" />
+          <End Role="ProductSummary" Type="ForeignTradeModel.ProductSummary" Multiplicity="*" />
+        </Association>
         <Association Name="FK_StockContractsExportContracts_StockContracts">
           <End Role="StockContracts" Type="ForeignTradeModel.StockContracts" Multiplicity="0..1" />
           <End Role="StockContractsExportContracts" Type="ForeignTradeModel.StockContractsExportContracts" Multiplicity="*" />
         </Association>
-        <Association Name="FK_StockContractsProduct_StockContracts">
-          <End Role="StockContracts" Type="ForeignTradeModel.StockContracts" Multiplicity="0..1" />
-          <End Role="StockContractsProduct" Type="ForeignTradeModel.StockContractsProduct" Multiplicity="*" />
-        </Association>
-      </Schema>
+        <EntityType Name="vm_Warehouse">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Name" /></Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="No" Type="String" Nullable="true" />
+          <Property Name="Count" Type="Double" Nullable="true" /></EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2028,13 +1916,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ExportContractsProduct">
-            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.ExportContractsProduct)">
-              <MappingFragment StoreEntitySet="ExportContractsProduct">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Image">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Image)">
               <MappingFragment StoreEntitySet="Image">
@@ -2124,13 +2005,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InvoiceProduct">
-            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.InvoiceProduct)">
-              <MappingFragment StoreEntitySet="InvoiceProduct">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Linkman">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Linkman)">
               <MappingFragment StoreEntitySet="Linkman">
@@ -2210,14 +2084,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PriceProduct">
-            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.PriceProduct)">
-              <MappingFragment StoreEntitySet="PriceProduct">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Product)">
               <MappingFragment StoreEntitySet="Product">
@@ -2290,6 +2156,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProductSummary">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.ProductSummary)">
+              <MappingFragment StoreEntitySet="ProductSummary">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CustomsCode" ColumnName="CustomsCode" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UnitEN" ColumnName="UnitEN" />
+                <ScalarProperty Name="ExportPrice" ColumnName="ExportPrice" />
+                <ScalarProperty Name="ExportAmount" ColumnName="ExportAmount" />
+                <ScalarProperty Name="DescriptionEN" ColumnName="DescriptionEN" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="StockContracts">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.StockContracts)">
               <MappingFragment StoreEntitySet="StockContracts">
@@ -2325,13 +2207,6 @@
           <EntitySetMapping Name="StockContractsExportContracts">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.StockContractsExportContracts)">
               <MappingFragment StoreEntitySet="StockContractsExportContracts">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StockContractsProduct">
-            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.StockContractsProduct)">
-              <MappingFragment StoreEntitySet="StockContractsProduct">
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2385,17 +2260,6 @@
                 <ScalarProperty Name="SaleNo" ColumnName="SaleNo" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vm_Warehouse">
-            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.vm_Warehouse)">
-              <MappingFragment StoreEntitySet="vm_Warehouse">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="No" ColumnName="No" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2462,15 +2326,6 @@
             </EndProperty>
             <Condition ColumnName="ExportContractsID" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_ExportContractsProduct_ExportContracts" TypeName="ForeignTradeModel.FK_ExportContractsProduct_ExportContracts" StoreEntitySet="ExportContractsProduct">
-            <EndProperty Name="ExportContracts">
-              <ScalarProperty Name="ID" ColumnName="ExportContractsID" />
-            </EndProperty>
-            <EndProperty Name="ExportContractsProduct">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-            <Condition ColumnName="ExportContractsID" IsNull="false" />
-          </AssociationSetMapping>
           <AssociationSetMapping Name="FK_InvoiceExportContracts_ExportContracts" TypeName="ForeignTradeModel.FK_InvoiceExportContracts_ExportContracts" StoreEntitySet="InvoiceExportContracts">
             <EndProperty Name="ExportContracts">
               <ScalarProperty Name="ID" ColumnName="ExportContractsID" />
@@ -2485,6 +2340,15 @@
               <ScalarProperty Name="ID" ColumnName="ExportContractsID" />
             </EndProperty>
             <EndProperty Name="ProductPack">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <Condition ColumnName="ExportContractsID" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ProductSummary_ExportContracts" TypeName="ForeignTradeModel.FK_ProductSummary_ExportContracts" StoreEntitySet="ProductSummary">
+            <EndProperty Name="ExportContracts">
+              <ScalarProperty Name="ID" ColumnName="ExportContractsID" />
+            </EndProperty>
+            <EndProperty Name="ProductSummary">
               <ScalarProperty Name="ID" ColumnName="ID" />
             </EndProperty>
             <Condition ColumnName="ExportContractsID" IsNull="false" />
@@ -2507,29 +2371,11 @@
             </EndProperty>
             <Condition ColumnName="PriceID" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_ExportContractsProduct_Product" TypeName="ForeignTradeModel.FK_ExportContractsProduct_Product" StoreEntitySet="ExportContractsProduct">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ID" ColumnName="ProductID" />
-            </EndProperty>
-            <EndProperty Name="ExportContractsProduct">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-            <Condition ColumnName="ProductID" IsNull="false" />
-          </AssociationSetMapping>
           <AssociationSetMapping Name="FK_InvoiceExportContracts_Invoice" TypeName="ForeignTradeModel.FK_InvoiceExportContracts_Invoice" StoreEntitySet="InvoiceExportContracts">
             <EndProperty Name="Invoice">
               <ScalarProperty Name="ID" ColumnName="InvoiceID" />
             </EndProperty>
             <EndProperty Name="InvoiceExportContracts">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-            <Condition ColumnName="InvoiceID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_InvoiceProduct_Invoice" TypeName="ForeignTradeModel.FK_InvoiceProduct_Invoice" StoreEntitySet="InvoiceProduct">
-            <EndProperty Name="Invoice">
-              <ScalarProperty Name="ID" ColumnName="InvoiceID" />
-            </EndProperty>
-            <EndProperty Name="InvoiceProduct">
               <ScalarProperty Name="ID" ColumnName="ID" />
             </EndProperty>
             <Condition ColumnName="InvoiceID" IsNull="false" />
@@ -2543,14 +2389,14 @@
             </EndProperty>
             <Condition ColumnName="InvoiceID" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_InvoiceProduct_Product" TypeName="ForeignTradeModel.FK_InvoiceProduct_Product" StoreEntitySet="InvoiceProduct">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ID" ColumnName="ProductID" />
+          <AssociationSetMapping Name="FK_ProductSummary_Invoice" TypeName="ForeignTradeModel.FK_ProductSummary_Invoice" StoreEntitySet="ProductSummary">
+            <EndProperty Name="Invoice">
+              <ScalarProperty Name="ID" ColumnName="InvoiceID" />
             </EndProperty>
-            <EndProperty Name="InvoiceProduct">
+            <EndProperty Name="ProductSummary">
               <ScalarProperty Name="ID" ColumnName="ID" />
             </EndProperty>
-            <Condition ColumnName="ProductID" IsNull="false" />
+            <Condition ColumnName="InvoiceID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="FK_SubMaterialBuy_MaterialBuy" TypeName="ForeignTradeModel.FK_SubMaterialBuy_MaterialBuy" StoreEntitySet="SubMaterialBuy">
             <EndProperty Name="MaterialBuy">
@@ -2570,15 +2416,6 @@
             </EndProperty>
             <Condition ColumnName="MaterialBuyID" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_PriceProduct_Price" TypeName="ForeignTradeModel.FK_PriceProduct_Price" StoreEntitySet="PriceProduct">
-            <EndProperty Name="Price">
-              <ScalarProperty Name="ID" ColumnName="PriceID" />
-            </EndProperty>
-            <EndProperty Name="PriceProduct">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-            <Condition ColumnName="PriceID" IsNull="false" />
-          </AssociationSetMapping>
           <AssociationSetMapping Name="FK_ProductPack_Price" TypeName="ForeignTradeModel.FK_ProductPack_Price" StoreEntitySet="ProductPack">
             <EndProperty Name="Price">
               <ScalarProperty Name="ID" ColumnName="PriceID" />
@@ -2588,14 +2425,14 @@
             </EndProperty>
             <Condition ColumnName="PriceID" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_PriceProduct_Product" TypeName="ForeignTradeModel.FK_PriceProduct_Product" StoreEntitySet="PriceProduct">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ID" ColumnName="ProductID" />
+          <AssociationSetMapping Name="FK_ProductSummary_Price" TypeName="ForeignTradeModel.FK_ProductSummary_Price" StoreEntitySet="ProductSummary">
+            <EndProperty Name="Price">
+              <ScalarProperty Name="ID" ColumnName="PriceID" />
             </EndProperty>
-            <EndProperty Name="PriceProduct">
+            <EndProperty Name="ProductSummary">
               <ScalarProperty Name="ID" ColumnName="ID" />
             </EndProperty>
-            <Condition ColumnName="ProductID" IsNull="false" />
+            <Condition ColumnName="PriceID" IsNull="false" />
           </AssociationSetMapping>
           <AssociationSetMapping Name="FK_ProductCustomer_Product" TypeName="ForeignTradeModel.FK_ProductCustomer_Product" StoreEntitySet="ProductCustomer">
             <EndProperty Name="Product">
@@ -2606,11 +2443,11 @@
             </EndProperty>
             <Condition ColumnName="ProductID" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_StockContractsProduct_Product" TypeName="ForeignTradeModel.FK_StockContractsProduct_Product" StoreEntitySet="StockContractsProduct">
+          <AssociationSetMapping Name="FK_ProductSummary_Product" TypeName="ForeignTradeModel.FK_ProductSummary_Product" StoreEntitySet="ProductSummary">
             <EndProperty Name="Product">
               <ScalarProperty Name="ID" ColumnName="ProductID" />
             </EndProperty>
-            <EndProperty Name="StockContractsProduct">
+            <EndProperty Name="ProductSummary">
               <ScalarProperty Name="ID" ColumnName="ID" />
             </EndProperty>
             <Condition ColumnName="ProductID" IsNull="false" />
@@ -2624,6 +2461,15 @@
             </EndProperty>
             <Condition ColumnName="StockContractsID" IsNull="false" />
           </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_ProductSummary_StockContracts" TypeName="ForeignTradeModel.FK_ProductSummary_StockContracts" StoreEntitySet="ProductSummary">
+            <EndProperty Name="StockContracts">
+              <ScalarProperty Name="ID" ColumnName="StockContractsID" />
+            </EndProperty>
+            <EndProperty Name="ProductSummary">
+              <ScalarProperty Name="ID" ColumnName="ID" />
+            </EndProperty>
+            <Condition ColumnName="StockContractsID" IsNull="false" />
+          </AssociationSetMapping>
           <AssociationSetMapping Name="FK_StockContractsExportContracts_StockContracts" TypeName="ForeignTradeModel.FK_StockContractsExportContracts_StockContracts" StoreEntitySet="StockContractsExportContracts">
             <EndProperty Name="StockContracts">
               <ScalarProperty Name="ID" ColumnName="StockContractsID" />
@@ -2633,16 +2479,14 @@
             </EndProperty>
             <Condition ColumnName="StockContractsID" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_StockContractsProduct_StockContracts" TypeName="ForeignTradeModel.FK_StockContractsProduct_StockContracts" StoreEntitySet="StockContractsProduct">
-            <EndProperty Name="StockContracts">
-              <ScalarProperty Name="ID" ColumnName="StockContractsID" />
-            </EndProperty>
-            <EndProperty Name="StockContractsProduct">
-              <ScalarProperty Name="ID" ColumnName="ID" />
-            </EndProperty>
-            <Condition ColumnName="StockContractsID" IsNull="false" />
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="vm_Warehouse">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.vm_Warehouse)">
+              <MappingFragment StoreEntitySet="vm_Warehouse">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="No" ColumnName="No" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -2661,195 +2505,186 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="ForeignTrade">
-        <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesBuy" Width="1.5" PointX="8.75" PointY="6" Height="2.9251310221354156" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesChildBuy" Width="1.5" PointX="11" PointY="6" Height="3.1161507161458335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.ColorWarehouseSale" Width="1.5" PointX="16.25" PointY="5.5" Height="4.0712491861979156" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Company" Width="1.5" PointX="8.75" PointY="10" Height="4.6443082682291674" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Customer" Width="1.5" PointX="3.75" PointY="14.5" Height="5.7904264322916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Department" Width="1.5" PointX="8.75" PointY="3" Height="1.7790128580729174" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Dictionary" Width="1.5" PointX="5.75" PointY="11" Height="1.9700325520833317" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.ExportContracts" Width="1.5" PointX="0.75" PointY="34.875" Height="8.8467415364583388" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.ExportContractsPrice" Width="1.5" PointX="6" PointY="32" Height="1.587993164062496" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.ExportContractsProduct" Width="1.5" PointX="3" PointY="8.625" Height="1.5879931640624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Image" Width="1.5" PointX="10.75" PointY="10" Height="2.9251310221354174" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Invoice" Width="1.5" PointX="0.75" PointY="20.125" Height="13.049174804687493" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.InvoiceExportContracts" Width="1.5" PointX="3" PointY="31.125" Height="1.5879931640625031" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.InvoiceProduct" Width="1.5" PointX="3" PointY="5.625" Height="1.5879931640624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Linkman" Width="1.5" PointX="6" PointY="17.375" Height="3.1161507161458317" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.MaterialBuy" Width="1.5" PointX="11.75" PointY="0.75" Height="3.4981901041666656" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Memorandum" Width="1.5" PointX="6" PointY="14.25" Height="2.3520719401041674" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Price" Width="1.5" PointX="3.75" PointY="21.875" Height="6.9365445963541674" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.PriceProduct" Width="1.5" PointX="6" PointY="8.5" Height="1.7790128580729157" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.Product" Width="1.5" PointX="0.75" PointY="5.625" Height="7.5096036783854156" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.ProductCustomer" Width="1.5" PointX="6" PointY="5.5" Height="1.7790128580729157" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.ProductPack" Width="1.5" PointX="6" PointY="34.875" Height="6.172465820312496" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.StockContracts" Width="1.5" PointX="0.75" PointY="45.125" Height="6.5545052083333388" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.StockContractsExportContracts" Width="1.5" PointX="3" PointY="42.5" Height="1.587993164062496" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.StockContractsProduct" Width="1.5" PointX="3" PointY="11.625" Height="1.5879931640624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.SubMaterialBuy" Width="1.5" PointX="14" PointY="10.5" Height="3.3071704101562496" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.TableAttachment" Width="1.5" PointX="0.75" PointY="14" Height="2.1610522460937496" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.UserDepartRelation" Width="1.5" PointX="0.75" PointY="3" Height="1.5879931640624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.WarehouseSale" Width="1.5" PointX="14" PointY="6" Height="3.1161507161458335" IsExpanded="true" />
-        <EntityTypeShape EntityType="ForeignTradeModel.vm_Warehouse" Width="1.5" PointX="10.75" PointY="14" Height="1.9700325520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesBuy" Width="1.5" PointX="11.75" PointY="6.375" Height="2.9251310221354148" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesChildBuy" Width="1.5" PointX="14" PointY="6.25" Height="3.1161507161458344" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.ColorWarehouseSale" Width="1.5" PointX="19.25" PointY="5.75" Height="4.0712491861979148" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Company" Width="1.5" PointX="8.75" PointY="3.375" Height="4.6443082682291656" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Customer" Width="1.5" PointX="11.75" PointY="12.375" Height="5.7904264322916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Department" Width="1.5" PointX="10.75" PointY="3.375" Height="1.7790128580729174" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Dictionary" Width="1.5" PointX="5.75" PointY="16.375" Height="1.9700325520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.ExportContracts" Width="1.5" PointX="0.75" PointY="8.75" Height="8.8467415364583335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.ExportContractsPrice" Width="1.5" PointX="3" PointY="12.375" Height="1.5879931640624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Image" Width="1.5" PointX="7.75" PointY="17.375" Height="2.9251310221354174" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Invoice" Width="1.5" PointX="0.75" PointY="18.75" Height="13.049174804687503" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.InvoiceExportContracts" Width="1.5" PointX="3" PointY="9.375" Height="1.5879931640624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Linkman" Width="1.5" PointX="14" PointY="17.75" Height="3.1161507161458317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.MaterialBuy" Width="1.5" PointX="14.75" PointY="1" Height="3.4981901041666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Memorandum" Width="1.5" PointX="14" PointY="14.625" Height="2.3520719401041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Price" Width="1.5" PointX="0.75" PointY="0.75" Height="6.9365445963541656" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Product" Width="1.5" PointX="3.75" PointY="0.75" Height="6.9365445963541656" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.ProductCustomer" Width="1.5" PointX="14" PointY="10.5" Height="1.7790128580729174" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.ProductPack" Width="1.5" PointX="9" PointY="10.125" Height="6.1724658203125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.ProductSummary" Width="1.5" PointX="6" PointY="11.25" Height="3.8802294921874996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.StockContracts" Width="1.5" PointX="6.75" PointY="4" Height="6.5545052083333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.StockContractsExportContracts" Width="1.5" PointX="3" PointY="15.375" Height="1.5879931640624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.SubMaterialBuy" Width="1.5" PointX="17" PointY="10.875" Height="3.3071704101562496" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.TableAttachment" Width="1.5" PointX="2.75" PointY="18.375" Height="2.1610522460937531" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.UserDepartRelation" Width="1.5" PointX="16.75" PointY="3.375" Height="1.5879931640624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="ForeignTradeModel.WarehouseSale" Width="1.5" PointX="17" PointY="6.25" Height="3.1161507161458344" IsExpanded="true" />
         <AssociationConnector Association="ForeignTradeModel.FK_AccessoriesChildBuy_AccessoriesBuy" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.25" PointY="7.4625655110677078" />
-          <ConnectorPoint PointX="11" PointY="7.4625655110677078" /></AssociationConnector>
+          <ConnectorPoint PointX="13.25" PointY="7.8375655110677069" />
+          <ConnectorPoint PointX="14" PointY="7.8375655110677069" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_WarehouseSale_AccessoriesBuy" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.5" PointY="6" />
-          <ConnectorPoint PointX="9.5" PointY="5.625" />
-          <ConnectorPoint PointX="12.822916666666666" PointY="5.6249999999999991" />
-          <ConnectorPoint PointX="12.989583333333334" PointY="5.625" />
-          <ConnectorPoint PointX="14.260414166666665" PointY="5.6249999999999991" />
-          <ConnectorPoint PointX="14.427080833333333" PointY="5.625" />
-          <ConnectorPoint PointX="14.75" PointY="5.625" />
-          <ConnectorPoint PointX="14.75" PointY="6" /></AssociationConnector>
+          <ConnectorPoint PointX="12.5" PointY="9.3001310221354139" />
+          <ConnectorPoint PointX="12.5" PointY="9.6751310221354139" />
+          <ConnectorPoint PointX="14.666666666666666" PointY="9.6751310221354139" />
+          <ConnectorPoint PointX="14.833333333333334" PointY="9.6751310221354139" />
+          <ConnectorPoint PointX="15.822916666666666" PointY="9.6751310221354139" />
+          <ConnectorPoint PointX="15.989583333333334" PointY="9.6751310221354139" />
+          <ConnectorPoint PointX="17.75" PointY="9.6751310221354139" />
+          <ConnectorPoint PointX="17.75" PointY="9.3661507161458353" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ColorWarehouseSale_WarehouseSale" ManuallyRouted="false">
-          <ConnectorPoint PointX="15.5" PointY="7.5580753580729167" />
-          <ConnectorPoint PointX="16.25" PointY="7.5580753580729167" /></AssociationConnector>
+          <ConnectorPoint PointX="18.5" PointY="7.8080753580729176" />
+          <ConnectorPoint PointX="19.25" PointY="7.8080753580729176" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_LINKMAN_CUSTOMER" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="18.832713216145834" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="18.832713216145834" />
-          <ConnectorPoint PointX="5.583333333333333" PointY="18.832713216145834" />
-          <ConnectorPoint PointX="6" PointY="18.832713216145834" /></AssociationConnector>
+          <ConnectorPoint PointX="13.25" PointY="17.957713216145834" />
+          <ConnectorPoint PointX="14" PointY="17.957713216145834" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_MEMORANDUM_CUSTOMER" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="15.551035970052084" />
-          <ConnectorPoint PointX="5.416666666666667" PointY="15.551035970052084" />
-          <ConnectorPoint PointX="5.583333333333333" PointY="15.551035970052084" />
-          <ConnectorPoint PointX="6" PointY="15.551035970052084" /></AssociationConnector>
+          <ConnectorPoint PointX="13.25" PointY="15.801035970052084" />
+          <ConnectorPoint PointX="14" PointY="15.801035970052084" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ProductCustomer_Customer" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.90625" PointY="14.5" />
-          <ConnectorPoint PointX="4.90625" PointY="5.53125" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="5.5312499999999991" />
-          <ConnectorPoint PointX="5.708333333333333" PointY="5.53125" />
-          <ConnectorPoint PointX="6" PointY="5.53125" /></AssociationConnector>
+          <ConnectorPoint PointX="12.5" PointY="12.375" />
+          <ConnectorPoint PointX="12.5" PointY="11.389506429036459" />
+          <ConnectorPoint PointX="14" PointY="11.389506429036459" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ExportContractsPrice_ExportContracts" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="34.875" />
-          <ConnectorPoint PointX="1.5" PointY="34.5" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="34.5" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="34.5" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="34.5" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="34.5" />
-          <ConnectorPoint PointX="6.75" PointY="34.5" />
-          <ConnectorPoint PointX="6.75" PointY="33.587993164062496" /></AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_ExportContractsProduct_ExportContracts" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="39.298370768229169" />
-          <ConnectorPoint PointX="2.625" PointY="39.298370768229169" />
-          <ConnectorPoint PointX="2.625" PointY="9.41899658203125" />
-          <ConnectorPoint PointX="2.6666666666666665" PointY="9.41899658203125" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="9.41899658203125" />
-          <ConnectorPoint PointX="3" PointY="9.41899658203125" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="13.16899658203125" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="13.16899658203125" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="13.16899658203125" />
+          <ConnectorPoint PointX="3" PointY="13.16899658203125" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_InvoiceExportContracts_ExportContracts" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="37.055433384114579" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="37.055433384114579" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="37.055433384114579" />
-          <ConnectorPoint PointX="2.75" PointY="37.055433384114579" />
-          <ConnectorPoint PointX="2.75" PointY="31.918996582031255" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="31.918996582031255" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="31.918996582031255" />
-          <ConnectorPoint PointX="3" PointY="31.918996582031255" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="10.16899658203125" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="10.16899658203125" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="10.16899658203125" />
+          <ConnectorPoint PointX="3" PointY="10.16899658203125" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ProductPack_ExportContracts" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="35.90271669205729" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="35.90271669205729" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="35.90271669205729" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="35.90271669205729" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="35.90271669205729" />
-          <ConnectorPoint PointX="6" PointY="35.90271669205729" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="2.458333333333333" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="2.708333333333333" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="7.2291664166666667" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="7.3958330833333328" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="7.822916666666667" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="7.989583333333333" PointY="11.10649658203125" />
+          <ConnectorPoint PointX="9" PointY="11.10649658203125" /></AssociationConnector>
+        <AssociationConnector Association="ForeignTradeModel.FK_ProductSummary_ExportContracts" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="14.577861328125" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="14.577861328125" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="14.577861328125" />
+          <ConnectorPoint PointX="6" PointY="14.577861328125" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_StockContractsExportContracts_ExportContracts" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="43.110870768229169" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="43.110870768229169" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="43.110870768229169" />
-          <ConnectorPoint PointX="3" PointY="43.110870768229169" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="16.168996582031248" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="16.168996582031248" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="16.168996582031248" />
+          <ConnectorPoint PointX="3" PointY="16.168996582031248" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ExportContractsPrice_Price" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.90625" PointY="28.811544596354167" />
-          <ConnectorPoint PointX="4.90625" PointY="33.181743164062496" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="33.181743164062496" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="33.181743164062496" />
-          <ConnectorPoint PointX="6" PointY="33.181743164062496" /></AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_ExportContractsProduct_Product" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="8.959498291015624" />
-          <ConnectorPoint PointX="2.6666666666666665" PointY="8.959498291015624" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="8.959498291015624" />
-          <ConnectorPoint PointX="3" PointY="8.959498291015624" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="5.983660447265625" />
+          <ConnectorPoint PointX="2.625" PointY="5.983660447265625" />
+          <ConnectorPoint PointX="2.625" PointY="12.740746291015626" />
+          <ConnectorPoint PointX="3" PointY="12.740746291015626" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_InvoiceExportContracts_Invoice" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="31.459498291015628" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="31.459498291015628" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="31.459498291015628" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="31.459498291015628" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="31.459498291015628" />
-          <ConnectorPoint PointX="3" PointY="31.459498291015628" /></AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_InvoiceProduct_Invoice" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="25.760997145507815" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="25.760997145507815" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="25.760997145507815" />
-          <ConnectorPoint PointX="2.75" PointY="25.760997145507815" />
-          <ConnectorPoint PointX="2.75" PointY="6.41899658203125" />
-          <ConnectorPoint PointX="3" PointY="6.41899658203125" /></AssociationConnector>
+          <ConnectorPoint PointX="1.5" PointY="18.75" />
+          <ConnectorPoint PointX="1.5" PointY="17.846741536458332" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="17.846741536458332" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="10.597246873046874" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="10.597246873046874" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="10.597246873046874" />
+          <ConnectorPoint PointX="3" PointY="10.597246873046874" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ProductPack_Invoice" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="28.610247718261721" />
-          <ConnectorPoint PointX="2.5" PointY="28.610247718261721" />
-          <ConnectorPoint PointX="2.5" PointY="38.176902076171871" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="38.176902076171871" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="38.176902076171871" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="38.176902076171871" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="38.176902076171871" />
-          <ConnectorPoint PointX="5.0260441666666669" PointY="38.176902076171871" />
-          <ConnectorPoint PointX="5.1927108333333329" PointY="38.176902076171871" />
-          <ConnectorPoint PointX="6" PointY="38.176902076171871" /></AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_InvoiceProduct_Product" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="5.9594982910156249" />
-          <ConnectorPoint PointX="3" PointY="5.9594982910156249" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="26.198863525390628" />
+          <ConnectorPoint PointX="9.90625" PointY="26.198863525390628" />
+          <ConnectorPoint PointX="9.90625" PointY="16.2974658203125" /></AssociationConnector>
+        <AssociationConnector Association="ForeignTradeModel.FK_ProductSummary_Invoice" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="23.36745538574219" />
+          <ConnectorPoint PointX="7.40625" PointY="23.36745538574219" />
+          <ConnectorPoint PointX="7.40625" PointY="15.1302294921875" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_SubMaterialBuy_MaterialBuy" ManuallyRouted="false">
-          <ConnectorPoint PointX="12.90625" PointY="4.2481901041666656" />
-          <ConnectorPoint PointX="12.90625" PointY="13.397400716145834" />
-          <ConnectorPoint PointX="14" PointY="13.397400716145834" /></AssociationConnector>
+          <ConnectorPoint PointX="15.90625" PointY="4.4981901041666656" />
+          <ConnectorPoint PointX="15.90625" PointY="13.261841634114584" />
+          <ConnectorPoint PointX="17" PointY="13.261841634114584" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_WarehouseSale_MaterialBuy" ManuallyRouted="false">
-          <ConnectorPoint PointX="13.25" PointY="2.4990950520833328" />
-          <ConnectorPoint PointX="14.3437475" PointY="2.4990950520833328" />
-          <ConnectorPoint PointX="14.3437475" PointY="6" /></AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_PriceProduct_Price" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="21.875" />
-          <ConnectorPoint PointX="4.5" PointY="20.540426432291667" />
-          <ConnectorPoint PointX="5.5" PointY="20.540426432291667" />
-          <ConnectorPoint PointX="5.5" PointY="9.3895064290364587" />
-          <ConnectorPoint PointX="6" PointY="9.3895064290364587" /></AssociationConnector>
+          <ConnectorPoint PointX="16.25" PointY="2.15625" />
+          <ConnectorPoint PointX="18.40625" PointY="2.15625" />
+          <ConnectorPoint PointX="18.40625" PointY="6.25" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ProductPack_Price" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.1093775" PointY="28.811544596354167" />
-          <ConnectorPoint PointX="5.1093775" PointY="39.643436448242184" />
-          <ConnectorPoint PointX="6" PointY="39.643436448242184" /></AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_PriceProduct_Product" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="8.53125" />
-          <ConnectorPoint PointX="2.6666666666666665" PointY="8.53125" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="8.53125" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="8.53125" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="8.53125" />
-          <ConnectorPoint PointX="6" PointY="8.53125" /></AssociationConnector>
+          <ConnectorPoint PointX="2.25" PointY="4.2182722981770828" />
+          <ConnectorPoint PointX="3.25" PointY="4.2182722981770828" />
+          <ConnectorPoint PointX="3.25" PointY="8.1865445963541656" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="8.1865445963541656" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="8.1865445963541656" />
+          <ConnectorPoint PointX="6.166666666666667" PointY="8.1865445963541656" />
+          <ConnectorPoint PointX="6.333333333333333" PointY="8.1865445963541656" />
+          <ConnectorPoint PointX="6.5" PointY="8.1865445963541656" />
+          <ConnectorPoint PointX="6.5" PointY="10.820130208333334" />
+          <ConnectorPoint PointX="7.2291664166666667" PointY="10.820130208333334" />
+          <ConnectorPoint PointX="7.3958330833333328" PointY="10.820130208333334" />
+          <ConnectorPoint PointX="7.822916666666667" PointY="10.820130208333334" />
+          <ConnectorPoint PointX="7.989583333333333" PointY="10.820130208333334" />
+          <ConnectorPoint PointX="8.5" PointY="10.820130208333334" />
+          <ConnectorPoint PointX="8.5" PointY="8.2693082682291656" />
+          <ConnectorPoint PointX="9.75" PointY="8.2693082682291656" />
+          <ConnectorPoint PointX="9.75" PointY="10.125" />
+          </AssociationConnector>
+        <AssociationConnector Association="ForeignTradeModel.FK_ProductSummary_Price" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.4528841490885407" />
+          <ConnectorPoint PointX="3.5" PointY="2.4528841490885407" />
+          <ConnectorPoint PointX="3.5" PointY="7.9365445963541656" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="7.9365445963541648" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="7.9365445963541656" />
+          <ConnectorPoint PointX="6.25" PointY="7.9365445963541656" />
+          <ConnectorPoint PointX="6.25" PointY="10.804505208333334" />
+          <ConnectorPoint PointX="6.75" PointY="10.804505208333334" />
+          <ConnectorPoint PointX="6.75" PointY="11.25" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ProductCustomer_Product" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="5.625" />
-          <ConnectorPoint PointX="1.5" PointY="5.125" />
-          <ConnectorPoint PointX="5.625" PointY="5.125" />
-          <ConnectorPoint PointX="5.625" PointY="6.4363834290364572" />
-          <ConnectorPoint PointX="6" PointY="6.4363834290364572" /></AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_StockContractsProduct_Product" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="12.379801839192709" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="12.379801839192707" />
-          <ConnectorPoint PointX="2.8333333333333335" PointY="12.379801839192709" />
-          <ConnectorPoint PointX="3" PointY="12.379801839192709" /></AssociationConnector>
+          <ConnectorPoint PointX="5.25" PointY="4.2182722981770828" />
+          <ConnectorPoint PointX="6.625" PointY="4.2182722981770828" />
+          <ConnectorPoint PointX="6.625" PointY="10.679505208333334" />
+          <ConnectorPoint PointX="7.2291664166666667" PointY="10.679505208333334" />
+          <ConnectorPoint PointX="7.3958330833333328" PointY="10.679505208333334" />
+          <ConnectorPoint PointX="7.822916666666667" PointY="10.679505208333334" />
+          <ConnectorPoint PointX="7.989583333333333" PointY="10.679505208333334" />
+          <ConnectorPoint PointX="8.4166666666666661" PointY="10.679505208333334" />
+          <ConnectorPoint PointX="8.5833333333333339" PointY="10.679505208333334" />
+          <ConnectorPoint PointX="8.75" PointY="10.679505208333334" />
+          <ConnectorPoint PointX="8.75" PointY="9.4911507161458353" />
+          <ConnectorPoint PointX="9.6666666666666661" PointY="9.4911507161458353" />
+          <ConnectorPoint PointX="9.8333333333333339" PointY="9.4911507161458353" />
+          <ConnectorPoint PointX="12.416666666666666" PointY="9.4911507161458353" />
+          <ConnectorPoint PointX="12.583333333333334" PointY="9.4911507161458353" />
+          <ConnectorPoint PointX="14.75" PointY="9.4911507161458353" />
+          <ConnectorPoint PointX="14.75" PointY="10.5" /></AssociationConnector>
+        <AssociationConnector Association="ForeignTradeModel.FK_ProductSummary_Product" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.90625" PointY="7.6865445963541656" />
+          <ConnectorPoint PointX="4.90625" PointY="11.78125" />
+          <ConnectorPoint PointX="6" PointY="11.78125" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_ProductPack_StockContracts" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="48.402252604166669" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="48.402252604166669" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="48.402252604166669" />
-          <ConnectorPoint PointX="6.75" PointY="48.402252604166669" />
-          <ConnectorPoint PointX="6.75" PointY="41.047465820312496" /></AssociationConnector>
+          <ConnectorPoint PointX="8.25" PointY="10.339752604166666" />
+          <ConnectorPoint PointX="8.4166666666666661" PointY="10.339752604166666" />
+          <ConnectorPoint PointX="8.5833333333333339" PointY="10.339752604166666" />
+          <ConnectorPoint PointX="8.6666666666666661" PointY="10.339752604166666" />
+          <ConnectorPoint PointX="8.8333333333333339" PointY="10.339752604166666" />
+          <ConnectorPoint PointX="9" PointY="10.339752604166666" /></AssociationConnector>
+        <AssociationConnector Association="ForeignTradeModel.FK_ProductSummary_StockContracts" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.31249975" PointY="10.554505208333334" />
+          <ConnectorPoint PointX="7.31249975" PointY="11.25" /></AssociationConnector>
         <AssociationConnector Association="ForeignTradeModel.FK_StockContractsExportContracts_StockContracts" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="46.73237380208333" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="46.73237380208333" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="46.73237380208333" />
-          <ConnectorPoint PointX="3.75" PointY="46.73237380208333" />
-          <ConnectorPoint PointX="3.75" PointY="44.087993164062496" /></AssociationConnector>
-        <AssociationConnector Association="ForeignTradeModel.FK_StockContractsProduct_StockContracts" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="50.07213090625001" />
-          <ConnectorPoint PointX="2.875" PointY="50.07213090625001" />
-          <ConnectorPoint PointX="2.875" PointY="12.827649501627604" />
-          <ConnectorPoint PointX="3" PointY="12.827649501627604" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="7.90625" PointY="10.554505208333334" />
+          <ConnectorPoint PointX="7.90625" PointY="15.84375" />
+          <ConnectorPoint PointX="7.489583333333333" PointY="15.84375" />
+          <ConnectorPoint PointX="7.322916666666667" PointY="15.84375" />
+          <ConnectorPoint PointX="4.5" PointY="15.84375" /></AssociationConnector>
+        <EntityTypeShape EntityType="ForeignTradeModel.vm_Warehouse" Width="1.5" PointX="16.375" PointY="15.75" Height="1.9700325520833317" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -63,9 +63,9 @@
 
 </div>
 <%
-    string type = Request["type"];
+    string type = ZhouBo.Core.BasicOperate.GetString(ViewData["type"], true);
     for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
-    {
+    { 
 %>
 <div id="regioncontent">
     <table class="dynamictable">
