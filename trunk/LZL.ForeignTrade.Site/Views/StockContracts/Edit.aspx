@@ -130,7 +130,12 @@
     <input type="hidden" name="StockContracts♂objectname" value="LZL.ForeignTrade.DataEntity.StockContracts,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("StockContracts♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("StockContracts♂iseditdate", "EditDate")%>
-    <table width="100%"  class="list">
+        <div class="tabs" style="background: none; border: solid 1px #488dca; border-collapse: collapse;">
+        <ul>
+            <li><a href="#tabs-1">采购合同信息</a></li>
+            <li><a href="#tabs-2">商品信息</a></li>
+        </ul>
+    <table width="100%"  class="list" id="tabs-1">
         <caption>
             采购合同信息</caption>
         <thead align="center">
@@ -415,51 +420,7 @@
                 </td>
             </tr>
             <!-- 出口合同信息 -->
-            <% 
-                Model.StockContractsProduct.Load();
-                if (Model.StockContractsProduct.Count > 0)
-                {
-                    for (int i = 0; i < Model.StockContractsProduct.Count; i++)
-                    {
-                        Model.StockContractsProduct.ElementAt(i).ProductReference.Load();
-                    }
-                }
-            %>
-            <!-- 商品信息 -->
-            <tr id="StockContractsProduct♂" style="<%=Model.StockContractsProduct.Count>0?"": "display: none"%>;
-                text-align: left;">
-                <td colspan="5">
-                    <center style="text-align: center; font-size: x-large; font-weight: bolder;">
-                        商品信息</center>
-                    <!-- 标识子表添加总数 -->
-                    <input type="hidden" value='0' name="StockContractsProduct♂regioncount" id="StockContractsProduct♂regioncount" />
-                    <!-- 标识子表区域名称(表格名称、实体对象名称) -->
-                    <input type="hidden" name="region" value="StockContractsProduct♂" />
-                    <!-- 标识子表实体对象类 -->
-                    <input type="hidden" name="StockContractsProduct♂objectname" value="LZL.ForeignTrade.DataEntity.StockContractsProduct,LZL.ForeignTrade.DataEntity" />
-                    <!-- 多对多关系中 -->
-                    <!-- 标识子表外键实体对象名称、外键字段名称 -->
-                    <input type="hidden" name="StockContractsProduct♂fk" value='Product' />
-                    <!-- 标识多对多关系表中（一） -->
-                    <input type="hidden" name="StockContractsProduct♂pfk" value='StockContracts' />
-                    <fieldset style="<%=Model.StockContractsProduct.Count>0?"": "display: none"%>; width: 95%;">
-                        <legend>商品信息</legend>
-                        <ul id="spxx" style="float: left; width: 100%; clear: both; position: relative;">
-                            <%
-                                for (int i = 0; i < Model.StockContractsProduct.Count(); i++)
-                                {
-                                    var htmlstr = "<li style='display: inline;padding:0 2;'>{0}{1}</li>";
-                                    var script = @"$(this).parent().remove();display('StockContractsProduct♂','spxx')";
-                                    Response.Write(string.Format(htmlstr,
-                                        @"<input type='checkbox' name='Product♂ID' checked='true' onclick=" + Html.Encode(script) + " value='" + Model.StockContractsProduct.ElementAt(i).Product.ID.ToString() + "' />",
-                                        Html.ActionLink(Model.StockContractsProduct.ElementAt(i).Product.NameCode, "Details", "Product", new { id = Model.StockContractsProduct.ElementAt(i).Product.ID.ToString() }, null)));
-                                }
-                            %>
-                        </ul>
-                    </fieldset>
-                </td>
-            </tr>
-            <!-- 商品信息 -->
+            
             <!-- 商品包装信息 -->
             <tr id="ProductPack♂" style="display: none;">
                 <td colspan="5">
@@ -487,12 +448,36 @@
             </tr>
         </tfoot>
     </table>
+           <table class="list" width="100%" id="tabs-2">
+            <caption>
+                商品信息动态区域
+            </caption>
+            <%
+                Model.ProductSummary.Load();
+            %>
+            <!-- 商品信息 -->
+            <tr id="ProductSummary♂" style="<%=Model.ProductSummary.Count>0?"": "display: none"%>;">
+                <td colspan="5">
+                    <%
+                        if (Model.ProductSummary.Count > 0)
+                        {
+                            ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
+                            viewdictionary2.Add("number", Model.ProductSummary.Count);
+                            viewdictionary2.Add("FK", "StockContracts");
+                            Html.RenderPartial("ProductSummaryControl", Model.ProductSummary.ToList(), viewdictionary2);
+                        }
+                    %>
+                </td>
+            </tr>
+            <!-- 商品信息 -->
+        </table>
+    </div>
     <%
         } %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('StockContractsExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","ExportContracts")%>');"
-        class="button">出口合同</a> <a href="#" onclick="openspxx('StockContractsProduct♂','Product♂ID','spxx','<%=Url.Action("Details","Product")%>');"
-            class="button">商品信息</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
+        class="button">出口合同</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
+            class="button">商品包装</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
                 class="button">商品包装</a>
 </asp:Content>

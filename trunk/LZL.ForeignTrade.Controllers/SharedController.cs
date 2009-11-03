@@ -164,10 +164,19 @@ namespace LZL.ForeignTrade.Controllers
                 if (!(string.IsNullOrEmpty(formvalues[(regions[i] + "propertyobject")]) &&
                     string.IsNullOrEmpty(formvalues[(regions[i] + "propertyobjectvalue")])))// 如果是多个问题先不处理到时候用♂符号进行分割
                 {
-                    var sql = "select value it from " + entities.DefaultContainerName + "." + formvalues[regions[i] + "propertyobject"] + " as it ";
-                    sql += " where it.ID=Guid'" + formvalues[regions[i] + "propertyobjectvalue"] + "'";
-                    object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
-                    ClassHelper.SetPropertyValue(tableobj, propertyobject.GetType().Name, propertyobject);//设置属性对象
+                    string[] propertyobjects = formvalues[(regions[i] + "propertyobject")].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] propertyobjectvalues = formvalues[regions[i] + "propertyobjectvalue"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    for (int p = 0; p < propertyobjects.Length; p++)
+                    {
+                        var sql = "select value it from " + entities.DefaultContainerName + "." + propertyobjects[p] + " as it ";
+                        sql += " where it.ID=Guid'" + propertyobjectvalues[p] + "'";
+                        object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
+                        if (propertyobject != null)
+                        {
+                            ClassHelper.SetPropertyValue(tableobj, propertyobjectvalues[p], propertyobject);//设置属性对象
+                        }
+                    }
                 }
 
                 if (tableobj != null)
@@ -285,6 +294,8 @@ namespace LZL.ForeignTrade.Controllers
                         (region + "pfk").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                          (region + "iscreatedate").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                          (region + "iseditdate").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                         (region + "propertyobject").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
+                          (region + "propertyobjectvalue").Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase) ||
                          region.Equals(regionnames[j], StringComparison.CurrentCultureIgnoreCase)))
                     {
                         if (tableobj != null)
@@ -315,10 +326,19 @@ namespace LZL.ForeignTrade.Controllers
                 if (!(string.IsNullOrEmpty(formvalues[(region + "propertyobject")]) &&
                       string.IsNullOrEmpty(formvalues[(region + "propertyobjectvalue")])))// 如果是多个问题先不处理到时候用♂符号进行分割
                 {
-                    var sql = "select value it from " + entities.DefaultContainerName + "." + formvalues[region + "propertyobject"] + " as it ";
-                    sql += " where it.ID=Guid'" + formvalues[region + "propertyobjectvalue"] + "'";
-                    object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
-                    ClassHelper.SetPropertyValue(tableobj, propertyobject.GetType().Name, propertyobject);//设置属性对象
+                    string[] propertyobjects = formvalues[(region + "propertyobject")].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] propertyobjectvalues = formvalues[region + "propertyobjectvalue"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    for (int p = 0; p < propertyobjects.Length; p++)
+                    {
+                        var sql = "select value it from " + entities.DefaultContainerName + "." + propertyobjects[p] + " as it ";
+                        sql += " where it.ID=Guid'" + propertyobjectvalues[p] + "'";
+                        object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
+
+                        if (propertyobject != null)
+                        {
+                            ClassHelper.SetPropertyValue(tableobj, propertyobjects[p], propertyobject);//设置属性对象
+                        }
+                    }
                 }
 
                 var propertyinfo = (from p in tableobj.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public)
