@@ -10,7 +10,7 @@ function addregion(regionname) {
 
     var copyobj = $(regionname).closest("div[id='regioncontent']")
     var copyhtml = $(copyobj).clone(true);
-    $(copyhtml).find("input[type='hidden']").val("");
+    //$(copyhtml).find("input[type='hidden']").val("");
     $(copyhtml).find("input[type='text']").removeAttr("id");
     $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
     $(copyobj).parent().append(copyhtml);

@@ -57,11 +57,12 @@
                         {
                             Response.Write(Html.TextBox("_ProductSummary♂ProductID"));
                             Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue"));
-                            Response.Write(Html.Hidden("ProductSummary♂propertyobject", "LZL.ForeignTrade.DataEntity.Product", new { novalue = true }));
-                            Response.Write("<a href='#'onclick=LoadControlList(this,'InvoiceIndex')>选择</a>");
+                            Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { novalue = true }));
+                            Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                         }
                         else
                         {
+                            Model[i].ProductReference.Load();
                             if (ViewData["Details"] == null)
                             {
                                 if (Model[i].Product != null)
@@ -74,8 +75,8 @@
                                     Response.Write(Html.TextBox("_ProductSummary♂ProductID"));
                                     Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue"));
                                 }
-                                Response.Write(Html.Hidden("ProductSummary♂propertyobject", "LZL.ForeignTrade.DataEntity.Product", new { novalue = true }));
-                                Response.Write("<a href='#'onclick=LoadControlList(this,'InvoiceIndex')>选择</a>");
+                                Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { novalue = true }));
+                                Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                             }
                             else
                             {
@@ -145,13 +146,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂UnitEN"));
+                            Response.Write(Html.DropDownList("Product♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择"));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂UnitEN", Html.Encode(Model[i].UnitEN)));
+                                Response.Write(Html.DropDownList("Product♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位",Html.Encode(Model[i].UnitEN)), "请选择"));
                             }
                             else
                             {
