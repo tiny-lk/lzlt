@@ -87,12 +87,16 @@ namespace LZL.ForeignTrade.Controllers
         /// </summary>
         /// <param name="id">打印的ID</param>
         /// <returns></returns>
-        public FileContentResult BusinessInvoice(string id)
+        public ActionResult BusinessInvoice(string id)
         {
-
-            string path = Server.MapPath("~/DocTemplate/Template/invoice.doc");
-            string targetpath = Server.MapPath("~/DocTemplate/Print/");
-            WordInvoiceHelper.Instance.BuilderInvoice(new Guid(id), path, targetpath);
+            if (!string.IsNullOrEmpty(id))
+            {
+                string path = Server.MapPath("~/DocTemplate/Template/invoice.doc");
+                string targetpath = Server.MapPath("~/DocTemplate/Print/");
+                byte[] tempbuffer = LZL.ForeignTrade.Controllers.WordInvoiceHelper.Instance.BuilderInvoice(new Guid(id), path, targetpath);
+                Response.AppendHeader("Content-Disposition", "inline;filename=test.doc");
+                return File(tempbuffer, "application/ms-word", "test.doc");
+            }
             return null;
         }
 

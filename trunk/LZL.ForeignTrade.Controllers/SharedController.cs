@@ -65,7 +65,7 @@ namespace LZL.ForeignTrade.Controllers
 
         public JsonResult GetAutocompleteValue2(string t, string f)
         {
-            Entities entities = new Entities();
+          Entities entities = new Entities();
             string sql = "select it." + f + ",it.ID from " + entities.DefaultContainerName + "." + t + " as it where it." + f + " like '" + Request["q"] + "%'";
             sql += " order by it." + f;
             sql += " Skip 0 limit 20 ";

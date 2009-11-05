@@ -54,7 +54,8 @@
         $("#BusinessInvoice").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
-                window.location.href = '<%=Url.Action("BusinessInvoice","Invoice")%>' + '/' + id;
+             
+                window.open( '<%=Url.Action("BusinessInvoice","Invoice")%>' + '/' + id);
             }
         });
         

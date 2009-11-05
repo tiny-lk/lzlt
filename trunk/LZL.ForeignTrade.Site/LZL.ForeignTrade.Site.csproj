@@ -297,7 +297,6 @@
     <Content Include="Content\images\table_head.gif" />
     <Content Include="Content\images\toolbarbackgroup.gif" />
     <Content Include="Scripts\jquery.corner.js" />
-    <Content Include="Views\Invoice\BusinessInvoice.aspx" />
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\ColorWarehouseSale.ascx" />
     <Content Include="Views\Shared\OtherAccessories.ascx" />
@@ -311,6 +310,7 @@
     <Content Include="Views\Admin\ManageUserRelation.aspx" />
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\OtherMaterialBuy.ascx" />
+    <Content Include="Views\Shared\PrintWord.aspx" />
     <Content Include="Views\Shared\ProductPackControl.ascx" />
     <Content Include="Views\Shared\ProductSummaryControl.ascx" />
     <Content Include="Views\Warehouse\AddAccessories.aspx" />

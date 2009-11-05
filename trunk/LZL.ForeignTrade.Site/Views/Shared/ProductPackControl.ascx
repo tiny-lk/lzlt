@@ -11,10 +11,6 @@
     <input type="hidden" name="ProductPack♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "ExportContracts" :ViewData["FK"] %>' />
     <%= Html.Hidden("ProductPack♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("ProductPack♂iseditdate", "EditDate")%>
-    <center>
-        <h3>
-            商品包装信息动态区域</h3>
-    </center>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -105,12 +101,13 @@
                 <td align="right" style="width: 15%;">
                     商品代码：
                 </td>
-                <td align="left" colspan="3" >
+                <td align="left" colspan="3">
                     <%
                         if (Model == null)
                         {
                             Response.Write(Html.Hidden("ProductPack♂ProductID"));
                             Response.Write(Html.TextBox("_ProductPack♂ProductID"));
+                            Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                         }
                         else
                         {
@@ -123,6 +120,7 @@
                                     {
                                         Response.Write(Html.Hidden("ProductPack♂ProductID", Html.Encode(Model[i].ProductID)));
                                         Response.Write(Html.TextBox("_ProductPack♂ProductID", Html.Encode(obj.NameCode)));
+                                        Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                                     }
                                 }
                             }
@@ -138,6 +136,7 @@
                                 }
                             }
                         }
+        
                     %>
                 </td>
             </tr>

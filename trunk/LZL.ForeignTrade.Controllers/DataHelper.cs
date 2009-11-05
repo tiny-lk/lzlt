@@ -305,18 +305,41 @@ namespace LZL.ForeignTrade.Controllers
             }
         }
 
-        
-
         public static string GetDictionaryName(string type, string value)
         {
-            if (string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value) || value.Length != 32)
             {
                 return string.Empty;
             }
+            Guid guid = new Guid(value);
             Entities entities = new Entities();
-            return entities.Dictionary.Where(v => v.Type.Equals(type, StringComparison.CurrentCultureIgnoreCase)
-                && v.Code.Equals(value, StringComparison.CurrentCultureIgnoreCase)
-                ).FirstOrDefault().Name;
+            Dictionary dictioanry = entities.Dictionary.Where(v => v.Type.Equals(type, StringComparison.CurrentCultureIgnoreCase)
+                && v.ID.Equals(guid)
+                ).FirstOrDefault();
+            if (dictioanry != null)
+            {
+                return dictioanry.Name;
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public static string GetDictionaryName(string id)
+        {
+
+            Entities entities = new Entities();
+            Guid guid = new Guid(id);
+            Dictionary dictioanry = entities.Dictionary.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+            if (dictioanry != null)
+            {
+                return dictioanry.Name;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         public static SelectList GetDictionary(string name)
