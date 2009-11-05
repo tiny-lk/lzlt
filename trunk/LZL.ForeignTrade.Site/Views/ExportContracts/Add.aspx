@@ -192,6 +192,7 @@
                     <td align="left">
                         <%= Html.TextBox("_ExportContracts♂CustomerID")%><!-- "-"表示不被处理的值 -->
                         <%=Html.Hidden("ExportContracts♂CustomerID")%>
+                        <%Response.Write("<a href='#'onclick=LoadControlList(this,'CustomerIndex')>选择</a>"); %>
                     </td>
                     <td align="right">
                         公司简称：

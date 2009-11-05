@@ -62,7 +62,7 @@
                         合同类别：
                     </td>
                     <td align="left">
-                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("出口合同类型", Html.Encode(Model.Type))%>
+                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.Type))%>
                     </td>
                 </tr>
                 <tr>

@@ -133,7 +133,7 @@
                         报价单类型：
                     </td>
                     <td align="left">
-                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("报价单类型", Html.Encode(Model.PriceType))%>
+                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.PriceType))%>
                     </td>
                     <td align="right">
                         总报价金额：

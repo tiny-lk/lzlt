@@ -198,7 +198,7 @@
                 <%= Html.Encode(Model[i].CustomsCode)%>
             </td>
             <td>
-                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("商品类型", Html.Encode(Model[i].TypeCode))%>
+                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model[i].TypeCode))%>
             </td>
             <td>
                 <%= Html.Encode(Model[i].IsShare ? "是" : "否")%>

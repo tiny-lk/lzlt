@@ -96,7 +96,7 @@
                     中文单位：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("中文单位", Html.Encode(Model.UnitCH))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.UnitCH))%>
                 </td>
             </tr>
             <tr>
@@ -104,7 +104,7 @@
                     英文单位：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("英文单位", Html.Encode(Model.UnitEN))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.UnitEN))%>
                 </td>
                 <td align="right">
                     海关代码：
@@ -135,7 +135,7 @@
                     中文包装单位：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("中文单位", Html.Encode(Model.PackUnitCH))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.PackUnitCH))%>
                 </td>
             </tr>
             <tr>
@@ -143,7 +143,7 @@
                     英文包装单位：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("英文单位", Html.Encode(Model.PackUnitEN))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.PackUnitEN))%>
                 </td>
                 <td align="right">
                     包装长度(CM)：
@@ -199,13 +199,13 @@
                     内盒中文单位：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("中文单位", Html.Encode(Model.BoxUnitCH))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.BoxUnitCH))%>
                 </td>
                 <td align="right">
                     内盒英文单位：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("英文单位", Html.Encode(Model.BoxUnitEN))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.BoxUnitEN))%>
                 </td>
             </tr>
             <tr>
@@ -216,7 +216,7 @@
                     商品类别：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("商品类型", Html.Encode(Model.TypeCode))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.TypeCode))%>
                 </td>
                 <td align="right">
                     是否共享：

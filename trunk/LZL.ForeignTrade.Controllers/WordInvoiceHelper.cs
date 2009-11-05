@@ -10,7 +10,6 @@ namespace LZL.ForeignTrade.Controllers
 {
     public class WordInvoiceHelper
     {
-        Dictionary<string, string> invoicestemplate= new Dictionary<string, string>();
         /// <summary>
         /// Singleton模式，类的唯一实例。
         /// </summary>
@@ -18,16 +17,7 @@ namespace LZL.ForeignTrade.Controllers
 
         private WordInvoiceHelper()
         {
-            invoicestemplate.Add("date", "");
-            invoicestemplate.Add("from", "");
-            invoicestemplate.Add("fromto", "");
-            invoicestemplate.Add("lcno", "");
-            invoicestemplate.Add("no", "");
-            invoicestemplate.Add("scno", "");
-            invoicestemplate.Add("termsofpayment", "");
-            invoicestemplate.Add("to", "");
-            invoicestemplate.Add("content","");
-            invoicestemplate.Add("contenttitle", "");
+
         }
 
         public byte[] BuilderInvoice(Guid id, string path, string targetpath)
@@ -76,7 +66,7 @@ namespace LZL.ForeignTrade.Controllers
                 {
                     invoice.ProductSummary.ElementAt(i).ProductReference.Load();
                     Product product = invoice.ProductSummary.ElementAt(i).Product;
-                    table.Cell(count, 1).Range.Text = product.NameCode;
+                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameEH) ? product.NameCH : product.NameEH;
                     table.Cell(count, 1).Select();
                     table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                     dwmc = DataHelper.GetDictionaryName(invoice.ProductSummary.ElementAt(i).UnitEN);
@@ -87,9 +77,7 @@ namespace LZL.ForeignTrade.Controllers
                     table.Cell(count, 4).Range.Text = invoice.ProductSummary.ElementAt(i).ExportAmount.GetValueOrDefault().ToString();
                     count++;
                 }
-                table.Cell(count, 1).Merge(table.Cell(count, 2));
-                table.Cell(count, 1).Merge(table.Cell(count, 2));
-                table.Cell(count, 1).Merge(table.Cell(count, 2));
+                table.Cell(count, 1).Merge(table.Cell(count, 4));
                 table.Cell(count, 1).Select();
                 table.Cell(count, 1).Range.Text = "—".PadLeft(50, '—');
                 table.Cell(count + 1, 1).Range.Text = "TOTAL：";

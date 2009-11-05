@@ -211,6 +211,7 @@
                                 Response.Write(Html.TextBox("_ExportContracts°·CustomerID"));
                                 Response.Write(Html.Hidden("ExportContracts°·CustomerID"));
                             }
+                            Response.Write("<a href='#'onclick=LoadControlList(this,'CustomerIndex')>—°‘Ò</a>");
                         %>
                     </td>
                     <td align="right">

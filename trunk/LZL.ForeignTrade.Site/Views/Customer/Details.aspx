@@ -76,7 +76,7 @@
                     国家：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("国家", Html.Encode(Model.Country))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.Country))%>
                 </td>
                 <td align="right">
                     省份（州）：
@@ -124,7 +124,7 @@
                     客户类别：
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("客户类型", Html.Encode(Model.TypeCode))%>
+                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.TypeCode))%>
                 </td>
             </tr>
             <tr>

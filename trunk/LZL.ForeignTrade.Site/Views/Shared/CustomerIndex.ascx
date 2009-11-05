@@ -203,7 +203,7 @@
                 <%= Html.Encode(Model[i].Phone)%>
             </td>
             <td>
-                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("客户类型", Html.Encode(Model[i].TypeCode))%>
+                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model[i].TypeCode))%>
             </td>
             <td>
                 <%= Html.Encode(Model[i].IsShare ? "是" : "否")%>

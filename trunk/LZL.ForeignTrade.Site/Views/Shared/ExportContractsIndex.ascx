@@ -55,6 +55,14 @@
             }
         });
 
+        $("#PackingList").live("click", function() {
+            if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
+                var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
+
+                window.open('<%=Url.Action("PackingList","ExportContracts")%>' + '/' + id);
+            }
+        });
+
         $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1);
         });
@@ -138,6 +146,7 @@
                    {
                 %>
                 <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                <input type="button" id="PackingList" value="装箱单" disabled="disabled" check="1" />
                 <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                 <%
                     }
@@ -223,7 +232,7 @@
                 %>
             </td>
             <td>
-                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("出口合同类型", Html.Encode(Model[i].Type))%>
+                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model[i].Type))%>
             </td>
             <td>
                 <%= Html.Encode(Model[i].ShipmentDate == null ? "" : Model[i].ShipmentDate.Value.ToShortDateString())%>

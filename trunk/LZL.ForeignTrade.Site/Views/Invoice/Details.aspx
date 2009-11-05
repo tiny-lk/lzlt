@@ -167,7 +167,7 @@
                         发票类型：
                     </td>
                     <td align="left">
-                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("发票类型", Html.Encode(Model.Type))%>
+                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.Type))%>
                     </td>
                 </tr>
                 <tr>
@@ -259,7 +259,7 @@
                         英文包装单位：
                     </td>
                     <td align="left">
-                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("英文单位", Html.Encode(Model.TotalPackUnitEN))%>
+                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.TotalPackUnitEN))%>
                     </td>
                     <td align="right">
                         包装毛重(KG)：

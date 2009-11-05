@@ -86,7 +86,7 @@
                         合同类别：
                     </td>
                     <td align="left" colspan="3">
-                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("采购合同类型", Html.Encode(Model.Type))%>
+                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.Type))%>
                     </td>
                 </tr>
                 <tr>
@@ -111,7 +111,7 @@
                         英文包装单位：
                     </td>
                     <td align="left">
-                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("中文单位", Html.Encode(Model.TotalPackUnitCH))%>
+                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.TotalPackUnitCH))%>
                     </td>
                     <td align="right">
                         包装毛重(KG)：

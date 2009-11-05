@@ -232,28 +232,6 @@
             </tr>
             <tr>
                 <td align="right">
-                    商品外销金额：
-                </td>
-                <td align="left">
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].ExportAmount));
-                            }
-                        }
-                    %>
-                </td>
-                <td align="right">
                     备注：
                 </td>
                 <td align="left" colspan="3">
