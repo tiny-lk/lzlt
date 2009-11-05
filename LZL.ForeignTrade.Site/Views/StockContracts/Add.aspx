@@ -134,6 +134,7 @@
         <ul>
             <li><a href="#tabs-1">采购合同信息</a></li>
             <li><a href="#tabs-2">商品信息</a></li>
+            <li><a href="#tabs-3">商品包装信息</a></li>
         </ul>
         <table width="100%" class="list" id="tabs-1">
             <caption>
@@ -358,12 +359,6 @@
                     </td>
                 </tr>
                 <!-- 出口合同信息 -->
-                <!-- 商品包装信息 -->
-                <tr id="ProductPack♂" style="display: none;">
-                    <td colspan="5">
-                    </td>
-                </tr>
-                <!-- 商品包装信息 -->
             </thead>
             <tfoot>
                 <tr>
@@ -375,7 +370,7 @@
                 </tr>
             </tfoot>
         </table>
-        <table width="100%" id="tabs-2">
+        <table width="100%"  class="list" id="tabs-2">
             <caption>
                 商品信息动态区域
             </caption>
@@ -385,6 +380,17 @@
                 </td>
             </tr>
             <!-- 商品信息 -->
+        </table>
+        <table width="100%"  class="list" id="tabs-3">
+            <caption>
+                商品包装信息动态区域
+            </caption>
+            <!-- 商品包装信息 -->
+            <tr id="ProductPack♂" style="display: none;">
+                <td colspan="5">
+                </td>
+            </tr>
+            <!-- 商品包装信息 -->
         </table>
     </div>
     <%

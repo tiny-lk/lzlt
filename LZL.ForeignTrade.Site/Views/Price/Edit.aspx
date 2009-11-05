@@ -141,6 +141,7 @@
         <ul>
             <li><a href="#tabs-1">发票信息</a></li>
             <li><a href="#tabs-2">商品信息</a></li>
+            <li><a href="#tabs-3">商品包装信息</a></li>
         </ul>
         <table width="100%" class="list" id="tabs-1">
             <caption>
@@ -395,22 +396,6 @@
                         <%= Html.TextArea("Price♂Note", Html.Encode(Model.Note), new { style = "width:99%; height:60px;" })%>
                     </td>
                 </tr>
-                <!-- 商品包装信息 -->
-                <tr id="ProductPack♂" style="display: none;">
-                    <td colspan="5">
-                        <%
-                            Model.ProductPack.Load();
-                            if (Model.ProductPack.Count > 0)
-                            {
-                                ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
-                                viewdictionary2.Add("number", Model.ProductPack.Count);
-                                viewdictionary2.Add("FK", "Price");
-                                Html.RenderPartial("ProductPackControl", Model.ProductPack.ToList(), viewdictionary2);
-                            }
-                        %>
-                    </td>
-                </tr>
-                <!-- 商品包装信息 -->
             </thead>
             <tfoot>
                 <tr>
@@ -444,6 +429,29 @@
                 </td>
             </tr>
             <!-- 商品信息 -->
+        </table>
+        <table class="list" width="100%" id="tabs-3">
+            <caption>
+                商品包装信息动态区域
+            </caption>
+            <% 
+                Model.ProductPack.Load();
+            %>
+            <!-- 商品包装信息 -->
+            <tr id="ProductPack♂" style="<%=Model.ProductPack.Count>0?"": "display: none"%>;">
+                <td colspan="5">
+                    <%
+                        if (Model.ProductPack.Count > 0)
+                        {
+                            ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
+                            viewdictionary2.Add("number", Model.ProductPack.Count);
+                            viewdictionary2.Add("FK", "Price");
+                            Html.RenderPartial("ProductPackControl", Model.ProductPack.ToList(), viewdictionary2);
+                        }
+                    %>
+                </td>
+            </tr>
+            <!-- 商品包装信息 -->
         </table>
     </div>
     <%

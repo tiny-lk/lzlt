@@ -244,7 +244,7 @@
                                 $(txtobject).val(o.split("|")[1]);
 
                                 $.each(hidobject, function(j, o2) {
-                                    if ($(o2).attr("novalue") == null) {
+                                    if ($(o2).attr("copyvalue") == null) {
                                         $(o2).val(o.split("|")[0]);
                                     }
                                 });
