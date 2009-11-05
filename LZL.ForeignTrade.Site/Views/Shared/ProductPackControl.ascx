@@ -122,6 +122,12 @@
                                         Response.Write(Html.TextBox("_ProductPack°·ProductID", Html.Encode(obj.NameCode)));
                                         Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>—°‘Ò</a>");
                                     }
+                                    else
+                                    {
+                                        Response.Write(Html.Hidden("ProductPack°·ProductID"));
+                                        Response.Write(Html.TextBox("_ProductPack°·ProductID"));
+                                        Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>—°‘Ò</a>");
+                                    }
                                 }
                             }
                             else
@@ -229,7 +235,7 @@
                             }
                             else
                             {
-                                Response.Write(Html.Encode(Model[i].PackUnitCH));
+                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].PackUnitCH)));
                             }
                         }
                     %>
@@ -253,7 +259,7 @@
                             }
                             else
                             {
-                                Response.Write(Html.Encode(Model[i].PackUnitEN));
+                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].PackUnitEN)));
                             }
                         }
                     %>
@@ -437,7 +443,7 @@
                             }
                             else
                             {
-                                Response.Write(Html.Encode(Model[i].InsideUnitCN));
+                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].InsideUnitCN)));
                             }
                         }
                     %>
@@ -459,7 +465,7 @@
                             }
                             else
                             {
-                                Response.Write(Html.Encode(Model[i].InsideUnitEN));
+                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].InsideUnitEN)));
                             }
                         }
                     %>

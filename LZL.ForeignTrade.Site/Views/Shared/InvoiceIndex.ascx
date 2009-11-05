@@ -204,7 +204,7 @@
                 <%= Html.Encode(Model[i].RevocationNo)%>
             </td>
             <td>
-                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("贸易方式", Html.Encode(Model[i].Type))%>
+                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model[i].Type))%>
             </td>
         </tr>
         <%

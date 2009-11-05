@@ -89,5 +89,18 @@ namespace LZL.ForeignTrade.Controllers
             _Entities.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public ActionResult PackingList(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                string path = Server.MapPath("~/DocTemplate/Template/ExportContracts.doc");
+                string targetpath = Server.MapPath("~/DocTemplate/Print/");
+                byte[] tempbuffer = LZL.ForeignTrade.Controllers.ExportContractsHelper.Instance.BuilderPackingList(new Guid(id), path, targetpath);
+                Response.AppendHeader("Content-Disposition", "inline;filename=test.doc");
+                return File(tempbuffer, "application/ms-word", "test.doc");
+            }
+            return null;
+        }
     }
 }

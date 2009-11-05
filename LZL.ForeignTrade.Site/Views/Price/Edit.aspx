@@ -359,6 +359,7 @@
                                 Response.Write(Html.TextBox("_Price°·CustomerID"));
                                 Response.Write(Html.Hidden("Price°·CustomerID"));
                             }
+                            Response.Write("<a href='#'onclick=LoadControlList(this,'CustomerIndex')>—°‘Ò</a>");
                         %>
                     </td>
                     <td align="right">

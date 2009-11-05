@@ -214,7 +214,7 @@
                 %>
             </td>
             <td>
-                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName("采购合同类型", Html.Encode(Model[i].Type))%>
+                <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model[i].Type))%>
             </td>
         </tr>
         <%

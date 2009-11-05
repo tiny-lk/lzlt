@@ -317,6 +317,7 @@
                     <td align="left">
                         <%= Html.TextBox("_Price♂CustomerID")%><!-- "-"表示不被处理的值 -->
                         <%=Html.Hidden("Price♂CustomerID")%>
+                        <% Response.Write("<a href='#'onclick=LoadControlList(this,'CustomerIndex')>选择</a>");%>
                     </td>
                     <td align="right">
                         公司简称：

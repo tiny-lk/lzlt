@@ -307,7 +307,7 @@ namespace LZL.ForeignTrade.Controllers
 
         public static string GetDictionaryName(string type, string value)
         {
-            if (string.IsNullOrEmpty(value) || value.Length != 32)
+            if (string.IsNullOrEmpty(value) || value.Length != 36)
             {
                 return string.Empty;
             }
@@ -328,7 +328,10 @@ namespace LZL.ForeignTrade.Controllers
 
         public static string GetDictionaryName(string id)
         {
-
+            if (string.IsNullOrEmpty(id) || id.Length != 36)
+            {
+                return string.Empty;
+            }
             Entities entities = new Entities();
             Guid guid = new Guid(id);
             Dictionary dictioanry = entities.Dictionary.Where(v => v.ID.Equals(guid)).FirstOrDefault();

@@ -69,6 +69,7 @@
     <Compile Include="CustomerController.cs" />
     <Compile Include="DataHelper.cs" />
     <Compile Include="ExportContractsController.cs" />
+    <Compile Include="ExportContractsHelper.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="InvoiceController.cs" />
     <Compile Include="PriceController.cs" />
