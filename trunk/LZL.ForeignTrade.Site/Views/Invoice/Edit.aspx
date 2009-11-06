@@ -289,6 +289,7 @@
                                 Response.Write(Html.Hidden("Invoice¡áCompanyID"));
                             }
                         %>
+                          <%Response.Write("<a href='#'onclick=LoadControlList(this,'CompanyIndex')>Ñ¡Ôñ</a>"); %>
                     </td>
                 </tr>
                 <tr>

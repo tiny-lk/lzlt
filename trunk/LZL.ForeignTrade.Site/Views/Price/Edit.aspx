@@ -387,6 +387,7 @@
                                 Response.Write(Html.Hidden("Price¡áCompanyID"));
                             }
                         %>
+                        <%Response.Write("<a href='#'onclick=LoadControlList(this,'CompanyIndex')>Ñ¡Ôñ</a>"); %>
                     </td>
                 </tr>
                 <tr>
