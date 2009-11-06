@@ -74,6 +74,26 @@ namespace LZL.ForeignTrade.Controllers
             var querylist = entities.CreateQuery<Product>(sql).ToList();
             return querylist;
         }
+
+        public static List<Company> GetCompanys(string quyerCondition, string queryvalue, int? page, out int pagecount)
+        {
+            if (string.IsNullOrEmpty(quyerCondition))
+            {
+                quyerCondition = "NameCH";
+            }
+            Entities entities = new Entities();
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
+            pagecount = (int)Math.Ceiling((double)((double)DataHelper.Getcount(1, quyerCondition, queryvalue, "Company")) / pagesize);
+            string sql = "select value it from " + entities.DefaultContainerName + ".Company as it ";
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                sql += " where  it." + quyerCondition + " like '%" + queryvalue + "%'";
+            }
+            sql += " order by it." + quyerCondition;
+            sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
+            var querylist = entities.CreateQuery<Company>(sql).ToList();
+            return querylist;
+        }
         public static List<AccessoriesBuy> GetAccessoriesBuy(string quyerCondition, string queryvalue, int? page, out int pagecount)
         {
             if (string.IsNullOrEmpty(quyerCondition))
