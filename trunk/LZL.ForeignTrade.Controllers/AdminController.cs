@@ -269,11 +269,10 @@ namespace LZL.ForeignTrade.Controllers
         [AcceptVerbs("Post", "Get")]
         public ActionResult ManageCompany(string quyerCondition, string queryvalue, int? page)
         {
-            Entities _Entities = new Entities();
-            int pagesize = int.Parse(ConfigurationManager.AppSettings["pagenumber"]);
-            ViewData["pagecount"] = (int)Math.Ceiling((double)((double)DataHelper.Getcount(page, "Name", "", "Company")) / pagesize);
-            var companys = _Entities.Company.OrderBy(v => v.Name).Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
-            return View(companys);
+            int pagecount = 1;
+            var querylist = DataHelper.GetCompanys(string.Empty, string.Empty, 1, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View(querylist);
         }
 
         /// <summary>

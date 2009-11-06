@@ -299,6 +299,7 @@
     <Content Include="Scripts\jquery.corner.js" />
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\ColorWarehouseSale.ascx" />
+    <Content Include="Views\Shared\CompanyIndex.ascx" />
     <Content Include="Views\Shared\OtherAccessories.ascx" />
     <Content Include="Views\Admin\AddCompany.aspx" />
     <Content Include="Views\Admin\AddDepartment.aspx" />
