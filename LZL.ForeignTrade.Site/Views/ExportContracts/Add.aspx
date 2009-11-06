@@ -200,6 +200,7 @@
                     <td align="left">
                         <%= Html.TextBox("_ExportContracts♂CompanyID")%><!-- "-"表示不被处理的值 -->
                         <%= Html.Hidden("ExportContracts♂CompanyID")%>
+                        <%Response.Write("<a href='#'onclick=LoadControlList(this,'CompanyIndex')>选择</a>"); %>
                     </td>
                 </tr>
                 <tr>

@@ -191,6 +191,7 @@
                                 Response.Write(Html.Hidden("StockContracts♂CustomerID"));
                             }
                         %>
+                        <% Response.Write("<a href='#'onclick=LoadControlList(this,'CustomerIndex')>选择</a>");%>
                     </td>
                     <td align="right">
                         公司简称：
@@ -217,6 +218,7 @@
                                 Response.Write(Html.Hidden("StockContracts♂CompanyID"));
                             }
                         %>
+                        <%Response.Write("<a href='#'onclick=LoadControlList(this,'CompanyIndex')>选择</a>"); %>
                     </td>
                 </tr>
                 <tr>

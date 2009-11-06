@@ -234,6 +234,7 @@
                     <td align="left">
                         <%= Html.TextBox("_Invoice♂CompanyID")%><!-- "-"表示不被处理的值 -->
                         <%= Html.Hidden("Invoice♂CompanyID")%>
+                        <%Response.Write("<a href='#'onclick=LoadControlList(this,'CompanyIndex')>选择</a>"); %>
                     </td>
                 </tr>
                 <tr>

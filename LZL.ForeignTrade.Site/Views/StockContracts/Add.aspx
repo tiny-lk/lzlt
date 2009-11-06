@@ -171,6 +171,7 @@
                     <td align="left">
                         <%= Html.TextBox("_StockContracts♂CustomerID")%><!-- "-"表示不被处理的值 -->
                         <%=Html.Hidden("StockContracts♂CustomerID")%>
+                        <% Response.Write("<a href='#'onclick=LoadControlList(this,'CustomerIndex')>选择</a>");%>
                     </td>
                     <td align="right">
                         公司简称：
@@ -178,6 +179,7 @@
                     <td align="left">
                         <%= Html.TextBox("_StockContracts♂CompanyID")%><!-- "-"表示不被处理的值 -->
                         <%= Html.Hidden("StockContracts♂CompanyID")%>
+                        <%Response.Write("<a href='#'onclick=LoadControlList(this,'CompanyIndex')>选择</a>"); %>
                     </td>
                 </tr>
                 <tr>
@@ -370,7 +372,7 @@
                 </tr>
             </tfoot>
         </table>
-        <table width="100%"  class="list" id="tabs-2">
+        <table width="100%" class="list" id="tabs-2">
             <caption>
                 商品信息动态区域
             </caption>
@@ -381,7 +383,7 @@
             </tr>
             <!-- 商品信息 -->
         </table>
-        <table width="100%"  class="list" id="tabs-3">
+        <table width="100%" class="list" id="tabs-3">
             <caption>
                 商品包装信息动态区域
             </caption>
