@@ -25,15 +25,19 @@
                 ids = $.trim(ids.substr(0, ids.length - 1));
                 var State = confirm('你确认要删除 ' + ids + ' 吗？');
                 if (State == true) {
-                    window.location.href = '<%=Url.Action("Delete","Dictionary")%>' + '/' + ids;
+                    window.location.href = '<%=Url.Action("DeleteDictionary","Admin")%>' + '/' + ids;
                 }
             }
+        });
+
+        $("#Add").live("click", function() {
+            window.location.href = '<%=Url.Action("AddDictionary","Admin")%>';
         });
 
         $("#Edit").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
-                window.location.href = '<%=Url.Action("Edit","Dictionary")%>' + '/' + id;
+                window.location.href = '<%=Url.Action("EditDictionary","Admin")%>' + '/' + id;
             }
         });
 
@@ -99,6 +103,7 @@
                 <% if (ViewData["simple"] == null)
                    {
                 %>
+                <input type="button" id="Add" value="添 加" />
                 <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
                 <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                 <%
@@ -129,7 +134,7 @@
             for (int i = 0; i < Model.Count; i++)
             {
         %>
-        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/Dictionary/Details/"+Html.Encode(Model[i].ID)) %>';}">
+        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/Admin/EditDictionary/"+Html.Encode(Model[i].ID)) %>';}">
             <td>
                 <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString() + "|" + Html.Encode(Model[i].Name)) })%>
             </td>
@@ -168,7 +173,7 @@
                             }
                             else
                             {
-                                Response.Write("<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page - 1) + ")>上一页</a>|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ")>下一页</a>");  
+                                Response.Write("<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page - 1) + ")>上一页</a>|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ")>下一页</a>");
                             }
                         }
                         else

@@ -3,10 +3,10 @@
 <asp:Content ID="aboutTitle" ContentPlaceHolderID="TitleContent" runat="server">
     关于我们
 </asp:Content>
-
 <asp:Content ID="aboutContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>关于</h2>
+    <h2>
+        关于</h2>
     <p>
-        Put content here.
+        诚诺进出口贸易有限公司版权所有
     </p>
 </asp:Content>

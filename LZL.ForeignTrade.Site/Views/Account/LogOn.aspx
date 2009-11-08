@@ -17,12 +17,12 @@
                 <legend>账户信息</legend>
                 <p>
                     <label for="username">用户名：</label>
-                    <%= Html.TextBox("username") %>
+                    <%= Html.TextBox("username", "", new { style = "width:198px" })%>
                     <%= Html.ValidationMessage("username") %>
                 </p>
                 <p>
                     <label for="password">密码：</label>
-                    <%= Html.Password("password") %>
+                    <%= Html.Password("password", "", new { style = "width:221px" })%>
                     <%= Html.ValidationMessage("password") %>
                 </p>
                 <p>
