@@ -4,8 +4,8 @@
     主页
 </asp:Content>
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div style="position:relative; float:left;">
-        <table class="list">
+    <div style="position: relative; float: left; width: 100%;">
+        <table class="list" width="50%" style=" float:left;">
             <tr>
                 <td>
                     编号
@@ -66,9 +66,7 @@
                 %>
             </tbody>
         </table>
-    </div>
-    <div style="position:relative; float:left; margin-left:5px;">
-        <table class="list">
+        <table class="list" width="48%" style=" float:right; margin-left:5px;">
             <tr>
                 <td>
                     编号
@@ -106,7 +104,7 @@
                         <%= Html.Encode( invoices[i].Date!=null ?invoices[i].Date.ToShortDateString():string.Empty)%>
                     </td>
                     <td>
-                    <%= Html.Encode(invoices[i].ExportContractsName)%>
+                        <%= Html.Encode(invoices[i].ExportContractsName)%>
                     </td>
                     <td>
                         <%
@@ -121,7 +119,7 @@
                         %>
                     </td>
                     <td>
-                        <%=Html.ActionLink("详 细", "Details", "Invoices", new { ID = exportsContracts[i].ID }, null)%>
+                        <%=Html.ActionLink("详 细", "Details", "Invoices", new { ID = invoices[i].ID }, null)%>
                     </td>
                 </tr>
                 <%

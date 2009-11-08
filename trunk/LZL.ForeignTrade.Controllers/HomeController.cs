@@ -20,15 +20,15 @@ namespace LZL.ForeignTrade.Controllers
         {
             Entities entities = new Entities();
             double day = BasicOperate.GetDouble(ConfigurationManager.AppSettings["departreminder"], true);
-            DateTime starttime = DateTime.Now.AddDays(-(day + 1));
+            DateTime starttime = DateTime.Now.AddDays(-(day));
             DateTime endtime = DateTime.Now.AddDays(1);
             ViewData["pcxx"] = entities.ExportContracts.Where(v => v.ShipmentDate != null).Where(v => v.ShipmentDate >= starttime && v.ShipmentDate <= endtime).ToList();
 
 
             double day2 = BasicOperate.GetDouble(ConfigurationManager.AppSettings["collectionreminder"], true);
-            DateTime starttime2 = DateTime.Now.AddDays(-(day2 + 1));
+            DateTime starttime2 = DateTime.Now.AddDays(-(day2));
             DateTime endtime2 = DateTime.Now.AddDays(1);
-            ViewData["skts"] = entities.Invoice.Where(v => v.OceanDate != null).Where(v => v.OceanDate >= starttime && v.OceanDate <= endtime).ToList();
+            ViewData["skts"] = entities.Invoice.Where(v => v.OceanDate != null).Where(v => v.OceanDate >= starttime && v.OceanDate <= endtime).ToList();//提单日期
             return View();
         }
 
