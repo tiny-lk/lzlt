@@ -20,9 +20,10 @@
     <title>
         <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
     </title>
-    <%--    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.3.2.js")%>"></script>--%>
 
-    <script type="text/javascript" src="../../Scripts/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="<%= Url.Content("~/Scripts/jquery-1.3.2.js")%>"></script>
+
+    <%--    <script type="text/javascript" src="../../Scripts/jquery-1.3.2.js"></script>--%>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/MicrosoftAjax.js")%>"></script>
 
