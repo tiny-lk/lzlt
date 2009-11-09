@@ -682,5 +682,28 @@ namespace LZL.ForeignTrade.Controllers
             return RedirectToAction("ImageView", new { imagetype = imagetype, fid = fid });
         }
 
+        /// <summary>
+        /// Menus the main.
+        /// </summary>
+        /// <param name="quyerCondition">The quyer condition.</param>
+        /// <param name="queryvalue">The queryvalue.</param>
+        /// <param name="simple">The simple.</param>
+        /// <param name="page">The page.</param>
+        /// <returns></returns>
+        public ActionResult MenuMain(string quyerCondition, string queryvalue, string simple, int? page)
+        {
+            if (!string.IsNullOrEmpty(simple))
+            {
+                ViewData["simple"] = "true";
+            }
+            if (!string.IsNullOrEmpty(queryvalue))
+            {
+                queryvalue = Server.UrlDecode(queryvalue);
+            }
+            int pagecount = 1;
+            var querylist = DataHelper.GetInvoices(quyerCondition, queryvalue, page, out pagecount);
+            ViewData["pagecount"] = pagecount;
+            return View("InvoiceIndex", querylist);
+        }
     }
 }
