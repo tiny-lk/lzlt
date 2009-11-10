@@ -258,80 +258,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="center" rowspan="5" valign="middle">
-                        商品信息统计汇总
-                    </td>
-                    <td align="right">
-                        报价单类型：
-                    </td>
-                    <td align="left">
-                        <%= Html.DropDownList("Price♂PriceType", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("报价单类型", Html.Encode(Model.PriceType)), "请选择")%>
-                    </td>
-                    <td align="right">
-                        总报价金额：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Price♂ClauseQuote", Html.Encode(Model.ClauseQuote), new { validate = "number:true" })%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        总包装数量：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Price♂ClausePackNumber", Html.Encode(Model.ClausePackNumber), new { validate = "digits:true" })%>
-                    </td>
-                    <td align="right">
-                        包装单位（英文）：
-                    </td>
-                    <td align="left">
-                        <%= Html.DropDownList("Price♂ClauseUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.ClauseUnitEN)), "请选择")%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        总毛重（KG）：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Price♂ClauseWeight", Html.Encode(Model.ClauseWeight), new { validate = "number:true" })%>
-                    </td>
-                    <td align="right">
-                        总净重（KG）：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Price♂ClauseNetWeight", Html.Encode(Model.ClauseNetWeight), new { validate = "number:true" })%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        总体积（CBM）：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Price♂ClauseBulk", Html.Encode(Model.ClauseBulk), new { validate = "number:true" })%>
-                    </td>
-                    <td align="right">
-                        商品总数量：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Price♂ClauseNumber", Html.Encode(Model.ClauseNumber), new { validate = "digits:true" })%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        商品总单位：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Price♂ClauseUnit", Html.Encode(Model.ClauseUnit))%>
-                    </td>
-                    <td align="right">
-                        商品总数量<br />
-                        （不同单位）：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Price♂ClauseNotUnit", Html.Encode(Model.ClauseNotUnit))%>
-                    </td>
-                </tr>
-                <tr>
                     <td align="center" rowspan="2" valign="middle">
                         其它信息
                     </td>
@@ -392,9 +318,15 @@
                 </tr>
                 <tr>
                     <td align="right">
+                        报价单类型：
+                    </td>
+                    <td align="left">
+                        <%= Html.DropDownList("Price♂PriceType", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("报价单类型", Html.Encode(Model.PriceType)), "请选择")%>
+                    </td>
+                    <td align="right">
                         备注信息：
                     </td>
-                    <td align="left" colspan="3">
+                    <td align="left">
                         <%= Html.TextArea("Price♂Note", Html.Encode(Model.Note), new { style = "width:99%; height:60px;" })%>
                     </td>
                 </tr>

@@ -289,7 +289,7 @@
                                 Response.Write(Html.Hidden("Invoice♂CompanyID"));
                             }
                         %>
-                          <%Response.Write("<a href='#'onclick=LoadControlList(this,'CompanyIndex')>选择</a>"); %>
+                        <%Response.Write("<a href='#'onclick=LoadControlList(this,'CompanyIndex')>选择</a>"); %>
                     </td>
                 </tr>
                 <tr>
@@ -407,73 +407,6 @@
                     </td>
                     <td align="left" colspan="3">
                         <%= Html.TextArea("Invoice♂Mark", Html.Encode(Model.Mark), new { style = "width:99%; height:40px;" })%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center" rowspan="5" valign="middle">
-                        商品信息汇总
-                    </td>
-                    <td align="right">
-                        总销售金额：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Invoice♂TotalSalesAmount", Html.Encode(Model.TotalSalesAmount), new { validate = "number:true" })%>
-                    </td>
-                    <td align="right">
-                        总包装数量：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Invoice♂TotalPackAmount", Html.Encode(Model.TotalPackAmount), new { validate = "digits:true" })%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        英文包装单位：
-                    </td>
-                    <td align="left">
-                        <%= Html.DropDownList("Invoice♂TotalPackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.TotalPackUnitEN)), "请选择")%>
-                    </td>
-                    <td align="right">
-                        包装毛重(KG)：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Invoice♂TotalPackGrossWeight", Html.Encode(Model.TotalPackGrossWeight), new { validate = "number:true" })%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        包装净重(KG)：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Invoice♂TotalPackNetWeight", Html.Encode(Model.TotalPackNetWeight), new { validate = "number:true" })%>
-                    </td>
-                    <td align="right">
-                        包装体积(CBM)：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Invoice♂TotalPackBulk", Html.Encode(Model.TotalPackBulk), new { validate = "number:true" })%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        商品总数量：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Invoice♂TotalProductAmount", Html.Encode(Model.TotalProductAmount), new { validate = "digits:true" })%>
-                    </td>
-                    <td align="right">
-                        商品总单位：
-                    </td>
-                    <td align="left">
-                        <%= Html.TextBox("Invoice♂TotalUnit", Html.Encode(Model.TotalUnit))%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        商品总数量(不同单位)：
-                    </td>
-                    <td align="left" colspan="3">
-                        <%= Html.TextBox("Invoice♂TotalDifferentUnit", Html.Encode(Model.TotalDifferentUnit))%>
                     </td>
                 </tr>
                 <tr>

@@ -126,80 +126,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="center" rowspan="5" valign="middle">
-                        商品信息统计汇总
-                    </td>
-                    <td align="right">
-                        报价单类型：
-                    </td>
-                    <td align="left">
-                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.PriceType))%>
-                    </td>
-                    <td align="right">
-                        总报价金额：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClauseQuote)%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        总包装数量：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClausePackNumber)%>
-                    </td>
-                    <td align="right">
-                        包装单位（英文）：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClauseUnitEN)%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        总毛重（KG）：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClauseWeight)%>
-                    </td>
-                    <td align="right">
-                        总净重（KG）：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClauseNetWeight)%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        总体积（CBM）：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClauseBulk)%>
-                    </td>
-                    <td align="right">
-                        商品总数量：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClauseNumber)%>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                        商品总单位：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClauseUnit)%>
-                    </td>
-                    <td align="right">
-                        商品总数量<br />
-                        （不同单位）：
-                    </td>
-                    <td align="left">
-                        <%= Html.Encode(Model.ClauseNotUnit)%>
-                    </td>
-                </tr>
-                <tr>
                     <td align="center" rowspan="2" valign="middle">
                         其它信息
                     </td>
@@ -236,9 +162,15 @@
                 </tr>
                 <tr>
                     <td align="right">
+                        报价单类型：
+                    </td>
+                    <td align="left">
+                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.PriceType))%>
+                    </td>
+                    <td align="right">
                         备注信息：
                     </td>
-                    <td align="left" colspan="3">
+                    <td align="left">
                         <%= Html.Encode(Model.Note)%>
                     </td>
                 </tr>
