@@ -49,15 +49,17 @@
                     基本信息
                 </td>
                 <td align="right" style="width: 15%;">
-                    商品代码：
+                    商品款号：
+                    <%
+                        Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { copyvalue = true }));
+                    %>
                 </td>
                 <td align="left" colspan="3">
                     <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("_ProductSummary♂ProductID"));
-                            Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue"));
-                            Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { copyvalue=true }));
+                            Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                             Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                         }
                         else
@@ -68,14 +70,13 @@
                                 if (Model[i].Product != null)
                                 {
                                     Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode));
-                                    Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", Model[i].Product.ID));
+                                    Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", Model[i].Product.ID, new { copyvalue = true }));
                                 }
                                 else
                                 {
                                     Response.Write(Html.TextBox("_ProductSummary♂ProductID"));
-                                    Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue"));
+                                    Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                                 }
-                                Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { copyvalue = true }));
                                 Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                             }
                             else
@@ -262,9 +263,9 @@
             %>
             <tr>
                 <td colspan="5" align="right">
-                    <input type="button" value="添 加" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="删 除" onclick="deleteregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="折 叠" onclick="toggle(this)" />
+                    <input type="button" class="button" value="添 加" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="button" value="删 除" onclick="deleteregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="button" value="折 叠" onclick="toggle(this)" />
                 </td>
             </tr>
             <%

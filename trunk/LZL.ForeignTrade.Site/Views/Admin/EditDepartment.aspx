@@ -16,9 +16,9 @@
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" value="提 交" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Admin/ManageDepartment") %>'" />
+                    <input type="submit" class="button" value="提 交" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Admin/ManageDepartment") %>'" />
                 </td>
             </tr>
             <%= Html.Hidden("Department♂ID",Html.Encode(Model.ID.ToString())) %>
@@ -51,9 +51,9 @@
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" value="提 交" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Admin/ManageDepartment") %>'" />
+                    <input type="submit" class="button" value="提 交" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Admin/ManageDepartment") %>'" />
                 </td>
             </tr>
         </tfoot>

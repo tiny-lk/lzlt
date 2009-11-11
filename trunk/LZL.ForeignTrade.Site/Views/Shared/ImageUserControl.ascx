@@ -97,8 +97,8 @@
     <tr>
         <td colspan="5" align="right">
             <span style="color: Red;">注:图片不大于3M。</span>
-            <input type="button" value="查 看" id="imageviewer" />
-            <input type="submit" value="添 加"  />
+            <input type="button" class="button" value="查 看" id="imageviewer" />
+            <input type="submit" class="button" value="添 加"  />
         </td>
     </tr>
 </table>

@@ -58,10 +58,10 @@
                     <%= Html.TextBox("searchInput", ViewData["searchInput"])%>
                 </td>
                 <td colspan="2" align="left">
-                    <input type="submit" id="Query" value="²é Ñ¯" />
-                    <input type="button" id="Edit" value="ÐÞ ¸Ä" disabled="disabled" check="1" />
-                    <input type="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
-                    <input type="button" id="Refresh" value="Ë¢ ÐÂ" />
+                    <input type="submit" class="button" id="Query" value="²é Ñ¯" />
+                    <input type="button" class="button" id="Edit" value="ÐÞ ¸Ä" disabled="disabled" check="1" />
+                    <input type="button" class="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
+                    <input type="button" class="button" id="Refresh" value="Ë¢ ÐÂ" />
                 </td>
             </tr>
         </thead>

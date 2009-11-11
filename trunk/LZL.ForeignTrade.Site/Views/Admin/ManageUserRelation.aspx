@@ -46,8 +46,8 @@
                     <%= Html.TextBox("searchInput", ViewData["searchInput"])%>
                 </td>
                 <td>
-                    <input type="button" id="SaveRelation" value="保存关联" disabled="disabled" check="n" />
-                    <input type="button" id="ReturnMainPage" value="返回" />
+                    <input type="button" class="button" id="SaveRelation" value="保存关联" disabled="disabled" check="n" />
+                    <input type="button" class="button" id="ReturnMainPage" value="返回" />
                 </td>
             </tr>
         </thead>

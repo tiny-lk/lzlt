@@ -149,9 +149,9 @@
             <thead align="center">
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="submit" value="提 交" />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                            type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
+                        <input type="submit" class="button" value="提 交" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                            type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
                     </td>
                 </tr>
                 <tr>
@@ -319,7 +319,7 @@
                         允差（百分比）：
                     </td>
                     <td align="left" colspan="3">
-                        <%= Html.TextBox("ExportContracts♂ErrorValue", "", new { validate = "digits:true,min:0,max:100" })%>
+                        <%= Html.TextBox("ExportContracts♂ErrorValue", "", new { validate = "digits:true,min:0,max:100" })%>%
                     </td>
                 </tr>
                 <tr>
@@ -377,9 +377,9 @@
             <tfoot>
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="submit" value="提 交" />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                            type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
+                        <input type="submit" class="button" value="提 交" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                            type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
                     </td>
                 </tr>
             </tfoot>

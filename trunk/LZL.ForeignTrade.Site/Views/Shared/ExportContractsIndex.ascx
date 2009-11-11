@@ -55,18 +55,17 @@
             }
         });
 
-        $("#PackingList").live("click", function() {
-            if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
-                var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
-
-                window.open('<%=Url.Action("PackingList","ExportContracts")%>' + '/' + id);
-            }
-        });
-
         $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1);
         });
 
+        $("#ExportContractsSales").live("click", function() {
+            if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
+                var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
+                window.open('<%=Url.Action("Sales","ExportContracts")%>' + '/' + id);
+            }
+        });
+        
         $("#allselect").live("click", function() {
             $.each($('table > tbody > tr').find("input[type='checkbox']"), function(i, o) {
                 if ($(o).attr("checked") != true) {
@@ -141,17 +140,17 @@
             </td>
             <td colspan="7" align="left">
                 <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
-                <input type="button" id="OK" value="查 询" disabled="disabled" />
+                <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
                 <% if (ViewData["simple"] == null)
                    {
                 %>
-                <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
-                <input type="button" id="PackingList" value="装箱单" disabled="disabled" check="1" />
-                <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                <input type="button" class="button" id="ExportContractsSales" value="销售确认书" disabled="disabled" check="1" />
+                <input type="button" class="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                 <%
                     }
                 %>
-                <input type="button" id="Refresh" value="刷 新" />
+                <input type="button" class="button" id="Refresh" value="刷 新" />
             </td>
         </tr>
     </thead>

@@ -166,17 +166,14 @@ namespace LZL.ForeignTrade.Controllers
                 {
                     string[] propertyobjects = formvalues[(regions[i] + "propertyobject")].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     string[] propertyobjectvalues = formvalues[regions[i] + "propertyobjectvalue"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                    for (int p = 0; p < propertyobjects.Length; p++)
+                    var sql = "select value it from " + entities.DefaultContainerName + "." + propertyobjects[i] + " as it ";
+                    sql += " where it.ID=Guid'" + propertyobjectvalues[i] + "'";
+                    object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
+                    if (propertyobject != null)
                     {
-                        var sql = "select value it from " + entities.DefaultContainerName + "." + propertyobjects[p] + " as it ";
-                        sql += " where it.ID=Guid'" + propertyobjectvalues[p] + "'";
-                        object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
-                        if (propertyobject != null)
-                        {
-                            ClassHelper.SetPropertyValue(tableobj, propertyobjectvalues[p], propertyobject);//设置属性对象
-                        }
+                        ClassHelper.SetPropertyValue(tableobj, propertyobjectvalues[i], propertyobject);//设置属性对象
                     }
+
                 }
 
                 if (tableobj != null)
@@ -328,16 +325,12 @@ namespace LZL.ForeignTrade.Controllers
                 {
                     string[] propertyobjects = formvalues[(region + "propertyobject")].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     string[] propertyobjectvalues = formvalues[region + "propertyobjectvalue"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    for (int p = 0; p < propertyobjects.Length; p++)
+                    var sql = "select value it from " + entities.DefaultContainerName + "." + propertyobjects[s] + " as it ";
+                    sql += " where it.ID=Guid'" + propertyobjectvalues[s] + "'";
+                    object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
+                    if (propertyobject != null)
                     {
-                        var sql = "select value it from " + entities.DefaultContainerName + "." + propertyobjects[p] + " as it ";
-                        sql += " where it.ID=Guid'" + propertyobjectvalues[p] + "'";
-                        object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
-
-                        if (propertyobject != null)
-                        {
-                            ClassHelper.SetPropertyValue(tableobj, propertyobjects[p], propertyobject);//设置属性对象
-                        }
+                        ClassHelper.SetPropertyValue(tableobj, propertyobjects[s], propertyobject);//设置属性对象
                     }
                 }
 
@@ -414,6 +407,7 @@ namespace LZL.ForeignTrade.Controllers
             {
                 value = null;
             }
+            value = HttpUtility.HtmlDecode(value);
             ClassHelper.SetPropertyValue(o, name.Trim(), value);
         }
 

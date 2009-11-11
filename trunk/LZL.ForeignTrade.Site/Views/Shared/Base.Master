@@ -72,7 +72,11 @@
             }).live("mouseout", function() {
                 $(this).removeClass("button2");
             });
-
+            $(".button4").live("mouseover", function() {
+                $(this).addClass("button5");
+            }).live("mouseout", function() {
+                $(this).removeClass("button5");
+            });
         })
         function init() {
             $("input[type='text'], input[type='password'], textarea").focus(function()
@@ -243,13 +247,7 @@
                             }
                             $.each($(document).data("checkvalue").split("♂"), function(i, o) {
                                 $(txtobject).val(o.split("|")[1]);
-
-                                $.each(hidobject, function(j, o2) {
-                                    if ($(o2).attr("copyvalue") == null) {
-                                        $(o2).val(o.split("|")[0]);
-                                    }
-                                });
-                                //对值只运行设置novalue为null的
+                                $(hidobject).val(o.split("|")[0]);
                             });
 
                             $(document).data("checkvalue", "");

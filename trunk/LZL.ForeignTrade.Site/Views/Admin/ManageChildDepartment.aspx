@@ -109,12 +109,12 @@
         <thead>
             <tr>
                 <td colspan="4" align="right">
-                    <input type="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" id="Add" value="添加" />
-                    <input type="button" id="AddChildDepart" value="添加子部门" disabled="disabled" check="1" />
-                    <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
-                    <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
-                    <input type="button" id="Refresh" value="返回" />
+                    <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
+                    <input type="button" class="button" id="Add" value="添加" />
+                    <input type="button" class="button" id="AddChildDepart" value="添加子部门" disabled="disabled" check="1" />
+                    <input type="button" class="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                    <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                    <input type="button" class="button" id="Refresh" value="返回" />
                 </td>
             </tr>
         </thead>

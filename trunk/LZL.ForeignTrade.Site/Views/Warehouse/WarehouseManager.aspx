@@ -127,8 +127,8 @@
                 </td>
                 <td colspan="4" align="left">
                     <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
-                    <input type="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" id="Refresh" value="刷 新" />
+                    <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
+                    <input type="button" class="button" id="Refresh" value="刷 新" />
                 </td>
             </tr>
         </thead>

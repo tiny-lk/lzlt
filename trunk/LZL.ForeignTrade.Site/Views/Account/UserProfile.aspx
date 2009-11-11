@@ -28,7 +28,7 @@
                 最后登录时间：<%= user.LastLoginDate.ToLocalTime() %><br />
             </p>
             <p>
-                <input type="submit" value="修改" />
+                <input type="submit" class="button" value="修改" />
             </p>
         </fieldset>
     </div>

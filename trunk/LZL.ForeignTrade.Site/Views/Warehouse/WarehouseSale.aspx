@@ -149,10 +149,10 @@
                 </td>
                 <td colspan="7" align="left">
                     <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
-                    <input type="button" id="OK" value="²é Ñ¯" disabled="disabled" />
-                    <input type="button" id="Edit" value="±à ¼­" disabled="disabled" check="1" />
-                    <input type="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
-                    <input type="button" id="Refresh" value="Ë¢ ÐÂ" />
+                    <input type="button" class="button" id="OK" value="²é Ñ¯" disabled="disabled" />
+                    <input type="button" class="button" id="Edit" value="±à ¼­" disabled="disabled" check="1" />
+                    <input type="button" class="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
+                    <input type="button" class="button" id="Refresh" value="Ë¢ ÐÂ" />
                 </td>
             </tr>
         </thead>

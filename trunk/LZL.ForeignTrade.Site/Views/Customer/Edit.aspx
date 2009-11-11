@@ -27,13 +27,13 @@
     <input type="hidden" name="Customer♂objectname" value="LZL.ForeignTrade.DataEntity.Customer,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Customer♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("Customer♂iseditdate", "EditDate")%>
-    <table width="100%"  class="list">
+    <table width="100%" class="list">
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" value="提 交" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
+                    <input type="submit" class="button" value="提 交" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
                 </td>
             </tr>
             <%= Html.Hidden("Customer♂ID",Html.Encode(Model.ID.ToString())) %>
@@ -59,7 +59,7 @@
                     英文名称：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂NameEn", Html.Encode(Model.NameEn))%>
+                    <%= Html.TextBox("Customer♂NameEn", Model.NameEn)%>
                 </td>
                 <td align="right">
                     地 址：
@@ -73,7 +73,7 @@
                     英文地址：
                 </td>
                 <td align="left">
-                    <%= Html.TextBox("Customer♂AddressEn", Html.Encode(Model.AddressEn))%>
+                    <%= Html.TextBox("Customer♂AddressEn", Model.AddressEn)%>
                 </td>
                 <td align="right">
                     是共享数据：
@@ -206,9 +206,9 @@
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" value="提 交" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
+                    <input type="submit" class="button" value="提 交" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Customer/Index") %>'" />
                 </td>
             </tr>
         </tfoot>

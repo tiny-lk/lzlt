@@ -138,12 +138,12 @@
                 </td>
                 <td colspan="8" align="left">
                     <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
-                    <input type="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" id="AddSale" value="生产信息" disabled="disabled" check="1" />
-                    <input type="button" id="Add" value="添加" />
-                    <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
-                    <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
-                    <input type="button" id="Refresh" value="刷 新" />
+                    <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
+                    <input type="button" class="button" id="AddSale" value="生产信息" disabled="disabled" check="1" />
+                    <input type="button" class="button" id="Add" value="添加" />
+                    <input type="button" class="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                    <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                    <input type="button" class="button" id="Refresh" value="刷 新" />
                 </td>
             </tr>
         </thead>
