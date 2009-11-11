@@ -34,7 +34,7 @@
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>
                 <p>
-                    <input type="submit" value="修改密码" />
+                    <input type="submit" class="button" value="修改密码" />
                 </p>
             </fieldset>
         </div>

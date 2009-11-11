@@ -46,9 +46,9 @@
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" value="提 交" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Product/Index") %>'" />
+                    <input type="submit" class="button" value="提 交" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Product/Index") %>'" />
                 </td>
             </tr>
             <tr>
@@ -56,7 +56,7 @@
                     商品介绍信息
                 </td>
                 <td align="right" style="width: 15%;">
-                    商品代码（简称）：
+                    商品款号：
                 </td>
                 <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Product♂NameCode", "", new { validate = "required:true" })%>
@@ -112,7 +112,7 @@
             </tr>
             <tr>
                 <td align="right">
-                    商品代码：
+                    条形码：
                 </td>
                 <td align="left" colspan="3">
                     <%= Html.TextBox("Product♂BarCode")%>
@@ -279,9 +279,9 @@
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" value="提 交" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                        type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Product/Index") %>'" />
+                    <input type="submit" class="button" value="提 交" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                        type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Product/Index") %>'" />
                 </td>
             </tr>
         </tfoot>

@@ -19,8 +19,8 @@
     <% using (Html.BeginForm())
        { %>
     <p>
-        <input type="submit" value="更 新" />
-        <input name="Return" type="button" value="返 回" />
+        <input type="submit" class="button" value="更 新" />
+        <input name="Return" type="button" class="button" value="返 回" />
     </p>
     <fieldset>
         <legend>用户信息</legend>
@@ -64,8 +64,8 @@
         </ul>
     </fieldset>
     <p>
-        <input id="Edit" type="submit" value="更 新" />
-        <input name="Return" type="button" value="返 回" />
+        <input id="Edit" type="submit" class="button" value="更 新" />
+        <input name="Return" type="button" class="button" value="返 回" />
     </p>
     <%}
     %>

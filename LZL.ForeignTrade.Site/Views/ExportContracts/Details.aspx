@@ -28,8 +28,8 @@
             <thead align="center">
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="button" value="打 印" class="print" />
-                        <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
+                        <input type="button" class="button" value="打 印" class="print" />
+                        <input type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
                     </td>
                 </tr>
             </thead>
@@ -213,7 +213,7 @@
                         允差（百分比）：
                     </td>
                     <td align="left" colspan="3">
-                        <%= Html.Encode(Model.ErrorValue)%>
+                        <%= Html.Encode(Model.ErrorValue)%>%
                     </td>
                 </tr>
                 <tr>
@@ -280,8 +280,8 @@
             <tfoot>
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="button" value="打 印" class="print" />
-                        <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
+                        <input type="button" class="button" value="打 印" class="print" />
+                        <input type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/ExportContracts/Index") %>'" />
                     </td>
                 </tr>
             </tfoot>

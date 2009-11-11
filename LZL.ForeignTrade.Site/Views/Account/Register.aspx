@@ -39,8 +39,8 @@
                     <%= Html.ValidationMessage("confirmPassword") %>
                 </p>
                 <p>
-                    <input type="submit" value="注册" />
-                    <input type="button" value="返 回" onclick="javascript:history.go(-1);" />
+                    <input type="submit" class="button" value="注册" />
+                    <input type="button" class="button" value="返 回" onclick="javascript:history.go(-1);" />
                 </p>
             </fieldset>
         </div>

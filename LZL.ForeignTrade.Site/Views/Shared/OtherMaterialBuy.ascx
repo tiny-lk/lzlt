@@ -233,7 +233,8 @@
                     if (Model == null)
                     {
                         Response.Write(Html.TextBox("_SubMaterialBuy°·CustomerID"));
-                        Response.Write(Html.Hidden("SubMaterialBuy°·CustomerID"));
+                        Response.Write(Html.Hidden("SubMaterialBuy°·CustomerID","",new { copyvalue=true }));
+                        Response.Write("<a href='#'onclick=LoadControlList(this,'CustomerIndex')>—°‘Ò</a>");
                     }
                     else
                     {
@@ -245,19 +246,20 @@
                                 if (obj != null)
                                 {
                                     Response.Write(Html.TextBox("_SubMaterialBuy°·CustomerID", obj.NameCode));
-                                    Response.Write(Html.Hidden("SubMaterialBuy°·CustomerID", obj.ID.ToString()));
+                                    Response.Write(Html.Hidden("SubMaterialBuy°·CustomerID", obj.ID.ToString(), new { copyvalue = true }));
                                 }
                                 else
                                 {
                                     Response.Write(Html.TextBox("_SubMaterialBuy°·CustomerID"));
-                                    Response.Write(Html.Hidden("SubMaterialBuy°·CustomerID"));
+                                    Response.Write(Html.Hidden("SubMaterialBuy°·CustomerID","", new { copyvalue=true }));
                                 }
                             }
                             else
                             {
                                 Response.Write(Html.TextBox("_SubMaterialBuy°·CustomerID"));
-                                Response.Write(Html.Hidden("SubMaterialBuy°·CustomerID"));
+                                Response.Write(Html.Hidden("SubMaterialBuy°·CustomerID", "", new { copyvalue = true }));
                             }
+                            Response.Write("<a href='#'onclick=LoadControlList(this,'CustomerIndex')>—°‘Ò</a>");
                         }
                         else
                         {
@@ -304,8 +306,8 @@
         %>
         <tr>
             <td colspan="5" align="right">
-                <input type="button" value="ÃÌ º”" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="button" value="…æ ≥˝" onclick="deleteregion(this);" />
+                <input type="button" class="button" value="ÃÌ º”" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" class="button" value="…æ ≥˝" onclick="deleteregion(this);" />
             </td>
         </tr>
         <%

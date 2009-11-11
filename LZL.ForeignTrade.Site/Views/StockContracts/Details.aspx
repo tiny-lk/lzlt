@@ -26,8 +26,8 @@
             <thead align="center">
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="button" value="打 印" class="print" />
-                        <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/StockContracts/Index") %>'" />
+                        <input type="button" class="button" value="打 印" class="print" />
+                        <input type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/StockContracts/Index") %>'" />
                     </td>
                 </tr>
             </thead>
@@ -207,8 +207,8 @@
             <tfoot>
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="button" value="打 印" class="print" />
-                        <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/StockContracts/Index") %>'" />
+                        <input type="button" class="button" value="打 印" class="print" />
+                        <input type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/StockContracts/Index") %>'" />
                     </td>
                 </tr>
             </tfoot>

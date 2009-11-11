@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using LZL.ForeignTrade.DataEntity;
+using System.Web;
 
 namespace LZL.ForeignTrade.Controllers
 {
@@ -90,15 +91,17 @@ namespace LZL.ForeignTrade.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult PackingList(string id)
+
+        public ActionResult Sales(string id)
         {
             if (!string.IsNullOrEmpty(id))
             {
-                string path = Server.MapPath("~/DocTemplate/Template/ExportContracts.doc");
+                string path = Server.MapPath("~/DocTemplate/Template/exportcontracts.doc");
                 string targetpath = Server.MapPath("~/DocTemplate/Print/");
-                byte[] tempbuffer = LZL.ForeignTrade.Controllers.ExportContractsHelper.Instance.BuilderPackingList(new Guid(id), path, targetpath);
-                Response.AppendHeader("Content-Disposition", "inline;filename=test.doc");
-                return File(tempbuffer, "application/ms-word", "test.doc");
+                string filename = string.Empty;
+                byte[] tempbuffer = ExportContractsHelper.Instance.BuilderSales(new Guid(id), path, targetpath, out filename);
+                Response.AppendHeader("Content-Disposition", "inline;filename=" + HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+                return File(tempbuffer, "application/ms-word", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
             }
             return null;
         }

@@ -5,6 +5,7 @@ using System.Text;
 using LZL.ForeignTrade.DataEntity;
 using System.IO;
 using Microsoft.Office.Interop.Word;
+using System.Web;
 
 namespace LZL.ForeignTrade.Controllers
 {
@@ -20,20 +21,23 @@ namespace LZL.ForeignTrade.Controllers
 
         }
 
-        public byte[] BuilderInvoice(Guid id, string path, string targetpath)
+        public byte[] BuilderInvoice(Guid id, string path, string targetpath,out string filename)
         {
             Entities _Entities = new Entities();
             Invoice invoice = _Entities.Invoice.Where(v => v.ID.Equals(id)).FirstOrDefault();
-            targetpath += invoice.ID.ToString() + ".doc";
+            filename = invoice.Name + ".doc";
+            targetpath += filename;
             File.Copy(path, targetpath, true);
             using (WordHelper wordhelper = new WordHelper(targetpath))
             {
                 wordhelper.GotoBookMark("date");
-                wordhelper.InsertText(DateTime.Now.ToShortDateString());
+                wordhelper.InsertText(invoice.Date.ToShortDateString());
                 wordhelper.GotoBookMark("from");
                 wordhelper.InsertText(invoice.StartHaven);
                 wordhelper.GotoBookMark("fromto");
                 wordhelper.InsertText(invoice.EdnHaven);
+                wordhelper.GotoBookMark("byvessel");
+                wordhelper.InsertText(invoice.TransportMode);//运输方式
                 wordhelper.GotoBookMark("termsofpayment");
                 wordhelper.InsertText(invoice.ClauseType);//付款方式
 
@@ -48,8 +52,23 @@ namespace LZL.ForeignTrade.Controllers
                     }
                 }
 
+                if (invoice.CompanyID.HasValue)
+                {
+                    Guid companyid = invoice.CompanyID.GetValueOrDefault();
+                    Company company = _Entities.Company.Where(v => v.ID.Equals(companyid)).FirstOrDefault();
+                    if (company != null)
+                    {
+                        wordhelper.GotoBookMark("issuer");
+                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH);//公司英文，公司地址
+                        wordhelper.GotoBookMark("cncompany");
+                        wordhelper.InsertText(company.NameCH);
+                        wordhelper.GotoBookMark("cnaddress");
+                        wordhelper.InsertText(company.AddressCH);
+                    }
+                }
+
                 wordhelper.GotoBookMark("contenttitle");
-                wordhelper.InsertText("FOB   " + invoice.StartHaven + ",   CHINA");
+                wordhelper.InsertText(invoice.PriceClause + "   " + invoice.StartHaven + ",CHINA");
                 invoice.ProductSummary.Load();
                 Table table = wordhelper.AddTable(wordhelper.GotoBookMark("content"), invoice.ProductSummary.Count + 2, 4);
                 table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
@@ -66,7 +85,7 @@ namespace LZL.ForeignTrade.Controllers
                 {
                     invoice.ProductSummary.ElementAt(i).ProductReference.Load();
                     Product product = invoice.ProductSummary.ElementAt(i).Product;
-                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameEH) ? product.NameCH : product.NameEH;
+                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : product.NameCode;
                     table.Cell(count, 1).Select();
                     table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                     dwmc = DataHelper.GetDictionaryName(invoice.ProductSummary.ElementAt(i).UnitEN);
@@ -82,7 +101,7 @@ namespace LZL.ForeignTrade.Controllers
                 table.Cell(count, 1).Range.Text = "—".PadLeft(50, '—');
                 table.Cell(count + 1, 1).Range.Text = "TOTAL：";
                 table.Cell(count + 1, 2).Range.Text = sl + dwmc;
-                table.Cell(count + 1, 4).Range.Text = "USD" + hjje;
+                table.Cell(count + 1, 4).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + hjje.ToString();
                 wordhelper.GotoBookMark("no");
                 wordhelper.InsertText(invoice.Name);
                 wordhelper.GotoBookMark("lcno");
@@ -112,5 +131,131 @@ namespace LZL.ForeignTrade.Controllers
             }
         }
 
+        public byte[] BuilderPackingList(Guid id, string path, string targetpath, out string filename)
+        {
+            Entities _Entities = new Entities();
+            Invoice invoice = _Entities.Invoice.Where(v => v.ID.Equals(id)).FirstOrDefault();
+            filename = "PackingList_" + invoice.Name + ".doc";
+            targetpath += filename;
+            File.Copy(path, targetpath, true);
+            using (WordHelper wordhelper = new WordHelper(targetpath))
+            {
+                wordhelper.GotoBookMark("date");
+                wordhelper.InsertText(invoice.Date.ToShortDateString());
+                wordhelper.GotoBookMark("no");
+                wordhelper.InsertText(invoice.Name);
+                if (invoice.CustomerID.HasValue)
+                {
+                    Guid customerid = invoice.CustomerID.GetValueOrDefault();
+                    Customer customer = _Entities.Customer.Where(v => v.ID.Equals(customerid)).FirstOrDefault();
+                    if (customer != null)
+                    {
+                        wordhelper.GotoBookMark("to");
+                        wordhelper.InsertText(customer.NameEn + (char)10 + customer.AddressEn);//客户地址
+                    }
+                }
+                if (invoice.CompanyID.HasValue)
+                {
+                    Guid companyid = invoice.CompanyID.GetValueOrDefault();
+                    Company company = _Entities.Company.Where(v => v.ID.Equals(companyid)).FirstOrDefault();
+                    if (company != null)
+                    {
+                        wordhelper.GotoBookMark("issuer");
+                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH);//公司英文，公司地址
+                        wordhelper.GotoBookMark("cncompany");
+                        wordhelper.InsertText(company.NameCH);
+                        wordhelper.GotoBookMark("cnaddress");
+                        wordhelper.InsertText(company.AddressCH);
+                    }
+                }
+                invoice.ProductPack.Load();
+                Table table = wordhelper.AddTable(wordhelper.GotoBookMark("content"), invoice.ProductPack.Count + 2, 7);
+                table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
+                table.PreferredWidth = 95;
+                table.Select();
+                table.Rows.Alignment = WdRowAlignment.wdAlignRowRight;
+                table.Range.Paragraphs.Alignment = WdParagraphAlignment.wdAlignParagraphRight;
+                int count = 1;
+                double jscount = 0;
+                string jsunit = string.Empty;
+                double slcount = 0;
+                string slunit = string.Empty;
+                double mzcount = 0;
+                double jzcount = 0;
+                double jgcount = 0;
+                for (int i = 0; i < invoice.ProductPack.Count; i++)
+                {
+                    Guid productid = invoice.ProductPack.ElementAt(i).ProductID.GetValueOrDefault();
+                    Product product = _Entities.Product.Where(v => v.ID.Equals(productid)).FirstOrDefault();
+                    if (product == null)
+                    {
+                        product = new Product();
+                    }
+                    invoice.ProductSummary.Load();
+
+                    for (int s = 0; s <   invoice.ProductSummary.Count; s++)
+                    {
+                        invoice.ProductSummary.ElementAt(s).ProductReference.Load();
+                    }
+
+                    ProductSummary productSummary = invoice.ProductSummary.Where( v => v.ProductReference.Value.Equals(product)).FirstOrDefault();
+                     
+                    if (productSummary == null)
+                    {
+                        productSummary = new ProductSummary();
+                    }
+                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : product.NameCode;
+                    table.Cell(count, 1).Select();
+                    table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                    jscount += invoice.ProductPack.ElementAt(i).PieceAmount.GetValueOrDefault();//件数
+
+                    jsunit = DataHelper.GetDictionaryName(invoice.ProductPack.ElementAt(i).PackUnitEN);
+                    table.Cell(count, 2).Range.Text = invoice.ProductPack.ElementAt(i).PieceAmount.GetValueOrDefault() + jsunit;
+                    slcount += productSummary.Amount.GetValueOrDefault();
+                    slunit = DataHelper.GetDictionaryName(productSummary.UnitEN);
+                    table.Cell(count, 3).Range.Text = productSummary.Amount.GetValueOrDefault() + slunit;
+                    mzcount += invoice.ProductPack.ElementAt(i).GrossWeight.GetValueOrDefault();//毛重
+                    table.Cell(count, 4).Range.Text = invoice.ProductPack.ElementAt(i).GrossWeight.GetValueOrDefault() + "KG";
+                    jzcount += invoice.ProductPack.ElementAt(i).NetWeight.GetValueOrDefault();//净重
+                    table.Cell(count, 5).Range.Text = invoice.ProductPack.ElementAt(i).NetWeight.GetValueOrDefault() + "KG";
+                    table.Cell(count, 6).Range.Text = productSummary.ExportPrice.GetValueOrDefault().ToString();
+                    jgcount += productSummary.ExportAmount.GetValueOrDefault();//价格总和
+                    table.Cell(count, 7).Range.Text = productSummary.ExportAmount.GetValueOrDefault().ToString();
+                    count++;
+                }
+                table.Cell(count, 1).Merge(table.Cell(count, 7));
+                table.Cell(count, 1).Range.Text = "—".PadLeft(50, '—');
+                table.Cell(count + 1, 1).Range.Text = "TOTAL：";
+                table.Cell(count + 1, 2).Range.Text = jscount + jsunit;
+                table.Cell(count + 1, 3).Range.Text = slcount + slunit;
+                table.Cell(count + 1, 4).Range.Text = mzcount + "KG";
+                table.Cell(count + 1, 5).Range.Text = jzcount + "KG";
+                table.Cell(count + 1, 7).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + jgcount;
+
+                wordhelper.Save();
+            }
+
+            FileStream filestream = File.Open(targetpath, FileMode.Open);
+            try
+            {
+                byte[] filebuffer = new byte[filestream.Length];
+                filestream.Read(filebuffer, 0, filebuffer.Length);
+                filestream.Seek(0, SeekOrigin.Begin);
+                return filebuffer;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (filestream != null)
+                {
+                    filestream.Close();
+                    filestream.Dispose();
+                }
+            }
+            ///////
+        }
     }
 }

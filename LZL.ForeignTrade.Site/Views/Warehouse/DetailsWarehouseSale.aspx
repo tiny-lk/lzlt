@@ -66,7 +66,7 @@
         <tfoot>
             <tr>
                 <td colspan="7" align="right">
-                    <input type="button" value="·µ »Ø" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/WarehouseSale") %>'" />
+                    <input type="button" class="button" value="·µ »Ø" onclick="javascript:window.location.href ='<%=Url.Content("~/Warehouse/WarehouseSale") %>'" />
                 </td>
             </tr>
         </tfoot>

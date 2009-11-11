@@ -25,7 +25,7 @@
         </tr>
         <tr>
             <td>
-                <input type="submit" value="确 定" /><input id="Back" type="button" value="返 回" />
+                <input type="submit" class="button" value="确 定" /><input id="Back" type="button" class="button" value="返 回" />
             </td>
         </tr>
     </table>

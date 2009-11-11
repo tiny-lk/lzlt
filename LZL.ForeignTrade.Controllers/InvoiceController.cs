@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using LZL.ForeignTrade.DataEntity;
+using System.Web;
 
 namespace LZL.ForeignTrade.Controllers
 {
@@ -25,6 +26,7 @@ namespace LZL.ForeignTrade.Controllers
         {
             Entities _Entities = new Entities();
             Guid guid = new Guid(id);
+          
             return View(_Entities.Invoice.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 
@@ -93,9 +95,24 @@ namespace LZL.ForeignTrade.Controllers
             {
                 string path = Server.MapPath("~/DocTemplate/Template/invoice.doc");
                 string targetpath = Server.MapPath("~/DocTemplate/Print/");
-                byte[] tempbuffer = LZL.ForeignTrade.Controllers.WordInvoiceHelper.Instance.BuilderInvoice(new Guid(id), path, targetpath);
-                Response.AppendHeader("Content-Disposition", "inline;filename=test.doc");
-                return File(tempbuffer, "application/ms-word", "test.doc");
+                string filename = string.Empty;
+                byte[] tempbuffer = LZL.ForeignTrade.Controllers.WordInvoiceHelper.Instance.BuilderInvoice(new Guid(id), path, targetpath, out filename);
+                Response.AppendHeader("Content-Disposition", "inline;filename=" + HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+                return File(tempbuffer, "application/ms-word", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+            }
+            return null;
+        }
+
+        public ActionResult PackingList(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                string path = Server.MapPath("~/DocTemplate/Template/packinglist.doc");
+                string targetpath = Server.MapPath("~/DocTemplate/Print/");
+                string filename = string.Empty;
+                byte[] tempbuffer = LZL.ForeignTrade.Controllers.WordInvoiceHelper.Instance.BuilderPackingList(new Guid(id), path, targetpath, out filename);
+                Response.AppendHeader("Content-Disposition", "inline;filename=" + HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+                return File(tempbuffer, "application/ms-word", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
             }
             return null;
         }

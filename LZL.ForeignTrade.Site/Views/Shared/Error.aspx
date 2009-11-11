@@ -9,5 +9,5 @@
         ！动作：<%= Model.ActionName %>！控制对象：<%= Model.ControllerName %>
     </h2>
     <h2>
-        <input type="button" value="返 回" onclick="javascript:history.back(1);" /></h2>
+        <input type="button" class="button" value="返 回" onclick="javascript:history.back(1);" /></h2>
 </asp:Content>

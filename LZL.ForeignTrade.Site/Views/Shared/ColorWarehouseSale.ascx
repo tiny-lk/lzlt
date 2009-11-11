@@ -397,8 +397,8 @@
         %>
         <tr>
             <td colspan="5" align="right">
-                <input type="button" value="Ìí ¼Ó" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="button" value="É¾ ³ý" onclick="deleteregion(this);" />
+                <input type="button" class="button" value="Ìí ¼Ó" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" class="button" value="É¾ ³ý" onclick="deleteregion(this);" />
             </td>
         </tr>
         <%

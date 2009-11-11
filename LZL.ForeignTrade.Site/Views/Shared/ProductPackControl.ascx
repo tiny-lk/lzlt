@@ -99,13 +99,13 @@
                     基本信息
                 </td>
                 <td align="right" style="width: 15%;">
-                    商品代码：
+                    商品款号：
                 </td>
                 <td align="left" colspan="3">
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.Hidden("ProductPack♂ProductID"));
+                            Response.Write(Html.Hidden("ProductPack♂ProductID", "", new { copyvalue = true }));
                             Response.Write(Html.TextBox("_ProductPack♂ProductID"));
                             Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                         }
@@ -118,17 +118,22 @@
                                     var obj = LZL.ForeignTrade.Controllers.DataHelper.GetProduct(Model[i].ProductID);
                                     if (obj != null)
                                     {
-                                        Response.Write(Html.Hidden("ProductPack♂ProductID", Html.Encode(Model[i].ProductID)));
-                                        Response.Write(Html.TextBox("_ProductPack♂ProductID", Html.Encode(obj.NameCode)));
-                                        Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
+                                        Response.Write(Html.Hidden("ProductPack♂ProductID", Html.Encode(Model[i].ProductID), new { copyvalue = true }));
+                                        Response.Write(Html.TextBox("_ProductPack♂ProductID", Html.Encode(obj.NameCode)));;
                                     }
                                     else
                                     {
-                                        Response.Write(Html.Hidden("ProductPack♂ProductID"));
+                                        Response.Write(Html.Hidden("ProductPack♂ProductID", "", new { copyvalue = true }));
                                         Response.Write(Html.TextBox("_ProductPack♂ProductID"));
-                                        Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
+                                       
                                     }
                                 }
+                                else
+                                {
+                                    Response.Write(Html.Hidden("ProductPack♂ProductID", "", new { copyvalue = true }));
+                                    Response.Write(Html.TextBox("_ProductPack♂ProductID"));  
+                                }
+                                Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                             }
                             else
                             {
@@ -595,9 +600,9 @@
             %>
             <tr>
                 <td colspan="5" align="right">
-                    <input type="button" value="添 加" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="删 除" onclick="deleteregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="折 叠" onclick="toggle(this)" />
+                    <input type="button" class="button" value="添 加" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="button" value="删 除" onclick="deleteregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="button" value="折 叠" onclick="toggle(this)" />
                 </td>
             </tr>
             <%

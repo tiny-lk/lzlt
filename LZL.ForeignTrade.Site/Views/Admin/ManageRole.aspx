@@ -48,9 +48,9 @@
         <thead>
             <tr>
                 <td colspan="3" align="right">
-                    <input type="button" id="Add" value="Ìí ¼Ó" />
-                    <input type="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
-                    <input type="button" id="Refresh" value="Ë¢ ÐÂ" />
+                    <input type="button" class="button" id="Add" value="Ìí ¼Ó" />
+                    <input type="button" class="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
+                    <input type="button" class="button" id="Refresh" value="Ë¢ ÐÂ" />
                 </td>
             </tr>
         </thead>

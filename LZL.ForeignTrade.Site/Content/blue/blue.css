@@ -258,16 +258,7 @@ input[type="password"]
     border: 1px solid #3f6ebc;
 }
 
-input[type="button"],input[type="reset"],input[type="submit"]
-{
-    background-image:url(images/linkbar01.gif);
-    background-repeat:no-repeat;
-    border: 0px none;
-    width:59px;
-    height:21px;
-    cursor:pointer;
-    vertical-align:bottom;
-}
+
 
 .button
 {
@@ -278,10 +269,10 @@ input[type="button"],input[type="reset"],input[type="submit"]
     height:21px;
     vertical-align:bottom;
     text-align:center;
-    display:block;
     line-height:22px;
     color:Black;
 }
+
 .button4
 {
     background-image:url(images/linkbar04.gif);
@@ -291,7 +282,6 @@ input[type="button"],input[type="reset"],input[type="submit"]
     height:21px;
     vertical-align:bottom;
     text-align:center;
-    display:block;
     line-height:22px;
     color:Black;
 }
@@ -305,7 +295,6 @@ input[type="button"],input[type="reset"],input[type="submit"]
     height:21px;
     vertical-align:bottom;
     text-align:center;
-    display:block;
     line-height:22px;
     color:Black;
 }
@@ -319,7 +308,6 @@ input[type="button"],input[type="reset"],input[type="submit"]
     height:21px;
     vertical-align:bottom;
     text-align:center;
-    display:block;
     line-height:22px;
     color:Black;
  }
@@ -333,10 +321,10 @@ input[type="button"],input[type="reset"],input[type="submit"]
     height:21px;
     vertical-align:bottom;
     text-align:center;
-    display:block;
     line-height:22px;
     color:Black;
 }
+
 
 .list
 {

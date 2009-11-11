@@ -48,8 +48,8 @@
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
-                    <input type="button" value="打 印" class="print" />
-                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Action("Index","Product")%>'" />
+                    <input type="button" class="button" value="打 印" class="print" />
+                    <input type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Action("Index","Product")%>'" />
                 </td>
             </tr>
         </thead>
@@ -59,7 +59,7 @@
                     商品介绍信息
                 </td>
                 <td align="right" style="width: 15%;">
-                    商品代码（简称）：
+                    商品款号：
                 </td>
                 <td align="left" style="width: 30%;">
                     <%= Html.Encode( Model.NameCode)%>
@@ -115,7 +115,7 @@
             </tr>
             <tr>
                 <td align="right">
-                    商品代码：
+                    条形码：
                 </td>
                 <td align="left" colspan="3">
                     <%= Html.Encode(Model.BarCode)%>
@@ -312,8 +312,8 @@
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
-                    <input type="button" value="打 印" class="print" />
-                    <input type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Action("Index","Product")%>'" />
+                    <input type="button" class="button" value="打 印" class="print" />
+                    <input type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Action("Index","Product")%>'" />
                 </td>
             </tr>
         </tfoot>

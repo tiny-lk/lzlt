@@ -132,10 +132,10 @@
         <thead>
             <tr>
                 <td colspan="7" align="right">
-                    <input type="button" id="OK" value="²é Ñ¯" disabled="disabled" />
-                    <input type="button" id="Add" value="Ìí¼Ó" />
-                    <input type="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
-                    <input type="button" id="Refresh" value="Ë¢ ÐÂ" />
+                    <input type="button" class="button" id="OK" value="²é Ñ¯" disabled="disabled" />
+                    <input type="button" class="button" id="Add" value="Ìí¼Ó" />
+                    <input type="button" class="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
+                    <input type="button" class="button" id="Refresh" value="Ë¢ ÐÂ" />
                 </td>
             </tr>
         </thead>

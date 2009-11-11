@@ -29,7 +29,7 @@
                     <%= Html.CheckBox("rememberMe") %> <label class="inline" for="rememberMe">在此计算机上保存我的信息。</label>
                 </p>
                 <p>
-                    <input type="submit" value="登录" />
+                    <input type="submit" class="button" value="登录" />
                 </p>
             </fieldset>
         </div>

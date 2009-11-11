@@ -54,11 +54,18 @@
         $("#BusinessInvoice").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
-             
-                window.open( '<%=Url.Action("BusinessInvoice","Invoice")%>' + '/' + id);
+
+                window.open('<%=Url.Action("BusinessInvoice","Invoice")%>' + '/' + id);
             }
         });
-        
+
+        $("#PackingList").live("click", function() {
+            if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
+                var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
+                window.open('<%=Url.Action("PackingList","Invoice")%>' + '/' + id);
+            }
+        });
+
         $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1);
         });
@@ -140,17 +147,20 @@
             </td>
             <td colspan="6" align="left">
                 <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
-                <input type="button" id="OK" value="查 询" disabled="disabled" />
+                <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
                 <% if (ViewData["simple"] == null)
                    {
                 %>
-                <input type="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
-                <input type="button" id="BusinessInvoice" value="商业发票" disabled="disabled" check="1" />
-                <input type="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                <input type="button" class="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                <input type="button" id="PackingList" value="装箱单输出" class="button4" disabled="disabled"
+                    check="1" />
+                <input type="button" class="button4" id="BusinessInvoice" value="商业发票输出" disabled="disabled"
+                    check="1" />
+                <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                 <%
                     }
                 %>
-                <input type="button" id="Refresh" value="刷 新" />
+                <input type="button" class="button" id="Refresh" value="刷 新" />
             </td>
         </tr>
     </thead>

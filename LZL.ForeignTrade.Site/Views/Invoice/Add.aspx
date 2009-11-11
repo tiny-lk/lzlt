@@ -132,6 +132,7 @@
         <ul>
             <li><a href="#tabs-1">发票信息</a></li>
             <li><a href="#tabs-2">商品信息</a></li>
+            <li><a href="#tabs-3">商品包装信息</a></li>
         </ul>
         <table width="100%" class="list" id="tabs-1">
             <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
@@ -139,9 +140,9 @@
             <thead align="center">
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="submit" value="提 交" />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                            type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Invoice/Index") %>'" />
+                        <input type="submit" class="button" value="提 交" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                            type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Invoice/Index") %>'" />
                     </td>
                 </tr>
                 <tr>
@@ -167,6 +168,7 @@
                     </td>
                     <td align="left">
                         <%= Html.TextBox("Invoice♂ExportContractsName")%>
+                        <% Response.Write("<a href='#'onclick=LoadControlList(this,'ExportContractsIndex')>选择</a>");%>
                     </td>
                     <td align="right">
                         撤销单号：
@@ -546,9 +548,9 @@
             <tfoot>
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="submit" value="提 交" />
-                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
-                            type="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Invoice/Index") %>'" />
+                        <input type="submit" class="button" value="提 交" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
+                            type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Invoice/Index") %>'" />
                     </td>
                 </tr>
             </tfoot>
@@ -564,6 +566,17 @@
             </tr>
             <!-- 商品信息 -->
         </table>
+        <table width="100%" class="list" id="tabs-3">
+            <caption>
+                商品包装动态区域
+            </caption>
+            <!-- 商品包装信息 -->
+            <tr id="ProductPack♂" style="display: none;">
+                <td colspan="5">
+                </td>
+            </tr>
+            <!-- 商品包装信息 -->
+        </table>
     </div>
     <%
         }
@@ -572,5 +585,6 @@
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
         class="button">出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
-            class="button">商品信息</a>
+            class="button">商品信息</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
+                class="button">商品包装</a>
 </asp:Content>

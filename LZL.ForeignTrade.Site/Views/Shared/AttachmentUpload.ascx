@@ -48,7 +48,7 @@
     <tr>
         <td colspan="5" align="right">
             <span style="color: Red;">注:文件不大于3M。</span>
-            <input type="submit" value="添 加" />
+            <input type="submit" class="button" class="button" value="添 加" />
         </td>
     </tr>
 </table>
