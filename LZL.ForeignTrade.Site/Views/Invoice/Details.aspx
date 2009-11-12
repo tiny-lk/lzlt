@@ -120,7 +120,7 @@
                                 var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCompany(Model.CompanyID);
                                 if (obj != null)
                                 {
-                                    Response.Write(Html.ActionLink(obj.Name, "Details", "Company", new { id = obj.ID.ToString() }));
+                                    Response.Write(Html.ActionLink(obj.Name, "DetailsCompany", "Admin", new { id = obj.ID.ToString() }));
                                 }
                             }
                         %>

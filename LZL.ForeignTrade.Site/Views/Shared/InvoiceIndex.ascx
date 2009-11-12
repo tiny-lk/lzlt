@@ -65,7 +65,14 @@
                 window.open('<%=Url.Action("PackingList","Invoice")%>' + '/' + id);
             }
         });
-
+        
+        $("#Declaration").live("click", function() {
+            if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
+                var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
+                window.open('<%=Url.Action("Declaration","Invoice")%>' + '/' + id);
+            }
+        });
+        
         $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1);
         });
@@ -155,6 +162,8 @@
                 <input type="button" id="PackingList" value="装箱单输出" class="button4" disabled="disabled"
                     check="1" />
                 <input type="button" class="button4" id="BusinessInvoice" value="商业发票输出" disabled="disabled"
+                    check="1" />
+                                    <input type="button" class="button4" id="Declaration" value="报关单输出" disabled="disabled"
                     check="1" />
                 <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                 <%

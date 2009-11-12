@@ -257,5 +257,130 @@ namespace LZL.ForeignTrade.Controllers
             }
             ///////
         }
+
+        public byte[] BuilderDeclaration(Guid id, string path, string targetpath, out string filename)
+        {
+            Entities _Entities = new Entities();
+            Invoice invoice = _Entities.Invoice.Where(v => v.ID.Equals(id)).FirstOrDefault();
+            filename = "Declaration_" + invoice.Name + ".xls";
+            targetpath += filename;
+            File.Copy(path, targetpath, true);
+            using (ExcelHelper excelhepler = new ExcelHelper(targetpath))
+            {
+                excelhepler.WriteValue(5, 2, invoice.StartHaven);
+                excelhepler.WriteValue(5, 8, invoice.ShipmentDate.GetValueOrDefault().ToShortDateString() + "                    " + invoice.Date.ToShortDateString());
+
+                if (invoice.CompanyID.HasValue)
+                {
+                    Guid companyid = invoice.CompanyID.GetValueOrDefault();
+                    Company company = _Entities.Company.Where(v => v.ID.Equals(companyid)).FirstOrDefault();
+                    if (company != null)
+                    {
+                        excelhepler.WriteValue(6, 1, company.NameCH);
+                    }
+                }
+
+                excelhepler.WriteValue(6, 5, invoice.TransportMode);
+                excelhepler.WriteValue(8, 5, "            " + invoice.Trade);
+                excelhepler.WriteValue(8, 11, invoice.ClauseType);
+                excelhepler.WriteValue(10, 4, invoice.TansportCountry);
+                excelhepler.WriteValue(10, 7, invoice.EdnHaven);
+                excelhepler.WriteValue(12, 4, invoice.PriceClause);
+                invoice.ProductSummary.Load();
+                invoice.ProductPack.Load();
+                string dw = string.Empty;
+                if (invoice.ProductPack.Count > 0)
+                {
+                    dw = invoice.ProductPack.ElementAt(1).PackUnitEN;
+                }
+                else
+                {
+                    if (invoice.ProductSummary.Count > 0)
+                    {
+                        dw = invoice.ProductSummary.ElementAt(1).UnitEN;
+                    }
+                }
+
+                for (int i = 0; i < invoice.ProductSummary.Count; i++)
+                {
+                    invoice.ProductSummary.ElementAt(i).ProductReference.Load();
+                }
+
+                if (!string.IsNullOrEmpty(dw))
+                {
+                    Guid dwid = new Guid(dw);
+                    dw = _Entities.Dictionary.Where(v => v.ID.Equals(dwid)).FirstOrDefault().Name;
+                }
+                excelhepler.WriteValue(14, 4, invoice.ExportContractsName);
+
+                excelhepler.WriteValue(14, 4, invoice.ProductPack.Sum(v => v.PieceAmount).GetValueOrDefault() + dw);
+                excelhepler.WriteValue(14, 6, dw);
+                excelhepler.WriteValue(14, 8, invoice.ProductPack.Sum(v => v.GrossWeight).GetValueOrDefault() + "KGS");
+                excelhepler.WriteValue(14, 11, invoice.ProductPack.Sum(v => v.NetWeight).GetValueOrDefault() + "KGS");
+                excelhepler.WriteValue(23, 6, invoice.TansportCountry);
+                excelhepler.WriteValue(23, 10, invoice.PriceClause + "  " + invoice.StartHaven);
+                var groupproduct = invoice.ProductSummary.GroupBy(v => v.CustomsCode);
+                int startrow = 24;
+                double jehj = 0;
+
+                foreach (var item in groupproduct)
+                {
+                    excelhepler.WriteValue(startrow, 1, item.Key);
+
+                    for (int i = 0; i < item.Count(); i++)
+                    {
+                        startrow++;
+                        excelhepler.MergeCell(startrow, 1, 2);
+                        excelhepler.SetCellAlignment(startrow, 1, 1);//设置格式
+                        item.ElementAt(i).ProductReference.Load();
+                        excelhepler.WriteValue(startrow, 1, item.ElementAt(i).Product.NameCode);
+                        Guid productid = item.ElementAt(i).Product.ID;
+                        excelhepler.WriteValue(startrow, 5, invoice.ProductPack.Where(v => v.ProductID.Equals(productid)).Sum(v => v.PieceAmount).GetValueOrDefault() + dw);
+                        jehj += item.ElementAt(i).ExportAmount.GetValueOrDefault();
+                        excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + item.ElementAt(i).ExportAmount);
+                    }
+                    startrow++;
+                    excelhepler.MergeCell(startrow, 3, 11);
+                    excelhepler.WriteValue(startrow, 3, "  ----------------------------------------------------------------------------");
+                    startrow++;
+                    excelhepler.WriteValue(startrow, 3, "TOTAL：");
+                    excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + jehj);
+                }
+
+                if (groupproduct.Count() > 1)
+                {
+                    startrow++;
+                    excelhepler.MergeCell(startrow, 3, 11);
+                    excelhepler.WriteValue(startrow, 3, "  ----------------------------------------------------------------------------");
+                    startrow++;
+                    excelhepler.WriteValue(startrow, 3, "TOTAL：");
+                    excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + jehj);
+                }
+
+                excelhepler.Save();
+            }
+
+            FileStream filestream = File.Open(targetpath, FileMode.Open);
+            try
+            {
+                byte[] filebuffer = new byte[filestream.Length];
+                filestream.Read(filebuffer, 0, filebuffer.Length);
+                filestream.Seek(0, SeekOrigin.Begin);
+                return filebuffer;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (filestream != null)
+                {
+                    filestream.Close();
+                    filestream.Dispose();
+                }
+            }
+
+        }
     }
 }

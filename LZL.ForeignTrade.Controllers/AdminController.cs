@@ -287,6 +287,12 @@ namespace LZL.ForeignTrade.Controllers
             return View(_Entities.Company.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 
+        public ActionResult DetailsCompany(string id)
+        {
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.Company.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
         /// <summary>
         /// Edits the company.---add by lj
         /// </summary>
