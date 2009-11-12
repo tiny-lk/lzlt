@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
     <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -68,6 +69,7 @@
     <Compile Include="CollectionHelper.cs" />
     <Compile Include="CustomerController.cs" />
     <Compile Include="DataHelper.cs" />
+    <Compile Include="ExcelHelper.cs" />
     <Compile Include="ExportContractsController.cs" />
     <Compile Include="ExportContractsHelper.cs" />
     <Compile Include="HomeController.cs" />

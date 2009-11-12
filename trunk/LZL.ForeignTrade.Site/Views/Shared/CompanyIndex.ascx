@@ -178,7 +178,7 @@
             for (int i = 0; i < Model.Count; i++)
             {
         %>
-        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/Admin/EditCompany/"+Html.Encode(Model[i].ID)) %>';}">
+        <tr ondblclick="if($('.simple').val()==''){window.location.href ='<%=Url.Content("~/Admin/DetailsCompany/"+Html.Encode(Model[i].ID)) %>';}">
             <td>
                 <%= Html.CheckBox("select", false, new { value = Html.Encode(Model[i].ID.ToString() + "|" + Html.Encode(Model[i].Name)) })%>
             </td>

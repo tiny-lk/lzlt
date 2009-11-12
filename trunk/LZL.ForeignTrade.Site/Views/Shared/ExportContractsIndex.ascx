@@ -144,7 +144,7 @@
                 <% if (ViewData["simple"] == null)
                    {
                 %>
-                <input type="button" class="button" id="ExportContractsSales" value="销售确认书" disabled="disabled" check="1" />
+                <input type="button" class="button4" id="ExportContractsSales" value="销售确认书" disabled="disabled" check="1" />
                 <input type="button" class="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
                 <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                 <%
@@ -225,7 +225,7 @@
                         var obj = LZL.ForeignTrade.Controllers.DataHelper.GetCompany(Model[i].CompanyID);
                         if (obj != null)
                         {
-                            Response.Write(Html.ActionLink(obj.Name, "Details", "Company", new { id = obj.ID.ToString() }, null));
+                            Response.Write(Html.ActionLink(obj.Name, "DetailsCompany", "Admin", new { id = obj.ID.ToString() }, null));
                         }
                     }
                 %>

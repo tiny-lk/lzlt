@@ -98,7 +98,7 @@ namespace LZL.ForeignTrade.Controllers
                 string filename = string.Empty;
                 byte[] tempbuffer = LZL.ForeignTrade.Controllers.WordInvoiceHelper.Instance.BuilderInvoice(new Guid(id), path, targetpath, out filename);
                 Response.AppendHeader("Content-Disposition", "inline;filename=" + HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
-                return File(tempbuffer, "application/ms-word", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+                return File(tempbuffer, "application/vnd.ms-word", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
             }
             return null;
         }
@@ -112,10 +112,23 @@ namespace LZL.ForeignTrade.Controllers
                 string filename = string.Empty;
                 byte[] tempbuffer = LZL.ForeignTrade.Controllers.WordInvoiceHelper.Instance.BuilderPackingList(new Guid(id), path, targetpath, out filename);
                 Response.AppendHeader("Content-Disposition", "inline;filename=" + HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
-                return File(tempbuffer, "application/ms-word", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+                return File(tempbuffer, "application/vnd.ms-word", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
             }
             return null;
         }
-
+        //报关单信息
+        public ActionResult Declaration(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                string path = Server.MapPath("~/DocTemplate/Template/Declaration.xls");
+                string targetpath = Server.MapPath("~/DocTemplate/Print/");
+                string filename = string.Empty;
+                byte[] tempbuffer = LZL.ForeignTrade.Controllers.WordInvoiceHelper.Instance.BuilderDeclaration(new Guid(id), path, targetpath, out filename);
+                Response.AppendHeader("Content-Disposition", "inline;filename=" + HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+                return File(tempbuffer, "application/vnd.ms-excel", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+            }
+            return null;
+        }
     }
 }
