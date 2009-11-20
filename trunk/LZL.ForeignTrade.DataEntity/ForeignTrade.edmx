@@ -268,7 +268,7 @@
           <Property Name="CustomerNo" Type="nvarchar" MaxLength="255" />
           <Property Name="CustomerID" Type="uniqueidentifier" />
           <Property Name="CompanyID" Type="uniqueidentifier" />
-          <Property Name="Type" Type="nvarchar" MaxLength="10" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="TotalSalesAmount" Type="float" />
           <Property Name="TotalPackAmount" Type="float" />
           <Property Name="TotalPackUnitEN" Type="nvarchar" MaxLength="50" />
@@ -286,11 +286,11 @@
           <Property Name="ClauseTypeNote" Type="text" />
           <Property Name="SubmitDate" Type="datetime" />
           <Property Name="PolicyType" Type="nvarchar" MaxLength="255" />
-          <Property Name="TansportCountry" Type="nvarchar" MaxLength="10" />
-          <Property Name="StartHaven" Type="nvarchar" MaxLength="10" />
-          <Property Name="EdnHaven" Type="nvarchar" MaxLength="10" />
-          <Property Name="TransferHaven" Type="nvarchar" MaxLength="10" />
-          <Property Name="TransportMode" Type="nvarchar" MaxLength="10" />
+          <Property Name="TansportCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartHaven" Type="nvarchar" MaxLength="50" />
+          <Property Name="EdnHaven" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransferHaven" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransportMode" Type="nvarchar" MaxLength="50" />
           <Property Name="ShipmentDate" Type="datetime" />
           <Property Name="ErrorValue" Type="int" />
           <Property Name="Mark" Type="text" />
@@ -331,8 +331,8 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="ExportContractsName" Type="nvarchar" MaxLength="255" />
           <Property Name="RevocationNo" Type="nvarchar" MaxLength="255" />
-          <Property Name="CurrencyType" Type="nvarchar" MaxLength="10" />
-          <Property Name="PriceClause" Type="nvarchar" MaxLength="10" />
+          <Property Name="CurrencyType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriceClause" Type="nvarchar" MaxLength="50" />
           <Property Name="PriceClauseNote" Type="text" />
           <Property Name="ClauseType" Type="nvarchar" MaxLength="50" />
           <Property Name="ClauseTypeNote" Type="text" />
@@ -354,6 +354,7 @@
           <Property Name="IsTransfer" Type="bit" />
           <Property Name="Mark" Type="text" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreditAmount" Type="float" />
           <Property Name="TotalSalesAmount" Type="float" />
           <Property Name="TotalPackAmount" Type="float" />
           <Property Name="TotalPackUnitEN" Type="nvarchar" MaxLength="50" />
@@ -401,7 +402,7 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Job" Type="nvarchar" MaxLength="10" />
+          <Property Name="Job" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="100" />
           <Property Name="Fax" Type="nvarchar" MaxLength="100" />
           <Property Name="MobilePhone" Type="nvarchar" MaxLength="100" />
@@ -446,27 +447,27 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="Date" Type="datetime" />
-          <Property Name="CurrencyType" Type="nvarchar" MaxLength="10" />
-          <Property Name="PriceClause" Type="nvarchar" MaxLength="10" />
+          <Property Name="CurrencyType" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriceClause" Type="nvarchar" MaxLength="50" />
           <Property Name="PriceClauseNote" Type="text" />
-          <Property Name="ClauseType" Type="nvarchar" MaxLength="10" />
+          <Property Name="ClauseType" Type="nvarchar" MaxLength="50" />
           <Property Name="ClauseTypeNote" Type="text" />
-          <Property Name="TansportCountry" Type="nvarchar" MaxLength="10" />
-          <Property Name="StartHaven" Type="nvarchar" MaxLength="10" />
-          <Property Name="EdnHaven" Type="nvarchar" MaxLength="10" />
-          <Property Name="TransferHaven" Type="nvarchar" MaxLength="10" />
-          <Property Name="TransportMode" Type="nvarchar" MaxLength="10" />
+          <Property Name="TansportCountry" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartHaven" Type="nvarchar" MaxLength="50" />
+          <Property Name="EdnHaven" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransferHaven" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransportMode" Type="nvarchar" MaxLength="50" />
           <Property Name="CustomerID" Type="uniqueidentifier" />
           <Property Name="CompanyID" Type="uniqueidentifier" />
-          <Property Name="PriceType" Type="nvarchar" MaxLength="10" />
+          <Property Name="PriceType" Type="nvarchar" MaxLength="50" />
           <Property Name="ClauseQuote" Type="float" />
           <Property Name="ClausePackNumber" Type="float" />
-          <Property Name="ClauseUnitEN" Type="nvarchar" MaxLength="10" />
+          <Property Name="ClauseUnitEN" Type="nvarchar" MaxLength="50" />
           <Property Name="ClauseWeight" Type="float" />
           <Property Name="ClauseNetWeight" Type="float" />
           <Property Name="ClauseBulk" Type="float" />
           <Property Name="ClauseNumber" Type="float" />
-          <Property Name="ClauseUnit" Type="nvarchar" MaxLength="10" />
+          <Property Name="ClauseUnit" Type="nvarchar" MaxLength="50" />
           <Property Name="ClauseNotUnit" Type="nvarchar" MaxLength="255" />
           <Property Name="Note" Type="text" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -505,6 +506,7 @@
           <Property Name="Note" Type="text" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
+          <Property Name="Date" Type="int" />
         </EntityType>
         <EntityType Name="ProductCustomer">
           <Key>
@@ -558,9 +560,11 @@
           <Property Name="StockContractsID" Type="uniqueidentifier" />
           <Property Name="ProductID" Type="uniqueidentifier" />
           <Property Name="CustomsCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="PurchasePrice" Type="float" />
           <Property Name="Amount" Type="float" />
           <Property Name="UnitEN" Type="nvarchar" MaxLength="50" />
           <Property Name="ExportPrice" Type="float" />
+          <Property Name="RMBExportAmount" Type="float" />
           <Property Name="ExportAmount" Type="float" />
           <Property Name="DescriptionEN" Type="nvarchar(max)" />
           <Property Name="Note" Type="nvarchar(max)" />
@@ -1349,7 +1353,7 @@
           <NavigationProperty Name="InvoiceExportContracts" Relationship="ForeignTradeModel.FK_InvoiceExportContracts_Invoice" FromRole="Invoice" ToRole="InvoiceExportContracts" />
           <NavigationProperty Name="ProductPack" Relationship="ForeignTradeModel.FK_ProductPack_Invoice" FromRole="Invoice" ToRole="ProductPack" />
           <NavigationProperty Name="ProductSummary" Relationship="ForeignTradeModel.FK_ProductSummary_Invoice" FromRole="Invoice" ToRole="ProductSummary" />
-        </EntityType>
+          <Property Name="CreditAmount" Type="Double" Nullable="true" /></EntityType>
         <EntityType Name="InvoiceExportContracts">
           <Key>
             <PropertyRef Name="ID" />
@@ -1475,7 +1479,7 @@
           <Property Name="EditDate" Type="DateTime" />
           <NavigationProperty Name="ProductCustomer" Relationship="ForeignTradeModel.FK_ProductCustomer_Product" FromRole="Product" ToRole="ProductCustomer" />
           <NavigationProperty Name="ProductSummary" Relationship="ForeignTradeModel.FK_ProductSummary_Product" FromRole="Product" ToRole="ProductSummary" />
-        </EntityType>
+          <Property Name="Date" Type="Int32" Nullable="true" /></EntityType>
         <EntityType Name="ProductCustomer">
           <Key>
             <PropertyRef Name="ID" />
@@ -1536,7 +1540,8 @@
           <NavigationProperty Name="Price" Relationship="ForeignTradeModel.FK_ProductSummary_Price" FromRole="ProductSummary" ToRole="Price" />
           <NavigationProperty Name="Product" Relationship="ForeignTradeModel.FK_ProductSummary_Product" FromRole="ProductSummary" ToRole="Product" />
           <NavigationProperty Name="StockContracts" Relationship="ForeignTradeModel.FK_ProductSummary_StockContracts" FromRole="ProductSummary" ToRole="StockContracts" />
-        </EntityType>
+          <Property Name="PurchasePrice" Type="Double" Nullable="true" />
+          <Property Name="RMBExportAmount" Type="Double" Nullable="true" /></EntityType>
         <EntityType Name="StockContracts">
           <Key>
             <PropertyRef Name="ID" />
@@ -1935,6 +1940,7 @@
           <EntitySetMapping Name="Invoice">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Invoice)">
               <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="CreditAmount" ColumnName="CreditAmount" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -2087,6 +2093,7 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Product)">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NameCode" ColumnName="NameCode" />
                 <ScalarProperty Name="NameCH" ColumnName="NameCH" />
@@ -2159,6 +2166,8 @@
           <EntitySetMapping Name="ProductSummary">
             <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.ProductSummary)">
               <MappingFragment StoreEntitySet="ProductSummary">
+                <ScalarProperty Name="RMBExportAmount" ColumnName="RMBExportAmount" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CustomsCode" ColumnName="CustomsCode" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />

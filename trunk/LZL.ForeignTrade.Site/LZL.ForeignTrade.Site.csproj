@@ -297,6 +297,7 @@
     <Content Include="Content\images\table_head.gif" />
     <Content Include="Content\images\toolbarbackgroup.gif" />
     <Content Include="Scripts\jquery.corner.js" />
+    <Content Include="Scripts\ui\ui.datepicker-zh-CN.js" />
     <Content Include="Views\Admin\DetailsCompany.aspx" />
     <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\ColorWarehouseSale.ascx" />
@@ -315,6 +316,7 @@
     <Content Include="Views\Shared\PrintWord.aspx" />
     <Content Include="Views\Shared\ProductPackControl.ascx" />
     <Content Include="Views\Shared\ProductSummaryControl.ascx" />
+    <Content Include="Views\Shared\ProductSummaryIndex.ascx" />
     <Content Include="Views\Warehouse\AddAccessories.aspx" />
     <Content Include="Views\Warehouse\AddMateria.aspx" />
     <Content Include="Views\Warehouse\AddWarehouseSale.aspx" />

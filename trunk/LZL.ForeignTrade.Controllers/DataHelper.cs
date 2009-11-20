@@ -69,7 +69,7 @@ namespace LZL.ForeignTrade.Controllers
             {
                 sql += " where  it." + quyerCondition + " like '%" + queryvalue + "%'";
             }
-            sql += " order by it." + quyerCondition;
+            sql += " order by it.Date Desc";
             sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
             var querylist = entities.CreateQuery<Product>(sql).ToList();
             return querylist;

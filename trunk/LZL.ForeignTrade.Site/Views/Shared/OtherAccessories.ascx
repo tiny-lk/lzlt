@@ -78,7 +78,7 @@
         %>
         <tr>
             <td align="center" rowspan="4" style="width: 10%;">
-                其它信息
+                其它辅料信息
             </td>
             <td align="right" style="width: 15%;">
                 类型：

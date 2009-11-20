@@ -162,7 +162,7 @@ namespace LZL.ForeignTrade.Controllers
                 }
 
                 if (!(string.IsNullOrEmpty(formvalues[(regions[i] + "propertyobject")]) &&
-                    string.IsNullOrEmpty(formvalues[(regions[i] + "propertyobjectvalue")])))// 如果是多个问题先不处理到时候用♂符号进行分割
+                    string.IsNullOrEmpty(formvalues[(regions[i] + "propertyobjectvalue")])))
                 {
                     string[] propertyobjects = formvalues[(regions[i] + "propertyobject")].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     string[] propertyobjectvalues = formvalues[regions[i] + "propertyobjectvalue"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
@@ -171,7 +171,7 @@ namespace LZL.ForeignTrade.Controllers
                     object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
                     if (propertyobject != null)
                     {
-                        ClassHelper.SetPropertyValue(tableobj, propertyobjectvalues[i], propertyobject);//设置属性对象
+                        ClassHelper.SetPropertyValue(tableobj, propertyobjects[i], propertyobject);//设置属性对象
                     }
 
                 }
@@ -321,7 +321,7 @@ namespace LZL.ForeignTrade.Controllers
                 }
 
                 if (!(string.IsNullOrEmpty(formvalues[(region + "propertyobject")]) &&
-                      string.IsNullOrEmpty(formvalues[(region + "propertyobjectvalue")])))// 如果是多个问题先不处理到时候用♂符号进行分割
+                      string.IsNullOrEmpty(formvalues[(region + "propertyobjectvalue")])))
                 {
                     string[] propertyobjects = formvalues[(region + "propertyobject")].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     string[] propertyobjectvalues = formvalues[region + "propertyobjectvalue"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

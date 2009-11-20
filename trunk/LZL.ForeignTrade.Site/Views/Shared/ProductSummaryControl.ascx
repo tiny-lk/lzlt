@@ -15,6 +15,14 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#ProductSummary♂').css("display", "");
+
+            $("#ProductSummary♂ExportAmount").bind("dblclick", function() {
+                var tj = Number($("#ProductSummary♂ExportPrice").val()) * Number($("#ProductSummary♂Amount").val());
+                if (tj != 0) {
+                    $("#ProductSummary♂ExportAmount").val(tj.toFixed(2));
+                }
+            });
+
         });
         function toggle(obj) {
             if ($(obj).val() == "折 叠") {
@@ -91,7 +99,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="center" valign="middle" rowspan="4" style="width: 10%;">
+                <td align="center" valign="middle" rowspan="5" style="width: 10%;">
                     商品信息
                 </td>
                 <td align="right" style="width: 15%;">
@@ -180,6 +188,52 @@
                             else
                             {
                                 Response.Write(Html.Encode(Model[i].ExportPrice));
+                            }
+                        }
+                    %>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    商品进货单价：
+                </td>
+                <td align="left">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", "", new { validate = "number:true" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", Html.Encode(Model[i].PurchasePrice), new { validate = "number:true" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].PurchasePrice));
+                            }
+                        }
+                    %>
+                </td>
+                <td align="right">
+                    人民币出货单价：
+                </td>
+                <td align="left">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂RMBExportAmount", "", new { validate = "number:true" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂RMBExportAmount", Html.Encode(Model[i].RMBExportAmount), new { validate = "number:true" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].RMBExportAmount));
                             }
                         }
                     %>

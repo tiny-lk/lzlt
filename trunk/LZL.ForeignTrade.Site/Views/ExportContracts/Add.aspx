@@ -319,7 +319,7 @@
                         ‘ ≤Ó£®∞Ÿ∑÷±»£©£∫
                     </td>
                     <td align="left" colspan="3">
-                        <%= Html.TextBox("ExportContracts°·ErrorValue", "", new { validate = "digits:true,min:0,max:100" })%>%
+                        <%= Html.TextBox("ExportContracts°·ErrorValue", "3", new { validate = "digits:true,min:0,max:100" })%>%
                     </td>
                 </tr>
                 <tr>

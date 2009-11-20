@@ -10,6 +10,7 @@
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/child_table_template.js")%>"></script>
 
     <script type="text/javascript" src="<%= Url.Content("~/Scripts/AutoCompletedata.js")%>"></script>
+
     <script type="text/javascript">
         function openckht(regionname, childobject, addid, url) {
             $.ajax({
@@ -235,8 +236,14 @@
                     <td align="right">
                         付款方式补充说明：
                     </td>
-                    <td align="left" colspan="3">
+                    <td align="left">
                         <%= Html.TextArea("Invoice♂ClauseTypeNote", Html.Encode(Model.ClauseTypeNote), new { style = "width:99%; height:40px;" })%>
+                    </td>
+                    <td align="right">
+                        发票类型：
+                    </td>
+                    <td align="left">
+                        <%= Html.DropDownList("Invoice♂Type", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("发票类型", Html.Encode(Model.Type)), "请选择")%>
                     </td>
                 </tr>
                 <tr>
@@ -334,10 +341,10 @@
                         <%= Html.TextBox("Invoice♂ValidDate", Html.Encode(Model.ValidDate), new { validate = "date:true", Class = "calendar" })%>
                     </td>
                     <td align="right">
-                        发票类型：
+                        信用证金额：
                     </td>
                     <td align="left">
-                        <%= Html.DropDownList("Invoice♂Type", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("发票类型", Html.Encode(Model.Type)), "请选择")%>
+                        <%= Html.TextBox("Invoice♂CreditAmount", Html.Encode(Model.CreditAmount), new { validate = "number:true" })%>万元
                     </td>
                 </tr>
                 <tr>

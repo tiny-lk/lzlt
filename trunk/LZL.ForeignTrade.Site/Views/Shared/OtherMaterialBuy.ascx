@@ -81,7 +81,7 @@
         %>
         <tr>
             <td align="center" valign="middle" rowspan="5" style="width: 10%;">
-                其它信息
+                其它原材料信息
             </td>
             <td align="right" style="width: 15%;">
                 名称：
@@ -202,7 +202,7 @@
                 %>
             </td>
             <td align="right">
-                缸口：
+                缸号：
             </td>
             <td align="left">
                 <%

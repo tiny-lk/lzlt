@@ -2,24 +2,24 @@
     Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.WarehouseSale>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    销货信息
+    领料信息
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <table  class="list">
+    <table width="100%"  class="list">
         <caption>
-            销货信息</caption>
+            领料信息</caption>
         <tr>
             <td align="center" valign="middle" rowspan="4" style="width: 10%;">
-                销货信息
+                领料信息
             </td>
             <td align="right" style="width: 15%;">
-                销货日期：
+                领料日期：
             </td>
             <td align="left" style="width: 30%;">
                 <%= Html.Encode(Model.SaleDate.GetValueOrDefault().ToShortDateString())%>
             </td>
             <td align="right" style="width: 15%;">
-                销售数量：
+                领料数量：
             </td>
             <td align="left" style="width: 30%;">
                 <%=Html.Encode(Model.SaleCount)%>
@@ -33,7 +33,7 @@
                 <%=Html.Encode(Model.SalePrice)%>
             </td>
             <td align="right">
-                销售重量：
+                领料重量：
             </td>
             <td align="left">
                 <%=Html.Encode(Model.SaleWeight)%>
