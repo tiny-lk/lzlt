@@ -146,8 +146,14 @@
                 <td align="right">
                     条形码：
                 </td>
-                <td align="left" colspan="3">
+                <td align="left">
                     <%= Html.TextBox("Product♂BarCode", Html.Encode(Model.BarCode))%>
+                </td>
+                <td align="right">
+                    商品日期：
+                </td>
+                <td align="left">
+                    <%= Html.TextBox("Product♂Date", Html.Encode(Model.Date), new { Class = "calendarnumber" })%>
                 </td>
             </tr>
             <tr>

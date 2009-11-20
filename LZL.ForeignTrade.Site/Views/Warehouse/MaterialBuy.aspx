@@ -139,7 +139,7 @@
                 <td colspan="3" align="left">
                     <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
                     <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
-                    <input type="button" class="button" id="AddSale" value="生产信息" disabled="disabled" check="1" />
+                    <input type="button" class="button" id="AddSale" value="领料信息" disabled="disabled" check="1" />
                     <input type="button" class="button" id="Add" value="添 加" />
                     <input type="button" class="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
                     <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />

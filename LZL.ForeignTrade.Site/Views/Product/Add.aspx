@@ -24,11 +24,12 @@
         }
         $(document).ready(function() {
             $("#Product♂PackBulk").bind("dblclick", function() {
-                var tj = Number($("#Product♂PackLength").val()) * Number($("#Product♂PackWidth").val()) * Number($("#Product♂PackWidth").val());
+                var tj = Number($("#Product♂PackLength").val() / 100) * Number($("#Product♂PackWidth").val() / 100) * Number($("#Product♂PackWidth").val() / 100);
                 if (tj != 0) {
                     $("#Product♂PackBulk").val(tj.toFixed(2));
                 }
             });
+            
         });
     </script>
 
@@ -40,7 +41,7 @@
     <input type="hidden" name="Product♂objectname" value="LZL.ForeignTrade.DataEntity.Product,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Product♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("Product♂iseditdate", "EditDate")%>
-    <table width="100%"  class="list">
+    <table width="100%" class="list">
         <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
             商品信息</caption>
         <thead align="center">
@@ -114,8 +115,14 @@
                 <td align="right">
                     条形码：
                 </td>
-                <td align="left" colspan="3">
+                <td align="left">
                     <%= Html.TextBox("Product♂BarCode")%>
+                </td>
+                <td align="right">
+                    商品日期：
+                </td>
+                <td align="left">
+                    <%= Html.TextBox("Product♂Date", "", new { Class = "calendarnumber" })%>
                 </td>
             </tr>
             <tr>

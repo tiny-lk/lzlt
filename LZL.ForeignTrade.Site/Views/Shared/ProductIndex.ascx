@@ -127,10 +127,11 @@
                             new SelectListItem(){ Text="客户代码", Value ="NameCode"},
                             new SelectListItem(){Text="商品中文名称", Value ="NameCH"},
                              new SelectListItem(){Text="商品英文名称", Value ="NameEH"},
-                             new SelectListItem(){ Text="商品条码", Value ="CustomsCode"}
+                             new SelectListItem(){ Text="商品条码", Value ="CustomsCode"},
+                               new SelectListItem(){ Text="商品日期", Value ="Date"}
                         }, "Value", "Text", "NameCode"))%>
             </td>
-            <td colspan="6" align="left">
+            <td colspan="7" align="left">
                 <%= Html.TextBox("queryvalue", "", new { style = "width:50%;" })%>
                 <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
                 <% if (ViewData["simple"] == null)
@@ -169,6 +170,9 @@
                 商品类型
             </td>
             <td>
+                商品日期
+            </td>
+            <td>
                 是否共享
             </td>
         </tr>
@@ -201,6 +205,9 @@
                 <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model[i].TypeCode))%>
             </td>
             <td>
+                <%= Html.Encode(Model[i].Date)%>
+            </td>
+            <td>
                 <%= Html.Encode(Model[i].IsShare ? "是" : "否")%>
             </td>
         </tr>
@@ -211,7 +218,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="9" align="right">
+            <td colspan="10" align="right">
                 <a href="#" class="print">打 印</a>|
                 <%
                     int count = int.Parse(ViewData["pagecount"].ToString());
@@ -232,7 +239,7 @@
                             {
                                 Response.Write("<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page - 1) + ")>上一页</a>|" + "<a href='#' onclick=loadlistdata(this,'" + Request["quyerCondition"] + "','" + Server.UrlDecode(Request["queryvalue"]) + "'," + (page + 1) + ")>下一页</a>");
                             }
-                            
+
                         }
                         else
                         {

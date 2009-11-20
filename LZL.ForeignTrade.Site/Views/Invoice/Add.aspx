@@ -217,8 +217,14 @@
                     <td align="right">
                         付款方式补充说明：
                     </td>
-                    <td align="left" colspan="3">
+                    <td align="left">
                         <%= Html.TextArea("Invoice♂ClauseTypeNote", new { style = "width:99%; height:40px;" })%>
+                    </td>
+                    <td align="right">
+                        发票类型：
+                    </td>
+                    <td align="left">
+                        <%= Html.DropDownList("Invoice♂Type", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("发票类型"), "请选择")%>
                     </td>
                 </tr>
                 <tr>
@@ -278,10 +284,10 @@
                         <%= Html.TextBox("Invoice♂ValidDate", "", new { validate = "date:true", Class = "calendar" })%>
                     </td>
                     <td align="right">
-                        发票类型：
+                        信用证金额：
                     </td>
                     <td align="left">
-                        <%= Html.DropDownList("Invoice♂Type", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("发票类型"), "请选择")%>
+                        <%= Html.TextBox("Invoice♂CreditAmount", "", new { validate = "number:true" })%>万元
                     </td>
                 </tr>
                 <tr>

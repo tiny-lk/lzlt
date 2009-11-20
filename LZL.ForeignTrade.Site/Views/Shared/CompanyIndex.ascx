@@ -55,6 +55,10 @@
             }
         });
 
+        $("#Add").live("click", function() {
+            window.location.href = '<%=Url.Action("AddCompany","Admin")%>';
+        });
+
         $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1);
         });
@@ -139,6 +143,7 @@
                 <% if (ViewData["simple"] == null)
                    {
                 %>
+                <input type="button" class="button" id="Add" value="Ìí ¼Ó" />
                 <input type="button" class="button" id="Edit" value="±à ¼­" disabled="disabled" check="1" />
                 <input type="button" class="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
                 <%

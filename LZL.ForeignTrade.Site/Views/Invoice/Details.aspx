@@ -90,8 +90,14 @@
                     <td align="right">
                         付款方式补充说明：
                     </td>
-                    <td align="left" colspan="3">
+                    <td align="left">
                         <%=  Html.Encode(Model.ClauseTypeNote)%>
+                    </td>
+                    <td align="right">
+                        发票类型：
+                    </td>
+                    <td align="left">
+                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.Type))%>
                     </td>
                 </tr>
                 <tr>
@@ -165,10 +171,10 @@
                         <%= Html.Encode(Model.ValidDate)%>
                     </td>
                     <td align="right">
-                        发票类型：
+                        信用证金额：
                     </td>
                     <td align="left">
-                        <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.Type))%>
+                        <%=Html.Encode(Model.CreditAmount)%>万元
                     </td>
                 </tr>
                 <tr>

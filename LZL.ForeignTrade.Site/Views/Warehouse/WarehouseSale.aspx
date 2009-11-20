@@ -138,7 +138,7 @@
        { %>
     <table width="100%" class="list">
         <caption>
-            生产管理</caption>
+            领料管理</caption>
         <thead>
             <tr>
                 <td colspan="2">

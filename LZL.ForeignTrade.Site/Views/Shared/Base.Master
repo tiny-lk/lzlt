@@ -49,6 +49,8 @@
 
     <script type="text/javascript" src='<%= Url.Content("~/Scripts/jquery.corner.js")%>'></script>
 
+    <script type="text/javascript" src='<%= Url.Content("~/Scripts/ui/ui.datepicker-zh-CN.js")%>'></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $.validator.setDefaults();
@@ -86,9 +88,17 @@
             $('.calendar').datepicker({
                 changeMonth: true,
                 changeYear: true,
-                dateFormat: 'yy/m/d',
+                dateFormat: 'yy/mm/dd',
                 firstDay: 1
             });
+            
+            $('.calendarnumber').datepicker({
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yymm',
+                firstDay: 1
+            });
+            
         }
     </script>
 

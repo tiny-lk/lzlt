@@ -35,7 +35,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("ForeignTradeModel", "FK_StockContractsExportContracts_StockContracts", "StockContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LZL.ForeignTrade.DataEntity.StockContracts), "StockContractsExportContracts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LZL.ForeignTrade.DataEntity.StockContractsExportContracts))]
 
 // 原始文件名:
-// 生成日期: 2009/11/1 20:54:36
+// 生成日期: 2009/11/18 19:20:22
 namespace LZL.ForeignTrade.DataEntity
 {
     
@@ -5660,6 +5660,29 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnEditDateChanged();
         /// <summary>
+        /// 架构中不存在属性 CreditAmount 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<double> CreditAmount
+        {
+            get
+            {
+                return this._CreditAmount;
+            }
+            set
+            {
+                this.OnCreditAmountChanging(value);
+                this.ReportPropertyChanging("CreditAmount");
+                this._CreditAmount = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("CreditAmount");
+                this.OnCreditAmountChanged();
+            }
+        }
+        private global::System.Nullable<double> _CreditAmount;
+        partial void OnCreditAmountChanging(global::System.Nullable<double> value);
+        partial void OnCreditAmountChanged();
+        /// <summary>
         /// 架构中不存在 InvoiceExportContracts 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_InvoiceExportContracts_Invoice", "InvoiceExportContracts")]
@@ -8075,6 +8098,29 @@ namespace LZL.ForeignTrade.DataEntity
         partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnEditDateChanged();
         /// <summary>
+        /// 架构中不存在属性 Date 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<int> Date
+        {
+            get
+            {
+                return this._Date;
+            }
+            set
+            {
+                this.OnDateChanging(value);
+                this.ReportPropertyChanging("Date");
+                this._Date = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Date");
+                this.OnDateChanged();
+            }
+        }
+        private global::System.Nullable<int> _Date;
+        partial void OnDateChanging(global::System.Nullable<int> value);
+        partial void OnDateChanged();
+        /// <summary>
         /// 架构中不存在 ProductCustomer 的注释。
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("ForeignTradeModel", "FK_ProductCustomer_Product", "ProductCustomer")]
@@ -9213,6 +9259,52 @@ namespace LZL.ForeignTrade.DataEntity
         private global::System.Nullable<global::System.DateTime> _EditDate;
         partial void OnEditDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnEditDateChanged();
+        /// <summary>
+        /// 架构中不存在属性 PurchasePrice 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<double> PurchasePrice
+        {
+            get
+            {
+                return this._PurchasePrice;
+            }
+            set
+            {
+                this.OnPurchasePriceChanging(value);
+                this.ReportPropertyChanging("PurchasePrice");
+                this._PurchasePrice = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("PurchasePrice");
+                this.OnPurchasePriceChanged();
+            }
+        }
+        private global::System.Nullable<double> _PurchasePrice;
+        partial void OnPurchasePriceChanging(global::System.Nullable<double> value);
+        partial void OnPurchasePriceChanged();
+        /// <summary>
+        /// 架构中不存在属性 RMBExportAmount 的注释。
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Nullable<double> RMBExportAmount
+        {
+            get
+            {
+                return this._RMBExportAmount;
+            }
+            set
+            {
+                this.OnRMBExportAmountChanging(value);
+                this.ReportPropertyChanging("RMBExportAmount");
+                this._RMBExportAmount = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("RMBExportAmount");
+                this.OnRMBExportAmountChanged();
+            }
+        }
+        private global::System.Nullable<double> _RMBExportAmount;
+        partial void OnRMBExportAmountChanging(global::System.Nullable<double> value);
+        partial void OnRMBExportAmountChanged();
         /// <summary>
         /// 架构中不存在 ExportContracts 的注释。
         /// </summary>

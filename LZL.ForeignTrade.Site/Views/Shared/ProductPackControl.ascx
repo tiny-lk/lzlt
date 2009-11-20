@@ -19,11 +19,33 @@
 
         $(document).ready(function() {
             $("#ProductPack°·SinglePackBulk").bind("dblclick", function() {
-                var tj = Number($("#ProductPack°·PackLength").val()) * Number($("#ProductPack°·PackWidth").val()) * Number($("#ProductPack°·PackWidth").val());
+                var tj = Number($("#ProductPack°·PackLength").val() / 100) * Number($("#ProductPack°·PackWidth").val() / 100) * Number($("#ProductPack°·PackHeight").val() / 100);
                 if (tj != 0) {
                     $("#ProductPack°·SinglePackBulk").val(tj.toFixed(2));
                 }
             });
+
+            $("#ProductPack°·PackBulk").bind("dblclick", function() {
+                var tj = Number($("#ProductPack°·SinglePackBulk").val()) * Number($("#ProductPack°·SingleProductAmount").val());
+                if (tj != 0) {
+                    $("#ProductPack°·PackBulk").val(tj.toFixed(2));
+                }
+            });
+
+            $("#ProductPack°·GrossWeight").bind("dblclick", function() {
+                var tj = Number($("#ProductPack°·SingleGrossWeight").val()) * Number($("#ProductPack°·SingleProductAmount").val());
+                if (tj != 0) {
+                    $("#ProductPack°·GrossWeight").val(tj.toFixed(2));
+                }
+            });
+
+            $("#ProductPack°·NetWeight").bind("dblclick", function() {
+                var tj = Number($("#ProductPack°·SingleNetWeight").val()) * Number($("#ProductPack°·SingleProductAmount").val());
+                if (tj != 0) {
+                    $("#ProductPack°·NetWeight").val(tj.toFixed(2));
+                }
+            });
+
         });
 
         function toggle(obj) {
@@ -119,19 +141,19 @@
                                     if (obj != null)
                                     {
                                         Response.Write(Html.Hidden("ProductPack°·ProductID", Html.Encode(Model[i].ProductID), new { copyvalue = true }));
-                                        Response.Write(Html.TextBox("_ProductPack°·ProductID", Html.Encode(obj.NameCode)));;
+                                        Response.Write(Html.TextBox("_ProductPack°·ProductID", Html.Encode(obj.NameCode))); ;
                                     }
                                     else
                                     {
                                         Response.Write(Html.Hidden("ProductPack°·ProductID", "", new { copyvalue = true }));
                                         Response.Write(Html.TextBox("_ProductPack°·ProductID"));
-                                       
+
                                     }
                                 }
                                 else
                                 {
                                     Response.Write(Html.Hidden("ProductPack°·ProductID", "", new { copyvalue = true }));
-                                    Response.Write(Html.TextBox("_ProductPack°·ProductID"));  
+                                    Response.Write(Html.TextBox("_ProductPack°·ProductID"));
                                 }
                                 Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>—°‘Ò</a>");
                             }

@@ -2,7 +2,7 @@
     Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    销货信息
+    领料管理
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -26,19 +26,19 @@
     %>
     <table class="list" width="100%">
         <caption>
-            销货信息</caption>
+            领料信息</caption>
         <tr>
             <td align="center" rowspan="3" style="width: 10%;">
-                销货信息
+                领料信息
             </td>
             <td align="right" style="width: 15%;">
-                销货日期：
+                领料日期：
             </td>
             <td align="left" style="width: 30%;">
                 <%=Html.TextBox("WarehouseSale♂SaleDate", "", new { validate = "required:true,date:true", Class = "calendar" })%>
             </td>
             <td align="right" style="width: 15%;">
-                销售数量：
+                领料数量：
             </td>
             <td align="left" style="width: 30%;">
                 <%=Html.TextBox("WarehouseSale♂SaleCount", "", new { validate = "number:true" })%>
@@ -52,7 +52,7 @@
                 <%=Html.TextBox("WarehouseSale♂SalePrice", "", new { validate = "number:true" })%>
             </td>
             <td align="right">
-                销售重量：
+                领料重量：
             </td>
             <td align="left">
                 <%=Html.TextBox("WarehouseSale♂SaleWeight", "", new { validate = "number:true" })%>
@@ -60,7 +60,7 @@
         </tr>
         <tr>
             <td align="right">
-                销售类别编号：
+                领料类别编号：
             </td>
             <td align="left" colspan="3">
                 <%=Html.TextBox("WarehouseSale♂SaleNo")%>
