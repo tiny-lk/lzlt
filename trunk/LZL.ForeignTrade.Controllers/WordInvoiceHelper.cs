@@ -169,6 +169,10 @@ namespace LZL.ForeignTrade.Controllers
                     }
                 }
                 invoice.ProductPack.Load();
+
+                wordhelper.GotoBookMark("contenttitle");
+                wordhelper.InsertText(invoice.PriceClause + "   " + invoice.StartHaven + ",CHINA");
+
                 Table table = wordhelper.AddTable(wordhelper.GotoBookMark("content"), invoice.ProductPack.Count + 2, 7);
                 table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
                 table.PreferredWidth = 95;
