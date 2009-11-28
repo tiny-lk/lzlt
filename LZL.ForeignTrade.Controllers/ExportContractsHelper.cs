@@ -33,6 +33,29 @@ namespace LZL.ForeignTrade.Controllers
                 wordhelper.InsertText(exportContracts.Name);
                 wordhelper.GotoBookMark("date");
                 wordhelper.InsertText(exportContracts.Date.ToShortDateString());
+                if (!string.IsNullOrEmpty(exportContracts.Type))
+                {
+                    Guid typeguid = new Guid(exportContracts.Type);
+                    LZL.ForeignTrade.DataEntity.Dictionary dictionarytype = _Entities.Dictionary.Where(v => v.ID.Equals(typeguid)).FirstOrDefault();
+                    if (dictionarytype != null)
+                    {
+                        wordhelper.GotoBookMark("contracttype");
+                        string typename = dictionarytype.Name.Substring(0, 2);
+                        if (typename.Equals("草拟", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            wordhelper.InsertText("（" + typename + "）");
+                            wordhelper.GotoBookMark("contracttypeen");
+                            wordhelper.InsertText("（draft）");
+                        }
+                        else if (typename.Equals("无效", StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            wordhelper.InsertText("（" + typename + "）");
+                            wordhelper.GotoBookMark("contracttypeen");
+                            wordhelper.InsertText("（Invalid）");
+                        }
+                    }
+                }
+                
 
                 if (exportContracts.CompanyID.HasValue)
                 {
