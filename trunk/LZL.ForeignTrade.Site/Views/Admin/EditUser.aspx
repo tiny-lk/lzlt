@@ -4,9 +4,6 @@
     编辑用户
 </asp:Content>
 <asp:Content ID="EditUserContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
-        编辑用户</h2>
-
     <script type="text/javascript">
         $(document).ready(function() {
             $("input[name='Return']").bind("click", function() {

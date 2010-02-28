@@ -91,14 +91,14 @@
                 dateFormat: 'yy/mm/dd',
                 firstDay: 1
             });
-            
+
             $('.calendarnumber').datepicker({
                 changeMonth: true,
                 changeYear: true,
                 dateFormat: 'yymm',
                 firstDay: 1
             });
-            
+
         }
     </script>
 
@@ -339,9 +339,16 @@
                     功能信息
                 </div>
                 <div id="treecontent">
-                    <div id="Div1">
+                    <%--                <div id="Div1">
                         <% Html.RenderPartial("MenuMain"); %>
-                    </div>
+                    </div>--%>
+                    <form id="Form1" runat="server">
+                    <asp:TreeView ID="menuview" runat="server" DataSourceID="SiteMapDataSource" 
+                        ImageSet="Arrows">
+                        <SelectedNodeStyle BackColor="#BDE8FE" />
+                    </asp:TreeView>
+                    <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
+                    </form>
                 </div>
                 <div class="main">
                     <div id="sidebarparent">
