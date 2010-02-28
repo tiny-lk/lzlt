@@ -10,6 +10,7 @@
     <div id="sidebar">
         <%= Html.ActionLink("用户管理", "ManageUser", "Admin", null, new { Class = "button" })%>
         <%= Html.ActionLink("角色管理", "ManageRole", "Admin", null, new { Class = "button" })%>
+        <%= Html.ActionLink("菜单管理", "ManageMenu", "Admin", null, new { Class = "button" })%>
         <%= Html.ActionLink("数据字典", "ManageDictionary", "Admin", null, new { Class = "button" })%>
         <%= Html.ActionLink("部门管理", "ManageDepartment", "Admin", null, new { Class = "button" })%>
         <%= Html.ActionLink("公司管理", "ManageCompany", "Admin", null, new { Class = "button" })%>
