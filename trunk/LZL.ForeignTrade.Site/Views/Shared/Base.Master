@@ -335,7 +335,7 @@
         </div>
         <div class="maincontent">
             <div class="content">
-                <div id="tree" style=">
+                <div id="tree">
                     功能信息
                 </div>
                 <div id="treecontent" style="margin-left:0; padding-left:0;">
