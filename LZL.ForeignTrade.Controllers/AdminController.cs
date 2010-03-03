@@ -555,7 +555,19 @@ namespace LZL.ForeignTrade.Controllers
             _Entities.SaveChanges();
             return RedirectToAction("ManageDepartment");
         }
+        
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ManageMenu()
+        {
+            return View();
+        }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult ManageMenu()
+        {
+            
+            return View();
+        }
         #endregion
     }
 }
