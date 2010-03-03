@@ -335,10 +335,10 @@
         </div>
         <div class="maincontent">
             <div class="content">
-                <div id="tree">
+                <div id="tree" style=">
                     功能信息
                 </div>
-                <div id="treecontent">
+                <div id="treecontent" style="margin-left:0; padding-left:0;">
                     <%--                <div id="Div1">
                         <% Html.RenderPartial("MenuMain"); %>
                     </div>--%>
