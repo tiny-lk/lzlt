@@ -236,19 +236,19 @@
                     <td align="right">
                         付款方式补充说明：
                     </td>
-                    <td align="left">
+                    <td align="left" colspan="3">
                         <%= Html.TextArea("Invoice♂ClauseTypeNote", Html.Encode(Model.ClauseTypeNote), new { style = "width:99%; height:40px;" })%>
                     </td>
-                    <td align="right">
+                 <%--   <td align="right">
                         发票类型：
                     </td>
                     <td align="left">
                         <%= Html.DropDownList("Invoice♂Type", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("发票类型", Html.Encode(Model.Type)), "请选择")%>
-                    </td>
+                    </td>--%>
                 </tr>
                 <tr>
                     <td align="right">
-                        选择客户：
+                        收货人：
                     </td>
                     <td align="left">
                         <%
@@ -275,7 +275,7 @@
                         %>
                     </td>
                     <td align="right">
-                        公司简称：
+                        托运人：
                     </td>
                     <td align="left">
                         <%
