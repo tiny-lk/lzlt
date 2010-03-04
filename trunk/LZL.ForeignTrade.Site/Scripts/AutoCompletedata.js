@@ -1,5 +1,7 @@
 ﻿function autocompletedictionary(name, type) {
-    $("#" + name).autocomplete('/Shared/GetDictionary',
+    $("#" + name).autocomplete(
+    //'/Shared/GetDictionary',
+    '<%= Url.Content("~/Shared/GetDictionary")%>', //change by lj(如果不用这种方式，在iis中浏览路径找不到)
                 { max: 20,
                     highlight: false,
                     multiple: false,
