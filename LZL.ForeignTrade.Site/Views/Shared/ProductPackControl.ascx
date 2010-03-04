@@ -226,7 +226,7 @@
                 <td align="right">
                     包装件数：
                 </td>
-                <td align="left">
+                <td align="left" colspan="3">
                     <%
                         if (Model == null)
                         {
@@ -245,7 +245,7 @@
                         }
                     %>
                 </td>
-                <td align="right">
+                <%--<td align="right">
                     包装单位(中文)：
                 </td>
                 <td align="left">
@@ -266,7 +266,7 @@
                             }
                         }
                     %>
-                </td>
+                </td>--%>
             </tr>
             <tr>
                 <td align="right">
@@ -453,7 +453,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">
+               <%-- <td align="right">
                     内盒单位(中文)：
                 </td>
                 <td align="left">
@@ -474,11 +474,11 @@
                             }
                         }
                     %>
-                </td>
+                </td>--%>
                 <td align="right">
                     内盒单位(英文)：
                 </td>
-                <td align="left">
+                <td align="left" colspan="3">
                     <%
                         if (Model == null)
                         {

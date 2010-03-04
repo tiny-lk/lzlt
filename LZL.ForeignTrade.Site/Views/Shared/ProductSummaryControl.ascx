@@ -197,7 +197,7 @@
                 <td align="right">
                     商品进货单价：
                 </td>
-                <td align="left">
+                <td align="left" colspan="3">
                     <%
                         if (Model == null)
                         {
@@ -216,7 +216,7 @@
                         }
                     %>
                 </td>
-                <td align="right">
+               <%-- <td align="right">
                     人民币出货单价：
                 </td>
                 <td align="left">
@@ -237,7 +237,7 @@
                             }
                         }
                     %>
-                </td>
+                </td>--%>
             </tr>
             <tr>
                 <td align="right">
@@ -262,7 +262,7 @@
                         }
                     %>
                 </td>
-                <td align="right">
+                <td align="left">
                     商品描述（英文）：
                 </td>
                 <td align="left">
