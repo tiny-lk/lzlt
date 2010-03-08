@@ -562,12 +562,12 @@ namespace LZL.ForeignTrade.Controllers
             return View();
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult ManageMenu()
-        {
+        //[AcceptVerbs(HttpVerbs.Post)]
+        //public ActionResult ManageMenu()
+        //{
             
-            return View();
-        }
+        //    return View();
+        //}
         #endregion
     }
 }

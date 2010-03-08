@@ -591,6 +591,6 @@
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
         class="button">出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
-            class="button">商品信息</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
-                class="button">商品包装</a>
+            class="button4">添加商品信息</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
+                class="button4">添加商品包装</a>
 </asp:Content>
