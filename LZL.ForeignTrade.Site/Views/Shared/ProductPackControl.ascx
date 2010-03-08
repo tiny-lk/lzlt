@@ -174,7 +174,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="center" valign="middle" rowspan="10" style="width: 10%;">
+                <td align="center" valign="middle" rowspan="9" style="width: 10%;">
                     包装信息
                 </td>
                 <td align="right" style="width: 15%;">
@@ -266,9 +266,13 @@
                             }
                         }
                     %>
+<<<<<<< .mine
+                </td>--%>
+=======
                 </td>--%>
             </tr>
             <tr>
+>>>>>>> .r171
                 <td align="right">
                     包装单位（英文）：
                 </td>
@@ -291,6 +295,8 @@
                         }
                     %>
                 </td>
+            </tr>
+            <tr>
                 <td align="right">
                     包装长度(CM)：
                 </td>
@@ -313,8 +319,6 @@
                         }
                     %>
                 </td>
-            </tr>
-            <tr>
                 <td align="right">
                     包装宽度（CM）：
                 </td>
@@ -337,6 +341,8 @@
                         }
                     %>
                 </td>
+            </tr>
+            <tr>
                 <td align="right">
                     包装高度(CM)：
                 </td>
@@ -359,8 +365,6 @@
                         }
                     %>
                 </td>
-            </tr>
-            <tr>
                 <td align="right">
                     (单件)包装体积(CBM)：
                 </td>
@@ -383,6 +387,8 @@
                         }
                     %>
                 </td>
+            </tr>
+            <tr>
                 <td align="right">
                     包装总体积(CBM)：
                 </td>
@@ -405,8 +411,6 @@
                         }
                     %>
                 </td>
-            </tr>
-            <tr>
                 <td align="right">
                     内盒商品数量：
                 </td>
@@ -429,6 +433,8 @@
                         }
                     %>
                 </td>
+            </tr>
+            <tr>
                 <td align="right">
                     (单包装)内盒件数：
                 </td>
@@ -451,9 +457,13 @@
                         }
                     %>
                 </td>
+<<<<<<< .mine
+                <%--             <td align="right">
+=======
             </tr>
             <tr>
                <%-- <td align="right">
+>>>>>>> .r171
                     内盒单位(中文)：
                 </td>
                 <td align="left">
