@@ -216,7 +216,7 @@
                         }
                     %>
                 </td>
-               <%-- <td align="right">
+                <%-- <td align="right">
                     人民币出货单价：
                 </td>
                 <td align="left">

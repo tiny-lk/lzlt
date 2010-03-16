@@ -22,6 +22,16 @@ namespace LZL.ForeignTrade.Controllers
             return View(querylist);
         }
 
+        public ActionResult ProductSummaryIndex2(string invovceId)
+        {
+            Entities entities = new Entities();
+            Guid guid = new Guid(invovceId);
+            var invoice = entities.Invoice.Where(v => v.ID.Equals(guid)).ToList();
+            var productSummary = invoice.Select(v => v.ProductSummary);
+            ViewData["pagecount"] = productSummary.Count();
+            return View(productSummary);
+        }
+
         public ActionResult Details(string id)
         {
             Entities _Entities = new Entities();
