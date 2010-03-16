@@ -2513,7 +2513,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="ForeignTrade">
+      <Diagram Name="ForeignTrade" ZoomLevel="95">
         <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesBuy" Width="1.5" PointX="11.75" PointY="6.375" Height="2.9251310221354148" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesChildBuy" Width="1.5" PointX="14" PointY="6.25" Height="3.1161507161458344" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.ColorWarehouseSale" Width="1.5" PointX="19.25" PointY="5.75" Height="4.0712491861979148" IsExpanded="true" />

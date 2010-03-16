@@ -18,33 +18,40 @@
         });
 
         $(document).ready(function() {
-            $("#ProductPack♂SinglePackBulk").bind("dblclick", function() {
-                var tj = Number($("#ProductPack♂PackLength").val() / 100) * Number($("#ProductPack♂PackWidth").val() / 100) * Number($("#ProductPack♂PackHeight").val() / 100);
+            $("#ProductPack♂PieceAmount").bind("dblclick", function() {
+                var tj = Number($("#ProductPack♂ProductAmount").val()) * Number($("#ProductPack♂SingleProductAmount").val());
                 if (tj != 0) {
-                    $("#ProductPack♂SinglePackBulk").val(tj.toFixed(2));
+                    $("#ProductPack♂PieceAmount").val(tj.toFixed(2));
                 }
-            });
+            }); //包装件数
+
+            $("#ProductPack♂SinglePackBulk").bind("dblclick", function() {
+                var tj = Number($("#ProductPack♂PackLength").val()) * Number($("#ProductPack♂PackWidth").val()) * Number($("#ProductPack♂PackHeight").val());
+                if (tj != 0) {
+                    $("#ProductPack♂SinglePackBulk").val(tj.toFixed(2) / 1000000);
+                }
+            }); //(单件)包装体积(CBM) 
 
             $("#ProductPack♂PackBulk").bind("dblclick", function() {
                 var tj = Number($("#ProductPack♂SinglePackBulk").val()) * Number($("#ProductPack♂SingleProductAmount").val());
                 if (tj != 0) {
                     $("#ProductPack♂PackBulk").val(tj.toFixed(2));
                 }
-            });
+            }); //总包装体积
 
             $("#ProductPack♂GrossWeight").bind("dblclick", function() {
                 var tj = Number($("#ProductPack♂SingleGrossWeight").val()) * Number($("#ProductPack♂SingleProductAmount").val());
                 if (tj != 0) {
                     $("#ProductPack♂GrossWeight").val(tj.toFixed(2));
                 }
-            });
+            }); // 总包装毛重
 
             $("#ProductPack♂NetWeight").bind("dblclick", function() {
                 var tj = Number($("#ProductPack♂SingleNetWeight").val()) * Number($("#ProductPack♂SingleProductAmount").val());
                 if (tj != 0) {
                     $("#ProductPack♂NetWeight").val(tj.toFixed(2));
                 }
-            });
+            }); //总包装净重
 
         });
 
@@ -266,13 +273,9 @@
                             }
                         }
                     %>
-<<<<<<< .mine
-                </td>--%>
-=======
                 </td>--%>
             </tr>
             <tr>
->>>>>>> .r171
                 <td align="right">
                     包装单位（英文）：
                 </td>
@@ -457,13 +460,10 @@
                         }
                     %>
                 </td>
-<<<<<<< .mine
-                <%--             <td align="right">
-=======
+                <%--<td align="right">
             </tr>
             <tr>
                <%-- <td align="right">
->>>>>>> .r171
                     内盒单位(中文)：
                 </td>
                 <td align="left">

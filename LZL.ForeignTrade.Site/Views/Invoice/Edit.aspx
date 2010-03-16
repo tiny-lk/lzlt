@@ -40,7 +40,6 @@
                 }
             });
         }
-        
     </script>
 
     <script type="text/javascript">
@@ -155,7 +154,6 @@
             <thead align="center">
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="submit" class="button" value="提 交" />
                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                             type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Invoice/Index") %>'" />
                     </td>
@@ -239,7 +237,7 @@
                     <td align="left" colspan="3">
                         <%= Html.TextArea("Invoice♂ClauseTypeNote", Html.Encode(Model.ClauseTypeNote), new { style = "width:99%; height:40px;" })%>
                     </td>
-                 <%--   <td align="right">
+                    <%--   <td align="right">
                         发票类型：
                     </td>
                     <td align="left">
@@ -702,13 +700,10 @@
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
-<<<<<<< .mine
         class="button">出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
             class="button4">添加商品信息</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
                 class="button4">添加商品包装</a>
-=======
-        class="button4">关联出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
-            class="button4">添加商品信息</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
-                class="button4">添加商品包装</a>
->>>>>>> .r171
+    <%= Html.ActionLink("商品信息列表", "ProductSummaryIndex", new { invovceId = Html.Encode(Model.ID.ToString()) }, new { Class = "button4" })%>
+    <a href="#" onclick="" class="button4">包装信息列表</a>
+    <input type="submit" class="button" value="提 交" />
 </asp:Content>

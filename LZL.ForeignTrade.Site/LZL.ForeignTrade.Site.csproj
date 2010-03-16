@@ -336,6 +336,7 @@
     <None Include="DocTemplate\Template\invoice.doc" />
     <None Include="DocTemplate\Template\packinglist.doc" />
     <Content Include="Views\Admin\ManageMenu.aspx" />
+    <Content Include="Views\Invoice\ProductSummaryIndex2.aspx" />
     <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
