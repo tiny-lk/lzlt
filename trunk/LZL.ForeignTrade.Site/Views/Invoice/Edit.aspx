@@ -40,6 +40,10 @@
                 }
             });
         }
+
+        function submitInfo() {
+            $("#btnTj").click();
+        }
     </script>
 
     <script type="text/javascript">
@@ -641,7 +645,7 @@
             <tfoot>
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="submit" class="button" value="提 交" />
+                        <input type="submit" style="display:none" class="button" id="btnTj" value="提 交" />
                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                             type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Invoice/Index") %>'" />
                     </td>
@@ -650,7 +654,7 @@
         </table>
         <table class="list" width="100%" id="tabs-2">
             <caption>
-                商品信息动态区域
+                商品信息动态区域[请点击“添加商品信息”按钮]
             </caption>
             <%
                 Model.ProductSummary.Load();
@@ -673,7 +677,7 @@
         </table>
         <table class="list" width="100%" id="tabs-3">
             <caption>
-                商品包装信息动态区域
+                商品包装信息动态区域[请点击“添加商品包装”按钮]
             </caption>
             <!-- 商品包装信息 -->
             <%
@@ -703,7 +707,7 @@
         class="button">出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
             class="button4">添加商品信息</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
                 class="button4">添加商品包装</a>
-    <%= Html.ActionLink("商品信息列表", "ProductSummaryIndex", new { invovceId = Html.Encode(Model.ID.ToString()) }, new { Class = "button4" })%>
+    <%= Html.ActionLink("商品信息列表", "ProductSummaryIndex2", new { invovceId = Html.Encode(Model.ID.ToString()) }, new { Class = "button4" })%>
     <a href="#" onclick="" class="button4">包装信息列表</a>
-    <input type="submit" class="button" value="提 交" />
+    <a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>

@@ -18,6 +18,17 @@
         });
 
         $(document).ready(function() {
+            $("#ProductPack♂PieceAmount").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂PieceAmount").attr("border-color", "red");
+            $("#ProductPack♂SinglePackBulk").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂SinglePackBulk").attr("border-color", "Silver");
+            $("#ProductPack♂PackBulk").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂PackBulk").attr("border-color", "Silver");
+            $("#ProductPack♂GrossWeight").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂GrossWeight").attr("border-color", "Silver");
+            $("#ProductPack♂NetWeight").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂NetWeight").attr("border-color", "Silver");
+
             $("#ProductPack♂PieceAmount").bind("dblclick", function() {
                 var tj = Number($("#ProductPack♂ProductAmount").val()) * Number($("#ProductPack♂SingleProductAmount").val());
                 if (tj != 0) {
