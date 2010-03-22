@@ -9,12 +9,11 @@
           <StartPageUrl>Default.aspx</StartPageUrl>
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
-          <SilverlightDebugging>False</SilverlightDebugging>
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <PublishCopyOption>RunFiles</PublishCopyOption>
-          <PublishTargetLocation>E:\Project\外贸\ForeignWeb\</PublishTargetLocation>
-          <PublishDeleteAllFiles>False</PublishDeleteAllFiles>
+          <PublishTargetLocation>D:\GeoWebMap\Wmrj\</PublishTargetLocation>
+          <PublishDeleteAllFiles>True</PublishDeleteAllFiles>
           <PublishCopyAppData>True</PublishCopyAppData>
           <ExternalProgram>
           </ExternalProgram>
