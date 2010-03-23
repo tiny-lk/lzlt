@@ -363,7 +363,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Customer")%>');"
-        class="button">供应商</a> <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Customer")%>');"
-            class="button">客户商品</a> <a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>','商品图片类型');"
-                class="button">商品图片</a>
+        class="button4">关联供应商</a> <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Customer")%>');"
+            class="button">关联客户</a> <a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>','商品图片类型');"
+                class="button4">添加商品图片</a>
 </asp:Content>

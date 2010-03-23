@@ -7,4 +7,5 @@
     <% Html.RenderPartial("PriceIndex", Model); %>
 </asp:Content>
 <asp:Content ID="ChildContent" ContentPlaceHolderID="ChildActionContent" runat="server">
+ <%= Html.ActionLink("Ìí ¼Ó", "Add", "Price", null, new { Class="button"})%>
 </asp:Content>

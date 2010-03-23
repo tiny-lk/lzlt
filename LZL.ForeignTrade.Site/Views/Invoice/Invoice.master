@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="InvoiceSidebar" ContentPlaceHolderID="SidebarContent" runat="server">
     <div id="sidebar">
-        <%= Html.ActionLink("添 加", "Add", "Invoice", null, new { Class="button"})%>
+        
         <asp:ContentPlaceHolder ID="ChildActionContent" runat="server" />
     </div>
 </asp:Content>

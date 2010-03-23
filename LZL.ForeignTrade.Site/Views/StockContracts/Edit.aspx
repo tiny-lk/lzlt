@@ -419,7 +419,7 @@
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('StockContractsExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","ExportContracts")%>');"
-        class="button">出口合同</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
-            class="button">商品包装</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
-                class="button">商品包装</a>
+        class="button4">关联出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'StockContracts')"
+            class="button4">添加商品</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
+                class="button4">添加商品包装</a>
 </asp:Content>
