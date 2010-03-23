@@ -216,7 +216,7 @@
     <%} %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <a href="#" onclick="addcontrol(this,'LinkmanControl','Linkman♂',1,'Customer')" class="button">
-        联系人</a> <a href="#" onclick="addcontrol(this,'MemorandumControl','Memorandum♂',1,'Customer')"
-            class="button">备忘录</a>
+    <a href="#" onclick="addcontrol(this,'LinkmanControl','Linkman♂',1,'Customer')" class="button4">
+        添加联系人</a> <a href="#" onclick="addcontrol(this,'MemorandumControl','Memorandum♂',1,'Customer')"
+            class="button4">添加备忘录</a>
 </asp:Content>

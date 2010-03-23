@@ -30,9 +30,11 @@
             //$("#ProductPack♂NetWeight").attr("border-color", "Silver");
 
             $("#ProductPack♂PieceAmount").bind("dblclick", function() {
-                var tj = Number($("#ProductPack♂ProductAmount").val()) * Number($("#ProductPack♂SingleProductAmount").val());
-                if (tj != 0) {
-                    $("#ProductPack♂PieceAmount").val(tj.toFixed(2));
+                if ($("#ProductPack♂SingleProductAmount").val() != "") {
+                    var tj = Number($("#ProductPack♂ProductAmount").val()) / Number($("#ProductPack♂SingleProductAmount").val());
+                    if (tj != 0) {
+                        $("#ProductPack♂PieceAmount").val(tj.toFixed(2));
+                    }
                 }
             }); //包装件数
 
@@ -44,21 +46,21 @@
             }); //(单件)包装体积(CBM) 
 
             $("#ProductPack♂PackBulk").bind("dblclick", function() {
-                var tj = Number($("#ProductPack♂SinglePackBulk").val()) * Number($("#ProductPack♂SingleProductAmount").val());
+            var tj = Number($("#ProductPack♂SinglePackBulk").val()) * Number($("#ProductPack♂PieceAmount").val());
                 if (tj != 0) {
                     $("#ProductPack♂PackBulk").val(tj.toFixed(2));
                 }
             }); //总包装体积
 
             $("#ProductPack♂GrossWeight").bind("dblclick", function() {
-                var tj = Number($("#ProductPack♂SingleGrossWeight").val()) * Number($("#ProductPack♂SingleProductAmount").val());
+            var tj = Number($("#ProductPack♂SingleGrossWeight").val()) * Number($("#ProductPack♂PieceAmount").val());
                 if (tj != 0) {
                     $("#ProductPack♂GrossWeight").val(tj.toFixed(2));
                 }
             }); // 总包装毛重
 
             $("#ProductPack♂NetWeight").bind("dblclick", function() {
-                var tj = Number($("#ProductPack♂SingleNetWeight").val()) * Number($("#ProductPack♂SingleProductAmount").val());
+            var tj = Number($("#ProductPack♂SingleNetWeight").val()) * Number($("#ProductPack♂PieceAmount").val());
                 if (tj != 0) {
                     $("#ProductPack♂NetWeight").val(tj.toFixed(2));
                 }

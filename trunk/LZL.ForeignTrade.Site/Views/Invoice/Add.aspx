@@ -220,15 +220,15 @@
                     <td align="right">
                         付款方式补充说明：
                     </td>
-                    <td align="left">
+                    <td align="left" colspan="3">
                         <%= Html.TextArea("Invoice♂ClauseTypeNote", new { style = "width:99%; height:40px;" })%>
                     </td>
-                    <td align="right">
+                   <%-- <td align="right">
                         发票类型：
                     </td>
                     <td align="left">
                         <%= Html.DropDownList("Invoice♂Type", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("发票类型"), "请选择")%>
-                    </td>
+                    </td>--%>
                 </tr>
                 <tr>
                     <td align="right">
@@ -593,7 +593,7 @@
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
-        class="button">出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
+        class="button4">关联出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
             class="button4">添加商品信息</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
                 class="button4">添加商品包装</a>
     <a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
