@@ -227,7 +227,8 @@ namespace LZL.ForeignTrade.Controllers
             {
                 sql += " where  it." + quyerCondition + " = '" + queryvalue + "'";
             }
-            sql += " order by it." + quyerCondition;
+            //sql += " order by it." + quyerCondition;
+            sql += " order by it.code asc";
             sql += " Skip " + (pagesize * ((page ?? 1) - 1)) + " limit " + pagesize.ToString();
             var querylist = entities.CreateQuery<Dictionary>(sql).ToList();
             return querylist;
