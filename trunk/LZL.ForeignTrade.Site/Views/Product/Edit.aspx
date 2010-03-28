@@ -22,7 +22,7 @@
                 }
             });
         }
-        
+
         $(document).ready(function() {
             $("#Product♂PackBulk").bind("dblclick", function() {
                 var tj = Number($("#Product♂PackLength").val()) * Number($("#Product♂PackWidth").val()) * Number($("#Product♂PackWidth").val());
@@ -31,8 +31,8 @@
                 }
             });
         });
-        
-        function addImage(key,n) {
+
+        function addImage(key, n) {
             $("#imagemodedialog").remove();
             $("body").append("<div id='imagemodedialog'></div>");
             $.ajax({
@@ -61,6 +61,10 @@
                 }
             });
         }
+
+        function submitInfo() {
+            $("#btnTj").click();
+        }
     </script>
 
     <% using (Html.BeginForm())
@@ -77,7 +81,7 @@
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" class="button" value="提 交" />
+                    
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                         type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Action("Index","Product")%>'" />
                 </td>
@@ -352,7 +356,7 @@
         <tfoot>
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" class="button" value="提 交" />
+                    <input type="submit" style="display:none" class="button" id="btnTj" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                         type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Action("Index","Product")%>'" />
                 </td>
@@ -365,5 +369,5 @@
     <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','01','gysxx','<%=Url.Action("Details","Customer")%>');"
         class="button4">关联供应商</a> <a href="#" onclick="opengys('ProductCustomer♂','Customer♂ID','02','khspxx','<%=Url.Action("Details","Customer")%>');"
             class="button">关联客户</a> <a href="#" onclick="addImage('<%=Html.Encode(Model.ID.ToString()) %>','商品图片类型');"
-                class="button4">添加商品图片</a>
+                class="button4">添加商品图片</a><a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>
