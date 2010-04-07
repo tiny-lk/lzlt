@@ -12,6 +12,7 @@
     <%= Html.Hidden("ProductSummary¡áiscreatedate", "CreateDate")%>
     <%= Html.Hidden("ProductSummary¡áiseditdate", "EditDate")%>
 
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#ProductSummary¡á').css("display", "");
