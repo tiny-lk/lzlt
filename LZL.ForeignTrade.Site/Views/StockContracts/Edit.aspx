@@ -116,6 +116,10 @@
                     $("input[name='StockContracts♂CompanyID']").val("");
                 }
             });
+
+            //初始化点击事件
+            $("#hrSpxx").click();
+            $("#hrSpbz").click();
         });
     </script>
 
@@ -371,7 +375,7 @@
         </table>
         <table class="list" width="100%" id="tabs-2">
             <caption>
-                商品信息动态区域
+                商品信息
             </caption>
             <%
                 Model.ProductSummary.Load();
@@ -394,7 +398,7 @@
         </table>
         <table class="list" width="100%" id="tabs-3">
             <caption>
-                商品包装信息动态区域
+                商品包装信息
             </caption>
             <%
                 Model.ProductPack.Load();
@@ -421,7 +425,7 @@
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('StockContractsExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","ExportContracts")%>');"
-        class="button4">关联出口合同</a> <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'StockContracts')"
-            class="button4">添加商品</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
+        class="button4">关联出口合同</a> <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'StockContracts')"
+            class="button4">添加商品</a><a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
                 class="button4">添加商品包装</a><a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>
