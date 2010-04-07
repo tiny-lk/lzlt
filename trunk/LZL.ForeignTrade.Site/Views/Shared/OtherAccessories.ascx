@@ -13,7 +13,7 @@
     <%= Html.Hidden("AccessoriesChildBuy♂iseditdate", "EditDate")%>
     <center>
         <h3>
-            其它辅助动态区域</h3>
+            其它辅助</h3>
     </center>
 
     <script type="text/javascript">

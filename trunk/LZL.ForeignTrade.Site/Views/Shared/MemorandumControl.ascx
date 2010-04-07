@@ -13,7 +13,7 @@
     <%= Html.Hidden("Memorandum♂iseditdate", "EditDate")%>
     <center>
         <h3>
-            备忘录动态区域</h3>
+            备忘录</h3>
     </center>
 
     <script type="text/javascript">
