@@ -7,7 +7,7 @@ function addregion(regionname) {
         var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
         $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
     }
-debugger
+
     var copyobj = $(regionname).closest("div[id='regioncontent']")
     var copyhtml = $(copyobj).clone(true);
     $.each($(copyhtml).find("input[type='hidden']"), function(i, o) {
@@ -25,7 +25,7 @@ debugger
 
 //删除区域模版
 function deleteregion(regionname) {
-debugger
+
     var obj = $(regionname).closest("div[id='regioncontent']");
     $.each($(obj).siblings("div[id='region']").find("input[type='hidden']"), function(i, o) {
         if ($(o).attr("name").search("regioncount") != -1) {
