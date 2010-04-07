@@ -11,123 +11,71 @@
     <input type="hidden" name="ProductPack♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "ExportContracts" :ViewData["FK"] %>' />
     <%= Html.Hidden("ProductPack♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("ProductPack♂iseditdate", "EditDate")%>
-    <link href="<%= Url.Content("~/Content/blue/blue.css")%>" type="text/css" rel="stylesheet">
-
-    <script src="<%= Url.Content("~/Scripts/jquery.tablesorter.js")%>" type="text/javascript"></script>
-
-    <script src="<%= Url.Content("~/Scripts/jquery.tableEditor.js")%>" type="text/javascript"></script>
-
-    <script src="<%= Url.Content("~/Scripts/common.js")%>" type="text/javascript"></script>
 
     <script type="text/javascript">
-        $().ready(function() {
-     $("#editableTable2").tableSorter().tableEditor({
-                EDIT_HTML: '编辑',
-                SAVE_HTML: '',
-                COL_APPLYCLASS: true,
-                COLUMN_NOEDIT: 'edit'
-            });
+        $(document).ready(function() {
+            $('#ProductPack♂').css("display", "");
         });
-    </script>
 
-    <script type="text/javascript">
-        function addRow2(regionname) {
-            var obj = $(regionname).closest("table").siblings("div[id='region']");
-            var regionvalue = $(obj).find("input[name='region']").val();
-            if (regionvalue != null) {
-                var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
-                $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
-            }
-            var copyobj = $($("#editableTable2 tr")[$("#editableTable2 tr").length - 1])
-            var copyhtml = $(copyobj).clone(true);
-            $.each($(copyhtml).find("input[type='hidden']"), function(i, o) {
-                var copyvalue = $(o).attr("copyvalue");
-                if (copyvalue == null || copyvalue == "") {
-                    $(o).val("");
+        $(document).ready(function() {
+            $("#ProductPack♂PieceAmount").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂PieceAmount").attr("border-color", "red");
+            $("#ProductPack♂SinglePackBulk").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂SinglePackBulk").attr("border-color", "Silver");
+            $("#ProductPack♂PackBulk").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂PackBulk").attr("border-color", "Silver");
+            $("#ProductPack♂GrossWeight").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂GrossWeight").attr("border-color", "Silver");
+            $("#ProductPack♂NetWeight").attr("title", "双击自动获取运算值");
+            //$("#ProductPack♂NetWeight").attr("border-color", "Silver");
+
+            $("#ProductPack♂PieceAmount").bind("dblclick", function() {
+                if ($("#ProductPack♂SingleProductAmount").val() != "") {
+                    var tj = Number($("#ProductPack♂ProductAmount").val()) / Number($("#ProductPack♂SingleProductAmount").val());
+                    if (tj != 0) {
+                        $("#ProductPack♂PieceAmount").val(tj.toFixed(2));
+                    }
                 }
-            });
-            $(copyhtml).find("input[type='text']").removeAttr("id");
-            $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
-            $(copyobj).parent().append(copyhtml);
-            init();
-        }
-        function removeRow2(regionname) {
-            var obj = $(regionname).closest("table").siblings("div[id='region']");
-            var regionvalue = $(obj).find("input[name='region']").val();
-            if (regionvalue != null) {
-                var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
-                $(regioncountobj).val(Number($(regioncountobj).val()) - 1);
-            }
-            var objTemp = $(regionname);
-            $(objTemp.parent().parent()).remove();
-        }
-    </script>
+            }); //包装件数
 
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#ProductPack♂').css("display", "");
-    });
-
-    $(document).ready(function() {
-        $("#ProductPack♂PieceAmount").attr("title", "双击自动获取运算值");
-        //$("#ProductPack♂PieceAmount").attr("border-color", "red");
-        $("#ProductPack♂SinglePackBulk").attr("title", "双击自动获取运算值");
-        //$("#ProductPack♂SinglePackBulk").attr("border-color", "Silver");
-        $("#ProductPack♂PackBulk").attr("title", "双击自动获取运算值");
-        //$("#ProductPack♂PackBulk").attr("border-color", "Silver");
-        $("#ProductPack♂GrossWeight").attr("title", "双击自动获取运算值");
-        //$("#ProductPack♂GrossWeight").attr("border-color", "Silver");
-        $("#ProductPack♂NetWeight").attr("title", "双击自动获取运算值");
-        //$("#ProductPack♂NetWeight").attr("border-color", "Silver");
-
-        $("#ProductPack♂PieceAmount").bind("dblclick", function() {
-            if ($("#ProductPack♂SingleProductAmount").val() != "") {
-                var tj = Number($("#ProductPack♂ProductAmount").val()) / Number($("#ProductPack♂SingleProductAmount").val());
+            $("#ProductPack♂SinglePackBulk").bind("dblclick", function() {
+                var tj = Number($("#ProductPack♂PackLength").val()) * Number($("#ProductPack♂PackWidth").val()) * Number($("#ProductPack♂PackHeight").val());
                 if (tj != 0) {
-                    $("#ProductPack♂PieceAmount").val(tj.toFixed(2));
+                    $("#ProductPack♂SinglePackBulk").val(tj.toFixed(2) / 1000000);
                 }
+            }); //(单件)包装体积(CBM) 
+
+            $("#ProductPack♂PackBulk").bind("dblclick", function() {
+                var tj = Number($("#ProductPack♂SinglePackBulk").val()) * Number($("#ProductPack♂PieceAmount").val());
+                if (tj != 0) {
+                    $("#ProductPack♂PackBulk").val(tj.toFixed(2));
+                }
+            }); //总包装体积
+
+            $("#ProductPack♂GrossWeight").bind("dblclick", function() {
+                var tj = Number($("#ProductPack♂SingleGrossWeight").val()) * Number($("#ProductPack♂PieceAmount").val());
+                if (tj != 0) {
+                    $("#ProductPack♂GrossWeight").val(tj.toFixed(2));
+                }
+            }); // 总包装毛重
+
+            $("#ProductPack♂NetWeight").bind("dblclick", function() {
+                var tj = Number($("#ProductPack♂SingleNetWeight").val()) * Number($("#ProductPack♂PieceAmount").val());
+                if (tj != 0) {
+                    $("#ProductPack♂NetWeight").val(tj.toFixed(2));
+                }
+            }); //总包装净重
+
+        });
+
+        function toggle(obj) {
+            if ($(obj).val() == "折 叠") {
+                $(obj).val("展 开");
+            } else {
+                $(obj).val("折 叠");
             }
-        }); //包装件数
-
-        $("#ProductPack♂SinglePackBulk").bind("dblclick", function() {
-            var tj = Number($("#ProductPack♂PackLength").val()) * Number($("#ProductPack♂PackWidth").val()) * Number($("#ProductPack♂PackHeight").val());
-            if (tj != 0) {
-                $("#ProductPack♂SinglePackBulk").val(tj.toFixed(2) / 1000000);
-            }
-        }); //(单件)包装体积(CBM) 
-
-        $("#ProductPack♂PackBulk").bind("dblclick", function() {
-            var tj = Number($("#ProductPack♂SinglePackBulk").val()) * Number($("#ProductPack♂PieceAmount").val());
-            if (tj != 0) {
-                $("#ProductPack♂PackBulk").val(tj.toFixed(2));
-            }
-        }); //总包装体积
-
-        $("#ProductPack♂GrossWeight").bind("dblclick", function() {
-            var tj = Number($("#ProductPack♂SingleGrossWeight").val()) * Number($("#ProductPack♂PieceAmount").val());
-            if (tj != 0) {
-                $("#ProductPack♂GrossWeight").val(tj.toFixed(2));
-            }
-        }); // 总包装毛重
-
-        $("#ProductPack♂NetWeight").bind("dblclick", function() {
-            var tj = Number($("#ProductPack♂SingleNetWeight").val()) * Number($("#ProductPack♂PieceAmount").val());
-            if (tj != 0) {
-                $("#ProductPack♂NetWeight").val(tj.toFixed(2));
-            }
-        }); //总包装净重
-
-    });
-
-    function toggle(obj) {
-        if ($(obj).val() == "折 叠") {
-            $(obj).val("展 开");
-        } else {
-            $(obj).val("折 叠");
+            $(obj).closest("table").find("tbody").toggle("slow");
         }
-        $(obj).closest("table").find("tbody").toggle("slow");
-    }
         
     </script>
 
@@ -169,78 +117,16 @@
 
         });
     </script>
-    
+
 </div>
-<table id="editableTable2" class="dynamictable" cellspacing="0" cellpadding="0" border="0"
-    width="1500px">
-    <thead class="header trr">
-        <tr>
-            <th>
-                操作
-            </th>
-            <th>
-                商品款号
-            </th>
-            <th>
-                商品数量
-            </th>
-            <th>
-                （单件包装）商品数量
-            </th>
-            <th>
-                包装件数
-            </th>
-            <th>
-                包装单位（英文）
-            </th>
-            <th>
-                包装长度(CM)
-            </th>
-            <th>
-                包装宽度（CM）
-            </th>
-            <th>
-                包装高度(CM)
-            </th>
-            <th>
-                (单件)包装体积(CBM)
-            </th>
-            <th>
-                包装总体积(CBM)
-            </th>
-            <th>
-                内盒商品数量
-            </th>
-            <th>
-                (单包装)内盒件数
-            </th>
-            <th>
-                内盒单位(英文)
-            </th>
-            <th>
-                (单件)包装毛重(KG)
-            </th>
-            <th>
-                (单件)包装净重(KG)
-            </th>
-            <th>
-                总包装毛重(KG)
-            </th>
-            <th>
-                总包装净重(KG)
-            </th>
-            <th>
-                备注
-            </th>
-        </tr>
-    </thead>
-    <tbody id="tbdMain">
-        <% 
-            for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
-            {                  
-        %>
-        <tr>
-            <%   
+<%
+    for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
+    {
+%>
+<div id="regioncontent">
+    <table class="dynamictable">
+        <tbody>
+            <%
                 if (Model == null)
                 {
                     Response.Write(Html.Hidden("ProductPack♂ID"));
@@ -250,12 +136,15 @@
                     Response.Write(Html.Hidden("ProductPack♂ID", Model[i].ID.ToString()));
                 }
             %>
-            <td align="center">
-                <key></key>
-                <a class="tsEditLink" href="#">编辑</a><br /><a href="#" onclick="removeRow2(this)">删除</a>
-            </td>
-            <td >
-                <%
+            <tr>
+                <td align="center" valign="middle" rowspan="1" style="width: 10%;">
+                    基本信息
+                </td>
+                <td align="right" style="width: 15%;">
+                    商品款号：
+                </td>
+                <td align="left" colspan="3">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.Hidden("ProductPack♂ProductID", "", new { copyvalue = true }));
@@ -302,9 +191,17 @@
                         }
         
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="middle" rowspan="9" style="width: 10%;">
+                    包装信息
+                </td>
+                <td align="right" style="width: 15%;">
+                    商品数量：
+                </td>
+                <td align="left" style="width: 30%;">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂ProductAmount", "", new { validate = "digits:true" }));
@@ -321,9 +218,12 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+                <td align="right" style="width: 15%;">
+                    （单件包装）商品数量：
+                </td>
+                <td align="left" style="width: 30%;">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂SingleProductAmount", "", new { validate = "digits:true" }));
@@ -340,9 +240,14 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    包装件数：
+                </td>
+                <td align="left" colspan="3">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂PieceAmount", "", new { validate = "digits:true" }));
@@ -359,18 +264,45 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+                <%--<td align="right">
+                    包装单位(中文)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
-                            Response.Write(Html.DropDownList("ProductPack♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择", new { style = "width: 50px; " }));
+                            Response.Write(Html.DropDownList("ProductPack♂PackUnitCH", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位"), "请选择"));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.DropDownList("ProductPack♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].PackUnitEN)), "请选择", new { style = "width: 50px; " }));
+                                Response.Write(Html.DropDownList("ProductPack♂PackUnitCH", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位", Html.Encode(Model[i].PackUnitCH)), "请选择"));
+                            }
+                            else
+                            {
+                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].PackUnitCH)));
+                            }
+                        }
+                    %>
+                </td>--%>
+            </tr>
+            <tr>
+                <td align="right">
+                    包装单位（英文）：
+                </td>
+                <td align="left">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.DropDownList("ProductPack♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择"));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.DropDownList("ProductPack♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].PackUnitEN)), "请选择"));
                             }
                             else
                             {
@@ -378,9 +310,14 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    包装长度(CM)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂PackLength", "", new { validate = "number:true" }));
@@ -397,9 +334,12 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+                <td align="right">
+                    包装宽度（CM）：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂PackWidth", "", new { validate = "number:true" }));
@@ -416,9 +356,14 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    包装高度(CM)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂PackHeight", "", new { validate = "number:true" }));
@@ -435,9 +380,12 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+                <td align="right">
+                    (单件)包装体积(CBM)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂SinglePackBulk", "", new { validate = "number:true" }));
@@ -454,9 +402,14 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    包装总体积(CBM)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂PackBulk", "", new { validate = "number:true" }));
@@ -473,9 +426,12 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+                <td align="right">
+                    内盒商品数量：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂InsideProductAmount", "", new { validate = "digits:true" }));
@@ -492,9 +448,14 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    (单包装)内盒件数：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂SingleInsidePiece", "", new { validate = "digits:true" }));
@@ -511,18 +472,46 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+                <%--<td align="right">
+            </tr>
+            <tr>
+               <%-- <td align="right">
+                    内盒单位(中文)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
-                            Response.Write(Html.DropDownList("ProductPack♂InsideUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择", new { style = "width: 50px; " }));
+                            Response.Write(Html.DropDownList("ProductPack♂InsideUnitCN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位"), "请选择"));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.DropDownList("ProductPack♂InsideUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].InsideUnitEN)), "请选择", new { style = "width: 50px; " }));
+                                Response.Write(Html.DropDownList("ProductPack♂InsideUnitCN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位", Html.Encode(Model[i].InsideUnitCN)), "请选择"));
+                            }
+                            else
+                            {
+                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].InsideUnitCN)));
+                            }
+                        }
+                    %>
+                </td>--%>
+                <td align="right">
+                    内盒单位(英文)：
+                </td>
+                <td align="left" colspan="3">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.DropDownList("ProductPack♂InsideUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择"));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.DropDownList("ProductPack♂InsideUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].InsideUnitEN)), "请选择"));
                             }
                             else
                             {
@@ -530,9 +519,14 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    (单件)包装毛重(KG)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂SingleGrossWeight", "", new { validate = "number:true" }));
@@ -549,9 +543,12 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+                <td align="right">
+                    (单件)包装净重(KG)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂SingleNetWeight", "", new { validate = "number:true" }));
@@ -568,9 +565,14 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    总包装毛重(KG)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂GrossWeight", "", new { validate = "number:true" }));
@@ -587,9 +589,12 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-               <%
+                </td>
+                <td align="right">
+                    总包装净重(KG)：
+                </td>
+                <td align="left">
+                    <%
                         if (Model == null)
                         {
                             Response.Write(Html.TextBox("ProductPack♂NetWeight", "", new { validate = "number:true" }));
@@ -606,18 +611,23 @@
                             }
                         }
                     %>
-            </td>
-            <td >
-                <%
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    备注：
+                </td>
+                <td align="left" colspan="3">
+                    <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextArea("ProductPack♂Note", new { style = "width: 90%; height: 50px;" }));
+                            Response.Write(Html.TextArea("ProductPack♂Note", new { style = "width: 99%; height: 50px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextArea("ProductPack♂Note", Html.Encode(Model[i].Note), new { style = "width: 90%; height: 80px;" }));
+                                Response.Write(Html.TextArea("ProductPack♂Note", Html.Encode(Model[i].Note), new { style = "width: 99%; height: 80px;" }));
                             }
                             else
                             {
@@ -625,33 +635,27 @@
                             }
                         }
                     %>
-            </td>
-        </tr>
-        <%  
-            }
-        %>
-    </tbody>
-</table>
-<%
-    if (ViewData["Details"] == null)
-    {
-%>
-<table id="Table1" class="dynamictable" cellspacing="0" cellpadding="0" border="0">
-    <tr>
-        <td colspan="11" align="right">
-            <input type="button" id="btnInsert" value="添加" onclick="addRow2(this)" class="button" />
-        </td>
-    </tr>
-</table>
-<%
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <%
+                if (ViewData["Details"] == null)
+                {
+            %>
+            <tr>
+                <td colspan="5" align="right">
+                    <input type="button" class="button" value="添 加" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="button" value="删 除" onclick="deleteregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="button" class="button" value="折 叠" onclick="toggle(this)" />
+                </td>
+            </tr>
+            <%
+                }
+            %>
+        </tfoot>
+    </table>
+</div>
+<%  
     }
 %>
-
-<script>
-    function setreadonly2() {
-        $("#editableTable2").find('input, select,textarea').attr("readonly", "true");
-        $("#editableTable2").addClass("dynamictablereadonly");
-    }
-    setreadonly2();
-</script>
-

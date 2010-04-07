@@ -237,6 +237,7 @@
     <script type="text/javascript">
         function LoadControlList(obj, name) {
             var txtobject = $(obj).parent().find("input[type='text']"); //txt文本对象
+         //   debugger
             var hidobject = $(obj).parent().find("input[type='hidden']"); //hidden对象
             $("#ListPaneldialog").remove();
             $("body").append("<div id='ListPaneldialog'></div>");
@@ -250,12 +251,12 @@
                 draggable: true,
                 closeOnEscape: true,
                 buttons: {
-                    确定: function() {
+                确定: function() {                
                         if (!($(document).data("checkvalue") == null || $(document).data("checkvalue") == "")) {
                             if ($(document).data("checkvalue").split("♂").length != 1) {
                                 alert("请选择一条数据！");
                                 return;
-                            }
+                            }                            
                             $.each($(document).data("checkvalue").split("♂"), function(i, o) {
                                 $(txtobject).val(o.split("|")[1]);
                                 $(hidobject).val(o.split("|")[0]);
@@ -264,12 +265,11 @@
                             $(document).data("checkvalue", "");
                             $(document).data("check", 0);
                             $("#ListPaneldialog").children().remove();
-                            $(this).dialog('close');
+                            $(this).dialog('close');                       
                         } else {
                             alert("选择不能为空！");
                         }
-
-                    }
+                    }                  
                 }
             });
 
@@ -306,18 +306,25 @@
                     data: { name: controlname, number: num, fk: fk, p: otherparameter },
                     url: '<%=Url.Action("GetShareControl", "Shared")%>', //获取控件信息
                     success: function(data) {
-                        $("#" + region).find("div[id='regioncontent']").remove();
-                        $("#" + region).find("div[id='region']").remove();
-                        $("#" + region).children().append($(data));
-                        init(); //重新初始化
-                        $("#" + region).css("display", "");
+                      // debugger
+                        var count = $("#" + region + "regioncount").val();
+                        if (typeof(count)=="undefined") {
+                            $("#" + region).find("div[id='regioncontent']").remove();
+                            $("#" + region).find("div[id='region']").remove();
+                            $("#" + region).children().append($(data));
+                            init(); //重新初始化
+                            $("#" + region).css("display", "");
+                        }
+                        else {
+                           // alert("请点击下方的 添加 按钮！");
+                        }
                     },
                     error: function(err) {
                         alert("添加" + controlname + "表单错误！");
                     }
                 });
             }
-        }
+        }       
     </script>
 
 </head>
@@ -335,12 +342,12 @@
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>
         </div>
-        <div class="maincontent">
+        <div class="maincontent" >
             <div class="content">
                 <div id="tree">
                     功能信息
                 </div>
-                <div id="treecontent" style="margin-left:0; padding-left:0;">
+                <div id="treecontent" style="margin-left:0; padding-left:0; ">
                     <%--                <div id="Div1">
                         <% Html.RenderPartial("MenuMain"); %>
                     </div>--%>
@@ -360,7 +367,7 @@
                 </div>
             </div>
         </div>
-        <div id="footer">
+        <div id="footer" >
             本网站版权归诚诺进出口贸易有限公司版权所有
         </div>
     </div>
