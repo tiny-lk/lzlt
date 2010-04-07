@@ -386,7 +386,7 @@
                             viewdictionary2.Add("number", Model.ProductSummary.Count);
                             viewdictionary2.Add("FK", "StockContracts");
                             Html.RenderPartial("ProductSummaryControl", Model.ProductSummary.ToList(), viewdictionary2);
-                        }
+                        }                      
                     %>
                 </td>
             </tr>

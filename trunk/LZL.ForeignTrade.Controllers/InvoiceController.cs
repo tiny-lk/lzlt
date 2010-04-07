@@ -35,8 +35,7 @@ namespace LZL.ForeignTrade.Controllers
         public ActionResult Details(string id)
         {
             Entities _Entities = new Entities();
-            Guid guid = new Guid(id);
-          
+            Guid guid = new Guid(id);          
             return View(_Entities.Invoice.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 

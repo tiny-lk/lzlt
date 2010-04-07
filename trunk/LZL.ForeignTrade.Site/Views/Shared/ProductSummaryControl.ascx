@@ -11,323 +11,329 @@
     <input type="hidden" name="ProductSummary♂fk" value='<%= ViewData["FK"] == null || string.IsNullOrEmpty(ViewData["FK"].ToString()) ? "Invoice" :ViewData["FK"] %>' />
     <%= Html.Hidden("ProductSummary♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("ProductSummary♂iseditdate", "EditDate")%>
+    <link href="<%= Url.Content("~/Content/blue/blue.css")%>" type="text/css" rel="stylesheet">
+
+    <script src="<%= Url.Content("~/Scripts/jquery.tablesorter.js")%>" type="text/javascript"></script>
+
+    <script src="<%= Url.Content("~/Scripts/jquery.tableEditor.js")%>" type="text/javascript"></script>
+
+    <script src="<%= Url.Content("~/Scripts/common.js")%>" type="text/javascript"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#ProductSummary♂').css("display", "");
+        $().ready(function() {
+            $("#editableTable").tableSorter().tableEditor({
+                EDIT_HTML: '编辑',
+                SAVE_HTML: '',
+                COL_APPLYCLASS: true,
+                COLUMN_NOEDIT: 'edit'
+            });
+        });     
+    </script>
 
-            $("#ProductSummary♂ExportAmount").bind("dblclick", function() {
-                var tj = Number($("#ProductSummary♂ExportPrice").val()) * Number($("#ProductSummary♂Amount").val());
-                if (tj != 0) {
-                    $("#ProductSummary♂ExportAmount").val(tj.toFixed(2));
+    <script type="text/javascript">
+        function addRow(regionname) {
+            var obj = $(regionname).closest("table").siblings("div[id='region']");
+            var regionvalue = $(obj).find("input[name='region']").val();
+            if (regionvalue != null) {
+                var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
+            }
+            var copyobj = $($("#editableTable tr")[$("#editableTable tr").length - 1])
+            var copyhtml = $(copyobj).clone(true);
+            $.each($(copyhtml).find("input[type='hidden']"), function(i, o) {
+                var copyvalue = $(o).attr("copyvalue");
+                if (copyvalue == null || copyvalue == "") {
+                    $(o).val("");
                 }
             });
-
-        });
-        function toggle(obj) {
-            if ($(obj).val() == "折 叠") {
-                $(obj).val("展 开");
-            } else {
-                $(obj).val("折 叠");
+            $(copyhtml).find("input[type='text']").removeAttr("id");
+            $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
+            $(copyobj).parent().append(copyhtml);
+            init();
+        }
+        function removeRow(regionname) {
+            var obj = $(regionname).closest("table").siblings("div[id='region']");
+            var regionvalue = $(obj).find("input[name='region']").val();
+            if (regionvalue != null) {
+                var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                $(regioncountobj).val(Number($(regioncountobj).val()) - 1);
             }
-            $(obj).closest("table").find("tbody").toggle("slow");
+            var objTemp = $(regionname);
+            $(objTemp.parent().parent()).remove();
         }
     </script>
 
 </div>
-<%
-    for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
-    {
-%>
-<div id="regioncontent">
-    <table class="dynamictable">
-        <tbody>
-            <%
-                if (Model == null)
-                {
-                    Response.Write(Html.Hidden("ProductSummary♂ID"));
-                }
-                else
-                {
-                    Response.Write(Html.Hidden("ProductSummary♂ID", Model[i].ID.ToString()));
-                }
+<table id="editableTable" class="dynamictable" cellspacing="0" cellpadding="0" border="0"
+    width="100%">
+    <thead class="header">
+        <tr>
+            <th>
+                操作
+            </th>
+            <th>
+                商品款号
+            </th>
+            <th>
+                海关代码
+            </th>
+            <th>
+                商品数量
+            </th>
+            <th>
+                商品单位（英文）
+            </th>
+            <th>
+                商品外销单价
+            </th>
+            <th>
+                商品进货单价
+            </th>
+            <th>
+                商品外销金额
+            </th>
+            <th>
+                商品描述（英文）
+            </th>
+            <th>
+                备注
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tbdMain">
+        <% 
+            for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
+            {                   
+        %>
+        <tr>
+            <% if (Model == null)
+               {
+                   Response.Write(Html.Hidden("ProductSummary♂ID"));
+               }
+               else
+               {
+                   Response.Write(Html.Hidden("ProductSummary♂ID", Model[i].ID.ToString()));
+               }
+               Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { copyvalue = true }));
             %>
-            <tr>
-                <td align="center" valign="middle" rowspan="1" style="width: 10%;">
-                    基本信息
-                </td>
-                <td align="right" style="width: 15%;">
-                    商品款号：
-                    <%
-                        Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { copyvalue = true }));
-                    %>
-                </td>
-                <td align="left" colspan="3">
-                    <%
-                        if (Model == null)
+            <td align="center" width="8%">
+                <key></key>
+                <a class="tsEditLink" href="#">编辑</a>&nbsp;<a href="#" onclick="removeRow(this)">删除</a>
+            </td>
+            <td width="14%">
+                <%                   
+               
+                    if (Model == null)
+                    {
+                        Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:60%;" }));
+                        Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
+                        Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
+                    }
+                    else
+                    {
+                        Model[i].ProductReference.Load();
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("_ProductSummary♂ProductID"));
-                            Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
+                            if (Model[i].Product != null)
+                            {
+                                Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:60%;" }));
+                                Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", Model[i].Product.ID, new { copyvalue = true }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:60%;" }));
+                                Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
+                            }
                             Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                         }
                         else
                         {
-                            Model[i].ProductReference.Load();
-                            if (ViewData["Details"] == null)
+                            if (Model[i].Product != null)
                             {
-                                if (Model[i].Product != null)
-                                {
-                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode));
-                                    Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", Model[i].Product.ID, new { copyvalue = true }));
-                                }
-                                else
-                                {
-                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID"));
-                                    Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
-                                }
-                                Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
-                            }
-                            else
-                            {
-                                if (Model[i].Product != null)
-                                {
-                                    Response.Write(Html.Encode(Model[i].Product.NameCode));
-                                }
+                                Response.Write(Html.Encode(Model[i].Product.NameCode));
                             }
                         }
-                    %>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" valign="middle" rowspan="5" style="width: 10%;">
-                    商品信息
-                </td>
-                <td align="right" style="width: 15%;">
-                    海关代码：
-                </td>
-                <td align="left" style="width: 30%;">
-                    <%
-                        if (Model == null)
+                    }
+                %>
+            </td>
+            <td width="8%">
+                <%
+                    if (Model == null)
+                    {
+                        Response.Write(Html.TextBox("ProductSummary♂CustomsCode"));
+                    }
+                    else
+                    {
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode"));
+                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", Html.Encode(Model[i].CustomsCode)));
                         }
                         else
                         {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂CustomsCode", Html.Encode(Model[i].CustomsCode)));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].CustomsCode));
-                            }
+                            Response.Write(Html.Encode(Model[i].CustomsCode));
                         }
-                    %>
-                </td>
-                <td align="right" style="width: 15%;">
-                    商品数量：
-                </td>
-                <td align="left" style="width: 30%;">
-                    <%
-                        if (Model == null)
+                    }
+                %>
+            </td>
+            <td width="10%">
+                <%
+                    if (Model == null)
+                    {
+                        Response.Write(Html.TextBox("ProductSummary♂Amount", "", new { validate = "digits:true" }));
+                    }
+                    else
+                    {
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂Amount", "", new { validate = "digits:true" }));
+                            Response.Write(Html.TextBox("ProductSummary♂Amount", Html.Encode(Model[i].Amount), new { validate = "digits:true" }));
                         }
                         else
                         {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂Amount", Html.Encode(Model[i].Amount), new { validate = "digits:true" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].Amount));
-                            }
+                            Response.Write(Html.Encode(Model[i].Amount));
                         }
-                    %>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    商品单位（英文）：
-                </td>
-                <td align="left">
-                    <%
-                        if (Model == null)
+                    }
+                %>
+            </td>
+            <td width="8%">
+                <%
+                    if (Model == null)
+                    {
+                        Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择"));
+                    }
+                    else
+                    {
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择"));
+                            Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].UnitEN)), "请选择"));
                         }
                         else
                         {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].UnitEN)), "请选择"));
-                            }
-                            else
-                            {
-                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].UnitEN)));
-                            }
+                            Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].UnitEN)));
                         }
-                    %>
-                </td>
-                <td align="right">
-                    商品外销单价：
-                </td>
-                <td align="left">
-                    <%
-                        if (Model == null)
+                    }
+                %>
+            </td>
+            <td width="10%">
+                <%
+                    if (Model == null)
+                    {
+                        Response.Write(Html.TextBox("ProductSummary♂ExportPrice", "", new { validate = "number:true" }));
+                    }
+                    else
+                    {
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportPrice", "", new { validate = "number:true" }));
+                            Response.Write(Html.TextBox("ProductSummary♂ExportPrice", Html.Encode(Model[i].ExportPrice), new { validate = "number:true" }));
                         }
                         else
                         {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂ExportPrice", Html.Encode(Model[i].ExportPrice), new { validate = "number:true" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].ExportPrice));
-                            }
+                            Response.Write(Html.Encode(Model[i].ExportPrice));
                         }
-                    %>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    商品进货单价：
-                </td>
-                <td align="left" colspan="3">
-                    <%
-                        if (Model == null)
+                    }
+                %>
+            </td>
+            <td width="10%">
+                <%
+                    if (Model == null)
+                    {
+                        Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", "", new { validate = "number:true" }));
+                    }
+                    else
+                    {
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", "", new { validate = "number:true" }));
+                            Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", Html.Encode(Model[i].PurchasePrice), new { validate = "number:true" }));
                         }
                         else
                         {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", Html.Encode(Model[i].PurchasePrice), new { validate = "number:true" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].PurchasePrice));
-                            }
+                            Response.Write(Html.Encode(Model[i].PurchasePrice));
                         }
-                    %>
-                </td>
-                <%-- <td align="right">
-                    人民币出货单价：
-                </td>
-                <td align="left">
-                    <%
-                        if (Model == null)
+                    }
+                %>
+            </td>
+            <td width="10%">
+                <%
+                    if (Model == null)
+                    {
+                        Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true" }));
+                    }
+                    else
+                    {
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂RMBExportAmount", "", new { validate = "number:true" }));
+                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true" }));
                         }
                         else
                         {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂RMBExportAmount", Html.Encode(Model[i].RMBExportAmount), new { validate = "number:true" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].RMBExportAmount));
-                            }
+                            Response.Write(Html.Encode(Model[i].ExportAmount));
                         }
-                    %>
-                </td>--%>
-            </tr>
-            <tr>
-                <td align="right">
-                    商品外销金额：
-                </td>
-                <td align="left">
-                    <%
-                        if (Model == null)
+                    }
+                %>
+            </td>
+            <td width="10%">
+                <%
+                    if (Model == null)
+                    {
+                        Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", new { style = "width: 95%; height: 40px;" }));
+                    }
+                    else
+                    {
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true" }));
+                            Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", Html.Encode(Model[i].DescriptionEN), new { style = "width: 95%; height: 40px;" }));
                         }
                         else
                         {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].ExportAmount));
-                            }
+                            Response.Write(Html.Encode(Model[i].DescriptionEN));
                         }
-                    %>
-                </td>
-                <td align="left">
-                    商品描述（英文）：
-                </td>
-                <td align="left">
-                    <%
-                        if (Model == null)
+                    }
+                %>
+            </td>
+            <td width="12%">
+                <%
+                    if (Model == null)
+                    {
+                        Response.Write(Html.TextArea("ProductSummary♂Note", new { style = "width: 95%; height: 40px;" }));
+                    }
+                    else
+                    {
+                        if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", new { style = "width: 99%; height: 40px;" }));
+                            Response.Write(Html.TextArea("ProductSummary♂Note", Html.Encode(Model[i].Note), new { style = "width: 95%; height: 40px;" }));
                         }
                         else
                         {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", Html.Encode(Model[i].DescriptionEN), new { style = "width: 99%; height: 40px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].DescriptionEN));
-                            }
+                            Response.Write(Html.Encode(Model[i].Note));
                         }
-                    %>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    备注：
-                </td>
-                <td align="left" colspan="3">
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextArea("ProductSummary♂Note", new { style = "width: 99%; height: 40px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextArea("ProductSummary♂Note", Html.Encode(Model[i].Note), new { style = "width: 99%; height: 40px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].Note));
-                            }
-                        }
-                    %>
-                </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <%
-                if (ViewData["Details"] == null)
-                {
-            %>
-            <tr>
-                <td colspan="5" align="right">
-                    <input type="button" class="button" value="添 加" onclick="addregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" class="button" value="删 除" onclick="deleteregion(this);" />&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" class="button" value="折 叠" onclick="toggle(this)" />
-                </td>
-            </tr>
-            <%
-                }
-            %>
-        </tfoot>
-    </table>
-</div>
-<%  
+                    }
+                %>
+            </td>
+        </tr>
+        <%  
+            }
+        %>
+    </tbody>
+</table>
+<%
+    if (ViewData["Details"] == null)
+    {
+%>
+<table id="Table1" class="dynamictable" cellspacing="0" cellpadding="0" border="0">
+    <tr>
+        <td colspan="11" align="right">
+            <input type="button" id="btnInsert" value="添加" onclick="addRow(this)" class="button" />
+        </td>
+    </tr>
+</table>
+<%
     }
 %>
+
+<script>
+    function setreadonly() {
+        $("#editableTable").find('input, select,textarea').attr("readonly", "true");
+        $("#editableTable").addClass("dynamictablereadonly");
+    }
+    setreadonly();
+</script>
+
