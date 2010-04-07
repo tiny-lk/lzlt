@@ -13,7 +13,7 @@
     <%= Html.Hidden("Linkman♂iseditdate", "EditDate")%>
     <center>
         <h3>
-            联系人动态区域</h3>
+            联系人</h3>
     </center>
 
     <script type="text/javascript">

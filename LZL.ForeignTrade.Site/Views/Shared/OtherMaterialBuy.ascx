@@ -13,7 +13,7 @@
     <%= Html.Hidden("SubMaterialBuy♂iseditdate", "EditDate")%>
     <center>
         <h3>
-            原材料其它动态区域</h3>
+            原材料其它</h3>
     </center>
 
     <script type="text/javascript">
