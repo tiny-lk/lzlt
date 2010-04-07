@@ -186,7 +186,7 @@
         </table>
         <table class="list" width="100%" id="tabs-2">
             <caption>
-                商品信息动态区域
+                商品信息
             </caption>
             <%
                 Model.ProductSummary.Load();
@@ -209,7 +209,7 @@
         </table>
         <table class="list" width="100%" id="tabs-3">
             <caption>
-                商品包装信息动态区域
+                商品包装信息
             </caption>
             <!-- 商品包装信息 -->
             <%

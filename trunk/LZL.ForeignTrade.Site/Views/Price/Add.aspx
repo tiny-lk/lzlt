@@ -101,6 +101,10 @@
                     $("input[name='Price♂CompanyID']").val("");
                 }
             });
+
+            //初始化点击事件
+            $("#hrSpxx").click();
+            $("#hrSpbz").click();
         });
     </script>
 
@@ -284,7 +288,7 @@
         </table>
         <table width="100%" class="list" id="tabs-2">
             <caption>
-                商品信息动态区域
+                商品信息
             </caption>
             <!-- 商品信息 -->
             <tr id="ProductSummary♂" style="display: none;">
@@ -295,7 +299,7 @@
         </table>
         <table width="100%" class="list" id="tabs-3">
             <caption>
-                商品包装信息动态区域
+                商品包装信息
             </caption>
             <!-- 商品包装信息 -->
             <tr id="ProductPack♂" style="display: none;">
@@ -309,7 +313,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="ChildContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Price')"
-        class="button4">添加商品信息</a><a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Price')"
+    <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Price')"
+        class="button4">添加商品信息</a><a id="hrSpbz" href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Price')"
             class="button4">添加商品包装</a><a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>
