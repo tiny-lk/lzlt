@@ -159,7 +159,7 @@ jQuery.editRow = function(link, tid) {
             //  if (typeof (o.COLUMN_CLASSES[i]) != 'undefined' && o.COLUMN_CLASSES[i].toString() != '')
             // jQuery('input, select,textarea', this).addClass(o.COLUMN_CLASSES[i]);
                 $(this).parent().find('input, select,textarea').removeAttr("readonly");
-                $(this).parent().find('input, select,textarea').css({ border: "1px solid #3f6ebc", background: "Window" });
+                $(this).parent().find('input, select,textarea').css({ border: "1px solid #3f6ebc", background: "Window",overflow:"auto" });
                 
         });
         if (o.FUNC_POST_EDIT) eval(o.FUNC_POST_EDIT + "(p)");

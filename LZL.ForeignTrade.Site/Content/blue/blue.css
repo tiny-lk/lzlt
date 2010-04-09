@@ -131,4 +131,4 @@ div#title { display: block; float: left; text-align: left; }
 .dynamictablereadonly select { border: 0px; background-color: #eaf3fc; }
 .dynamictablereadonly textarea { border: 0px; background-color: #eaf3fc;overflow:hidden; }
 
-.trr  th{Writing-mode:tb-rl;Text-align:left;font-size:10pt}  
+.contentpanle { overflow: auto; height: 400px; width: 800px;  padding: 5px; }

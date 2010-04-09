@@ -1,6 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Views/Invoice/Invoice.master" Inherits="System.Web.Mvc.ViewPage<LZL.ForeignTrade.DataEntity.Invoice>" %>
 
-
 <asp:Content ID="TitleContent" ContentPlaceHolderID="TitleContent" runat="server">
     编辑发票（单证）信息
 </asp:Content>
@@ -667,15 +666,19 @@
             <!-- 商品信息 -->
             <tr id="ProductSummary♂" style="<%=Model.ProductSummary.Count>0?"": "display: none"%>;">
                 <td colspan="5">
-                    <%
-                        if (Model.ProductSummary.Count > 0)
-                        {
-                            ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
-                            viewdictionary2.Add("number", Model.ProductSummary.Count);
-                            viewdictionary2.Add("FK", "Invoice");//报价单信息
-                            Html.RenderPartial("ProductSummaryControl", Model.ProductSummary.ToList(), viewdictionary2);
-                        }                      
-                    %>
+                    <div class="contentpanle">
+                        <p>
+                            <%
+                                if (Model.ProductSummary.Count > 0)
+                                {
+                                    ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
+                                    viewdictionary2.Add("number", Model.ProductSummary.Count);
+                                    viewdictionary2.Add("FK", "Invoice");//报价单信息
+                                    Html.RenderPartial("ProductSummaryControl", Model.ProductSummary.ToList(), viewdictionary2);
+                                }                      
+                            %>
+                        </p>
+                    </div>
                 </td>
             </tr>
             <!-- 商品信息 -->
@@ -689,7 +692,8 @@
                 Model.ProductPack.Load();
             %>
             <tr id="ProductPack♂" style="<%=Model.ProductPack.Count>0?"": "display: none"%>;">
-                <td colspan="5">
+                <td colspan="5">          
+                    <div class="contentpanle">
                     <%  
                         if (Model.ProductPack.Count > 0)
                         {
@@ -699,6 +703,7 @@
                             Html.RenderPartial("ProductPackControl", Model.ProductPack.ToList(), viewdictionary2);
                         }
                     %>
+                    </div>
                 </td>
             </tr>
             <!-- 商品包装信息 -->
