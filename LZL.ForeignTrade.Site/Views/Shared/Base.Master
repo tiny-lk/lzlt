@@ -298,7 +298,7 @@
             addcontrol(obj, controlname, region, num, fk, "");
         }
         //添加控件信息
-        function addcontrol(obj, controlname, region, num, fk, otherparameter) {
+        function addcontrol(obj, controlname, region, num, fk, otherparameter) {        
             if ($("#" + region).find("div[id = 'regioncontent']").length <= 0) {
                 $.ajax({
                     type: "get",

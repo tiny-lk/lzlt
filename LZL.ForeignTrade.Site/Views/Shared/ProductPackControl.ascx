@@ -1,4 +1,5 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.ProductPack>>" %>
+<div class="contentpanle">
 <div id="region">
     <!-- 标识子表添加总数 -->
     <input type="hidden" value='<%= int.Parse(ViewData["number"].ToString())%>' name="ProductPack♂regioncount"
@@ -652,4 +653,4 @@
     }
     setreadonly2();
 </script>
-
+</div>
