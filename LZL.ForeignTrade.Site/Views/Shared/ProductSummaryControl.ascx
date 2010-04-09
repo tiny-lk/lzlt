@@ -69,8 +69,8 @@
         width="100%">
         <thead class="header">
             <tr>
-                <th>
-                    操作
+                <th><br />
+                    操作<input  style="width:60px; "/>
                 </th>
                 <th>
                     商品款号
@@ -89,6 +89,9 @@
                 </th>
                 <th>
                     商品进货单价
+                </th>
+                <th>
+                    商品进货总价金额
                 </th>
                 <th>
                     商品外销金额
@@ -117,11 +120,11 @@
                    }
                    Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { copyvalue = true }));
                 %>
-                <td align="center" width="10%">
+                <td align="center" width="4%">
                     <key></key>
-                    <a class="tsEditLink" href="#">编辑</a>&nbsp;<a href="#" onclick="removeRow(this)">删除</a>
+                    <a class="tsEditLink" href="#">编辑</a><br /><a href="#" onclick="removeRow(this)">删除</a>
                 </td>
-                <td width="12%">
+                <td width="10%">
                     <%                   
                
                         if (Model == null)
@@ -256,6 +259,25 @@
                     <%
                         if (Model == null)
                         {
+                            Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", "", new { validate = "number:true", style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", Html.Encode(Model[i].PurchaseTotalPrice), new { validate = "number:true", style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].PurchasePrice));
+                            }
+                        }
+                    %>
+                </td>
+                <td width="10%">
+                    <%
+                        if (Model == null)
+                        {
                             Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true", style = "width:60px;" }));
                         }
                         else
@@ -290,7 +312,7 @@
                         }
                     %>
                 </td>
-                <td width="12%">
+                <td width="10%">
                     <%
                         if (Model == null)
                         {
