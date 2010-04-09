@@ -666,8 +666,8 @@
             <!-- 商品信息 -->
             <tr id="ProductSummary♂" style="<%=Model.ProductSummary.Count>0?"": "display: none"%>;">
                 <td colspan="5">
-                    <div class="contentpanle">
-                        <p>
+                 
+                       
                             <%
                                 if (Model.ProductSummary.Count > 0)
                                 {
@@ -676,9 +676,8 @@
                                     viewdictionary2.Add("FK", "Invoice");//报价单信息
                                     Html.RenderPartial("ProductSummaryControl", Model.ProductSummary.ToList(), viewdictionary2);
                                 }                      
-                            %>
-                        </p>
-                    </div>
+                            %>                      
+                  
                 </td>
             </tr>
             <!-- 商品信息 -->
@@ -693,7 +692,7 @@
             %>
             <tr id="ProductPack♂" style="<%=Model.ProductPack.Count>0?"": "display: none"%>;">
                 <td colspan="5">          
-                    <div class="contentpanle">
+                    
                     <%  
                         if (Model.ProductPack.Count > 0)
                         {
@@ -703,7 +702,7 @@
                             Html.RenderPartial("ProductPackControl", Model.ProductPack.ToList(), viewdictionary2);
                         }
                     %>
-                    </div>
+                 
                 </td>
             </tr>
             <!-- 商品包装信息 -->
@@ -714,7 +713,12 @@
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
-        class="button4">关联出口合同</a> <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
-            class="button4">添加商品信息</a><a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
-                class="button4">添加商品包装</a> <a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
+        class="button4">关联出口合同</a>  
+               
+        <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
+            class="button4">添加商品信息</a>
+            <a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
+                class="button4">添加商品包装</a>
+                                
+                 <a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>
