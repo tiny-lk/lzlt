@@ -116,18 +116,17 @@
                }
                Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { copyvalue = true }));
             %>
-            <td align="center" width="8%">
-                <key></key>
-                <a class="tsEditLink" href="#">编辑</a>&nbsp;<a href="#" onclick="removeRow(this)">删除</a>
+            <td align="center" width="10%">
+                <key></key><a class="tsEditLink" href="#">编辑</a>&nbsp;<a href="#" onclick="removeRow(this)">删除</a>
             </td>
-            <td width="14%">
+            <td width="12%">
                 <%                   
                
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:60%;" }));
+                        Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:60px;" }));
                         Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
-                        Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
+                        Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                     }
                     else
                     {
@@ -136,15 +135,15 @@
                         {
                             if (Model[i].Product != null)
                             {
-                                Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:60%;" }));
+                                Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:60px;" }));
                                 Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", Model[i].Product.ID, new { copyvalue = true }));
                             }
                             else
                             {
-                                Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:60%;" }));
+                                Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:60px;" }));
                                 Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                             }
-                            Response.Write("<a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
+                            Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                         }
                         else
                         {
@@ -160,13 +159,13 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("ProductSummary♂CustomsCode"));
+                        Response.Write(Html.TextBox("ProductSummary♂CustomsCode", new { style = "width:60px;" }));
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", Html.Encode(Model[i].CustomsCode)));
+                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", Html.Encode(Model[i].CustomsCode), new { style = "width:60px;" }));
                         }
                         else
                         {
@@ -179,13 +178,13 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("ProductSummary♂Amount", "", new { validate = "digits:true" }));
+                        Response.Write(Html.TextBox("ProductSummary♂Amount", "", new { validate = "digits:true", style = "width:60px;" }));
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂Amount", Html.Encode(Model[i].Amount), new { validate = "digits:true" }));
+                            Response.Write(Html.TextBox("ProductSummary♂Amount", Html.Encode(Model[i].Amount), new { validate = "digits:true", style = "width:60px;" }));
                         }
                         else
                         {
@@ -198,13 +197,13 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择"));
+                        Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择", new { style = "width:60px;" }));
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].UnitEN)), "请选择"));
+                            Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].UnitEN)), "请选择", new { style = "width:60px;" }));
                         }
                         else
                         {
@@ -217,13 +216,13 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("ProductSummary♂ExportPrice", "", new { validate = "number:true" }));
+                        Response.Write(Html.TextBox("ProductSummary♂ExportPrice", "", new { validate = "number:true", style = "width:60px;" }));
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportPrice", Html.Encode(Model[i].ExportPrice), new { validate = "number:true" }));
+                            Response.Write(Html.TextBox("ProductSummary♂ExportPrice", Html.Encode(Model[i].ExportPrice), new { validate = "number:true", style = "width:60px;" }));
                         }
                         else
                         {
@@ -236,13 +235,13 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", "", new { validate = "number:true" }));
+                        Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", "", new { validate = "number:true", style = "width:60px;" }));
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", Html.Encode(Model[i].PurchasePrice), new { validate = "number:true" }));
+                            Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", Html.Encode(Model[i].PurchasePrice), new { validate = "number:true", style = "width:60px;" }));
                         }
                         else
                         {
@@ -255,13 +254,13 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true" }));
+                        Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true", style = "width:60px;" }));
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true" }));
+                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true", style = "width:60px;" }));
                         }
                         else
                         {
@@ -274,13 +273,13 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", new { style = "width: 95%; height: 40px;" }));
+                        Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", new { style = "width: 95px; height: 40px;" }));
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", Html.Encode(Model[i].DescriptionEN), new { style = "width: 95%; height: 40px;" }));
+                            Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", Html.Encode(Model[i].DescriptionEN), new { style = "width: 95px; height: 40px;" }));
                         }
                         else
                         {
@@ -293,13 +292,13 @@
                 <%
                     if (Model == null)
                     {
-                        Response.Write(Html.TextArea("ProductSummary♂Note", new { style = "width: 95%; height: 40px;" }));
+                        Response.Write(Html.TextArea("ProductSummary♂Note", new { style = "width: 80px; height: 40px;" }));
                     }
                     else
                     {
                         if (ViewData["Details"] == null)
                         {
-                            Response.Write(Html.TextArea("ProductSummary♂Note", Html.Encode(Model[i].Note), new { style = "width: 95%; height: 40px;" }));
+                            Response.Write(Html.TextArea("ProductSummary♂Note", Html.Encode(Model[i].Note), new { style = "width: 80px; height: 40px;" }));
                         }
                         else
                         {

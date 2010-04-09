@@ -30,12 +30,12 @@ namespace LZL.ForeignTrade.Controllers
             var productSummary = invoice.Select(v => v.ProductSummary);
             ViewData["pagecount"] = productSummary.Count();
             return View(productSummary);
-        }
+        }        
 
         public ActionResult Details(string id)
         {
             Entities _Entities = new Entities();
-            Guid guid = new Guid(id);          
+            Guid guid = new Guid(id);
             return View(_Entities.Invoice.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 
