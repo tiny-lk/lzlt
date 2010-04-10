@@ -313,7 +313,7 @@
         } %>
 </asp:Content>
 <asp:Content ID="ChildContent" ContentPlaceHolderID="ChildActionContent" runat="server">
-    <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Price')"
+   <%-- <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Price')"
         class="button4">添加商品信息</a><a id="hrSpbz" href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Price')"
-            class="button4">添加商品包装</a><a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
+            class="button4">添加商品包装</a>--%><a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>

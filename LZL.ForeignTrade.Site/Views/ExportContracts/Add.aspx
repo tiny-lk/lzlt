@@ -418,8 +418,9 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openbjd('ExportContractsPrice♂','Price♂ID','bjdxx','<%=Url.Action("Details","Price")%>');"
-        class='button'>报价信息</a> <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'ExportContracts')"
+        class='button'>报价信息</a>
+         <%--<a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'ExportContracts')"
             class="button4">添加商品信息</a><a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'ExportContracts')"
-                class="button4">添加商品包装</a>
+                class="button4">添加商品包装</a>--%>
                 <a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>
