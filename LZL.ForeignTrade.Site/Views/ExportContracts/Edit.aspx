@@ -116,7 +116,11 @@
                     $("input[name='ExportContracts♂CompanyID']").val("");
                 }
             });
+            //初始化点击事件
+            $("#hrSpxx").click();
+            $("#hrSpbz").click();
         });
+      
     </script>
 
     <script type="text/javascript">
@@ -507,7 +511,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openbjd('ExportContractsPrice♂','Price♂ID','bjdxx','<%=Url.Action("Details","Price")%>');"
-        class="button4">关联报价信息</a><%-- <a href="#" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'ExportContracts')"
-            class="button4">添加商品信息</a> <a href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'ExportContracts')"
-                class="button4">添加商品包装</a>--%><a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
+        class="button4">关联报价信息</a> <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'ExportContracts')"
+            class="button4"  style="display:none">添加商品信息</a> <a id="hrSpbz" href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'ExportContracts')"
+                class="button4"  style="display:none">添加商品包装</a><a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>
