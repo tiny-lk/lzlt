@@ -340,8 +340,8 @@
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('StockContractsExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","ExportContracts")%>');"
         class="button4">关联出口合同</a> 
-       <%-- <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'StockContracts')"
-            class="button4">添加商品信息</a> <a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
-                class="button4">添加商品包装</a>--%>
+        <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'StockContracts')"
+            class="button4"  style="display:none">添加商品信息</a> <a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'StockContracts')"
+                class="button4"  style="display:none">添加商品包装</a>
                 <a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
 </asp:Content>
