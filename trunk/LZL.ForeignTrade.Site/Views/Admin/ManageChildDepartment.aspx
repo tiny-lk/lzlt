@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.Department>>" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Admin/Admin.master" Inherits="System.Web.Mvc.ViewPage<List<LZL.ForeignTrade.DataEntity.Department>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     子部门管理
@@ -71,6 +71,7 @@
 
         });
 
+//待修改模块
         function print() {
             $("table > tbody").printArea(" <table width='100%' style='vertical-align: middle; text-align: center;'></table>");
         }
@@ -111,7 +112,7 @@
                 <td colspan="4" align="right">
                     <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
                     <input type="button" class="button" id="Add" value="添加" />
-                    <input type="button" class="button" id="AddChildDepart" value="添加子部门" disabled="disabled" check="1" />
+                    <input type="button" class="button4" id="AddChildDepart" value="添加子部门" disabled="disabled" check="1" />
                     <input type="button" class="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
                     <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                     <input type="button" class="button" id="Refresh" value="返回" />

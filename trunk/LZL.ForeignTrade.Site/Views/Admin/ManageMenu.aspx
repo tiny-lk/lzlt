@@ -9,7 +9,7 @@
     %>
     <table width="100%" id="menu" class="list">
         <caption>
-            报价单信息</caption>
+            菜单管理</caption>
         <thead>
             <tr>
                 <td>
@@ -25,7 +25,7 @@
         </thead>
         <%
           
-         %>
+        %>
         <tbody>
             <tr>
             </tr>
