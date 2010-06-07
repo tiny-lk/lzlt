@@ -14,6 +14,7 @@ using System.Web;
 
 namespace LZL.ForeignTrade.Controllers
 {
+
     public class SharedController : Controller
     {
 

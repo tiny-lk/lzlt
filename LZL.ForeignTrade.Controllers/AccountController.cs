@@ -44,6 +44,12 @@ namespace LZL.ForeignTrade.Controllers
             private set;
         }
 
+        public ActionResult EditUserProfile()
+        {
+
+            return View();
+        }
+
         public ActionResult LogOn()
         {
 
