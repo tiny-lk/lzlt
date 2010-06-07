@@ -153,6 +153,55 @@ namespace LZL.ForeignTrade.Controllers
         }
         #endregion
 
+        #region 岗位管理
+
+        public ActionResult ManageStep()
+        {
+            Entities _Entities = new Entities();
+            List<Step> lstStep = new List<Step>();
+            lstStep = _Entities.Step.OrderBy(v => v.ID).ToList();
+            return View(lstStep);
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult AddStep()
+        {
+            return View();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddStep(FormCollection form)
+        {
+            if (string.IsNullOrEmpty(form["region"]))
+            {
+                return View();
+            }
+            //Entities _Entities = new Entities();
+            //SharedController.mainTable(form, _Entities);
+            //_Entities.SaveChanges();
+
+            string sql = "insert into step(name)values('" + form["Step♂Name"] + "')";
+            SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+
+
+            return RedirectToAction("ManageStep");
+        }
+
+        public ActionResult DeleteStep(string id)
+        {
+            Entities entities = new Entities();
+            string[] ids = id.Split(new[] { '♂' }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i < ids.Length; i++)
+            {
+                Guid guid = new Guid(ids[i]);
+                var dictionary = entities.Step.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+                entities.DeleteObject(dictionary);
+            }
+            entities.SaveChanges();
+            return RedirectToAction("ManageStep");
+        }
+        #endregion
+
         #region 数据字典管理 ---add by lj
         /// <summary>
         /// Managers the dictionary.---add by lj
@@ -170,7 +219,7 @@ namespace LZL.ForeignTrade.Controllers
             List<Dictionary> lstDic = new List<Dictionary>();
             if (!string.IsNullOrEmpty(queryvalue))
             {
-                lstDic = _Entities.Dictionary.Where(v => v.Type.IndexOf(queryvalue)>=0).OrderBy(v => v.Type).ToList();
+                lstDic = _Entities.Dictionary.Where(v => v.Type.IndexOf(queryvalue) >= 0).OrderBy(v => v.Type).ToList();
             }
             else
             {
@@ -178,7 +227,7 @@ namespace LZL.ForeignTrade.Controllers
             }
 
             ViewData["pagecount"] = (int)Math.Ceiling((double)((double)lstDic.Count) / pagesize);
-            var dictionarys = lstDic.Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList() ;
+            var dictionarys = lstDic.Skip(pagesize * ((page ?? 1) - 1)).Take(pagesize).ToList();
             return View(dictionarys);
         }
 
@@ -516,10 +565,10 @@ namespace LZL.ForeignTrade.Controllers
             Entities _Entities = new Entities();
             string strParamIds = Request["id"];
             string strDepartId = Request["DepartId"];
-            
+
             //删除旧的勾选项
             List<UserDepartRelation> userList = _Entities.UserDepartRelation.Where(v => v.DepartId.Equals(strDepartId)).ToList();
-            foreach( UserDepartRelation objUser in userList)
+            foreach (UserDepartRelation objUser in userList)
             {
                 _Entities.DeleteObject(objUser);
             }
@@ -555,7 +604,7 @@ namespace LZL.ForeignTrade.Controllers
             _Entities.SaveChanges();
             return RedirectToAction("ManageDepartment");
         }
-        
+
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult ManageMenu()
         {
@@ -565,7 +614,7 @@ namespace LZL.ForeignTrade.Controllers
         //[AcceptVerbs(HttpVerbs.Post)]
         //public ActionResult ManageMenu()
         //{
-            
+
         //    return View();
         //}
         #endregion
