@@ -26,6 +26,18 @@
           <EntitySet Name="ProductCustomer" EntityType="ForeignTradeModel.Store.ProductCustomer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductPack" EntityType="ForeignTradeModel.Store.ProductPack" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ProductSummary" EntityType="ForeignTradeModel.Store.ProductSummary" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoleInStep" EntityType="ForeignTradeModel.Store.RoleInStep" store:Type="Tables" store:Schema="dbo" store:Name="RoleInStep">
+            <DefiningQuery>SELECT 
+      [RoleInStep].[StepId] AS [StepId], 
+      [RoleInStep].[RoleId] AS [RoleId]
+      FROM [dbo].[RoleInStep] AS [RoleInStep]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Step" EntityType="ForeignTradeModel.Store.Step" store:Type="Tables" store:Schema="dbo" store:Name="Step">
+            <DefiningQuery>SELECT 
+      [Step].[ID] AS [ID], 
+      [Step].[Name] AS [Name]
+      FROM [dbo].[Step] AS [Step]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="StockContracts" EntityType="ForeignTradeModel.Store.StockContracts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="StockContractsExportContracts" EntityType="ForeignTradeModel.Store.StockContractsExportContracts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SubMaterialBuy" EntityType="ForeignTradeModel.Store.SubMaterialBuy" store:Type="Tables" Schema="dbo" />
@@ -572,6 +584,26 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="PurchaseTotalPrice" Type="float" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“ChenNuo.dbo.RoleInStep”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="RoleInStep">
+          <Key>
+            <PropertyRef Name="StepId" />
+          </Key>
+          <Property Name="StepId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“ChenNuo.dbo.Step”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="StockContracts">
           <Key>
             <PropertyRef Name="ID" />
@@ -663,7 +695,7 @@
           <Property Name="EditDate" Type="datetime" />
         </EntityType>
         <!--生成过程中发现错误:
-      警告 6002: 表/视图“D:\WORKPLATE\CODE\LZL.FOREIGNTRADE.SITE\APP_DATA\FOREIGNTRADE.MDF.dbo.vm_Warehouse”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      警告 6002: 表/视图“ChenNuo.dbo.vm_Warehouse”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="vm_Warehouse">
           <Key>
@@ -1092,7 +1124,9 @@
             <End Role="StockContracts" EntitySet="StockContracts" />
             <End Role="StockContractsExportContracts" EntitySet="StockContractsExportContracts" />
           </AssociationSet>
-          <EntitySet Name="vm_Warehouse" EntityType="ForeignTradeModel.vm_Warehouse" /></EntityContainer>
+          <EntitySet Name="vm_Warehouse" EntityType="ForeignTradeModel.vm_Warehouse" />
+          <EntitySet Name="RoleInStep" EntityType="ForeignTradeModel.RoleInStep" />
+          <EntitySet Name="Step" EntityType="ForeignTradeModel.Step" /></EntityContainer>
         <EntityType Name="AccessoriesBuy">
           <Key>
             <PropertyRef Name="ID" />
@@ -1744,7 +1778,18 @@
           <Property Name="Type" Type="String" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="No" Type="String" Nullable="true" />
-          <Property Name="Count" Type="Double" Nullable="true" /></EntityType></Schema>
+          <Property Name="Count" Type="Double" Nullable="true" /></EntityType>
+        <EntityType Name="RoleInStep">
+          <Key>
+            <PropertyRef Name="StepId" /></Key>
+          <Property Name="StepId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="true" /></EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="ID" />
+            </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="true" /></EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2499,6 +2544,16 @@
                 <ScalarProperty Name="No" ColumnName="No" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RoleInStep">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.RoleInStep)">
+              <MappingFragment StoreEntitySet="RoleInStep">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="StepId" ColumnName="StepId" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Step">
+            <EntityTypeMapping TypeName="IsTypeOf(ForeignTradeModel.Step)">
+              <MappingFragment StoreEntitySet="Step">
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" /></MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2517,7 +2572,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="ForeignTrade" ZoomLevel="68">
+      <Diagram Name="ForeignTrade" ZoomLevel="62">
         <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesBuy" Width="1.5" PointX="11.75" PointY="6.375" Height="2.9251310221354148" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.AccessoriesChildBuy" Width="1.5" PointX="14" PointY="6.25" Height="3.1161507161458344" IsExpanded="true" />
         <EntityTypeShape EntityType="ForeignTradeModel.ColorWarehouseSale" Width="1.5" PointX="19.25" PointY="5.75" Height="4.0712491861979148" IsExpanded="true" />
@@ -2700,6 +2755,8 @@
           <ConnectorPoint PointX="7.489583333333333" PointY="15.84375" />
           <ConnectorPoint PointX="7.322916666666667" PointY="15.84375" />
           <ConnectorPoint PointX="4.5" PointY="15.84375" /></AssociationConnector>
-        <EntityTypeShape EntityType="ForeignTradeModel.vm_Warehouse" Width="1.5" PointX="16.375" PointY="15.75" Height="1.9700325520833317" /></Diagram></edmx:Diagrams>
+        <EntityTypeShape EntityType="ForeignTradeModel.vm_Warehouse" Width="1.5" PointX="16.375" PointY="15.75" Height="1.9700325520833317" />
+        <EntityTypeShape EntityType="ForeignTradeModel.RoleInStep" Width="1.5" PointX="6.375" PointY="0.75" Height="1.3969734700520833" />
+        <EntityTypeShape EntityType="ForeignTradeModel.Step" Width="1.5" PointX="8.375" PointY="0.75" Height="1.3969734700520833" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
