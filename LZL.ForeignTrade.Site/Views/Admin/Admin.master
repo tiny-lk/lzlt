@@ -14,5 +14,7 @@
         <%= Html.ActionLink("数据字典", "ManageDictionary", "Admin", null, new { Class = "button" })%>
         <%= Html.ActionLink("部门管理", "ManageDepartment", "Admin", null, new { Class = "button" })%>
         <%= Html.ActionLink("公司管理", "ManageCompany", "Admin", null, new { Class = "button" })%>
+        <%= Html.ActionLink("岗位管理", "ManageStep", "Admin", null, new { Class = "button" })%>
+        
     </div>
 </asp:Content>
