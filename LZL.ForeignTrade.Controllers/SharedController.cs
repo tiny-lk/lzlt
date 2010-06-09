@@ -25,7 +25,7 @@ namespace LZL.ForeignTrade.Controllers
         /// <param name="name">控件名称</param>
         /// <param name="p">参数</param>
         /// <returns>返回联系人控件信息</returns>
-        public ActionResult GetShareControl(string name, string fk, int? number,string p)
+        public ActionResult GetShareControl(string name, string fk, int? number, string p)
         {
             ViewData["number"] = number ?? 1;
             ViewData["FK"] = string.IsNullOrEmpty(fk) ? null : fk;
@@ -35,7 +35,7 @@ namespace LZL.ForeignTrade.Controllers
                 for (int i = 0; i < parameters.Length; i++)
                 {
                     string key = parameters[i].Substring(0, parameters[i].IndexOf("="));
-                    string v = parameters[i].Substring(parameters[i].LastIndexOf("=")+1);
+                    string v = parameters[i].Substring(parameters[i].LastIndexOf("=") + 1);
                     if (!string.IsNullOrEmpty(key))
                     {
                         ViewData[key] = v;
@@ -66,12 +66,12 @@ namespace LZL.ForeignTrade.Controllers
 
         public JsonResult GetAutocompleteValue2(string t, string f)
         {
-          Entities entities = new Entities();
+            Entities entities = new Entities();
             string sql = "select it." + f + ",it.ID from " + entities.DefaultContainerName + "." + t + " as it where it." + f + " like '" + Request["q"] + "%'";
             sql += " order by it." + f;
             sql += " Skip 0 limit 20 ";
             ObjectQuery<DbDataRecord> querylist = entities.CreateQuery<DbDataRecord>(sql);
-            Dictionary<string,string> r = new Dictionary<string,string>();
+            Dictionary<string, string> r = new Dictionary<string, string>();
             foreach (DbDataRecord item in querylist)
             {
                 r.Add(BasicOperate.GetString(item[1], true),
@@ -202,7 +202,7 @@ namespace LZL.ForeignTrade.Controllers
                     {
                         if (!string.IsNullOrEmpty(formvalues[regions[i] + "iscreatedate"]))
                         {
-                            ClassHelper.SetPropertyValue(tableobj, formvalues[regions[i] + "iscreatedate"], DateTime.Now); 
+                            ClassHelper.SetPropertyValue(tableobj, formvalues[regions[i] + "iscreatedate"], DateTime.Now);
                         }
 
                         //添加状态
@@ -350,7 +350,7 @@ namespace LZL.ForeignTrade.Controllers
                         }
                         else
                         {
-                            Guid guid = new Guid(formvalues[region + "id"].Split(new char[] { ',' },StringSplitOptions.RemoveEmptyEntries)[s]);//子表ID
+                            Guid guid = new Guid(formvalues[region + "id"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[s]);//子表ID
                             guids.Add(guid);
                         }
                     }
@@ -426,10 +426,10 @@ namespace LZL.ForeignTrade.Controllers
             int pagecount = 1;
             var querylist = DataHelper.GetCustomers(quyerCondition, queryvalue, page, type, out pagecount);
             ViewData["pagecount"] = pagecount;
-            return View("CustomerIndex",querylist);
+            return View("CustomerIndex", querylist);
         }
 
-        public ActionResult ProductIndex(string quyerCondition, string queryvalue,string simple, int? page)
+        public ActionResult ProductIndex(string quyerCondition, string queryvalue, string simple, int? page)
         {
             if (!string.IsNullOrEmpty(simple))
             {
@@ -553,7 +553,7 @@ namespace LZL.ForeignTrade.Controllers
         public void ImageUserControl(FormCollection form, HttpPostedFileBase Attachment)
         {
             Image image = new Image();
-            image.ID =  Guid.NewGuid();
+            image.ID = Guid.NewGuid();
             image.Name = form["FileName"];
             image.FK_ID = new Guid(form["fid"]);
             image.Note = form["Note"];
@@ -586,21 +586,21 @@ namespace LZL.ForeignTrade.Controllers
             return View("ImageView", images.FirstOrDefault());
         }
 
-        public static string builderDictionaryTree(string type,List<Image> images)
+        public static string builderDictionaryTree(string type, List<Image> images)
         {
             Entities entities = new Entities();
             var treedictionary = entities.Dictionary.Where(v => v.Type.Equals(type, StringComparison.CurrentCultureIgnoreCase)).ToList();
             var tree = string.Empty;
             for (int i = 0; i < treedictionary.Count; i++)
             {
-                tree = "<li id='" + treedictionary.ElementAt(i).ID.ToString() + "'><span class='folder'>" +treedictionary.ElementAt(i).Name + "</span>";
+                tree = "<li id='" + treedictionary.ElementAt(i).ID.ToString() + "'><span class='folder'>" + treedictionary.ElementAt(i).Name + "</span>";
                 if (treedictionary.ElementAt(i).Pid != null)
                 {
                     builderDictionary(treedictionary, treedictionary.ElementAt(i).Pid.GetValueOrDefault(), tree, images);
                 }
                 else
                 {
-                    var imagecode = images.Where(v => v.TypeCode.Equals(treedictionary[i].Code,StringComparison.CurrentCultureIgnoreCase)).ToList();
+                    var imagecode = images.Where(v => v.TypeCode.Equals(treedictionary[i].Code, StringComparison.CurrentCultureIgnoreCase)).ToList();
                     if (imagecode.Count > 0)
                     {
                         tree += "<ul>";
@@ -616,7 +616,7 @@ namespace LZL.ForeignTrade.Controllers
                 tree += "</li>";
             }
             return tree;
-            
+
         }
 
         private static void builderDictionary(List<Dictionary> dictionarys, Guid pid, string tree, List<Image> images)
