@@ -30,7 +30,7 @@ namespace LZL.ForeignTrade.Controllers
             var productSummary = invoice.Select(v => v.ProductSummary);
             ViewData["pagecount"] = productSummary.Count();
             return View(productSummary);
-        }        
+        }
 
         public ActionResult Details(string id)
         {
@@ -68,6 +68,32 @@ namespace LZL.ForeignTrade.Controllers
 
         public ActionResult Edit(string id)
         {
+            string[] rolelist = Roles.GetRolesForUser();
+            if (rolelist.Length > 0)
+            {
+                for (int temp = 0; temp < rolelist.Length; temp++)
+                {
+                    string sql = @"SELECT count(*)
+FROM (SELECT StepId, RoleId,
+                  (SELECT RoleName
+                 FROM aspnet_Roles
+                 WHERE (RoleId = RoleInStep.RoleId)) AS RoleName
+        FROM RoleInStep
+        WHERE (StepId =
+                  (SELECT ID
+                 FROM Step
+                 WHERE (Name = '发票单证管理填写 ')))) AS derivedtbl_1
+WHERE ('" + rolelist[temp] + "' IN (RoleName))";
+                    object obj = SqlHelper.ExecuteScalar(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+
+                    if (Convert.ToInt32(obj) > 0)
+                    {
+                        ViewData["IsWrite"] = "true";
+                        return Details(id);
+                    }
+                }
+            }
+            ViewData["IsWrite"] = "false";
             return Details(id);
         }
 
