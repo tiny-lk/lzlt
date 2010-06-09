@@ -154,7 +154,21 @@ namespace LZL.ForeignTrade.Controllers
         #endregion
 
         #region 岗位管理
+        public static bool IsRoleInStep(string stepid, string roleName)
+        {
+            string sql = @"SELECT count( aspnet_Roles.RoleName )
+                            FROM RoleInStep INNER JOIN
+                            aspnet_Roles ON RoleInStep.RoleId = aspnet_Roles.RoleId
+                            WHERE (RoleInStep.StepId = '" + stepid + "') AND  ('" + roleName + "' IN (aspnet_Roles.RoleName))";
 
+            object num = SqlHelper.ExecuteScalar(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+
+            if (Convert.ToInt32(num) > 0)
+            {
+                return true;
+            }
+            return false;
+        }
         public ActionResult ManageStep()
         {
             Entities _Entities = new Entities();
@@ -166,6 +180,7 @@ namespace LZL.ForeignTrade.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult AddStep()
         {
+            ViewData["roles"] = (String[])Roles.GetAllRoles();
             return View();
         }
 
@@ -176,12 +191,82 @@ namespace LZL.ForeignTrade.Controllers
             {
                 return View();
             }
-            //Entities _Entities = new Entities();
-            //SharedController.mainTable(form, _Entities);
-            //_Entities.SaveChanges();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(form, _Entities);
+            _Entities.SaveChanges();
 
-            string sql = "insert into step(name)values('" + form["Step♂Name"] + "')";
+            if (!string.IsNullOrEmpty(form["role"]))
+            {
+                string[] roles = form["role"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).
+                    Where(v => !v.Equals("false", StringComparison.CurrentCultureIgnoreCase)).ToArray();
+                if (roles.Length > 0)
+                {
+                    for (int temp = 0; temp < roles.Length; temp++)
+                    {
+
+                        string sql = @"INSERT INTO RoleInStep
+SELECT (SELECT TOP (1) ID
+FROM Step
+ORDER BY RowNum DESC) AS Expr1,
+(SELECT TOP (1) RoleId
+FROM aspnet_Roles
+WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
+
+
+                        SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+
+                    }
+
+                }
+            }
+
+            return RedirectToAction("ManageStep");
+        }
+
+        public ActionResult EditStep(string id)
+        {
+            ViewData["roles"] = (String[])Roles.GetAllRoles();
+            Entities _Entities = new Entities();
+            Guid guid = new Guid(id);
+            return View(_Entities.Step.Where(v => v.ID.Equals(guid)).FirstOrDefault());
+        }
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult EditStep(string id, FormCollection formvalues)
+        {
+            if (string.IsNullOrEmpty(formvalues["region"]))
+                return View();
+            Entities _Entities = new Entities();
+            SharedController.mainTable(formvalues, _Entities);
+            _Entities.SaveChanges();
+
+
+            string sql = @"delete from RoleInStep where stepid='" + id + "'";
             SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+
+            if (!string.IsNullOrEmpty(formvalues["role"]))
+            {
+                string[] roles = formvalues["role"].Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).
+                    Where(v => !v.Equals("false", StringComparison.CurrentCultureIgnoreCase)).ToArray();
+                if (roles.Length > 0)
+                {
+                    for (int temp = 0; temp < roles.Length; temp++)
+                    {
+
+                        sql = @"INSERT INTO RoleInStep
+SELECT (SELECT TOP (1) ID
+FROM Step where id='" + id + @"' 
+ORDER BY RowNum DESC) AS Expr1,
+(SELECT TOP (1) RoleId
+FROM aspnet_Roles
+WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
+
+                        SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+
+                    }
+
+                }
+            }
+
 
 
             return RedirectToAction("ManageStep");
@@ -198,6 +283,13 @@ namespace LZL.ForeignTrade.Controllers
                 entities.DeleteObject(dictionary);
             }
             entities.SaveChanges();
+
+            for (int temp = 0; temp < ids.Length; temp++)
+            {
+                string sql = @"delete from RoleInStep where stepid='" + ids[temp] + "'";
+                SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+            }
+
             return RedirectToAction("ManageStep");
         }
         #endregion
@@ -620,4 +712,3 @@ namespace LZL.ForeignTrade.Controllers
         #endregion
     }
 }
-
