@@ -116,6 +116,43 @@
                 }
             });
 
+            //获取联动数据
+            $("#Invoice♂Shipper").attr("title", "双击自动获取运算值"); //托运人
+            $("#Invoice♂Consignee").attr("title", "双击自动获取运算值"); //收货人
+            $("#Invoice♂OceanFreightPayment").attr("title", "双击自动获取运算值"); //运费支付
+            $("#Invoice♂OceanTansportCountry").attr("title", "双击自动获取运算值"); //运抵国
+            $("#Invoice♂OceanStartHaven").attr("title", "双击自动获取运算值"); //起运港
+            $("#Invoice♂OceanTransferHaven").attr("title", "双击自动获取运算值"); //转运港
+            $("#Invoice♂OceanEdnHaven").attr("title", "双击自动获取运算值"); //目的港
+
+            $("#Invoice♂Shipper").bind("dblclick", function(thisObj) {
+                $("#Invoice♂Shipper").val($("#_Invoice♂CompanyID").val());
+            }); //托运人
+
+            $("#Invoice♂Consignee").bind("dblclick", function(thisObj) {
+                $("#Invoice♂Consignee").val($("#_Invoice♂CustomerID").val());
+            }); //收货人
+
+            $("#Invoice♂OceanFreightPayment").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanFreightPayment").val($("#Invoice♂FreightPayment").val());
+            }); //运费支付
+
+            $("#Invoice♂OceanTansportCountry").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanTansportCountry").val($("#Invoice♂TansportCountry").val());
+            }); //运抵国
+
+            $("#Invoice♂OceanStartHaven").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanStartHaven").val($("#Invoice♂StartHaven").val());
+            }); //起运港
+
+            $("#Invoice♂OceanTransferHaven").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanTransferHaven").val($("#Invoice♂TransferHaven").val());
+            }); //转运港
+
+            $("#Invoice♂OceanEdnHaven").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanEdnHaven").val($("#Invoice♂EdnHaven").val());
+            }); //目的港
+
             //初始化点击事件
             $("#hrSpxx").click();
             $("#hrSpbz").click();
@@ -150,6 +187,15 @@
     <input type="hidden" name="Invoice♂objectname" value="LZL.ForeignTrade.DataEntity.Invoice,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Invoice♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("Invoice♂iseditdate", "EditDate")%>
+    <table cellpadding="0" cellspacing="0" border="0" align="center" width="60%">
+        <tr>
+            <td align="center" style="font-size: 14px">
+                <span id="addnews">1. 添加单证信息 </span>———— <span id="modnews" style="font-weight: bold;
+                    color: blue">2.修改单证信息 </span><span id="readnews" style="display: none; font-weight: bold;
+                        color: blue">3.阅读单证信息</span>
+            </td>
+        </tr>
+    </table>
     <div class="tabs" style="background: none; border: solid 1px #488dca; border-collapse: collapse;">
         <ul>
             <li><a href="#tabs-1">发票信息</a></li>
@@ -568,7 +614,7 @@
                 </tr>
                 <tr>
                     <td align="right">
-                        启运港：
+                        起运港：
                     </td>
                     <td align="left">
                         <%= Html.TextBox("Invoice♂OceanStartHaven", Html.Encode(Model.OceanStartHaven))%><a
@@ -578,8 +624,8 @@
                         转运港：
                     </td>
                     <td align="left">
-                        <%= Html.TextBox("Invoice♂OceanEdnHaven", Html.Encode(Model.OceanEdnHaven))%><a href="#"
-                            onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
+                        <%= Html.TextBox("Invoice♂OceanTransferHaven", Html.Encode(Model.OceanTransferHaven))%><a
+                            href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
                 </tr>
                 <tr>
@@ -587,8 +633,8 @@
                         目的港：
                     </td>
                     <td align="left" colspan="4">
-                        <%= Html.TextBox("Invoice♂OceanTransferHaven", Html.Encode(Model.OceanTransferHaven))%><a
-                            href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
+                        <%= Html.TextBox("Invoice♂OceanEdnHaven", Html.Encode(Model.OceanEdnHaven))%><a href="#"
+                            onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
                 </tr>
                 <tr>
@@ -666,18 +712,15 @@
             <!-- 商品信息 -->
             <tr id="ProductSummary♂" style="<%=Model.ProductSummary.Count>0?"": "display: none"%>;">
                 <td colspan="5">
-                 
-                       
-                            <%
-                                if (Model.ProductSummary.Count > 0)
-                                {
-                                    ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
-                                    viewdictionary2.Add("number", Model.ProductSummary.Count);
-                                    viewdictionary2.Add("FK", "Invoice");//报价单信息
-                                    Html.RenderPartial("ProductSummaryControl", Model.ProductSummary.ToList(), viewdictionary2);
-                                }                      
-                            %>                      
-                  
+                    <%
+                        if (Model.ProductSummary.Count > 0)
+                        {
+                            ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
+                            viewdictionary2.Add("number", Model.ProductSummary.Count);
+                            viewdictionary2.Add("FK", "Invoice");//报价单信息
+                            Html.RenderPartial("ProductSummaryControl", Model.ProductSummary.ToList(), viewdictionary2);
+                        }                      
+                    %>
                 </td>
             </tr>
             <!-- 商品信息 -->
@@ -691,8 +734,7 @@
                 Model.ProductPack.Load();
             %>
             <tr id="ProductPack♂" style="<%=Model.ProductPack.Count>0?"": "display: none"%>;">
-                <td colspan="5">          
-                    
+                <td colspan="5">
                     <%  
                         if (Model.ProductPack.Count > 0)
                         {
@@ -702,23 +744,31 @@
                             Html.RenderPartial("ProductPackControl", Model.ProductPack.ToList(), viewdictionary2);
                         }
                     %>
-                 
                 </td>
             </tr>
             <!-- 商品包装信息 -->
         </table>
     </div>
-    <%
-        } %>
+    <%if (ViewData["IsWrite"] == "false")
+      {
+    %>
+
+    <script type="text/javascript">
+        $("input").attr("disabled", "disabled");
+        $("textarea").attr("disabled", "disabled");
+        $("#readnews").show();
+        $("#modnews").hide();
+    </script>
+
+    <%}
+        }
+        
+    %>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
-        class="button4">关联出口合同</a>  
-               
-        <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
-            class="button4" style="display:none" >添加商品信息</a>
-            <a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
-                class="button4"  style="display:none">添加商品包装</a>
-                                
-                 <a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
+        class="button4">关联出口合同</a> <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
+            class="button4" style="display: none">添加商品信息</a> <a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
+                class="button4" style="display: none">添加商品包装</a> <a href="#" onclick='submitInfo();'
+                    class="button4">数据整体提交</a>
 </asp:Content>

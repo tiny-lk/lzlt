@@ -102,6 +102,43 @@
                 }
             });
 
+            //获取联动数据
+            $("#Invoice♂Shipper").attr("title", "双击自动获取运算值"); //托运人
+            $("#Invoice♂Consignee").attr("title", "双击自动获取运算值"); //收货人
+            $("#Invoice♂OceanFreightPayment").attr("title", "双击自动获取运算值"); //运费支付
+            $("#Invoice♂OceanTansportCountry").attr("title", "双击自动获取运算值"); //运抵国
+            $("#Invoice♂OceanStartHaven").attr("title", "双击自动获取运算值"); //起运港
+            $("#Invoice♂OceanTransferHaven").attr("title", "双击自动获取运算值"); //转运港
+            $("#Invoice♂OceanEdnHaven").attr("title", "双击自动获取运算值"); //目的港
+
+            $("#Invoice♂Shipper").bind("dblclick", function(thisObj) {
+                $("#Invoice♂Shipper").val($("#_Invoice♂CompanyID").val());
+            }); //托运人
+
+            $("#Invoice♂Consignee").bind("dblclick", function(thisObj) {
+                $("#Invoice♂Consignee").val($("#_Invoice♂CustomerID").val());
+            }); //收货人
+
+            $("#Invoice♂OceanFreightPayment").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanFreightPayment").val($("#Invoice♂FreightPayment").val());
+            }); //运费支付
+
+            $("#Invoice♂OceanTansportCountry").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanTansportCountry").val($("#Invoice♂TansportCountry").val());
+            }); //运抵国
+
+            $("#Invoice♂OceanStartHaven").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanStartHaven").val($("#Invoice♂StartHaven").val());
+            }); //起运港
+
+            $("#Invoice♂OceanTransferHaven").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanTransferHaven").val($("#Invoice♂TransferHaven").val());
+            }); //转运港
+
+            $("#Invoice♂OceanEdnHaven").bind("dblclick", function(thisObj) {
+                $("#Invoice♂OceanEdnHaven").val($("#Invoice♂EdnHaven").val());
+            }); //目的港
+            
             //初始化点击事件
             $("#hrSpxx").click();
             $("#hrSpbz").click();
@@ -131,11 +168,19 @@
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
-    <input type="hidden" name="region" value="Invoice♂" />
+    <input type="hidden" name="region" value="Invoice♂"  />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Invoice♂objectname" value="LZL.ForeignTrade.DataEntity.Invoice,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Invoice♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("Invoice♂iseditdate", "EditDate")%>
+    <table cellpadding="0" cellspacing="0" border="0" align="center" width="60%">
+        <tr>
+            <td align="center"  style=" font-size:14px">
+                <span id="addnews" style="font-weight:bold; color:blue">1. 添加单证信息 </span>  ————   2. 阅读(修改)单证信息
+                
+            </td>
+        </tr>
+    </table>
     <div class="tabs" style="background: none; border: solid 1px #488dca; border-collapse: collapse;">
         <ul>
             <li><a href="#tabs-1">发票信息</a></li>
@@ -227,7 +272,7 @@
                     <td align="left" colspan="3">
                         <%= Html.TextArea("Invoice♂ClauseTypeNote", new { style = "width:99%; height:40px;" })%>
                     </td>
-                   <%-- <td align="right">
+                    <%-- <td align="right">
                         发票类型：
                     </td>
                     <td align="left">
@@ -561,7 +606,7 @@
             <tfoot>
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="submit" style="display:none" class="button" id="btnTj" value="提 交" />
+                        <input type="submit" style="display: none" class="button" id="btnTj" value="提 交" />
                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                             type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Invoice/Index") %>'" />
                     </td>
@@ -597,9 +642,8 @@
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" onclick="openckht('InvoiceExportContracts♂','ExportContracts♂ID','ckhtxx','<%=Url.Action("Details","Price")%>');"
-        class="button4">关联出口合同</a>
-         <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
-            class="button4"  style="display:none">添加商品信息</a><a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
-                class="button4"  style="display:none">添加商品包装</a>
-    <a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
+        class="button4">关联出口合同</a> <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
+            class="button4" style="display: none">添加商品信息</a><a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
+                class="button4" style="display: none">添加商品包装</a> <a href="#" onclick='submitInfo();'
+                    class="button4">数据整体提交</a>
 </asp:Content>
