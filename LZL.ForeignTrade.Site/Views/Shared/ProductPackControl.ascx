@@ -82,9 +82,9 @@
                 //$("#ProductPack♂NetWeight").attr("border-color", "Silver");
 
                 $("#ProductPack♂PieceAmount").bind("dblclick", function(thisObj) {
-                var thistr = $($(thisObj)[0].srcElement).closest("tr");
-                if (thistr.find("#ProductPack♂SingleProductAmount").val() != "") {
-                    var tj = Number(thistr.find("#ProductPack♂ProductAmount").val()) / Number(thistr.find("#ProductPack♂SingleProductAmount").val());
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    if (thistr.find("#ProductPack♂SingleProductAmount").val() != "") {
+                        var tj = Number(thistr.find("#ProductPack♂ProductAmount").val()) / Number(thistr.find("#ProductPack♂SingleProductAmount").val());
                         if (tj != 0) {
                             thistr.find("#ProductPack♂PieceAmount").val(tj.toFixed(2));
                         }
@@ -101,24 +101,24 @@
                 }); //(单件)包装体积(CBM)
 
                 $("#ProductPack♂PackBulk").bind("dblclick", function(thisObj) {
-                var thistr = $($(thisObj)[0].srcElement).closest("tr");
-                var tj = Number(thistr.find("#ProductPack♂SinglePackBulk").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    var tj = Number(thistr.find("#ProductPack♂SinglePackBulk").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
                     if (tj != 0) {
                         thistr.find("#ProductPack♂PackBulk").val(tj.toFixed(2));
                     }
                 }); //总包装体积
 
                 $("#ProductPack♂GrossWeight").bind("dblclick", function(thisObj) {
-                var thistr = $($(thisObj)[0].srcElement).closest("tr");
-                var tj = Number(thistr.find("#ProductPack♂SingleGrossWeight").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    var tj = Number(thistr.find("#ProductPack♂SingleGrossWeight").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
                     if (tj != 0) {
                         thistr.find("#ProductPack♂GrossWeight").val(tj.toFixed(2));
                     }
                 }); // 总包装毛重
 
                 $("#ProductPack♂NetWeight").bind("dblclick", function(thisObj) {
-                var thistr = $($(thisObj)[0].srcElement).closest("tr");
-                var tj = Number(thistr.find("#ProductPack♂SingleNetWeight").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    var tj = Number(thistr.find("#ProductPack♂SingleNetWeight").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
                     if (tj != 0) {
                         thistr.find("#ProductPack♂NetWeight").val(tj.toFixed(2));
                     }
@@ -178,7 +178,7 @@
 
     </div>
     <table id="editableTable2" class="dynamictable" cellspacing="0" cellpadding="0" border="0"
-        width="100%">
+        width="100%" style="margin-left: 0px; padding-left: 0px;">
         <thead class="header">
             <tr>
                 <th>
@@ -192,19 +192,19 @@
                     商品数量
                 </th>
                 <th>
-                    （单件包装）商品数量
+                    商品数量(单件包装)
                 </th>
                 <th>
                     包装件数
                 </th>
                 <th>
-                    包装单位（英文）
+                    包装单位(英文)
                 </th>
                 <th>
                     包装长度(CM)
                 </th>
                 <th>
-                    包装宽度（CM）
+                    包装宽度(CM)
                 </th>
                 <th>
                     包装高度(CM)
@@ -219,7 +219,7 @@
                     内盒商品数量
                 </th>
                 <th>
-                    (单包装)内盒件数
+                    内盒件数(单包装)
                 </th>
                 <th>
                     内盒单位(英文)
@@ -644,18 +644,14 @@
         if (ViewData["Details"] == null)
         {
     %>
-    <table id="Table1" class="dynamictable" cellspacing="0" cellpadding="0" border="0">
-        <tr>
-            <td colspan="11" align="right">
-                <input type="button" id="btnInsert" value="添加" onclick="addRow2(this)" class="button" />
-            </td>
-        </tr>
-    </table>
+    <div style="width: 100%" align="left">
+        <input type="button" id="btnInsert" value="添加行" onclick="addRow2(this)" class="button" />
+    </div>
     <%
         }
     %>
 
-    <script>
+    <script type="text/javascript">
         function setreadonly2() {
             $("#editableTable2").find('input, select,textarea').attr("readonly", "true");
             $("#editableTable2").addClass("dynamictablereadonly");
