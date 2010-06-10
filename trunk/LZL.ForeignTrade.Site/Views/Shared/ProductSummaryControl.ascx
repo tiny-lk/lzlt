@@ -21,68 +21,69 @@
         <script src="<%= Url.Content("~/Scripts/common.js")%>" type="text/javascript"></script>
 
         <script type="text/javascript">
-        $().ready(function() {
-            $("#editableTable").tableSorter().tableEditor({
-                EDIT_HTML: '编辑',
-                SAVE_HTML: '',
-                COL_APPLYCLASS: true,
-                COLUMN_NOEDIT: 'edit'
-            });
-        });     
+            $().ready(function() {
+                $("#editableTable").tableSorter().tableEditor({
+                    EDIT_HTML: '编辑',
+                    SAVE_HTML: '',
+                    COL_APPLYCLASS: true,
+                    COLUMN_NOEDIT: 'edit'
+                });
+            });     
         </script>
 
         <script type="text/javascript">
-        function addRow(regionname) {
-            var obj = $(regionname).closest("table").siblings("div[id='region']");
-            var regionvalue = $(obj).find("input[name='region']").val();
-            if (regionvalue != null) {
-                var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
-                $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
-            }
-            var copyobj = $($("#editableTable tr")[$("#editableTable tr").length - 1])
-            var copyhtml = $(copyobj).clone(true);
-            $.each($(copyhtml).find("input[type='hidden']"), function(i, o) {
-                var copyvalue = $(o).attr("copyvalue");
-                if (copyvalue == null || copyvalue == "") {
-                    $(o).val("");
+            function addRow(regionname) {
+                var obj = $(regionname).closest("table").siblings("div[id='region']");
+                var regionvalue = $(obj).find("input[name='region']").val();
+                if (regionvalue != null) {
+                    var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
                 }
-            });
-            $(copyhtml).find("input[type='text']").removeAttr("id");
-            $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
-            $(copyobj).parent().append(copyhtml);
-            init();
-        }
-        function removeRow(regionname) {
-            var obj = $(regionname).closest("table").siblings("div[id='region']");
-            var regionvalue = $(obj).find("input[name='region']").val();
-            if (regionvalue != null) {
-                var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
-                $(regioncountobj).val(Number($(regioncountobj).val()) - 1);
+                var copyobj = $($("#editableTable tr")[$("#editableTable tr").length - 1])
+                var copyhtml = $(copyobj).clone(true);
+                $.each($(copyhtml).find("input[type='hidden']"), function(i, o) {
+                    var copyvalue = $(o).attr("copyvalue");
+                    if (copyvalue == null || copyvalue == "") {
+                        $(o).val("");
+                    }
+                });
+                $(copyhtml).find("input[type='text']").removeAttr("id");
+                $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
+                $(copyobj).parent().append(copyhtml);
+                init();
             }
-            var objTemp = $(regionname);
-            $(objTemp.parent().parent()).remove();
-        }
+            function removeRow(regionname) {
+                var obj = $(regionname).closest("table").siblings("div[id='region']");
+                var regionvalue = $(obj).find("input[name='region']").val();
+                if (regionvalue != null) {
+                    var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    $(regioncountobj).val(Number($(regioncountobj).val()) - 1);
+                }
+                var objTemp = $(regionname);
+                $(objTemp.parent().parent()).remove();
+            }
         </script>
 
     </div>
     <table id="editableTable" class="dynamictable" cellspacing="0" cellpadding="0" border="0"
-        width="100%">
+        width="100%" style="margin-left: 0px; padding-left: 0px;">
         <thead class="header">
             <tr>
-                <th><br />
-                    操作<input  style="width:60px; "/>
+                <th>
+                    <br />
+                    操作<input style="width: 60px;" />
                 </th>
                 <th>
                     商品款号
                 </th>
                 <th>
-                    海关代码
+                    商品编码(HS编码)
                 </th>
                 <th>
                     商品数量
                 </th>
                 <th>
-                    商品单位（英文）
+                    商品单位(英文)
                 </th>
                 <th>
                     商品外销单价
@@ -91,13 +92,13 @@
                     商品进货单价
                 </th>
                 <th>
-                    商品进货总价金额
+                    商品外销总金额
                 </th>
                 <th>
-                    商品外销金额
+                    商品进货总金额
                 </th>
                 <th>
-                    商品描述（英文）
+                    商品描述(英文)
                 </th>
                 <th>
                     备注
@@ -122,7 +123,8 @@
                 %>
                 <td align="center" width="4%">
                     <key></key>
-                    <a class="tsEditLink" href="#">编辑</a><br /><a href="#" onclick="removeRow(this)">删除</a>
+                    <a class="tsEditLink" href="#">编辑</a><br />
+                    <a href="#" onclick="removeRow(this)">删除</a>
                 </td>
                 <td width="10%">
                     <%                   
@@ -164,7 +166,7 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", "",new { style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", "", new { style = "width:60px;" }));
                         }
                         else
                         {
@@ -259,25 +261,6 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", "", new { validate = "number:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", Html.Encode(Model[i].PurchaseTotalPrice), new { validate = "number:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].PurchasePrice));
-                            }
-                        }
-                    %>
-                </td>
-                <td width="10%">
-                    <%
-                        if (Model == null)
-                        {
                             Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true", style = "width:60px;" }));
                         }
                         else
@@ -289,6 +272,25 @@
                             else
                             {
                                 Response.Write(Html.Encode(Model[i].ExportAmount));
+                            }
+                        }
+                    %>
+                </td>
+                <td width="10%">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", "", new { validate = "number:true", style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", Html.Encode(Model[i].PurchaseTotalPrice), new { validate = "number:true", style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].PurchasePrice));
                             }
                         }
                     %>
@@ -341,23 +343,45 @@
         if (ViewData["Details"] == null)
         {
     %>
-    <table id="Table1" class="dynamictable" cellspacing="0" cellpadding="0" border="0">
-        <tr>
-            <td colspan="11" align="right">
-                <input type="button" id="btnInsert" value="添加" onclick="addRow(this)" class="button" />
-            </td>
-        </tr>
-    </table>
+    <div style="width: 100%" align="left">
+        <input type="button" id="btnInsert" value="添加行" onclick="addRow(this)" class="button" />
+    </div>
     <%
         }
     %>
 
-    <script>
-    function setreadonly() {
-        $("#editableTable").find('input, select,textarea').attr("readonly", "true");
-        $("#editableTable").addClass("dynamictablereadonly");
-    }
-    setreadonly();
+    <script type="text/javascript">
+        function setreadonly() {
+            $("#editableTable").find('input, select,textarea').attr("readonly", "true");
+            $("#editableTable").addClass("dynamictablereadonly");
+        }
+        setreadonly();
+
+
+        $("#ProductPack♂ExportAmount").attr("title", "双击自动获取运算值");
+        $("#ProductPack♂PurchaseTotalPrice").attr("title", "双击自动获取运算值");
+
+
+
+        $("#ProductSummary♂ExportAmount").bind("dblclick", function() {
+
+            $(this).val(($(this).parent().parent().find("input[name='ProductSummary♂Amount']").val()) *
+                ($(this).parent().parent().find("input[name='ProductSummary♂ExportPrice']").val())
+                );
+
+
+        });
+
+
+        $("#ProductSummary♂PurchaseTotalPrice").bind("dblclick", function() {
+
+            $(this).val(($(this).parent().parent().find("input[name='ProductSummary♂Amount']").val()) *
+                ($(this).parent().parent().find("input[name='ProductSummary♂PurchasePrice']").val())
+                );
+
+
+        });
+    
     </script>
 
 </div>
