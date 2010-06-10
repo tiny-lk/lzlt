@@ -5,6 +5,8 @@ using System.Text;
 using System.Web.Mvc;
 using LZL.ForeignTrade.DataEntity;
 using System.Web;
+using System.Web.Security;
+using System.Configuration;
 
 namespace LZL.ForeignTrade.Controllers
 {
