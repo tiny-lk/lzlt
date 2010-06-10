@@ -295,13 +295,13 @@ namespace LZL.ForeignTrade.Controllers
                 string dw = string.Empty;
                 if (invoice.ProductPack.Count > 0)
                 {
-                    dw = invoice.ProductPack.ElementAt(1).PackUnitEN;
+                    dw = invoice.ProductPack.ElementAt(0).PackUnitEN;
                 }
                 else
                 {
                     if (invoice.ProductSummary.Count > 0)
                     {
-                        dw = invoice.ProductSummary.ElementAt(1).UnitEN;
+                        dw = invoice.ProductSummary.ElementAt(0).UnitEN;
                     }
                 }
 
