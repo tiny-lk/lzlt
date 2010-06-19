@@ -130,8 +130,11 @@ namespace LZL.ForeignTrade.Controllers
                 wordhelper.GotoBookMark("totalamount");
                 wordhelper.InsertText("TOTAL VALUE：" + ZhouBo.Core.BasicOperate.GetString(exportContracts.CurrencyType, true) + hjje.ToString());
 
-                wordhelper.GotoBookMark("total");
-                wordhelper.InsertText(Number2English.Instance.NumberToString(hjje));
+                if (hjje > 0)
+                {
+                    wordhelper.GotoBookMark("total");
+                    wordhelper.InsertText(Number2English.Instance.NumberToString(hjje));
+                }
 
                 wordhelper.GotoBookMark("timeshipment");
                 wordhelper.InsertText(exportContracts.ShipmentDate.GetValueOrDefault().ToShortDateString());
