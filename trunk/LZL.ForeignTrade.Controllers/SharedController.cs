@@ -326,12 +326,16 @@ namespace LZL.ForeignTrade.Controllers
                 {
                     string[] propertyobjects = formvalues[(region + "propertyobject")].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     string[] propertyobjectvalues = formvalues[region + "propertyobjectvalue"].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    var sql = "select value it from " + entities.DefaultContainerName + "." + propertyobjects[s] + " as it ";
-                    sql += " where it.ID=Guid'" + propertyobjectvalues[s] + "'";
-                    object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
-                    if (propertyobject != null)
+
+                    if (propertyobjectvalues.Count() > 0)
                     {
-                        ClassHelper.SetPropertyValue(tableobj, propertyobjects[s], propertyobject);//设置属性对象
+                        var sql = "select value it from " + entities.DefaultContainerName + "." + propertyobjects[s] + " as it ";
+                        sql += " where it.ID=Guid'" + propertyobjectvalues[s] + "'";
+                        object propertyobject = entities.CreateQuery<EntityObject>(sql).FirstOrDefault();
+                        if (propertyobject != null)
+                        {
+                            ClassHelper.SetPropertyValue(tableobj, propertyobjects[s], propertyobject);//设置属性对象
+                        }
                     }
                 }
 

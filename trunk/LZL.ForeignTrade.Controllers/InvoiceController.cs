@@ -49,11 +49,11 @@ namespace LZL.ForeignTrade.Controllers
             {
                 Guid guid = new Guid(ids[i]);
                 var invoice = entities.Invoice.Where(v => v.ID.Equals(guid)).FirstOrDefault();
-                invoice.InvoiceExportContracts.Load();
-                var count = invoice.InvoiceExportContracts.Count;
+                invoice.ProductPack.Load();
+                var count = invoice.ProductPack.Count;
                 for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(invoice.InvoiceExportContracts.ElementAt(0));
+                    entities.DeleteObject(invoice.ProductPack.ElementAt(0));
                 }
 
                 invoice.ProductSummary.Load();
