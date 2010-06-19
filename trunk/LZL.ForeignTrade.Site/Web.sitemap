@@ -12,6 +12,6 @@
       <siteMapNode url="~/Warehouse/WarehouseManager" title="仓库管理"  description="" />
     </siteMapNode>
     <siteMapNode url="~/Admin/Index" title="管理"  description="" />
-    <siteMapNode url="~/About/Home" title="关于"  description="" />
+    <siteMapNode url="~/Home/About" title="关于"  description="" />
   </siteMapNode>
 </siteMap>

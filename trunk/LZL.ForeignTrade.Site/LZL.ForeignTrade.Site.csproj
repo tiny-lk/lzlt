@@ -299,7 +299,6 @@
     <Content Include="Scripts\jquery.corner.js" />
     <Content Include="Scripts\ui\ui.datepicker-zh-CN.js" />
     <Content Include="Views\Admin\DetailsCompany.aspx" />
-    <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\ColorWarehouseSale.ascx" />
     <Content Include="Views\Shared\CompanyIndex.ascx" />
     <Content Include="Views\Shared\MenuMain.ascx" />
@@ -312,7 +311,6 @@
     <Content Include="Views\Admin\ManageCompany.aspx" />
     <Content Include="Views\Admin\ManageDepartment.aspx" />
     <Content Include="Views\Admin\ManageUserRelation.aspx" />
-    <Content Include="Views\Shared\AttachmentUpload.ascx" />
     <Content Include="Views\Shared\OtherMaterialBuy.ascx" />
     <Content Include="Views\Shared\PrintWord.aspx" />
     <Content Include="Views\Shared\ProductPackControl.ascx" />
@@ -340,7 +338,12 @@
     <Content Include="Scripts\jquery.tableEditor.js" />
     <Content Include="Scripts\jquery.tablesorter.js" />
     <Content Include="Views\Admin\ManageMenu.aspx" />
+    <Content Include="Views\Admin\ManageStep.aspx" />
+    <Content Include="Views\Admin\AddStep.aspx" />
+    <Content Include="Views\Admin\EditStep.aspx" />
     <Content Include="Views\Invoice\ProductSummaryIndex2.aspx" />
+    <Content Include="Views\Shared\AttachmentUpload.ascx" />
+    <Content Include="Views\Shared\StepIndex.ascx" />
     <Content Include="Views\Shared\副本 ProductPackControl.ascx" />
     <Content Include="Views\Shared\副本 ProductSummaryControl.ascx" />
     <Content Include="Web.sitemap" />
