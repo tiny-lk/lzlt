@@ -25,5 +25,5 @@
     <li>
         <%= Html.ActionLink("管理", "Index", "Admin")%></li>
     <li>
-        <%= Html.ActionLink("关于", "About", "Home")%></li>
+        <%= Html.ActionLink("关于", "Home", "About")%></li>
 </ul>
