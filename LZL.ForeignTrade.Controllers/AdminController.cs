@@ -424,7 +424,7 @@ WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
         public ActionResult EditCompany(string id)
         {
             Entities _Entities = new Entities();
-            Guid guid = new Guid(id);
+        Guid guid = new Guid(id);
             return View(_Entities.Company.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
 
