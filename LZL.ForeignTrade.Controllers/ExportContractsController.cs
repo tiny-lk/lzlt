@@ -53,11 +53,11 @@ namespace LZL.ForeignTrade.Controllers
                 Guid guid = new Guid(ids[i]);
                 var exportContracts = entities.ExportContracts.Where(v => v.ID.Equals(guid)).FirstOrDefault();
 
-                exportContracts.ExportContractsPrice.Load();
-                var count = exportContracts.ExportContractsPrice.Count;
+                exportContracts.ProductPack.Load();
+                var count = exportContracts.ProductPack.Count;
                 for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(exportContracts.ExportContractsPrice.ElementAt(0));
+                    entities.DeleteObject(exportContracts.ProductPack.ElementAt(0));
                 }
 
                 exportContracts.ProductSummary.Load();
@@ -67,11 +67,18 @@ namespace LZL.ForeignTrade.Controllers
                     entities.DeleteObject(exportContracts.ProductSummary.ElementAt(0));
                 }
 
-                exportContracts.StockContractsExportContracts.Load();
-                count = exportContracts.StockContractsExportContracts.Count;
+                exportContracts.InvoiceExportContracts.Load();
+                count = exportContracts.InvoiceExportContracts.Count;
                 for (int s = 0; s < count; s++)
                 {
-                    entities.DeleteObject(exportContracts.StockContractsExportContracts.ElementAt(0));
+                    entities.DeleteObject(exportContracts.InvoiceExportContracts.ElementAt(0));
+                }
+
+                exportContracts.ExportContractsPrice.Load();
+                count = exportContracts.ExportContractsPrice.Count;
+                for (int s = 0; s < count; s++)
+                {
+                    entities.DeleteObject(exportContracts.ExportContractsPrice.ElementAt(0));
                 }
 
                 entities.DeleteObject(exportContracts);
