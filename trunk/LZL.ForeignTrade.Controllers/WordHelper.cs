@@ -10,7 +10,7 @@ namespace LZL.ForeignTrade.Controllers
     {
         private Microsoft.Office.Interop.Word.ApplicationClass oWordApplic;
         object missing = System.Reflection.Missing.Value;
-        private Microsoft.Office.Interop.Word.Document oDoc;
+        public Microsoft.Office.Interop.Word.Document oDoc;
 
         public WordHelper(string path)
         {
@@ -21,6 +21,12 @@ namespace LZL.ForeignTrade.Controllers
             object isVisible = false;
             try
             {
+                if (oWordApplic.Documents.Count > 0)
+                { 
+                    oDoc = oWordApplic.ActiveDocument; 
+                    oDoc.Close(ref missing, ref missing, ref missing); 
+                }  
+
                 oDoc = oWordApplic.Documents.Open(ref fileName, ref missing, ref readOnly,
                                           ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
                                           ref missing, ref missing, ref isVisible, ref missing, ref missing, ref missing, ref missing);

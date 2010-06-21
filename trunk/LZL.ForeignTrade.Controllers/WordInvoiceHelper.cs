@@ -30,6 +30,11 @@ namespace LZL.ForeignTrade.Controllers
             File.Copy(path, targetpath, true);
             using (WordHelper wordhelper = new WordHelper(targetpath))
             {
+                if (wordhelper.oDoc == null)
+                {
+                    throw new Exception("word打开失败，请核实服务器是否已安装office");
+                }
+
                 wordhelper.GotoBookMark("date");
                 wordhelper.InsertText(invoice.Date.ToShortDateString());
                 wordhelper.GotoBookMark("from");
@@ -140,6 +145,11 @@ namespace LZL.ForeignTrade.Controllers
             File.Copy(path, targetpath, true);
             using (WordHelper wordhelper = new WordHelper(targetpath))
             {
+                if (wordhelper.oDoc == null)
+                {
+                    throw new Exception("word打开失败，请核实服务器是否已安装office");
+                }
+
                 wordhelper.GotoBookMark("date");
                 wordhelper.InsertText(invoice.Date.ToShortDateString());
                 wordhelper.GotoBookMark("no");
