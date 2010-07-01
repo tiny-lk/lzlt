@@ -21,6 +21,14 @@ namespace LZL.ForeignTrade.Controllers
 
         }
 
+        /// <summary>
+        /// 商业发票打印
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="path"></param>
+        /// <param name="targetpath"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public byte[] BuilderInvoice(Guid id, string path, string targetpath,out string filename)
         {
             Entities _Entities = new Entities();
@@ -73,7 +81,8 @@ namespace LZL.ForeignTrade.Controllers
                 }
 
                 wordhelper.GotoBookMark("contenttitle");
-                wordhelper.InsertText(invoice.PriceClause + "   " + invoice.StartHaven + ",CHINA");
+                //插入价格条款、运抵国、运抵港口信息
+                wordhelper.InsertText(invoice.PriceClause + "   " + invoice.EdnHaven + ","+invoice.TansportCountry);
                 invoice.ProductSummary.Load();
                 Table table = wordhelper.AddTable(wordhelper.GotoBookMark("content"), invoice.ProductSummary.Count + 2, 4);
                 table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
@@ -90,7 +99,7 @@ namespace LZL.ForeignTrade.Controllers
                 {
                     invoice.ProductSummary.ElementAt(i).ProductReference.Load();
                     Product product = invoice.ProductSummary.ElementAt(i).Product;
-                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : product.NameCode;
+                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : (product.NameCode+" "+product.NameEH);
                     table.Cell(count, 1).Select();
                     table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                     dwmc = DataHelper.GetDictionaryName(invoice.ProductSummary.ElementAt(i).UnitEN);
@@ -136,6 +145,14 @@ namespace LZL.ForeignTrade.Controllers
             }
         }
 
+        /// <summary>
+        /// 装箱单信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="path"></param>
+        /// <param name="targetpath"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public byte[] BuilderPackingList(Guid id, string path, string targetpath, out string filename)
         {
             Entities _Entities = new Entities();
@@ -181,6 +198,7 @@ namespace LZL.ForeignTrade.Controllers
                 invoice.ProductPack.Load();
 
                 wordhelper.GotoBookMark("contenttitle");
+                //插入价格条款、起运国、起运港口信息
                 wordhelper.InsertText(invoice.PriceClause + "   " + invoice.StartHaven + ",CHINA");
 
                 Table table = wordhelper.AddTable(wordhelper.GotoBookMark("content"), invoice.ProductPack.Count + 2, 7);
@@ -218,7 +236,7 @@ namespace LZL.ForeignTrade.Controllers
                     {
                         productSummary = new ProductSummary();
                     }
-                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : product.NameCode;
+                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : (product.NameCode + " " + product.NameEH);
                     table.Cell(count, 1).Select();
                     table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
                     jscount += invoice.ProductPack.ElementAt(i).PieceAmount.GetValueOrDefault();//件数
@@ -232,7 +250,11 @@ namespace LZL.ForeignTrade.Controllers
                     table.Cell(count, 4).Range.Text = invoice.ProductPack.ElementAt(i).GrossWeight.GetValueOrDefault() + "KG";
                     jzcount += invoice.ProductPack.ElementAt(i).NetWeight.GetValueOrDefault();//净重
                     table.Cell(count, 5).Range.Text = invoice.ProductPack.ElementAt(i).NetWeight.GetValueOrDefault() + "KG";
-                    table.Cell(count, 6).Range.Text = productSummary.ExportPrice.GetValueOrDefault().ToString();
+                    //显示报关价格
+                    //table.Cell(count, 6).Range.Text = productSummary.ExportPrice.GetValueOrDefault().ToString();
+                    //显示单款总体积
+                    table.Cell(count, 6).Range.Text = invoice.ProductPack.ElementAt(i).PackBulk.GetValueOrDefault().ToString();
+
                     jgcount += productSummary.ExportAmount.GetValueOrDefault();//价格总和
                     table.Cell(count, 7).Range.Text = productSummary.ExportAmount.GetValueOrDefault().ToString();
                     count++;
@@ -269,9 +291,16 @@ namespace LZL.ForeignTrade.Controllers
                     filestream.Dispose();
                 }
             }
-            ///////
         }
 
+        /// <summary>
+        /// 报关单信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="path"></param>
+        /// <param name="targetpath"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         public byte[] BuilderDeclaration(Guid id, string path, string targetpath, out string filename)
         {
             Entities _Entities = new Entities();

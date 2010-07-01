@@ -139,7 +139,11 @@ WHERE ('" + rolelist[temp] + "' IN (RoleName))";
             }
             return null;
         }
-
+        /// <summary>
+        /// 装箱单生成和打印
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult PackingList(string id)
         {
             if (!string.IsNullOrEmpty(id))

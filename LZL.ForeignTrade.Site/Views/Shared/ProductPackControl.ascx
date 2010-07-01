@@ -125,7 +125,7 @@
                 }); //总包装净重
 
             });
-
+            
             function toggle(obj) {
                 if ($(obj).val() == "折 叠") {
                     $(obj).val("展 开");
