@@ -52,6 +52,30 @@
     <script type="text/javascript" src='<%= Url.Content("~/Scripts/ui/ui.datepicker-zh-CN.js")%>'></script>
 
     <script type="text/javascript">
+        function autocompletedictionary(name, type) {
+            $("#" + name).autocomplete(
+          //change by lj(如果不用这种方式，在iis中浏览路径找不到)
+             '<%=Url.Action("GetDictionary","Shared")%>',
+            { max: 20,
+                highlight: false,
+                multiple: false,
+                scroll: true,
+                scrollHeight: 300,
+                dataType: 'json',
+                extraParams: { typename: type },
+                parse: function(data) {
+                    var rows = [];
+                    for (var i = 0; i < data.length; i++) {
+                        rows[rows.length] = { data: data[i].Name,
+                            value: data[i].ID, result: data[i].Name
+                        };
+                    } return rows;
+                },
+                formatItem: function(row, i, n) { return row; }
+            });
+        }
+
+
         $(document).ready(function() {
             $.validator.setDefaults();
             $.metadata.setType("attr", "validate");
@@ -100,9 +124,7 @@
             });
 
         }
-    </script>
 
-    <script type="text/javascript">
         function checksettring() {
             $("table > tbody[listmouse='listmouseovercss'] > tr").live("mouseover", function() {
                 $(this).addClass("mouseover");
@@ -173,9 +195,7 @@
             });
 
         }
-    </script>
 
-    <script type="text/javascript">
 
         //Type类型 s 加载简单模型 o对象本身
         function LoadDictionaryPanel(type, s, o) {
@@ -232,12 +252,10 @@
             $("#DictionaryPaneldialog").dialog();
             $("#DictionaryPaneldialog").dialog('open');
         }
-    </script>
 
-    <script type="text/javascript">
         function LoadControlList(obj, name) {
             var txtobject = $(obj).parent().find("input[type='text']"); //txt文本对象
-         //   debugger
+            //   debugger
             var hidobject = $(obj).parent().find("input[type='hidden']"); //hidden对象
             $("#ListPaneldialog").remove();
             $("body").append("<div id='ListPaneldialog'></div>");
@@ -251,12 +269,12 @@
                 draggable: true,
                 closeOnEscape: true,
                 buttons: {
-                确定: function() {                
+                    确定: function() {
                         if (!($(document).data("checkvalue") == null || $(document).data("checkvalue") == "")) {
                             if ($(document).data("checkvalue").split("♂").length != 1) {
                                 alert("请选择一条数据！");
                                 return;
-                            }                            
+                            }
                             $.each($(document).data("checkvalue").split("♂"), function(i, o) {
                                 $(txtobject).val(o.split("|")[1]);
                                 $(hidobject).val(o.split("|")[0]);
@@ -265,11 +283,11 @@
                             $(document).data("checkvalue", "");
                             $(document).data("check", 0);
                             $("#ListPaneldialog").children().remove();
-                            $(this).dialog('close');                       
+                            $(this).dialog('close');
                         } else {
                             alert("选择不能为空！");
                         }
-                    }                  
+                    }
                 }
             });
 
@@ -290,15 +308,13 @@
             $("#ListPaneldialog").dialog();
             $("#ListPaneldialog").dialog('open');
         }
-    </script>
 
-    <script type="text/javascript">
         //添加控件信息
         function addcontrol(obj, controlname, region, num, fk) {
             addcontrol(obj, controlname, region, num, fk, "");
         }
         //添加控件信息
-        function addcontrol(obj, controlname, region, num, fk, otherparameter) {        
+        function addcontrol(obj, controlname, region, num, fk, otherparameter) {
             if ($("#" + region).find("div[id = 'regioncontent']").length <= 0) {
                 $.ajax({
                     type: "get",
@@ -306,9 +322,9 @@
                     data: { name: controlname, number: num, fk: fk, p: otherparameter },
                     url: '<%=Url.Action("GetShareControl", "Shared")%>', //获取控件信息
                     success: function(data) {
-                      // debugger
+                        // debugger
                         var count = $("#" + region + "regioncount").val();
-                        if (typeof(count)=="undefined") {
+                        if (typeof (count) == "undefined") {
                             $("#" + region).find("div[id='regioncontent']").remove();
                             $("#" + region).find("div[id='region']").remove();
                             $("#" + region).children().append($(data));
@@ -316,7 +332,7 @@
                             $("#" + region).css("display", "");
                         }
                         else {
-                           // alert("请点击下方的 添加 按钮！");
+                            // alert("请点击下方的 添加 按钮！");
                         }
                     },
                     error: function(err) {
@@ -342,18 +358,17 @@
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div>
         </div>
-        <div class="maincontent" >
+        <div class="maincontent">
             <div class="content">
                 <div id="tree">
                     功能信息
                 </div>
-                <div id="treecontent" style="margin-left:0; padding-left:0; ">
+                <div id="treecontent" style="margin-left: 0; padding-left: 0;">
                     <%--                <div id="Div1">
                         <% Html.RenderPartial("MenuMain"); %>
                     </div>--%>
                     <form id="Form1" runat="server">
-                    <asp:TreeView ID="menuview" runat="server" DataSourceID="SiteMapDataSource" 
-                        ImageSet="Arrows">
+                    <asp:TreeView ID="menuview" runat="server" DataSourceID="SiteMapDataSource" ImageSet="Arrows">
                         <SelectedNodeStyle BackColor="#BDE8FE" />
                     </asp:TreeView>
                     <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
@@ -367,7 +382,7 @@
                 </div>
             </div>
         </div>
-        <div id="footer" >
+        <div id="footer">
             本网站版权归诚诺进出口贸易有限公司版权所有
         </div>
     </div>

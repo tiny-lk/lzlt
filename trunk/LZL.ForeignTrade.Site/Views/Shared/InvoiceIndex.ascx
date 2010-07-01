@@ -163,7 +163,7 @@
                     check="1" />
                 <input type="button" class="button4" id="BusinessInvoice" value="商业发票输出" disabled="disabled"
                     check="1" />
-                                    <input type="button" class="button4" id="Declaration" value="报关单输出" disabled="disabled"
+                <input type="button" class="button4" id="Declaration" value="报关单输出" disabled="disabled"
                     check="1" />
                 <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
                 <%
