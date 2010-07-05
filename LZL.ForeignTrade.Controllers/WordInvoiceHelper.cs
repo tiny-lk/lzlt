@@ -465,14 +465,26 @@ namespace LZL.ForeignTrade.Controllers
                 wordhelper.InsertText(invoice.StartHaven + ",CHINA");
                 wordhelper.GotoBookMark("mdg");//目的港
                 wordhelper.InsertText(invoice.EdnHaven + "," + invoice.TansportCountry);
-                wordhelper.GotoBookMark("zyqx");//装运日期
-                wordhelper.InsertText(invoice.ShipmentDate.Value.ToShortDateString());
-                wordhelper.GotoBookMark("yxqx");//有效日期
-                wordhelper.InsertText(invoice.ValidDate.Value.ToShortDateString());
+                if (invoice.ShipmentDate != null)
+                {
+                    wordhelper.GotoBookMark("zyqx");//装运日期
+                    wordhelper.InsertText(invoice.ShipmentDate.Value.ToShortDateString());
+                }
+                if (invoice.ValidDate != null)
+                {
+                    wordhelper.GotoBookMark("yxqx");//有效日期
+                    wordhelper.InsertText(invoice.ValidDate.Value.ToShortDateString());
+                }
+
                 wordhelper.GotoBookMark("xyzh");//信用证号
                 wordhelper.InsertText(invoice.CreditCardNo);
-                wordhelper.GotoBookMark("kzrq");//开征日期
-                wordhelper.InsertText(invoice.AccountDate.Value.ToShortDateString());
+
+                if (invoice.AccountDate != null)
+                {
+                    wordhelper.GotoBookMark("kzrq");//开征日期
+                    wordhelper.InsertText(invoice.AccountDate.Value.ToShortDateString());
+                }
+
                 wordhelper.GotoBookMark("ckje");//出口金额
                 wordhelper.InsertText(invoice.CurrencyType.ToString() + invoice.CreditAmount.ToString());
                 wordhelper.GotoBookMark("childContentMt");//唛头
