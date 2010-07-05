@@ -23,8 +23,9 @@
             });
         }
         $(document).ready(function() {
+            $("#Product♂PackBulk").attr("title", "双击自动获取运算值");
             $("#Product♂PackBulk").bind("dblclick", function() {
-                var tj = Number($("#Product♂PackLength").val() / 100) * Number($("#Product♂PackWidth").val() / 100) * Number($("#Product♂PackWidth").val() / 100);
+                var tj = Number($("#Product♂PackLength").val() / 100) * Number($("#Product♂PackWidth").val() / 100) * Number($("#Product♂PackHeight").val() / 100);
                 if (tj != 0) {
                     $("#Product♂PackBulk").val(tj.toFixed(2));
                 }
@@ -51,7 +52,7 @@
         <thead align="center">
             <tr>
                 <td colspan="5" align="right">
-                    <input type="submit" style="display:none" class="button" id="btnTj" value="提 交" />
+                    <input type="submit" style="display: none" class="button" id="btnTj" value="提 交" />
                     &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                         type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Product/Index") %>'" />
                 </td>
@@ -175,10 +176,10 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">
+                <td align="right" style="font-weight: bold;">
                     包装体积(CBM)：
                 </td>
-                <td align="left">
+                <td align="left" style="background-color: Silver">
                     <%= Html.TextBox("Product♂PackBulk", "", new { validate = "number:true" })%>
                 </td>
                 <td align="right">

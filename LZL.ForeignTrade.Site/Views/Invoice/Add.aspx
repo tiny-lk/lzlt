@@ -138,7 +138,7 @@
             $("#Invoice♂OceanEdnHaven").bind("dblclick", function(thisObj) {
                 $("#Invoice♂OceanEdnHaven").val($("#Invoice♂EdnHaven").val());
             }); //目的港
-            
+
             //初始化点击事件
             $("#hrSpxx").click();
             $("#hrSpbz").click();
@@ -168,16 +168,16 @@
     <% using (Html.BeginForm())
        { %>
     <!-- 标识子表区域名称(表格名称、实体对象名称) -->
-    <input type="hidden" name="region" value="Invoice♂"  />
+    <input type="hidden" name="region" value="Invoice♂" />
     <!-- 标识子表实体对象类 -->
     <input type="hidden" name="Invoice♂objectname" value="LZL.ForeignTrade.DataEntity.Invoice,LZL.ForeignTrade.DataEntity" />
     <%= Html.Hidden("Invoice♂iscreatedate", "CreateDate")%>
     <%= Html.Hidden("Invoice♂iseditdate", "EditDate")%>
     <table cellpadding="0" cellspacing="0" border="0" align="center" width="60%">
         <tr>
-            <td align="center"  style=" font-size:14px">
-                <span id="addnews" style="font-weight:bold; color:blue">1. 添加单证信息 </span>  ————   2. 阅读(修改)单证信息
-                
+            <td align="center" style="font-size: 14px">
+                <span id="addnews" style="font-weight: bold; color: blue">1. 添加单证信息 </span>————
+                2. 阅读(修改)单证信息
             </td>
         </tr>
     </table>
@@ -465,16 +465,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         托运人：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂Shipper")%>
                     </td>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         收货人：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂Consignee")%>
                     </td>
                 </tr>
@@ -507,10 +507,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         运费支付：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanFreightPayment")%><a href="#" onclick="LoadDictionaryPanel('运费支付',true,this)">选择</a>
                     </td>
                     <td align="right">
@@ -541,32 +541,32 @@
                     <td align="left">
                         <%= Html.TextBox("Invoice♂OceanDeputy")%>
                     </td>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         运抵国：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanTansportCountry")%><a href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">
-                        启运港：
+                    <td align="right" style="font-weight: bold;">
+                        起运港：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanStartHaven")%><a href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         转运港：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanEdnHaven")%><a href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         目的港：
                     </td>
-                    <td align="left" colspan="4">
+                    <td align="left" colspan="4" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanTransferHaven")%><a href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
                 </tr>

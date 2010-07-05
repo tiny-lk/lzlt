@@ -425,5 +425,194 @@ namespace LZL.ForeignTrade.Controllers
             }
 
         }
+
+        /// <summary>
+        /// 出口货物明细单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="path"></param>
+        /// <param name="targetpath"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public byte[] BuilderCkhwList(Guid id, string path, string targetpath, out string filename)
+        {
+            Entities _Entities = new Entities();
+            Invoice invoice = _Entities.Invoice.Where(v => v.ID.Equals(id)).FirstOrDefault();
+            filename = "Ckhwmxd_" + invoice.Name + ".doc";
+            targetpath += filename;
+            File.Copy(path, targetpath, true);
+            using (WordHelper wordhelper = new WordHelper(targetpath))
+            {
+                if (wordhelper.oDoc == null)
+                {
+                    throw new Exception("word打开失败，请核实服务器是否已安装office");
+                }
+
+                wordhelper.GotoBookMark("kzyh");//开征银行
+                wordhelper.InsertText(invoice.AccountBank);
+                wordhelper.GotoBookMark("fphm");//发票号码
+                wordhelper.InsertText(invoice.Name);
+                wordhelper.GotoBookMark("hth");//合同号
+                wordhelper.InsertText(invoice.ExportContractsName);
+                wordhelper.GotoBookMark("skfs");//收款方式
+                wordhelper.InsertText(invoice.ClauseType);
+
+                wordhelper.GotoBookMark("myfs");//贸易方式
+                wordhelper.InsertText(invoice.Trade);
+                wordhelper.GotoBookMark("ydg");//运抵国
+                wordhelper.InsertText(invoice.TansportCountry);
+                wordhelper.GotoBookMark("ckka");//出口口岸
+                wordhelper.InsertText(invoice.StartHaven + ",CHINA");
+                wordhelper.GotoBookMark("mdg");//目的港
+                wordhelper.InsertText(invoice.EdnHaven + "," + invoice.TansportCountry);
+                wordhelper.GotoBookMark("zyqx");//装运日期
+                wordhelper.InsertText(invoice.ShipmentDate.Value.ToShortDateString());
+                wordhelper.GotoBookMark("yxqx");//有效日期
+                wordhelper.InsertText(invoice.ValidDate.Value.ToShortDateString());
+                wordhelper.GotoBookMark("xyzh");//信用证号
+                wordhelper.InsertText(invoice.CreditCardNo);
+                wordhelper.GotoBookMark("kzrq");//开征日期
+                wordhelper.InsertText(invoice.AccountDate.Value.ToShortDateString());
+                wordhelper.GotoBookMark("ckje");//出口金额
+                wordhelper.InsertText(invoice.CurrencyType.ToString() + invoice.CreditAmount.ToString());
+                wordhelper.GotoBookMark("childContentMt");//唛头
+                wordhelper.InsertText(invoice.Mark);
+                //是否转运
+                wordhelper.GotoBookMark("sfzy");
+                string strChar = invoice.IsTransfer.Value ? "YES" : "NO";
+                wordhelper.InsertText(strChar);
+           
+                //是否分批
+                wordhelper.GotoBookMark("sffp");
+                strChar = invoice.IsBatches.Value ? "YES" : "NO";
+                wordhelper.InsertText(strChar);
+
+                if (invoice.CustomerID.HasValue)
+                {
+                    Guid customerid = invoice.CustomerID.GetValueOrDefault();
+                    Customer customer = _Entities.Customer.Where(v => v.ID.Equals(customerid)).FirstOrDefault();
+                    if (customer != null)
+                    {
+                        wordhelper.GotoBookMark("shr");//收货人
+                        wordhelper.InsertText(customer.NameEn + (char)10 + customer.AddressEn);//客户地址
+                        wordhelper.GotoBookMark("tzr");//通知人
+                        wordhelper.InsertText(customer.NameEn + (char)10 + customer.AddressEn);//客户地址
+                    }
+                }
+                if (invoice.CompanyID.HasValue)
+                {
+                    Guid companyid = invoice.CompanyID.GetValueOrDefault();
+                    Company company = _Entities.Company.Where(v => v.ID.Equals(companyid)).FirstOrDefault();
+                    if (company != null)
+                    {
+                        wordhelper.GotoBookMark("jydw");//经营单位
+                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH);//公司英文，公司地址
+                    }
+                }
+                invoice.ProductPack.Load();
+
+                //插入价格条款、起运国、起运港口信息
+                wordhelper.GotoBookMark("childContentHead");                
+                if (invoice.PriceClause == "C&F")
+                {
+                    wordhelper.InsertText(invoice.PriceClause + "   " + invoice.EdnHaven + ","+invoice.TansportCountry);
+                }
+                else
+                {
+                    wordhelper.InsertText(invoice.PriceClause + "   " + invoice.StartHaven + ",CHINA");
+                }
+
+                Table table = wordhelper.AddTable(wordhelper.GotoBookMark("childContentArea"), invoice.ProductPack.Count + 2, 7);
+                table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
+                table.PreferredWidth = 95;
+                table.Select();
+                table.Rows.Alignment = WdRowAlignment.wdAlignRowRight;
+                table.Range.Paragraphs.Alignment = WdParagraphAlignment.wdAlignParagraphRight;
+                int count = 1;
+                double jscount = 0;
+                string jsunit = string.Empty;
+                double slcount = 0;
+                string slunit = string.Empty;
+                double mzcount = 0;
+                double jzcount = 0;
+                double jgcount = 0;
+                for (int i = 0; i < invoice.ProductPack.Count; i++)
+                {
+                    Guid productid = invoice.ProductPack.ElementAt(i).ProductID.GetValueOrDefault();
+                    Product product = _Entities.Product.Where(v => v.ID.Equals(productid)).FirstOrDefault();
+                    if (product == null)
+                    {
+                        product = new Product();
+                    }
+                    invoice.ProductSummary.Load();
+
+                    for (int s = 0; s < invoice.ProductSummary.Count; s++)
+                    {
+                        invoice.ProductSummary.ElementAt(s).ProductReference.Load();
+                    }
+
+                    ProductSummary productSummary = invoice.ProductSummary.Where(v => v.ProductReference.Value.Equals(product)).FirstOrDefault();
+
+                    if (productSummary == null)
+                    {
+                        productSummary = new ProductSummary();
+                    }
+                    table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : (product.NameCode + " " + product.NameEH);
+                    table.Cell(count, 1).Select();
+                    table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                    jscount += invoice.ProductPack.ElementAt(i).PieceAmount.GetValueOrDefault();//件数
+
+                    jsunit = DataHelper.GetDictionaryName(invoice.ProductPack.ElementAt(i).PackUnitEN);
+                    table.Cell(count, 2).Range.Text = invoice.ProductPack.ElementAt(i).PieceAmount.GetValueOrDefault() + jsunit;
+                    slcount += productSummary.Amount.GetValueOrDefault();
+                    slunit = DataHelper.GetDictionaryName(productSummary.UnitEN);
+                    table.Cell(count, 3).Range.Text = productSummary.Amount.GetValueOrDefault() + slunit;
+                    mzcount += invoice.ProductPack.ElementAt(i).GrossWeight.GetValueOrDefault();//毛重
+                    table.Cell(count, 4).Range.Text = invoice.ProductPack.ElementAt(i).GrossWeight.GetValueOrDefault() + "KG";
+                    jzcount += invoice.ProductPack.ElementAt(i).NetWeight.GetValueOrDefault();//净重
+                    table.Cell(count, 5).Range.Text = invoice.ProductPack.ElementAt(i).NetWeight.GetValueOrDefault() + "KG";
+                    //显示报关价格
+                    table.Cell(count, 6).Range.Text = invoice.CurrencyType.ToString() + productSummary.ExportPrice.GetValueOrDefault().ToString();
+                    //显示单款总体积
+                    //table.Cell(count, 6).Range.Text = invoice.ProductPack.ElementAt(i).PackBulk.GetValueOrDefault().ToString();
+
+                    jgcount += productSummary.ExportAmount.GetValueOrDefault();//价格总和
+                    table.Cell(count, 7).Range.Text = invoice.CurrencyType.ToString() + productSummary.ExportAmount.GetValueOrDefault().ToString();
+                    count++;
+                }
+                table.Cell(count, 1).Merge(table.Cell(count, 7));
+                table.Cell(count, 1).Range.Text = "—".PadLeft(50, '—');
+                table.Cell(count + 1, 1).Range.Text = "TOTAL：";
+                table.Cell(count + 1, 2).Range.Text = jscount + jsunit;
+                table.Cell(count + 1, 3).Range.Text = slcount + slunit;
+                table.Cell(count + 1, 4).Range.Text = mzcount + "KG";
+                table.Cell(count + 1, 5).Range.Text = jzcount + "KG";
+                table.Cell(count + 1, 7).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + jgcount;
+
+                wordhelper.Save();
+            }
+
+            FileStream filestream = File.Open(targetpath, FileMode.Open);
+            try
+            {
+                byte[] filebuffer = new byte[filestream.Length];
+                filestream.Read(filebuffer, 0, filebuffer.Length);
+                filestream.Seek(0, SeekOrigin.Begin);
+                return filebuffer;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (filestream != null)
+                {
+                    filestream.Close();
+                    filestream.Dispose();
+                }
+            }
+        }
+
     }
 }

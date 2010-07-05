@@ -54,7 +54,7 @@
     <script type="text/javascript">
         function autocompletedictionary(name, type) {
             $("#" + name).autocomplete(
-          //change by lj(如果不用这种方式，在iis中浏览路径找不到)
+            //change by lj(如果不用这种方式，在iis中浏览路径找不到)
              '<%=Url.Action("GetDictionary","Shared")%>',
             { max: 20,
                 highlight: false,
@@ -242,6 +242,7 @@
                 //url: '/Shared/DictionaryIndex', //获取控件信息
                 url: '<%= Url.Content("~/Shared/DictionaryIndex")%>', //change by lj(如果不用这种方式，在iis中浏览路径找不到)
                 success: function(data) {
+                    //window.prompt("test", data);
                     $("#DictionaryPaneldialog").append(data);
                 },
                 error: function(err) {

@@ -21,17 +21,7 @@
         <script src="<%= Url.Content("~/Scripts/common.js")%>" type="text/javascript"></script>
 
         <script type="text/javascript">
-            $().ready(function() {
-                $("#editableTable2").tableSorter().tableEditor({
-                    EDIT_HTML: '编辑',
-                    SAVE_HTML: '',
-                    COL_APPLYCLASS: true,
-                    COLUMN_NOEDIT: 'edit'
-                });
-            });
-        </script>
 
-        <script type="text/javascript">
             function addRow2(regionname) {
                 var obj = $(regionname).closest("table").siblings("div[id='region']");
                 var regionvalue = $(obj).find("input[name='region']").val();
@@ -62,14 +52,18 @@
                 var objTemp = $(regionname);
                 $(objTemp.parent().parent()).remove();
             }
-        </script>
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#ProductPack♂').css("display", "");
-            });
+            function toggle(obj) {
+                if ($(obj).val() == "折 叠") {
+                    $(obj).val("展 开");
+                } else {
+                    $(obj).val("折 叠");
+                }
+                $(obj).closest("table").find("tbody").toggle("slow");
+            }
 
-            $(document).ready(function() {
+            //关联控件间关系
+            function RelationControls() {
                 $("#ProductPack♂PieceAmount").attr("title", "双击自动获取运算值");
                 //$("#ProductPack♂PieceAmount").attr("border-color", "red");
                 $("#ProductPack♂SinglePackBulk").attr("title", "双击自动获取运算值");
@@ -124,21 +118,84 @@
                     }
                 }); //总包装净重
 
-            });
-            
-            function toggle(obj) {
-                if ($(obj).val() == "折 叠") {
-                    $(obj).val("展 开");
-                } else {
-                    $(obj).val("折 叠");
-                }
-                $(obj).closest("table").find("tbody").toggle("slow");
+                $("#ProductPack♂ProductAmount").bind("click", function(thisObj) {
+                    SetInitValueWithSelect();
+                }); //点击商品数量获取关联信息
             }
-        
-        </script>
 
-        <script type="text/javascript">
+            //通过选择商品获取商品相关信息
+            function SetInitValueWithSelect() {
+                var varid = $("input[name='ProductPack♂ProductID']").val();
+                $.get(
+                '<%=Url.Action("GetProductInfo","Shared")%>',
+                 { t: varid },
+                  function(data) {
+                      data = data.replace("{", "").replace("}", "");
+                      var rows = data.split(',');
+                      for (var i = 0; i < rows.length; i++) {
+                          var rowItems = rows[i].split(':');
+                          if (rowItems[1] != "null") {
+                              rowItems[0] = rowItems[0].replace("\"", "").replace("\"", "");
+
+                              //$("#ProductPack♂" + rowItems[0]).val(rowItems[1]);
+                              if (rowItems[0] == "PackUnitEN") {
+                                  if ($("#ProductPack♂PackUnitEN").val() == "") {
+                                      $("#ProductPack♂PackUnitEN").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "PackAmount") {
+                                  if ($("#ProductPack♂SingleProductAmount").val() == "") {
+                                      $("#ProductPack♂SingleProductAmount").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "PackLength") {
+                                  if ($("#ProductPack♂PackLength").val() == "") {
+                                      $("#ProductPack♂PackLength").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "PackWidth") {
+                                  if ($("#ProductPack♂PackWidth").val() == "") {
+                                      $("#ProductPack♂PackWidth").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "PackHeight") {
+                                  if ($("#ProductPack♂PackHeight").val() == "") {
+                                      $("#ProductPack♂PackHeight").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "PackBulk") {
+                                  if ($("#ProductPack♂SinglePackBulk").val() == "") {
+                                      $("#ProductPack♂SinglePackBulk").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "PackGrossWeight") {
+                                  if ($("#ProductPack♂SingleGrossWeight").val() == "") {
+                                      $("#ProductPack♂SingleGrossWeight").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "PackNetWeight") {
+                                  if ($("#ProductPack♂SingleNetWeight").val() == "") {
+                                      $("#ProductPack♂SingleNetWeight").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "BoxAmount") {
+                                  if ($("#ProductPack♂InsideProductAmount").val() == "") {
+                                      $("#ProductPack♂InsideProductAmount").val(rowItems[1]);
+                                  }
+                              } else if (rowItems[0] == "BoxUnitEN") {
+                                  if ($("#ProductPack♂InsideUnitEN").val() == "") {
+                                      $("#ProductPack♂InsideUnitEN").val(rowItems[1]);
+                                  }
+                              }
+                          }
+                      };
+                  });
+            }
+
+            //页面加载
             $(document).ready(function() {
+
+                $("#editableTable2").tableSorter().tableEditor({
+                    EDIT_HTML: '编辑',
+                    SAVE_HTML: '',
+                    COL_APPLYCLASS: true,
+                    COLUMN_NOEDIT: 'edit'
+                });
+                $('#ProductPack♂').css("display", "");
+                RelationControls();
+
                 $("input[name='_ProductPack♂ProductID']").autocomplete('<%=Url.Action("GetAutocompleteValue2","Shared")%>',
                 { max: 20,
                     highlight: false,
@@ -172,7 +229,6 @@
                         $("input[name='ProductPack♂ProductID']").val("");
                     }
                 });
-
             });
         </script>
 
@@ -244,7 +300,7 @@
         <tbody id="tbdMain">
             <% 
                 for (int i = 0; i < int.Parse(ViewData["number"].ToString()); i++)
-                {                  
+                {
             %>
             <tr>
                 <%   

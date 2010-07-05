@@ -54,6 +54,28 @@ namespace LZL.ForeignTrade.Controllers
             return View(name);
         }
 
+        public ActionResult GetProductInfo(string t)
+        {
+            Entities entities = new Entities();
+            Guid guid = new Guid(t);
+
+            Product enProduct = entities.Product.Where(v => v.ID.Equals(guid)).FirstOrDefault();
+
+            Dictionary<string,object> lstReturn = new Dictionary<string,object>();
+            lstReturn.Add("PackUnitEN", enProduct.PackUnitEN);//英文包装单位
+            lstReturn.Add("PackAmount", enProduct.PackAmount);//单件包装数量
+            lstReturn.Add("PackLength", enProduct.PackLength);//包装的长
+            lstReturn.Add("PackWidth", enProduct.PackWidth);//包装的宽
+            lstReturn.Add("PackHeight", enProduct.PackHeight);//包装的高
+            lstReturn.Add("PackBulk", enProduct.PackBulk);//单件包装体积
+            lstReturn.Add("PackGrossWeight", enProduct.PackGrossWeight);//单件包装毛重
+            lstReturn.Add("PackNetWeight", enProduct.PackNetWeight);//单件包装净重
+            lstReturn.Add("BoxAmount", enProduct.BoxAmount);//内盒商品数量
+            lstReturn.Add("BoxUnitEN", enProduct.BoxUnitEN);//内盒英文单位
+
+            return Json(lstReturn);
+        }
+
         public JsonResult GetAutocompleteValue(string t, string f)
         {
             Entities entities = new Entities();
