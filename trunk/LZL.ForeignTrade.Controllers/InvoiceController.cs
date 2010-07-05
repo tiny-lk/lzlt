@@ -171,5 +171,20 @@ WHERE ('" + rolelist[temp] + "' IN (RoleName))";
             }
             return null;
         }
+
+        //出口货物明细单明细
+        public ActionResult Ckhwmxd(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {
+                string path = Server.MapPath("~/DocTemplate/Template/Ckhwmxd.doc");
+                string targetpath = Server.MapPath("~/DocTemplate/Print/");
+                string filename = string.Empty;
+                byte[] tempbuffer = LZL.ForeignTrade.Controllers.WordInvoiceHelper.Instance.BuilderCkhwList(new Guid(id), path, targetpath, out filename);
+                Response.AppendHeader("Content-Disposition", "inline;filename=" + HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+                return File(tempbuffer, "application/vnd.ms-word", HttpUtility.UrlEncode(filename, System.Text.Encoding.UTF8));
+            }
+            return null;
+        }
     }
 }

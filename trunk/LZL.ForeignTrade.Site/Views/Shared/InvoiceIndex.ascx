@@ -72,6 +72,13 @@
                 window.open('<%=Url.Action("Declaration","Invoice")%>' + '/' + id);
             }
         });
+
+        $("#Ckhwmxd").live("click", function() {
+            if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
+                var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
+                window.open('<%=Url.Action("Ckhwmxd","Invoice")%>' + '/' + id);
+            }
+        });
         
         $("#Refresh").live("click", function() {
             loadlistdata(this, "", "", 1);
@@ -155,21 +162,24 @@
             <td colspan="6" align="left">
                 <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
                 <input type="button" class="button" id="OK" value="查 询" disabled="disabled" />
+                <input type="button" class="button" id="Refresh" value="刷 新" />
                 <% if (ViewData["simple"] == null)
                    {
                 %>
                 <input type="button" class="button" id="Edit" value="编 辑" disabled="disabled" check="1" />
+                <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                <br />
                 <input type="button" id="PackingList" value="装箱单输出" class="button4" disabled="disabled"
                     check="1" />
                 <input type="button" class="button4" id="BusinessInvoice" value="商业发票输出" disabled="disabled"
                     check="1" />
                 <input type="button" class="button4" id="Declaration" value="报关单输出" disabled="disabled"
                     check="1" />
-                <input type="button" class="button" id="Delete" value="删 除" disabled="disabled" check="n" />
+                <input type="button" class="button4" id="Ckhwmxd" value="出口货物明细" disabled="disabled"
+                    check="1" />
                 <%
                     }
                 %>
-                <input type="button" class="button" id="Refresh" value="刷 新" />
             </td>
         </tr>
     </thead>

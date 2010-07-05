@@ -117,13 +117,13 @@
             });
 
             //获取联动数据
-            $("#Invoice♂Shipper").attr("title", "双击自动获取运算值"); //托运人
-            $("#Invoice♂Consignee").attr("title", "双击自动获取运算值"); //收货人
-            $("#Invoice♂OceanFreightPayment").attr("title", "双击自动获取运算值"); //运费支付
-            $("#Invoice♂OceanTansportCountry").attr("title", "双击自动获取运算值"); //运抵国
-            $("#Invoice♂OceanStartHaven").attr("title", "双击自动获取运算值"); //起运港
-            $("#Invoice♂OceanTransferHaven").attr("title", "双击自动获取运算值"); //转运港
-            $("#Invoice♂OceanEdnHaven").attr("title", "双击自动获取运算值"); //目的港
+            $("#Invoice♂Shipper").attr("title", "双击自动获取值"); //托运人
+            $("#Invoice♂Consignee").attr("title", "双击自动获取值"); //收货人
+            $("#Invoice♂OceanFreightPayment").attr("title", "双击自动获取值"); //运费支付
+            $("#Invoice♂OceanTansportCountry").attr("title", "双击自动获取值"); //运抵国
+            $("#Invoice♂OceanStartHaven").attr("title", "双击自动获取值"); //起运港
+            $("#Invoice♂OceanTransferHaven").attr("title", "双击自动获取值"); //转运港
+            $("#Invoice♂OceanEdnHaven").attr("title", "双击自动获取值"); //目的港
 
             $("#Invoice♂Shipper").bind("dblclick", function(thisObj) {
                 $("#Invoice♂Shipper").val($("#_Invoice♂CompanyID").val());
@@ -156,11 +156,8 @@
             //初始化点击事件
             $("#hrSpxx").click();
             $("#hrSpbz").click();
-        });
-    </script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
+            //设置需要自动获取的控件属性
             autocompletedictionary("Invoice♂CurrencyType", "货币类型");
             autocompletedictionary("Invoice♂PriceClause", "价格条款");
             autocompletedictionary("Invoice♂ClauseType", "付款方式");
@@ -527,16 +524,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         托运人：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂Shipper", Html.Encode(Model.Shipper))%>
                     </td>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         收货人：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂Consignee", Html.Encode(Model.Consignee))%>
                     </td>
                 </tr>
@@ -569,10 +566,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         运费支付：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanFreightPayment", Html.Encode(Model.OceanFreightPayment))%><a
                             href="#" onclick="LoadDictionaryPanel('运费支付',true,this)">选择</a>
                     </td>
@@ -604,35 +601,35 @@
                     <td align="left">
                         <%= Html.TextBox("Invoice♂OceanDeputy", Html.Encode(Model.OceanDeputy))%>
                     </td>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         运抵国：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanTansportCountry", Html.Encode(Model.OceanTansportCountry))%><a
                             href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         起运港：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanStartHaven", Html.Encode(Model.OceanStartHaven))%><a
                             href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         转运港：
                     </td>
-                    <td align="left">
+                    <td align="left" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanTransferHaven", Html.Encode(Model.OceanTransferHaven))%><a
                             href="#" onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
                 </tr>
                 <tr>
-                    <td align="right">
+                    <td align="right" style="font-weight: bold;">
                         目的港：
                     </td>
-                    <td align="left" colspan="4">
+                    <td align="left" colspan="4" style="background-color: Silver">
                         <%= Html.TextBox("Invoice♂OceanEdnHaven", Html.Encode(Model.OceanEdnHaven))%><a href="#"
                             onclick="LoadDictionaryPanel('港口',true,this)">选择</a>
                     </td>
@@ -761,7 +758,7 @@
     </script>
 
     <%}
-        }
+       }
         
     %>
 </asp:Content>
