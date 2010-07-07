@@ -1,11 +1,11 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.ProductSummary>>" %>
 <div class="contentpanle">
-    <div id="region">
+    <div id="divProductSummaryRegion">
         <!-- 标识子表添加总数 -->
         <input type="hidden" value='<%= int.Parse(ViewData["number"].ToString())%>' name="ProductSummary♂regioncount"
             id="ProductSummary♂regioncount" />
         <!-- 标识子表区域名称(表格名称、实体对象名称) -->
-        <input type="hidden" name="region" value="ProductSummary♂" />
+        <input type="hidden" name="ProductSummaryRegion" id="ProductSummaryRegion" value="ProductSummary♂" />
         <!-- 标识子表实体对象类 -->
         <input type="hidden" name="ProductSummary♂objectname" value="LZL.ForeignTrade.DataEntity.ProductSummary,LZL.ForeignTrade.DataEntity" />
         <!-- 标识子表外键实体对象名称、外键字段名称 -->
@@ -33,10 +33,14 @@
 
         <script type="text/javascript">
             function addRow(regionname) {
-                var obj = $(regionname).closest("table").siblings("div[id='region']");
-                var regionvalue = $(obj).find("input[name='region']").val();
+                var obj = $(regionname).closest("table").siblings("div[id='divProductSummaryRegion']");
+
+                //var regionvalue = $(obj).find("input[name='ProductSummaryRegion']").val();
+                var regionvalue = $('#ProductSummaryRegion').val();
+                
                 if (regionvalue != null) {
-                    var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    //var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    var regioncountobj = $("#" + regionvalue + "regioncount");                    
                     $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
                 }
                 var copyobj = $($("#editableTable tr")[$("#editableTable tr").length - 1])
@@ -53,10 +57,12 @@
                 init();
             }
             function removeRow(regionname) {
-                var obj = $(regionname).closest("table").siblings("div[id='region']");
-                var regionvalue = $(obj).find("input[name='region']").val();
+                var obj = $(regionname).closest("table").siblings("div[id='divProductSummaryRegion']");
+                //var regionvalue = $(obj).find("input[name='ProductSummaryRegion']").val();
+                var regionvalue = $('#ProductSummaryRegion').val();
                 if (regionvalue != null) {
-                    var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    //var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    var regioncountobj = $("#" + regionvalue + "regioncount");
                     $(regioncountobj).val(Number($(regioncountobj).val()) - 1);
                 }
                 var objTemp = $(regionname);
@@ -131,7 +137,7 @@
                
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:60px;" }));
+                            Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:80px;" }));
                             Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                             Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                         }
@@ -142,12 +148,12 @@
                             {
                                 if (Model[i].Product != null)
                                 {
-                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:60px;" }));
+                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:80px;" }));
                                     Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", Model[i].Product.ID, new { copyvalue = true }));
                                 }
                                 else
                                 {
-                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:60px;" }));
+                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:80px;" }));
                                     Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                                 }
                                 Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
@@ -357,29 +363,19 @@
         }
         setreadonly();
 
-
         $("#ProductPack♂ExportAmount").attr("title", "双击自动获取运算值");
         $("#ProductPack♂PurchaseTotalPrice").attr("title", "双击自动获取运算值");
-
-
-
+        
         $("#ProductSummary♂ExportAmount").bind("dblclick", function() {
-
             $(this).val(($(this).parent().parent().find("input[name='ProductSummary♂Amount']").val()) *
                 ($(this).parent().parent().find("input[name='ProductSummary♂ExportPrice']").val())
                 );
-
-
         });
 
-
         $("#ProductSummary♂PurchaseTotalPrice").bind("dblclick", function() {
-
             $(this).val(($(this).parent().parent().find("input[name='ProductSummary♂Amount']").val()) *
                 ($(this).parent().parent().find("input[name='ProductSummary♂PurchasePrice']").val())
                 );
-
-
         });
     
     </script>
