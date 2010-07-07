@@ -1,11 +1,11 @@
 <%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<List<LZL.ForeignTrade.DataEntity.ProductPack>>" %>
 <div class="contentpanle">
-    <div id="region">
+    <div id="divProductPackRegion">
         <!-- 标识子表添加总数 -->
         <input type="hidden" value='<%= int.Parse(ViewData["number"].ToString())%>' name="ProductPack♂regioncount"
             id="ProductPack♂regioncount" />
         <!-- 标识子表区域名称(表格名称、实体对象名称) -->
-        <input type="hidden" name="region" value="ProductPack♂" />
+        <input type="hidden" name="ProductPackRegion" id="ProductPackRegion" value="ProductPack♂" />
         <!-- 标识子表实体对象类 -->
         <input type="hidden" name="ProductPack♂objectname" value="LZL.ForeignTrade.DataEntity.ProductPack,LZL.ForeignTrade.DataEntity" />
         <!-- 标识子表外键实体对象名称、外键字段名称 -->
@@ -23,10 +23,13 @@
         <script type="text/javascript">
 
             function addRow2(regionname) {
-                var obj = $(regionname).closest("table").siblings("div[id='region']");
-                var regionvalue = $(obj).find("input[name='region']").val();
+                var obj = $(regionname).closest("table").siblings("div[id='divProductPackRegion']");
+                //var regionvalue = $(obj).find("input[name='ProductPackRegion']").val();
+                var regionvalue = $("#ProductPackRegion").val();
+                
                 if (regionvalue != null) {
-                    var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    //var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    var regioncountobj = $("#" + regionvalue + "regioncount");
                     $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
                 }
                 var copyobj = $($("#editableTable2 tr")[$("#editableTable2 tr").length - 1])
@@ -43,10 +46,13 @@
                 init();
             }
             function removeRow2(regionname) {
-                var obj = $(regionname).closest("table").siblings("div[id='region']");
-                var regionvalue = $(obj).find("input[name='region']").val();
+                var obj = $(regionname).closest("table").siblings("div[id='divProductPackRegion']");
+                //var regionvalue = $(obj).find("input[name='ProductPackRegion']").val();
+                var regionvalue = $("#ProductPackRegion").val();
+                
                 if (regionvalue != null) {
-                    var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    //var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
+                    var regioncountobj = $("#" + regionvalue + "regioncount");
                     $(regioncountobj).val(Number($(regioncountobj).val()) - 1);
                 }
                 var objTemp = $(regionname);
