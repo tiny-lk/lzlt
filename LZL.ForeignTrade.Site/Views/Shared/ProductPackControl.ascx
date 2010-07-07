@@ -329,7 +329,7 @@
                         if (Model == null)
                         {
                             Response.Write(Html.Hidden("ProductPack°·ProductID", "", new { copyvalue = true }));
-                            Response.Write(Html.TextBox("_ProductPack°·ProductID", "", new { style = "width:60px;" }));
+                            Response.Write(Html.TextBox("_ProductPack°·ProductID", "", new { style = "width:80px;" }));
                             Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>—°‘Ò</a>");
                         }
                         else
@@ -342,19 +342,19 @@
                                     if (obj != null)
                                     {
                                         Response.Write(Html.Hidden("ProductPack°·ProductID", Html.Encode(Model[i].ProductID), new { copyvalue = true }));
-                                        Response.Write(Html.TextBox("_ProductPack°·ProductID", Html.Encode(obj.NameCode), new { style = "width:60px;" })); ;
+                                        Response.Write(Html.TextBox("_ProductPack°·ProductID", Html.Encode(obj.NameCode), new { style = "width:80px;" })); ;
                                     }
                                     else
                                     {
                                         Response.Write(Html.Hidden("ProductPack°·ProductID", "", new { copyvalue = true }));
-                                        Response.Write(Html.TextBox("_ProductPack°·ProductID", "", new { style = "width:60px;" }));
+                                        Response.Write(Html.TextBox("_ProductPack°·ProductID", "", new { style = "width:80px;" }));
 
                                     }
                                 }
                                 else
                                 {
                                     Response.Write(Html.Hidden("ProductPack°·ProductID", "", new { copyvalue = true }));
-                                    Response.Write(Html.TextBox("_ProductPack°·ProductID", "", new { style = "width:60px;" }));
+                                    Response.Write(Html.TextBox("_ProductPack°·ProductID", "", new { style = "width:80px;" }));
                                 }
                                 Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>—°‘Ò</a>");
                             }
