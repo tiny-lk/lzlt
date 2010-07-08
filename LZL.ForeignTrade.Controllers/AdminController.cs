@@ -154,6 +154,12 @@ namespace LZL.ForeignTrade.Controllers
         #endregion
 
         #region 岗位管理
+        /// <summary>
+        /// 岗位管理 add by cjb
+        /// </summary>
+        /// <param name="stepid"></param>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
         public static bool IsRoleInStep(string stepid, string roleName)
         {
             string sql = @"SELECT count( aspnet_Roles.RoleName )
@@ -161,7 +167,7 @@ namespace LZL.ForeignTrade.Controllers
                             aspnet_Roles ON RoleInStep.RoleId = aspnet_Roles.RoleId
                             WHERE (RoleInStep.StepId = '" + stepid + "') AND  ('" + roleName + "' IN (aspnet_Roles.RoleName))";
 
-            object num = SqlHelper.ExecuteScalar(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+            object num = SqlHelper.ExecuteScalar(ConfigurationManager.ConnectionStrings[DataBaseOperate.ConnectionName].ToString(), System.Data.CommandType.Text, sql);
 
             if (Convert.ToInt32(num) > 0)
             {
@@ -203,17 +209,15 @@ namespace LZL.ForeignTrade.Controllers
                 {
                     for (int temp = 0; temp < roles.Length; temp++)
                     {
+                        string sql = string.Format(@"INSERT INTO RoleInStep
+                            SELECT (SELECT TOP (1) ID
+                            FROM Step
+                            ORDER BY RowNum DESC) AS Expr1,
+                            (SELECT TOP (1) RoleId
+                            FROM aspnet_Roles
+                            WHERE (RoleName = '{0}')) AS Expr2",roles[temp].Trim());
 
-                        string sql = @"INSERT INTO RoleInStep
-SELECT (SELECT TOP (1) ID
-FROM Step
-ORDER BY RowNum DESC) AS Expr1,
-(SELECT TOP (1) RoleId
-FROM aspnet_Roles
-WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
-
-
-                        SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+                        SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings[DataBaseOperate.ConnectionName].ToString(), System.Data.CommandType.Text, sql);
 
                     }
 
@@ -230,6 +234,13 @@ WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
             Guid guid = new Guid(id);
             return View(_Entities.Step.Where(v => v.ID.Equals(guid)).FirstOrDefault());
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="formvalues"></param>
+        /// <returns></returns>
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult EditStep(string id, FormCollection formvalues)
         {
@@ -239,9 +250,8 @@ WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
             SharedController.mainTable(formvalues, _Entities);
             _Entities.SaveChanges();
 
-
             string sql = @"delete from RoleInStep where stepid='" + id + "'";
-            SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+            SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings[DataBaseOperate.ConnectionName].ToString(), System.Data.CommandType.Text, sql);
 
             if (!string.IsNullOrEmpty(formvalues["role"]))
             {
@@ -251,16 +261,15 @@ WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
                 {
                     for (int temp = 0; temp < roles.Length; temp++)
                     {
-
                         sql = @"INSERT INTO RoleInStep
-SELECT (SELECT TOP (1) ID
-FROM Step where id='" + id + @"' 
-ORDER BY RowNum DESC) AS Expr1,
-(SELECT TOP (1) RoleId
-FROM aspnet_Roles
-WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
+                            SELECT (SELECT TOP (1) ID
+                            FROM Step where id='" + id + @"' 
+                            ORDER BY RowNum DESC) AS Expr1,
+                            (SELECT TOP (1) RoleId
+                            FROM aspnet_Roles
+                            WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
 
-                        SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+                        SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings[DataBaseOperate.ConnectionName].ToString(), System.Data.CommandType.Text, sql);
 
                     }
 
@@ -287,7 +296,7 @@ WHERE (RoleName = '" + roles[temp].Trim() + "')) AS Expr2";
             for (int temp = 0; temp < ids.Length; temp++)
             {
                 string sql = @"delete from RoleInStep where stepid='" + ids[temp] + "'";
-                SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+                SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings[DataBaseOperate.ConnectionName].ToString(), System.Data.CommandType.Text, sql);
             }
 
             return RedirectToAction("ManageStep");

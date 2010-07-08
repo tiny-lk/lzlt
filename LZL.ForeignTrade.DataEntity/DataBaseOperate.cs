@@ -8,7 +8,7 @@ namespace LZL.ForeignTrade.DataEntity
     public class DataBaseOperate
     {
         /// <summary>
-        /// 连接名称
+        /// 采用传统数据库访问方式的数据库连接名，change by lj
         /// </summary>
         public const string ConnectionName = "FTConnection";
     }

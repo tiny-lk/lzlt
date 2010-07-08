@@ -25,11 +25,10 @@
             });
 
             $("#Edit").live("click", function() {
-            debugger
                 if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
-                    var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
+                    var id = $(document).data('checkvalue');
 
-                    window.location.href = '<%=Url.Action("EditCompany","Admin")%>' + '/' + id;
+                    window.location.href = '<%=Url.Action("EditStep","Admin")%>' + '/' + id;
                 }
             });
 
