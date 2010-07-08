@@ -24,11 +24,9 @@
 
             function addRow2(regionname) {
                 var obj = $(regionname).closest("table").siblings("div[id='divProductPackRegion']");
-                //var regionvalue = $(obj).find("input[name='ProductPackRegion']").val();
                 var regionvalue = $("#ProductPackRegion").val();
-                
+
                 if (regionvalue != null) {
-                    //var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
                     var regioncountobj = $("#" + regionvalue + "regioncount");
                     $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
                 }
@@ -40,18 +38,16 @@
                         $(o).val("");
                     }
                 });
-                //  $(copyhtml).find("input[type='text']").removeAttr("id");
+                
                 $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
                 $(copyobj).parent().append(copyhtml);
                 init();
             }
             function removeRow2(regionname) {
                 var obj = $(regionname).closest("table").siblings("div[id='divProductPackRegion']");
-                //var regionvalue = $(obj).find("input[name='ProductPackRegion']").val();
                 var regionvalue = $("#ProductPackRegion").val();
-                
+
                 if (regionvalue != null) {
-                    //var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
                     var regioncountobj = $("#" + regionvalue + "regioncount");
                     $(regioncountobj).val(Number($(regioncountobj).val()) - 1);
                 }
@@ -80,8 +76,9 @@
                 //$("#ProductPack♂GrossWeight").attr("border-color", "Silver");
                 $("#ProductPack♂NetWeight").attr("title", "双击自动获取运算值");
                 //$("#ProductPack♂NetWeight").attr("border-color", "Silver");
+                $("#ProductPack♂ProductAmount").attr("title", "双击自动获取该商品信息");
 
-                $("#ProductPack♂PieceAmount").bind("dblclick", function(thisObj) {
+                $("#ProductPack♂PieceAmount").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
                     if (thistr.find("#ProductPack♂SingleProductAmount").val() != "") {
                         var tj = Number(thistr.find("#ProductPack♂ProductAmount").val()) / Number(thistr.find("#ProductPack♂SingleProductAmount").val());
@@ -91,7 +88,7 @@
                     }
                 }); //包装件数
 
-                $("#ProductPack♂SinglePackBulk").bind("dblclick", function(thisObj) {
+                $("#ProductPack♂SinglePackBulk").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
 
                     var tj = Number(thistr.find("#ProductPack♂PackLength").val()) * Number(thistr.find("#ProductPack♂PackWidth").val()) * Number(thistr.find("#ProductPack♂PackHeight").val());
@@ -100,7 +97,7 @@
                     }
                 }); //(单件)包装体积(CBM)
 
-                $("#ProductPack♂PackBulk").bind("dblclick", function(thisObj) {
+                $("#ProductPack♂PackBulk").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
                     var tj = Number(thistr.find("#ProductPack♂SinglePackBulk").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
                     if (tj != 0) {
@@ -108,7 +105,7 @@
                     }
                 }); //总包装体积
 
-                $("#ProductPack♂GrossWeight").bind("dblclick", function(thisObj) {
+                $("#ProductPack♂GrossWeight").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
                     var tj = Number(thistr.find("#ProductPack♂SingleGrossWeight").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
                     if (tj != 0) {
@@ -116,22 +113,24 @@
                     }
                 }); // 总包装毛重
 
-                $("#ProductPack♂NetWeight").bind("dblclick", function(thisObj) {
+                $("#ProductPack♂NetWeight").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
                     var tj = Number(thistr.find("#ProductPack♂SingleNetWeight").val()) * Number(thistr.find("#ProductPack♂PieceAmount").val());
                     if (tj != 0) {
                         thistr.find("#ProductPack♂NetWeight").val(tj.toFixed(2));
                     }
-                }); //总包装净重
+                });  //总包装净重
 
-                $("#ProductPack♂ProductAmount").bind("click", function(thisObj) {
-                    SetInitValueWithSelect();
-                }); //点击商品数量获取关联信息
+                $("#ProductPack♂ProductAmount").live("dblclick", function(thisObj) {
+                    SetInitValueWithSelect(thisObj);
+                });  //点击商品数量获取关联信息
             }
 
             //通过选择商品获取商品相关信息
-            function SetInitValueWithSelect() {
-                var varid = $("input[name='ProductPack♂ProductID']").val();
+            function SetInitValueWithSelect(thisObj) {
+                var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                var varid = thistr.find("input[name='ProductPack♂ProductID']").val();
+
                 $.get(
                 '<%=Url.Action("GetProductInfo","Shared")%>',
                  { t: varid },
@@ -145,45 +144,45 @@
 
                               //$("#ProductPack♂" + rowItems[0]).val(rowItems[1]);
                               if (rowItems[0] == "PackUnitEN") {
-                                  if ($("#ProductPack♂PackUnitEN").val() == "") {
-                                      $("#ProductPack♂PackUnitEN").val(rowItems[1]);
-                                  }
+                                  //if (thistr.find("#ProductPack♂PackUnitEN").val() == "") {
+                                  thistr.find("#ProductPack♂PackUnitEN").val(rowItems[1]);
+                                  // }
                               } else if (rowItems[0] == "PackAmount") {
-                                  if ($("#ProductPack♂SingleProductAmount").val() == "") {
-                                      $("#ProductPack♂SingleProductAmount").val(rowItems[1]);
-                                  }
+                                  //if (thistr.find("#ProductPack♂SingleProductAmount").val() == "") {
+                                  thistr.find("#ProductPack♂SingleProductAmount").val(rowItems[1]);
+                                  // }
                               } else if (rowItems[0] == "PackLength") {
-                                  if ($("#ProductPack♂PackLength").val() == "") {
-                                      $("#ProductPack♂PackLength").val(rowItems[1]);
-                                  }
+                                  //if (thistr.find("#ProductPack♂PackLength").val() == "") {
+                                  thistr.find("#ProductPack♂PackLength").val(rowItems[1]);
+                                  // }
                               } else if (rowItems[0] == "PackWidth") {
-                                  if ($("#ProductPack♂PackWidth").val() == "") {
-                                      $("#ProductPack♂PackWidth").val(rowItems[1]);
-                                  }
+                                  //if (thistr.find("#ProductPack♂PackWidth").val() == "") {
+                                  thistr.find("#ProductPack♂PackWidth").val(rowItems[1]);
+                                  //}
                               } else if (rowItems[0] == "PackHeight") {
-                                  if ($("#ProductPack♂PackHeight").val() == "") {
-                                      $("#ProductPack♂PackHeight").val(rowItems[1]);
-                                  }
+                                  // if (thistr.find("#ProductPack♂PackHeight").val() == "") {
+                                  thistr.find("#ProductPack♂PackHeight").val(rowItems[1]);
+                                  // }
                               } else if (rowItems[0] == "PackBulk") {
-                                  if ($("#ProductPack♂SinglePackBulk").val() == "") {
-                                      $("#ProductPack♂SinglePackBulk").val(rowItems[1]);
-                                  }
+                                  // if (thistr.find("#ProductPack♂SinglePackBulk").val() == "") {
+                                  thistr.find("#ProductPack♂SinglePackBulk").val(rowItems[1]);
+                                  // }
                               } else if (rowItems[0] == "PackGrossWeight") {
-                                  if ($("#ProductPack♂SingleGrossWeight").val() == "") {
-                                      $("#ProductPack♂SingleGrossWeight").val(rowItems[1]);
-                                  }
+                                  //  if (thistr.find("#ProductPack♂SingleGrossWeight").val() == "") {
+                                  thistr.find("#ProductPack♂SingleGrossWeight").val(rowItems[1]);
+                                  // }
                               } else if (rowItems[0] == "PackNetWeight") {
-                                  if ($("#ProductPack♂SingleNetWeight").val() == "") {
-                                      $("#ProductPack♂SingleNetWeight").val(rowItems[1]);
-                                  }
+                                  // if (thistr.find("#ProductPack♂SingleNetWeight").val() == "") {
+                                  thistr.find("#ProductPack♂SingleNetWeight").val(rowItems[1]);
+                                  // }
                               } else if (rowItems[0] == "BoxAmount") {
-                                  if ($("#ProductPack♂InsideProductAmount").val() == "") {
-                                      $("#ProductPack♂InsideProductAmount").val(rowItems[1]);
-                                  }
+                                  //  if (thistr.find("#ProductPack♂InsideProductAmount").val() == "") {
+                                  thistr.find("#ProductPack♂InsideProductAmount").val(rowItems[1]);
+                                  // }
                               } else if (rowItems[0] == "BoxUnitEN") {
-                                  if ($("#ProductPack♂InsideUnitEN").val() == "") {
-                                      $("#ProductPack♂InsideUnitEN").val(rowItems[1]);
-                                  }
+                                  //if (thistr.find("#ProductPack♂InsideUnitEN").val() == "") {
+                                  thistr.find("#ProductPack♂InsideUnitEN").val(rowItems[1]);
+                                  //}
                               }
                           }
                       };
@@ -192,7 +191,6 @@
 
             //页面加载
             $(document).ready(function() {
-
                 $("#editableTable2").tableSorter().tableEditor({
                     EDIT_HTML: '编辑',
                     SAVE_HTML: '',
@@ -329,7 +327,7 @@
                         if (Model == null)
                         {
                             Response.Write(Html.Hidden("ProductPack♂ProductID", "", new { copyvalue = true }));
-                            Response.Write(Html.TextBox("_ProductPack♂ProductID", "", new { style = "width:80px;" }));
+                            Response.Write(Html.TextBox("_ProductPack♂ProductID", "", new { style = "width:80px; height:40px;" }));
                             Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                         }
                         else
@@ -342,19 +340,19 @@
                                     if (obj != null)
                                     {
                                         Response.Write(Html.Hidden("ProductPack♂ProductID", Html.Encode(Model[i].ProductID), new { copyvalue = true }));
-                                        Response.Write(Html.TextBox("_ProductPack♂ProductID", Html.Encode(obj.NameCode), new { style = "width:80px;" })); ;
+                                        Response.Write(Html.TextBox("_ProductPack♂ProductID", Html.Encode(obj.NameCode), new { style = "width:80px;height:40px;" })); ;
                                     }
                                     else
                                     {
                                         Response.Write(Html.Hidden("ProductPack♂ProductID", "", new { copyvalue = true }));
-                                        Response.Write(Html.TextBox("_ProductPack♂ProductID", "", new { style = "width:80px;" }));
+                                        Response.Write(Html.TextBox("_ProductPack♂ProductID", "", new { style = "width:80px;height:40px;" }));
 
                                     }
                                 }
                                 else
                                 {
                                     Response.Write(Html.Hidden("ProductPack♂ProductID", "", new { copyvalue = true }));
-                                    Response.Write(Html.TextBox("_ProductPack♂ProductID", "", new { style = "width:80px;" }));
+                                    Response.Write(Html.TextBox("_ProductPack♂ProductID", "", new { style = "width:80px;height:40px;" }));
                                 }
                                 Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
                             }
