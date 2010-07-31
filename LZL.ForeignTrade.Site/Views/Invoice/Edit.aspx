@@ -755,6 +755,7 @@
         $("textarea").attr("disabled", "disabled");
         $("#readnews").show();
         $("#modnews").hide();
+        $("#submitbt").hide();
     </script>
 
     <%}
@@ -767,5 +768,5 @@
         class="button4">关联出口合同</a> <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
             class="button4" style="display: none">添加商品信息</a> <a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
                 class="button4" style="display: none">添加商品包装</a> <a href="#" onclick='submitInfo();'
-                    class="button4">数据整体提交</a>
+                  id="submitbt"  class="button4">数据整体提交</a>
 </asp:Content>

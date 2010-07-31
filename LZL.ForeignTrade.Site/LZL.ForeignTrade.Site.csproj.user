@@ -12,7 +12,7 @@
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <PublishCopyOption>RunFiles</PublishCopyOption>
-          <PublishTargetLocation>d:\GeoWebMap\Wmrj\</PublishTargetLocation>
+          <PublishTargetLocation>C:\Users\CainBo\Desktop\out\</PublishTargetLocation>
           <PublishDeleteAllFiles>True</PublishDeleteAllFiles>
           <PublishCopyAppData>True</PublishCopyAppData>
           <ExternalProgram>
