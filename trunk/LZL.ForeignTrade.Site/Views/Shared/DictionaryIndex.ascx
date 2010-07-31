@@ -23,7 +23,7 @@
                     ids += o.substr(0, o.indexOf("|")) + "♂";
                 });
                 ids = $.trim(ids.substr(0, ids.length - 1));
-                var State = confirm('你确认要删除 ' + ids + ' 吗？');
+                var State = confirm('你确认要删除吗？');
                 if (State == true) {
                     window.location.href = '<%=Url.Action("DeleteDictionary","Admin")%>' + '/' + ids;
                 }
