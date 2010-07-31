@@ -256,7 +256,7 @@
 
         function LoadControlList(obj, name) {
             var txtobject = $(obj).parent().find("input[type='text']"); //txt文本对象
-            //   debugger
+               debugger
             var hidobject = $(obj).parent().find("input[type='hidden']"); //hidden对象
             $("#ListPaneldialog").remove();
             $("body").append("<div id='ListPaneldialog'></div>");

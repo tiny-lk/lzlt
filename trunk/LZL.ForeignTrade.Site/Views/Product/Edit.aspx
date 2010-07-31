@@ -89,7 +89,7 @@
             </tr>
             <tr>
                 <%= Html.Hidden("Product♂ID", Html.Encode(Model.ID.ToString()))%>
-                <td rowspan="5" align="center" valign="middle" style="width: 10%;">
+                <td rowspan="4" align="center" valign="middle" style="width: 10%;">
                     商品介绍信息
                 </td>
                 <td align="right" style="width: 15%;">
@@ -98,27 +98,9 @@
                 <td align="left" style="width: 30%;">
                     <%= Html.TextBox("Product♂NameCode",Html.Encode( Model.NameCode), new { validate = "required:true" })%>
                 </td>
-                <td align="right" style="width: 15%;">
-                    中文名称：
-                </td>
-                <td align="left" style="width: 30%;">
-                    <%= Html.TextBox("Product♂NameCH", Html.Encode(Model.NameCH))%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    英文名称：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("Product♂NameEH", Html.Encode(Model.NameEH))%>
-                </td>
-                <td align="right">
-                    中文规格：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("Product♂SpecCH", Html.Encode(Model.SpecCH))%>
-                </td>
-            </tr>
+                <td align="right" style="width: 15%;">英文名称： </td>
+                <td align="left" style="width: 30%;"><%= Html.TextBox("Product♂NameEH", Html.Encode(Model.NameEH))%></td>
+            </tr>           
             <tr>
                 <td align="right">
                     英文规格：
@@ -126,20 +108,12 @@
                 <td align="left">
                     <%= Html.TextBox("Product♂SpecEN", Html.Encode(Model.SpecEN))%>
                 </td>
-                <td align="right">
-                    中文单位：
-                </td>
-                <td align="left">
-                    <%= Html.DropDownList("Product♂UnitCH", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位", Html.Encode(Model.UnitCH)), "请选择")%>
-                </td>
+                <td align="right">英文单位： </td>
+                <td align="left"><%= Html.DropDownList("Product♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.UnitEN)), "请选择")%></td>
             </tr>
             <tr>
-                <td align="right">
-                    英文单位：
-                </td>
-                <td align="left">
-                    <%= Html.DropDownList("Product♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.UnitEN)), "请选择")%>
-                </td>
+                <td align="right">条形码：</td>
+                <td align="left"><%= Html.TextBox("Product♂BarCode", Html.Encode(Model.BarCode))%></td>
                 <td align="right">
                     海关代码：
                 </td>
@@ -148,18 +122,10 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">
-                    条形码：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("Product♂BarCode", Html.Encode(Model.BarCode))%>
-                </td>
-                <td align="right">
-                    商品日期：
-                </td>
-                <td align="left">
-                    <%= Html.TextBox("Product♂Date", Html.Encode(Model.Date), new { Class = "calendarnumber" })%>
-                </td>
+                <td align="right">商品日期：</td>
+                <td align="left"><%= Html.TextBox("Product♂Date", Html.Encode(Model.Date), new { Class = "calendarnumber" })%></td>
+                <td align="right">&nbsp;</td>
+                <td align="left">&nbsp;</td>
             </tr>
             <tr>
                 <td align="center" rowspan="6" valign="middle">
@@ -171,12 +137,8 @@
                 <td align="left">
                     <%= Html.TextBox("Product♂PackAmount", Html.Encode(Model.PackAmount),new { validate = "digits:true" })%>
                 </td>
-                <td align="right">
-                    中文包装单位：
-                </td>
-                <td align="left">
-                    <%= Html.DropDownList("Product♂PackUnitCH", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位", Html.Encode(Model.PackUnitCH)), "请选择")%>
-                </td>
+                <td align="right">&nbsp;</td>
+                <td align="left">&nbsp;</td>
             </tr>
             <tr>
                 <td align="right">
@@ -235,21 +197,13 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">
-                    内盒中文单位：
-                </td>
-                <td align="left">
-                    <%= Html.DropDownList("Product♂BoxUnitCH", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("中文单位", Html.Encode(Model.BoxUnitCH)), "请选择")%>
-                </td>
-                <td align="right">
-                    内盒英文单位：
-                </td>
-                <td align="left">
-                    <%= Html.DropDownList("Product♂BoxUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.BoxUnitEN)), "请选择")%>
-                </td>
+                <td align="right">内盒英文单位： </td>
+                <td align="left"><%= Html.DropDownList("Product♂BoxUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model.BoxUnitEN)), "请选择")%></td>
+                <td align="right">&nbsp;</td>
+                <td align="left">&nbsp;</td>
             </tr>
             <tr>
-                <td align="center" rowspan="4" valign="middle">
+                <td align="center" rowspan="3" valign="middle">
                     其它信息
                 </td>
                 <td align="right">
@@ -267,19 +221,9 @@
             </tr>
             <tr>
                 <td align="right">
-                    商品中文描述：
-                </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextArea("Product♂DescriptionCH", Html.Encode(Model.DescriptionCH) ,new { style = "width:99%; height:40px;" })%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    商品英文描述：
-                </td>
-                <td align="left" colspan="3">
-                    <%= Html.TextArea("Product♂DescriptionEN", Html.Encode(Model.DescriptionEN), new { style = "width:99%; height:40px;" })%>
-                </td>
+                    商品英文描述：                </td>
+                <td colspan="3" align="left">
+                    <%= Html.TextArea("Product♂DescriptionEN", Html.Encode(Model.DescriptionEN), new { style = "width:99%; height:40px;" })%>                </td>
             </tr>
             <tr>
                 <td align="right">
