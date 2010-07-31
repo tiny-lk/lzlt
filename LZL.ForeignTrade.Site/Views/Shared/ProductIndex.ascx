@@ -156,10 +156,7 @@
             </td>
             <td>
                 客户代码
-            </td>
-            <td>
-                中文名称
-            </td>
+            </td>            
             <td>
                 英文名称
             </td>
@@ -192,10 +189,7 @@
             <td>
                 <%= Html.Encode(Model[i].NameCode)%>
             </td>
-            <td>
-                <%= Html.Encode(Model[i].NameCH)%>
-            </td>
-            <td>
+              <td>
                 <%= Html.Encode(Model[i].NameEH)%>
             </td>
             <td>
