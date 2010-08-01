@@ -324,6 +324,7 @@
     <Content Include="Views\Warehouse\WarehouseSale.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DocTemplate\Template\Ckhwmxd.doc" />
     <None Include="DocTemplate\Template\Declaration.xls" />
     <None Include="DocTemplate\Template\exportcontracts.doc" />
     <None Include="DocTemplate\Template\invoice.doc" />
