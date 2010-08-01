@@ -18,9 +18,9 @@ namespace LZL.ForeignTrade.Controllers
 
         private WordInvoiceHelper()
         {
-
         }
 
+        #region 商业发票打印
         /// <summary>
         /// 商业发票打印
         /// </summary>
@@ -72,11 +72,12 @@ namespace LZL.ForeignTrade.Controllers
                     if (company != null)
                     {
                         wordhelper.GotoBookMark("issuer");
-                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH);//公司英文，公司地址
+                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH + "\r\nTEL:" + company.Phone + "   Fax:" + company.Fax);//公司英文，公司地址
                         wordhelper.GotoBookMark("cncompany");
-                        wordhelper.InsertText(company.NameCH);
-                        wordhelper.GotoBookMark("cnaddress");
-                        wordhelper.InsertText(company.AddressCH);
+                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH + "\r\nTEL:" + company.Phone + "   Fax:" + company.Fax);
+                        //wordhelper.InsertText(company.NameCH);
+                        //wordhelper.GotoBookMark("cnaddress");
+                        //wordhelper.InsertText(company.AddressCH);
                     }
                 }
 
@@ -95,7 +96,7 @@ namespace LZL.ForeignTrade.Controllers
                 double hjje = 0.0;//合计金额
                 string dwmc = string.Empty;//单位名称
                 int count = 1;
-                for (int i = 0; i < invoice.ProductSummary.Count; i++)
+                for (int i = 0; i < invoice.ProductSummary.OrderBy(v=>v.CreateDate).ToList().Count; i++)
                 {
                     invoice.ProductSummary.ElementAt(i).ProductReference.Load();
                     Product product = invoice.ProductSummary.ElementAt(i).Product;
@@ -112,7 +113,7 @@ namespace LZL.ForeignTrade.Controllers
                 }
                 table.Cell(count, 1).Merge(table.Cell(count, 4));
                 table.Cell(count, 1).Select();
-                table.Cell(count, 1).Range.Text = "—".PadLeft(50, '—');
+                table.Cell(count, 1).Range.Text = "—".PadLeft(40, '—');
                 table.Cell(count + 1, 1).Range.Text = "TOTAL：";
                 table.Cell(count + 1, 2).Range.Text = sl + dwmc;
                 table.Cell(count + 1, 4).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + hjje.ToString();
@@ -120,6 +121,16 @@ namespace LZL.ForeignTrade.Controllers
                 wordhelper.InsertText(invoice.Name);
                 wordhelper.GotoBookMark("lcno");
                 wordhelper.InsertText(invoice.CreditCardNo);
+
+                //添加唛头
+                wordhelper.GotoBookMark("maitou");
+                wordhelper.InsertText(invoice.Mark);
+
+                //添加商品明细
+                wordhelper.GotoBookMark("totalinfo");
+                wordhelper.InsertText(string.Format("SAY TOTAL USD {0} ONLY", hjje));//转换后的名称
+                
+
                 wordhelper.Save();
             }
 
@@ -144,7 +155,9 @@ namespace LZL.ForeignTrade.Controllers
                 }
             }
         }
+        #endregion
 
+        #region 装箱单信息
         /// <summary>
         /// 装箱单信息
         /// </summary>
@@ -188,11 +201,11 @@ namespace LZL.ForeignTrade.Controllers
                     if (company != null)
                     {
                         wordhelper.GotoBookMark("issuer");
-                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH);//公司英文，公司地址
+                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH + "\r\nTEL:" + company.Phone + "   Fax:" + company.Fax);//公司英文，公司地址
                         wordhelper.GotoBookMark("cncompany");
-                        wordhelper.InsertText(company.NameCH);
-                        wordhelper.GotoBookMark("cnaddress");
-                        wordhelper.InsertText(company.AddressCH);
+                        wordhelper.InsertText(company.NameEH + (char)10 + company.AddressEH + "\r\nTEL:" + company.Phone + "   Fax:" + company.Fax);
+                        //wordhelper.GotoBookMark("cnaddress");
+                        //wordhelper.InsertText(company.AddressCH);
                     }
                 }
                 invoice.ProductPack.Load();
@@ -201,7 +214,10 @@ namespace LZL.ForeignTrade.Controllers
                 //插入价格条款、起运国、起运港口信息
                 wordhelper.InsertText(invoice.PriceClause + "   " + invoice.StartHaven + ",CHINA");
 
-                Table table = wordhelper.AddTable(wordhelper.GotoBookMark("content"), invoice.ProductPack.Count + 2, 7);
+                wordhelper.GotoBookMark("maitou");//唛头
+                wordhelper.InsertText(invoice.Mark);
+
+                Table table = wordhelper.AddTable(wordhelper.GotoBookMark("content"), invoice.ProductPack.Count + 2, 6);
                 table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
                 table.PreferredWidth = 95;
                 table.Select();
@@ -215,6 +231,7 @@ namespace LZL.ForeignTrade.Controllers
                 double mzcount = 0;
                 double jzcount = 0;
                 double jgcount = 0;
+                double tjcount = 0;
                 for (int i = 0; i < invoice.ProductPack.Count; i++)
                 {
                     Guid productid = invoice.ProductPack.ElementAt(i).ProductID.GetValueOrDefault();
@@ -253,20 +270,28 @@ namespace LZL.ForeignTrade.Controllers
                     //显示报关价格
                     //table.Cell(count, 6).Range.Text = productSummary.ExportPrice.GetValueOrDefault().ToString();
                     //显示单款总体积
-                    table.Cell(count, 6).Range.Text = invoice.ProductPack.ElementAt(i).PackBulk.GetValueOrDefault().ToString();
+                    double dTemp = invoice.ProductPack.ElementAt(i).PackBulk.GetValueOrDefault();
+                    table.Cell(count, 6).Range.Text = dTemp.ToString();
+                    tjcount += dTemp;
 
-                    jgcount += productSummary.ExportAmount.GetValueOrDefault();//价格总和
-                    table.Cell(count, 7).Range.Text = productSummary.ExportAmount.GetValueOrDefault().ToString();
+                    //jgcount += productSummary.ExportAmount.GetValueOrDefault();//价格总和
+                    //table.Cell(count, 7).Range.Text = productSummary.ExportAmount.GetValueOrDefault().ToString();
                     count++;
                 }
-                table.Cell(count, 1).Merge(table.Cell(count, 7));
-                table.Cell(count, 1).Range.Text = "—".PadLeft(50, '—');
+                table.Cell(count, 1).Merge(table.Cell(count, 6));
+                table.Cell(count, 1).Range.Text = "—".PadLeft(40, '—');
                 table.Cell(count + 1, 1).Range.Text = "TOTAL：";
                 table.Cell(count + 1, 2).Range.Text = jscount + jsunit;
                 table.Cell(count + 1, 3).Range.Text = slcount + slunit;
                 table.Cell(count + 1, 4).Range.Text = mzcount + "KG";
                 table.Cell(count + 1, 5).Range.Text = jzcount + "KG";
-                table.Cell(count + 1, 7).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + jgcount;
+                //table.Cell(count + 1, 6).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + jgcount;
+                table.Cell(count + 1, 6).Range.Text = tjcount.ToString();
+
+                wordhelper.GotoBookMark("totalinfo");//唛头
+                string strTotalInfo = string.Format("Total Quantity:{0} IN {1}\r\nTotal Gross Weight:{2}\r\nTotal Net Weight:{3}\r\nTotalMeasurment:{4}CBM",
+                    slcount + slunit, jscount + jsunit, mzcount + "KG", jzcount + "KG", tjcount);
+                wordhelper.InsertText(strTotalInfo);
 
                 wordhelper.Save();
             }
@@ -292,7 +317,9 @@ namespace LZL.ForeignTrade.Controllers
                 }
             }
         }
+        #endregion
 
+        #region 报关单信息
         /// <summary>
         /// 报关单信息
         /// </summary>
@@ -310,8 +337,8 @@ namespace LZL.ForeignTrade.Controllers
             File.Copy(path, targetpath, true);
             using (ExcelHelper excelhepler = new ExcelHelper(targetpath))
             {
-                excelhepler.WriteValue(5, 2, invoice.StartHaven);
-                excelhepler.WriteValue(5, 8, invoice.ShipmentDate.GetValueOrDefault().ToShortDateString() + "                    " + invoice.Date.ToShortDateString());
+                excelhepler.WriteValue(5, 2, invoice.StartHaven);//起运港口
+                excelhepler.WriteValue(5, 8, invoice.ShipmentDate.GetValueOrDefault().ToShortDateString() + "                    " + invoice.Date.ToShortDateString());//出运日期和申报日期
 
                 if (invoice.CompanyID.HasValue)
                 {
@@ -319,16 +346,17 @@ namespace LZL.ForeignTrade.Controllers
                     Company company = _Entities.Company.Where(v => v.ID.Equals(companyid)).FirstOrDefault();
                     if (company != null)
                     {
-                        excelhepler.WriteValue(6, 1, company.NameCH);
+                        excelhepler.WriteValue(6, 1, company.NameCH);//公司中文信息
                     }
                 }
 
-                excelhepler.WriteValue(6, 5, invoice.TransportMode);
-                excelhepler.WriteValue(8, 5, "            " + invoice.Trade);
-                excelhepler.WriteValue(8, 11, invoice.ClauseType);
-                excelhepler.WriteValue(10, 4, invoice.TansportCountry);
-                excelhepler.WriteValue(10, 7, invoice.EdnHaven);
-                excelhepler.WriteValue(12, 4, invoice.PriceClause);
+                excelhepler.WriteValue(6, 5, invoice.TransportMode);//运输方式
+                excelhepler.WriteValue(8, 5, "            " + invoice.Trade);//贸易方式
+                excelhepler.WriteValue(8, 11, invoice.ClauseType);//付款（结汇）方式
+                excelhepler.WriteValue(10, 4, invoice.TansportCountry);//运抵国
+                excelhepler.WriteValue(10, 7, invoice.EdnHaven);//运抵港
+                excelhepler.WriteValue(12, 4, invoice.PriceClause);//价格条款
+
                 invoice.ProductSummary.Load();
                 invoice.ProductPack.Load();
                 string dw = string.Empty;
@@ -356,16 +384,19 @@ namespace LZL.ForeignTrade.Controllers
                 }
                 excelhepler.WriteValue(14, 4, invoice.ExportContractsName);
 
-                excelhepler.WriteValue(14, 4, invoice.ProductPack.Sum(v => v.PieceAmount).GetValueOrDefault() + dw);
-                excelhepler.WriteValue(14, 6, dw);
-                excelhepler.WriteValue(14, 8, invoice.ProductPack.Sum(v => v.GrossWeight).GetValueOrDefault() + "KGS");
-                excelhepler.WriteValue(14, 11, invoice.ProductPack.Sum(v => v.NetWeight).GetValueOrDefault() + "KGS");
-                excelhepler.WriteValue(23, 6, invoice.TansportCountry);
-                excelhepler.WriteValue(23, 10, invoice.PriceClause + "  " + invoice.StartHaven);
+                excelhepler.WriteValue(14, 4, invoice.ProductPack.Sum(v => v.PieceAmount).GetValueOrDefault() + dw);//包装件数
+                excelhepler.WriteValue(14, 6, dw);//包装单位
+                excelhepler.WriteValue(14, 8, invoice.ProductPack.Sum(v => v.GrossWeight).GetValueOrDefault() + "KGS");//包装毛重
+                excelhepler.WriteValue(14, 11, invoice.ProductPack.Sum(v => v.NetWeight).GetValueOrDefault() + "KGS");//包装净重
+                excelhepler.WriteValue(18, 2, invoice.Mark);//添加唛头
+                excelhepler.WriteValue(23, 6, invoice.TansportCountry);//运抵国
+                excelhepler.WriteValue(23, 10, invoice.PriceClause + "  " + invoice.StartHaven);//成交方式和起运港口
+
                 var groupproduct = invoice.ProductSummary.GroupBy(v => v.CustomsCode);
                 int startrow = 24;
                 double jehj = 0;
 
+                //生成商品数据
                 foreach (var item in groupproduct)
                 {
                     excelhepler.WriteValue(startrow, 1, item.Key);
@@ -387,7 +418,7 @@ namespace LZL.ForeignTrade.Controllers
                     excelhepler.WriteValue(startrow, 3, "  ----------------------------------------------------------------------------");
                     startrow++;
                     excelhepler.WriteValue(startrow, 3, "TOTAL：");
-                    excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + jehj);
+                    excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + jehj);//金额合计
                 }
 
                 if (groupproduct.Count() > 1)
@@ -397,7 +428,7 @@ namespace LZL.ForeignTrade.Controllers
                     excelhepler.WriteValue(startrow, 3, "  ----------------------------------------------------------------------------");
                     startrow++;
                     excelhepler.WriteValue(startrow, 3, "TOTAL：");
-                    excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + jehj);
+                    excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + jehj);//金额合计
                 }
 
                 excelhepler.Save();
@@ -425,7 +456,9 @@ namespace LZL.ForeignTrade.Controllers
             }
 
         }
+        #endregion
 
+        #region 出口货物明细单
         /// <summary>
         /// 出口货物明细单
         /// </summary>
@@ -485,8 +518,6 @@ namespace LZL.ForeignTrade.Controllers
                     wordhelper.InsertText(invoice.AccountDate.Value.ToShortDateString());
                 }
 
-                wordhelper.GotoBookMark("ckje");//出口金额
-                wordhelper.InsertText(invoice.CurrencyType.ToString() + invoice.CreditAmount.ToString());
                 wordhelper.GotoBookMark("childContentMt");//唛头
                 wordhelper.InsertText(invoice.Mark);
                 //是否转运
@@ -534,6 +565,10 @@ namespace LZL.ForeignTrade.Controllers
                     wordhelper.InsertText(invoice.PriceClause + "   " + invoice.StartHaven + ",CHINA");
                 }
 
+                //添加唛头
+                wordhelper.GotoBookMark("childContentMt");
+                wordhelper.InsertText(invoice.Mark);
+
                 Table table = wordhelper.AddTable(wordhelper.GotoBookMark("childContentArea"), invoice.ProductPack.Count + 2, 7);
                 table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
                 table.PreferredWidth = 95;
@@ -548,6 +583,7 @@ namespace LZL.ForeignTrade.Controllers
                 double mzcount = 0;
                 double jzcount = 0;
                 double jgcount = 0;
+                double zongtiji = 0;
                 for (int i = 0; i < invoice.ProductPack.Count; i++)
                 {
                     Guid productid = invoice.ProductPack.ElementAt(i).ProductID.GetValueOrDefault();
@@ -587,19 +623,27 @@ namespace LZL.ForeignTrade.Controllers
                     table.Cell(count, 6).Range.Text = invoice.CurrencyType.ToString() + productSummary.ExportPrice.GetValueOrDefault().ToString();
                     //显示单款总体积
                     //table.Cell(count, 6).Range.Text = invoice.ProductPack.ElementAt(i).PackBulk.GetValueOrDefault().ToString();
+                    zongtiji+= invoice.ProductPack.ElementAt(i).PackBulk.GetValueOrDefault();
 
                     jgcount += productSummary.ExportAmount.GetValueOrDefault();//价格总和
                     table.Cell(count, 7).Range.Text = invoice.CurrencyType.ToString() + productSummary.ExportAmount.GetValueOrDefault().ToString();
                     count++;
                 }
+
                 table.Cell(count, 1).Merge(table.Cell(count, 7));
-                table.Cell(count, 1).Range.Text = "—".PadLeft(50, '—');
+                table.Cell(count, 1).Range.Text = "—".PadLeft(40, '—');
                 table.Cell(count + 1, 1).Range.Text = "TOTAL：";
                 table.Cell(count + 1, 2).Range.Text = jscount + jsunit;
                 table.Cell(count + 1, 3).Range.Text = slcount + slunit;
                 table.Cell(count + 1, 4).Range.Text = mzcount + "KG";
                 table.Cell(count + 1, 5).Range.Text = jzcount + "KG";
                 table.Cell(count + 1, 7).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + jgcount;
+
+                wordhelper.GotoBookMark("ckje");//出口金额
+                wordhelper.InsertText(ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + jgcount);
+
+                wordhelper.GotoBookMark("zongtiji");//总体积
+                wordhelper.InsertText(zongtiji.ToString());
 
                 wordhelper.Save();
             }
@@ -625,6 +669,7 @@ namespace LZL.ForeignTrade.Controllers
                 }
             }
         }
+        #endregion
 
     }
 }
