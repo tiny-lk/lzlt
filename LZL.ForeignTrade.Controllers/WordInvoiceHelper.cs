@@ -116,7 +116,7 @@ namespace LZL.ForeignTrade.Controllers
                 table.Cell(count, 1).Range.Text = "—".PadLeft(40, '—');
                 table.Cell(count + 1, 1).Range.Text = "TOTAL：";
                 table.Cell(count + 1, 2).Range.Text = sl + dwmc;
-                table.Cell(count + 1, 4).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + hjje.ToString();
+                table.Cell(count + 1, 4).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + MoneyConvert.ConverDigToEng(hjje);
                 wordhelper.GotoBookMark("no");
                 wordhelper.InsertText(invoice.Name);
                 wordhelper.GotoBookMark("lcno");
