@@ -73,6 +73,7 @@
     <Compile Include="ExportContractsHelper.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="InvoiceController.cs" />
+    <Compile Include="MoneyConvert.cs" />
     <Compile Include="Number2English.cs" />
     <Compile Include="PriceController.cs" />
     <Compile Include="ProductController.cs" />
