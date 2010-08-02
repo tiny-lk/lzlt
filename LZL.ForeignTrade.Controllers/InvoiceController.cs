@@ -99,6 +99,32 @@ WHERE ('" + rolelist[temp] + "' IN (RoleName))";
             return Details(id);
         }
 
+        public ActionResult Copy(string id)
+        {
+            string gid = Guid.NewGuid().ToString().ToLower();
+            string sql = @"INSERT INTO Invoice
+                        SELECT     '" + gid + @"', Name, Date, ExportContractsName, RevocationNo, CurrencyType, PriceClause, PriceClauseNote, ClauseType, ClauseTypeNote, Trade, 
+                        CustomerID, CompanyID, CreditCardNo, AccountBank, AccountDate, ShipmentDate, ValidDate, TansportCountry, StartHaven, EdnHaven, TransferHaven, 
+                        TransportMode, FreightPayment, IsBatches, IsTransfer, Mark, Type, CreditAmount, TotalSalesAmount, TotalPackAmount, TotalPackUnitEN, TotalPackGrossWeight, 
+                        TotalPackNetWeight, TotalPackBulk, TotalProductAmount, TotalUnit, TotalDifferentUnit, Note, InvoiceItem, BoxItem, OceanNo, OceanDate, Shipper, Consignee, 
+                        CircularizeMan, ReceivingAddress, FlightNo, OceanCount, OceanFreightPayment, FreightAmount, OneProcessName, TwoProcessName, OceanDeputy, 
+                        OceanTansportCountry, OceanStartHaven, OceanEdnHaven, OceanTransferHaven, OceanNote, getdate(), EditDate, Version
+                        FROM         Invoice AS Invoice_1
+                        WHERE     (ID = '" + id + "')";
+            SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+            sql = @"insert into ProductSummary SELECT newid(), '" + gid + @"', PriceID, ExportContractsID, StockContractsID, ProductID, CustomsCode, PurchasePrice, Amount, UnitEN, ExportPrice, RMBExportAmount, ExportAmount, 
+                        DescriptionEN, Note, CreateDate, EditDate, PurchaseTotalPrice, ProductAmount, SingleProductAmount, PieceAmount, PackUnitEN, PackUnitCH, PackLength, 
+                        PackWidth, PackHeight, SinglePackBulk, PackBulk, InsideProductAmount, SingleInsidePiece, InsideUnitEN, InsideUnitCN, SingleGrossWeight, SingleNetWeight, 
+                        GrossWeight, NetWeight
+                        FROM         ProductSummary
+                        WHERE     (InvoiceID = '" + id + "')";
+            SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
+            Response.Redirect("/Invoice/Index");
+            return View();
+            //     ViewData["IsWrite"] = "false";
+            //    return Details(id);
+        }
+
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Edit(FormCollection formvalues)
         {
