@@ -24,15 +24,20 @@
         }
 
         $(document).ready(function() {
-            $("#Product♂PackBulk").attr("title", "双击自动获取运算值");
-            $("#Product♂PackBulk").bind("dblclick", function() {
-                var tj = Number($("#Product♂PackLength").val()) * Number($("#Product♂PackWidth").val()) * Number($("#Product♂PackHeight").val()) / 1000000;
-                if (tj != 0) {
-                    $("#Product♂PackBulk").val(tj.toFixed(2));
-                    $("#Product♂PackBulk").attr("background-color", "Silver");
-                }
-            });
+            //$("#Product♂PackBulk").attr("title", "双击自动获取运算值");
+            //$("#Product♂PackBulk").bind("dblclick", Compute);
+            $("#Product♂PackLength").bind("keyup", Compute);
+            $("#Product♂PackWidth").bind("keyup", Compute);
+            $("#Product♂PackHeight").bind("keyup", Compute);
         });
+
+        function Compute() {
+            var tj = Number($("#Product♂PackLength").val()) * Number($("#Product♂PackWidth").val()) * Number($("#Product♂PackHeight").val()) / 1000000;
+            if (tj != 0) {
+                $("#Product♂PackBulk").val(tj.toFixed(2));
+                $("#Product♂PackBulk").attr("background-color", "Silver");
+            }
+        }
 
         function addImage(key, n) {
             $("#imagemodedialog").remove();
