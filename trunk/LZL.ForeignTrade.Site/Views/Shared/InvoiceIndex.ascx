@@ -51,6 +51,13 @@
             }
         });
 
+        $("#Copy").live("click", function() {
+            if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
+                var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
+                window.location.href = '<%=Url.Action("Copy","Invoice")%>' + '/' + id;
+            }
+        });
+        
         $("#BusinessInvoice").live("click", function() {
             if ($(document).data('checkvalue') != null && $(document).data('checkvalue') != "") {
                 var id = $(document).data('checkvalue').substr(0, $(document).data('checkvalue').indexOf("|"));
@@ -162,10 +169,11 @@
             <td colspan="6" align="left">
                 <%= Html.TextBox("queryvalue", "", new {style="width:330px;" })%>
                 <input type="button" class="button" id="OK" value="²é Ñ¯" disabled="disabled" />
-                <input type="button" class="button" id="Refresh" value="Ë¢ ÐÂ" />
+                <input type="button" class="button" id="Refresh" value="Ë¢ ÐÂ" />                
                 <% if (ViewData["simple"] == null)
                    {
                 %>
+                <input type="button" class="button" id="Copy" value="¸´ ÖÆ" disabled="disabled" check="1"/>
                 <input type="button" class="button" id="Edit" value="±à ¼­" disabled="disabled" check="1" />
                 <input type="button" class="button" id="Delete" value="É¾ ³ý" disabled="disabled" check="n" />
                 <br />

@@ -151,7 +151,7 @@
                 }
                 var array = [];
                 if ($(this).attr("checked") == true) {
-                    $(this).closest("tr").addClass("select");
+                    $(this).closest("tr").addClass("select");                    
                     $(document).data("check", Number($(document).data("check")) + 1);
                     if ($(document).data("check") == 1) {
                         $(document).data("checkvalue", $(this).val());
@@ -254,9 +254,8 @@
             $("#DictionaryPaneldialog").dialog('open');
         }
 
-        function LoadControlList(obj, name) {
+        function LoadControlList(obj, name) {        
             var txtobject = $(obj).parent().find("input[type='text']"); //txt文本对象
-               debugger
             var hidobject = $(obj).parent().find("input[type='hidden']"); //hidden对象
             $("#ListPaneldialog").remove();
             $("body").append("<div id='ListPaneldialog'></div>");
@@ -270,7 +269,8 @@
                 draggable: true,
                 closeOnEscape: true,
                 buttons: {
-                    确定: function() {
+                确定: function() {
+                debugger
                         if (!($(document).data("checkvalue") == null || $(document).data("checkvalue") == "")) {
                             if ($(document).data("checkvalue").split("♂").length != 1) {
                                 alert("请选择一条数据！");

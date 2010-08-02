@@ -197,7 +197,7 @@
         <ul>
             <li><a href="#tabs-1">发票信息</a></li>
             <li><a href="#tabs-2">商品信息</a></li>
-            <li><a href="#tabs-3">商品包装信息</a></li>
+            <%--     <li><a href="#tabs-3">商品包装信息</a></li>--%>
         </ul>
         <table width="100%" class="list" id="tabs-1">
             <caption>
@@ -208,12 +208,18 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                             type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Invoice/Index") %>'" />
                     </td>
+                </tr>                
+                <tr>
+                  <td rowspan="8" align="center" valign="middle" style="width: 10%;">
+                    发票简介
+                    <%= Html.Hidden("Invoice♂ID", Html.Encode(Model.ID.ToString()))%>
+                    </td>
+                  <td align="right" style="width: 15%;">版本类别：</td>
+                  <td align="left" style="width: 30%;"><%= Html.DropDownList("Invoice♂Version", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("单证版本", Html.Encode(Model.Version)), "请选择")%></td>
+                  <td align="right" style="width: 15%;">&nbsp;</td>
+                  <td align="left" style="width: 30%;">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td rowspan="7" align="center" valign="middle" style="width: 10%;">
-                        发票简介
-                        <%= Html.Hidden("Invoice♂ID", Html.Encode(Model.ID.ToString()))%>
-                    </td>
                     <td align="right" style="width: 15%;">
                         发票号：
                     </td>
@@ -722,7 +728,7 @@
             </tr>
             <!-- 商品信息 -->
         </table>
-        <table class="list" width="100%" id="tabs-3">
+        <%--<table class="list" width="100%" id="tabs-3">
             <caption>
                 商品包装信息
             </caption>
@@ -744,7 +750,7 @@
                 </td>
             </tr>
             <!-- 商品包装信息 -->
-        </table>
+        </table>--%>
     </div>
     <%if (ViewData["IsWrite"] == "false")
       {
@@ -768,5 +774,5 @@
         class="button4">关联出口合同</a> <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Invoice')"
             class="button4" style="display: none">添加商品信息</a> <a href="#" id="hrSpbz" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Invoice')"
                 class="button4" style="display: none">添加商品包装</a> <a href="#" onclick='submitInfo();'
-                  id="submitbt"  class="button4">数据整体提交</a>
+                    id="submitbt" class="button4">数据整体提交</a>
 </asp:Content>

@@ -43,7 +43,9 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -329,6 +331,9 @@
     <None Include="DocTemplate\Template\exportcontracts.doc" />
     <None Include="DocTemplate\Template\invoice.doc" />
     <None Include="DocTemplate\Template\packinglist.doc" />
+    <Content Include="Views\Invoice\Copy.aspx" />
+    <Content Include="Views\Shared\副本%282%29ProductPackControl.ascx" />
+    <Content Include="Views\Shared\副本%282%29ProductSummaryControl.ascx" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\jquery.pack.js" />
     <Content Include="Scripts\jquery.tableEditor.js" />
