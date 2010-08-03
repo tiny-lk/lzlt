@@ -18,7 +18,7 @@
         <ul>
             <li><a href="#tabs-1">采购合同信息</a></li>
             <li><a href="#tabs-2">商品信息</a></li>
-            <li><a href="#tabs-3">商品包装信息</a></li>
+            <%--    <li><a href="#tabs-3">商品包装信息</a></li>--%>
         </ul>
         <table width="100%" class="list" id="tabs-1">
             <caption>
@@ -236,7 +236,7 @@
             </tr>
             <!-- 商品信息 -->
         </table>
-        <table class="list" width="100%" id="tabs-3">
+        <%--<table class="list" width="100%" id="tabs-3">
             <caption>
                 商品包装信息
             </caption>
@@ -259,7 +259,7 @@
                 </td>
             </tr>
             <!-- 商品包装信息 -->
-        </table>
+        </table>--%>
     </div>
 </asp:Content>
 <asp:Content ID="ChildActionContent" ContentPlaceHolderID="ChildActionContent" runat="server">
