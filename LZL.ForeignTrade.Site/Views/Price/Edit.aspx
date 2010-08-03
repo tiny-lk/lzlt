@@ -148,7 +148,7 @@
         <ul>
             <li><a href="#tabs-1">发票信息</a></li>
             <li><a href="#tabs-2">商品信息</a></li>
-            <li><a href="#tabs-3">商品包装信息</a></li>
+            <%--            <li><a href="#tabs-3">商品包装信息</a></li>--%>
         </ul>
         <table width="100%" class="list" id="tabs-1">
             <caption>
@@ -340,7 +340,7 @@
             <tfoot>
                 <tr>
                     <td colspan="5" align="right">
-                        <input type="submit" style="display:none" class="button" id="btnTj" value="提 交" />
+                        <input type="submit" style="display: none" class="button" id="btnTj" value="提 交" />
                         &nbsp;&nbsp;&nbsp;&nbsp;<input type="reset" class="button" value="取 消" />&nbsp;&nbsp;&nbsp;&nbsp;<input
                             type="button" class="button" value="返 回" onclick="javascript:window.location.href ='<%=Url.Content("~/Price/Index") %>'" />
                     </td>
@@ -370,7 +370,7 @@
             </tr>
             <!-- 商品信息 -->
         </table>
-        <table class="list" width="100%" id="tabs-3">
+        <%--<table class="list" width="100%" id="tabs-3">
             <caption>
                 商品包装信息
             </caption>
@@ -392,7 +392,7 @@
                 </td>
             </tr>
             <!-- 商品包装信息 -->
-        </table>
+        </table>--%>
     </div>
     <%
         }
@@ -400,6 +400,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ChildActionContent" runat="server">
     <a href="#" id="hrSpxx" onclick="addcontrol(this,'ProductSummaryControl','ProductSummary♂',1,'Price')"
-        class="button4"  style="display:none">添加商品信息</a> <a id="hrSpbz" href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Price')"
-            class="button4"  style="display:none">添加商品包装</a><a href="#" onclick='submitInfo();' class="button4">数据整体提交</a>
+        class="button4" style="display: none">添加商品信息</a> <a id="hrSpbz" href="#" onclick="addcontrol(this,'ProductPackControl','ProductPack♂',1,'Price')"
+            class="button4" style="display: none">添加商品包装</a><a href="#" onclick='submitInfo();'
+                class="button4">数据整体提交</a>
 </asp:Content>
