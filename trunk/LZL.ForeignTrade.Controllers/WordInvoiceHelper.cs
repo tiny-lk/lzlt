@@ -116,7 +116,7 @@ namespace LZL.ForeignTrade.Controllers
                 table.Cell(count, 1).Range.Text = "—".PadLeft(40, '—');
                 table.Cell(count + 1, 1).Range.Text = "TOTAL：";
                 table.Cell(count + 1, 2).Range.Text = sl + dwmc;
-                table.Cell(count + 1, 4).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + MoneyConvert.ConverDigToEng(hjje);
+                table.Cell(count + 1, 4).Range.Text = ZhouBo.Core.BasicOperate.GetString(invoice.CurrencyType, true) + hjje.ToString();
                 wordhelper.GotoBookMark("no");
                 wordhelper.InsertText(invoice.Name);
                 wordhelper.GotoBookMark("lcno");
@@ -128,7 +128,8 @@ namespace LZL.ForeignTrade.Controllers
 
                 //添加商品明细
                 wordhelper.GotoBookMark("totalinfo");
-                wordhelper.InsertText(string.Format("SAY TOTAL USD {0} ONLY", hjje));//转换后的名称
+
+                wordhelper.InsertText(string.Format("SAY TOTAL USD {0} ONLY", MoneyConvert.ConverDigToEng(hjje)));//转换后的名称
                 
 
                 wordhelper.Save();
