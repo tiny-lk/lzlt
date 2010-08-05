@@ -123,7 +123,7 @@
 
                 $("#ProductPack♂ProductAmount").live("dblclick", function(thisObj) {
                     SetInitValueWithSelect(thisObj);
-                });  //点击商品数量获取关联信息
+                });   //点击商品数量获取关联信息
             }
 
             //通过选择商品获取商品相关信息

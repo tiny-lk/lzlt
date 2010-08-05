@@ -64,6 +64,7 @@ namespace LZL.ForeignTrade.Controllers
             Dictionary<string,object> lstReturn = new Dictionary<string,object>();
             lstReturn.Add("PackUnitEN", enProduct.PackUnitEN);//英文包装单位
             lstReturn.Add("PackAmount", enProduct.PackAmount);//单件包装数量
+            lstReturn.Add("CustomsCode", enProduct.CustomsCode);//海关编码
             lstReturn.Add("PackLength", enProduct.PackLength);//包装的长
             lstReturn.Add("PackWidth", enProduct.PackWidth);//包装的宽
             lstReturn.Add("PackHeight", enProduct.PackHeight);//包装的高
@@ -72,7 +73,7 @@ namespace LZL.ForeignTrade.Controllers
             lstReturn.Add("PackNetWeight", enProduct.PackNetWeight);//单件包装净重
             lstReturn.Add("BoxAmount", enProduct.BoxAmount);//内盒商品数量
             lstReturn.Add("BoxUnitEN", enProduct.BoxUnitEN);//内盒英文单位
-
+            
             return Json(lstReturn);
         }
 
