@@ -28,19 +28,19 @@
                     COL_APPLYCLASS: true,
                     COLUMN_NOEDIT: 'edit'
                 });
-            });        
-        </script>
 
-        <script type="text/javascript">
+                RelationControls();                
+            });
+
             function addRow(regionname) {
                 var obj = $(regionname).closest("table").siblings("div[id='divProductSummaryRegion']");
 
                 //var regionvalue = $(obj).find("input[name='ProductSummaryRegion']").val();
                 var regionvalue = $('#ProductSummaryRegion').val();
-                
+
                 if (regionvalue != null) {
                     //var regioncountobj = $(obj).find("#" + regionvalue + "regioncount");
-                    var regioncountobj = $("#" + regionvalue + "regioncount");                    
+                    var regioncountobj = $("#" + regionvalue + "regioncount");
                     $(regioncountobj).val(Number($(regioncountobj).val()) + 1);
                 }
                 var copyobj = $($("#editableTable tr")[$("#editableTable tr").length - 1])
@@ -54,6 +54,12 @@
                 $(copyhtml).find("input[type='text']").removeAttr("id");
                 $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
                 $(copyobj).parent().append(copyhtml);
+
+//                $($("#editableTable tr")[$("#editableTable tr").length - 1]).find("#_ProductSummary♂ProductID").live("change", function(thisObj) {
+//                    alert('test');
+//                    SetInitValueWithSelect(thisObj);
+//                });
+                
                 init();
             }
             function removeRow(regionname) {
@@ -72,16 +78,13 @@
             //关联控件间关系
             function RelationControls() {
                 $("#ProductSummary♂PieceAmount").attr("title", "双击自动获取运算值");
-                //$("#ProductSummary♂PieceAmount").attr("border-color", "red");
                 $("#ProductSummary♂SinglePackBulk").attr("title", "双击自动获取运算值");
-                //$("#ProductSummary♂SinglePackBulk").attr("border-color", "Silver");
                 $("#ProductSummary♂PackBulk").attr("title", "双击自动获取运算值");
-                //$("#ProductSummary♂PackBulk").attr("border-color", "Silver");
                 $("#ProductSummary♂GrossWeight").attr("title", "双击自动获取运算值");
-                //$("#ProductSummary♂GrossWeight").attr("border-color", "Silver");
                 $("#ProductSummary♂NetWeight").attr("title", "双击自动获取运算值");
-                //$("#ProductSummary♂NetWeight").attr("border-color", "Silver");
-                $("#ProductSummary♂ProductAmount").attr("title", "双击自动获取该商品信息");
+                $("#ProductSummary♂CustomsCode").attr("title", "双击自动获取该商品信息");
+                $("#ProductSummary♂PurchaseTotalPrice").attr("title", "双击自动获取运算值");
+                $("#ProductSummary♂ExportAmount").attr("title", "双击自动获取运算值");
 
                 $("#ProductSummary♂PieceAmount").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
@@ -126,15 +129,31 @@
                     }
                 });  //总包装净重
 
-                $("#ProductSummary♂ProductAmount").live("dblclick", function(thisObj) {
+                $("#ProductSummary♂PurchaseTotalPrice").live("dblclick", function(thisObj) {
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    var tj = Number(thistr.find("#ProductSummary♂PurchasePrice").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    if (tj != 0) {
+                        thistr.find("#ProductSummary♂PurchaseTotalPrice").val(tj.toFixed(2));
+                    }
+                });  //进销总金额
+
+                $("#ProductSummary♂ExportAmount").live("dblclick", function(thisObj) {
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    var tj = Number(thistr.find("#ProductSummary♂ExportPrice").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    if (tj != 0) {
+                        thistr.find("#ProductSummary♂ExportAmount").val(tj.toFixed(2));
+                    }
+                });  //外销总金额
+
+                $("#ProductSummary♂CustomsCode").live("dblclick", function(thisObj) {
                     SetInitValueWithSelect(thisObj);
-                });  //点击商品数量获取关联信息
+                });   //点击商品数量获取关联信息
             }
 
             //通过选择商品获取商品相关信息
             function SetInitValueWithSelect(thisObj) {
                 var thistr = $($(thisObj)[0].srcElement).closest("tr");
-                var varid = thistr.find("input[name='ProductSummary♂ProductID']").val();
+                var varid = thistr.find("#ProductSummary♂propertyobjectvalue").val();
 
                 $.get(
                 '<%=Url.Action("GetProductInfo","Shared")%>',
@@ -146,15 +165,20 @@
                           var rowItems = rows[i].split(':');
                           if (rowItems[1] != "null") {
                               rowItems[0] = rowItems[0].replace("\"", "").replace("\"", "");
+                              rowItems[1] = rowItems[1].replace("\"", "").replace("\"", "");
 
-                              //$("#ProductSummary♂" + rowItems[0]).val(rowItems[1]);
                               if (rowItems[0] == "PackUnitEN") {
                                   //if (thistr.find("#ProductSummary♂PackUnitEN").val() == "") {
-                                  thistr.find("#ProductSummary♂PackUnitEN").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂PackUnitEN']").val(rowItems[1]);
                                   // }
                               } else if (rowItems[0] == "PackAmount") {
                                   //if (thistr.find("#ProductSummary♂SingleProductAmount").val() == "") {
                                   thistr.find("#ProductSummary♂SingleProductAmount").val(rowItems[1]);
+                                  // }
+                              } else if (rowItems[0] == "CustomsCode") {
+                              //if (thistr.find("#ProductSummary♂SingleProductAmount").val() == "") {
+                              thistr.find("input[name = 'ProductSummary♂CustomsCode']").val(rowItems[1]);
+                              
                                   // }
                               } else if (rowItems[0] == "PackLength") {
                                   //if (thistr.find("#ProductSummary♂PackLength").val() == "") {
@@ -192,8 +216,16 @@
                           }
                       };
                   });
+
+//                $("#ProductSummary♂PieceAmount").ondblclick();
+//                $("#ProductSummary♂SinglePackBulk").ondblclick();
+//                $("#ProductSummary♂PackBulk").ondblclick();
+//                $("#ProductSummary♂GrossWeight").ondblclick();
+//                $("#ProductSummary♂NetWeight").ondblclick();
+//                $("#ProductSummary♂PurchaseTotalPrice").ondblclick();
+//                $("#ProductSummary♂ExportAmount").ondblclick();
             }
-            RelationControls(); 
+            
         </script>
 
     </div>
@@ -212,7 +244,16 @@
                     商品编码(HS编码)
                 </th>
                 <th>
+                    商品描述(英文)
+                </th>
+                <th>
                     商品数量
+                </th>
+                <th>
+                    商品数量(单件包装)
+                </th>
+                <th>
+                    包装件数
                 </th>
                 <th>
                     商品单位(英文)
@@ -228,16 +269,6 @@
                 </th>
                 <th>
                     商品进货总金额
-                </th>
-                <th>
-                    商品描述(英文)
-                </th>
-                
-                   <th>
-                    商品数量(单件包装)
-                </th>
-                <th>
-                    包装件数
                 </th>
                 <th>
                     包装单位(英文)
@@ -278,8 +309,6 @@
                 <th>
                     总包装净重(KG)
                 </th>
-                
-                
                 <th>
                     备注
                 </th>
@@ -322,12 +351,12 @@
                             {
                                 if (Model[i].Product != null)
                                 {
-                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:80px;" }));
+                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:80px;height:40px;" }));
                                     Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", Model[i].Product.ID, new { copyvalue = true }));
                                 }
                                 else
                                 {
-                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:80px;" }));
+                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:80px;height:40px;" }));
                                     Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                                 }
                                 Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
@@ -346,13 +375,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", "", new { style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", "", new { style = "width:60px;height:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂CustomsCode", Html.Encode(Model[i].CustomsCode), new { style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂CustomsCode", Html.Encode(Model[i].CustomsCode), new { style = "width:60px;height:40px;" }));
                             }
                             else
                             {
@@ -365,13 +394,32 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂Amount", "", new { validate = "digits:true", style = "width:60px;" }));
+                            Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", new { style = "width: 95px; height: 40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂Amount", Html.Encode(Model[i].Amount), new { validate = "digits:true", style = "width:60px;" }));
+                                Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", Html.Encode(Model[i].DescriptionEN), new { style = "width: 95px; height: 40px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].DescriptionEN));
+                            }
+                        }
+                    %>
+                </td>
+                <td width="10%">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂ProductAmount", "", new { validate = "digits:true", style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂ProductAmount", Html.Encode(Model[i].Amount), new { validate = "digits:true", style = "width:60px;" }));
                             }
                             else
                             {
@@ -380,17 +428,55 @@
                         }
                     %>
                 </td>
-                <td width="8%">
+                <td>
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择", new { style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂SingleProductAmount", "", new { validate = "digits:true", style = "width:60px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].UnitEN)), "请选择", new { style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂SingleProductAmount", Html.Encode(Model[i].SingleProductAmount), new { validate = "digits:true", style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].SingleProductAmount));
+                            }
+                        }
+                    %>
+                </td>
+                <td>
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂PieceAmount", "", new { validate = "digits:true", style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂PieceAmount", Html.Encode(Model[i].PieceAmount), new { validate = "digits:true", style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].PieceAmount));
+                            }
+                        }
+                    %>
+                </td>
+                <td width="8%">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.DropDownList("ProductSummary♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择", new { style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.DropDownList("ProductSummary♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].UnitEN)), "请选择", new { style = "width:60px;" }));
                             }
                             else
                             {
@@ -471,64 +557,6 @@
                             else
                             {
                                 Response.Write(Html.Encode(Model[i].PurchasePrice));
-                            }
-                        }
-                    %>
-                </td>
-                <td width="10%">
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", new { style = "width: 95px; height: 40px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextArea("ProductSummary♂DescriptionEN", Html.Encode(Model[i].DescriptionEN), new { style = "width: 95px; height: 40px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].DescriptionEN));
-                            }
-                        }
-                    %>
-                </td>
-                
-                   <td>
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextBox("ProductSummary♂SingleProductAmount", "", new { validate = "digits:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂SingleProductAmount", Html.Encode(Model[i].SingleProductAmount), new { validate = "digits:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].SingleProductAmount));
-                            }
-                        }
-                    %>
-                </td>
-                <td>
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextBox("ProductSummary♂PieceAmount", "", new { validate = "digits:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂PieceAmount", Html.Encode(Model[i].PieceAmount), new { validate = "digits:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].PieceAmount));
                             }
                         }
                     %>
@@ -780,8 +808,6 @@
                         }
                     %>
                 </td>
-                
-                
                 <td width="10%">
                     <%
                         if (Model == null)
@@ -827,7 +853,7 @@
 
         $("#ProductSummary♂ExportAmount").attr("title", "双击自动获取运算值");
         $("#ProductSummary♂PurchaseTotalPrice").attr("title", "双击自动获取运算值");
-        
+
         $("#ProductSummary♂ExportAmount").bind("dblclick", function() {
             $(this).val(($(this).parent().parent().find("input[name='ProductSummary♂Amount']").val()) *
                 ($(this).parent().parent().find("input[name='ProductSummary♂ExportPrice']").val())

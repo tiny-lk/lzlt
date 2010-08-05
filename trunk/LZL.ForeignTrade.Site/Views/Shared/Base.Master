@@ -269,8 +269,8 @@
                 draggable: true,
                 closeOnEscape: true,
                 buttons: {
-                确定: function() {
-                debugger
+                    确定: function() {
+                        //debugger
                         if (!($(document).data("checkvalue") == null || $(document).data("checkvalue") == "")) {
                             if ($(document).data("checkvalue").split("♂").length != 1) {
                                 alert("请选择一条数据！");

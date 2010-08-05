@@ -119,10 +119,7 @@ WHERE ('" + rolelist[temp] + "' IN (RoleName))";
                         FROM         ProductSummary
                         WHERE     (InvoiceID = '" + id + "')";
             SqlHelper.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["FTConnection"].ToString(), System.Data.CommandType.Text, sql);
-            Response.Redirect("/Invoice/Index");
-            return View();
-            //     ViewData["IsWrite"] = "false";
-            //    return Details(id);
+            return RedirectToAction("Index", new { page = 1 });
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

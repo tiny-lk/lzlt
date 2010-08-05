@@ -86,12 +86,6 @@
     <Compile Include="WordInvoiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LZL.ForeignTrade.DataEntity\LZL.ForeignTrade.DataEntity.csproj">
-      <Project>{5DC32038-7CCD-4016-8DB4-BD198DFCB263}</Project>
-      <Name>LZL.ForeignTrade.DataEntity</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
@@ -116,6 +110,12 @@
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LZL.ForeignTrade.DataEntity\LZL.ForeignTrade.DataEntity.csproj">
+      <Project>{5DC32038-7CCD-4016-8DB4-BD198DFCB263}</Project>
+      <Name>LZL.ForeignTrade.DataEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
