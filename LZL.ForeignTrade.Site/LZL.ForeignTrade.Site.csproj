@@ -131,11 +131,6 @@
     <Content Include="Views\Account\EditUserProfile.aspx" />
     <Content Include="Views\Admin\AddRole.aspx" />
     <Content Include="Views\Admin\ManageRole.aspx" />
-    <Content Include="Views\Customer\Add.aspx" />
-    <Content Include="Views\Customer\Customer.master" />
-    <Content Include="Views\Customer\Details.aspx" />
-    <Content Include="Views\Customer\Edit.aspx" />
-    <Content Include="Views\Customer\Index.aspx" />
     <Content Include="Views\Shared\LinkManControl.ascx" />
     <Content Include="Views\Shared\MemorandumControl.ascx" />
   </ItemGroup>
@@ -331,6 +326,28 @@
     <None Include="DocTemplate\Template\exportcontracts.doc" />
     <None Include="DocTemplate\Template\invoice.doc" />
     <None Include="DocTemplate\Template\packinglist.doc" />
+    <None Include="Views\Customer\.svn\all-wcprops" />
+    <None Include="Views\Customer\.svn\entries" />
+    <None Include="Views\Customer\.svn\text-base\Add.aspx.svn-base" />
+    <None Include="Views\Customer\.svn\text-base\Customer.master.svn-base" />
+    <None Include="Views\Customer\.svn\text-base\Custromer.master.svn-base" />
+    <None Include="Views\Customer\.svn\text-base\Details.aspx.svn-base" />
+    <None Include="Views\Customer\.svn\text-base\Edit.aspx.svn-base" />
+    <None Include="Views\Customer\.svn\text-base\Index.aspx.svn-base" />
+    <None Include="Views\Customer\.svn\tmp\Add.aspx.2.tmp" />
+    <None Include="Views\Customer\.svn\tmp\Add.aspx.3.tmp" />
+    <None Include="Views\Customer\.svn\tmp\Add.aspx.tmp" />
+    <None Include="Views\Customer\.svn\tmp\Customer.master.tmp" />
+    <None Include="Views\Customer\.svn\tmp\Details.aspx.2.tmp" />
+    <None Include="Views\Customer\.svn\tmp\Details.aspx.tmp" />
+    <None Include="Views\Customer\.svn\tmp\Edit.aspx.2.tmp" />
+    <None Include="Views\Customer\.svn\tmp\Edit.aspx.3.tmp" />
+    <None Include="Views\Customer\.svn\tmp\Edit.aspx.tmp" />
+    <Content Include="Views\Customer\Customer.master" />
+    <Content Include="Views\Customer\Add.aspx" />
+    <Content Include="Views\Customer\Details.aspx" />
+    <Content Include="Views\Customer\Edit.aspx" />
+    <Content Include="Views\Customer\Index.aspx" />
     <Content Include="Views\Invoice\Copy.aspx" />
     <Content Include="Views\Shared\副本%282%29ProductPackControl.ascx" />
     <Content Include="Views\Shared\副本%282%29ProductSummaryControl.ascx" />
@@ -353,6 +370,11 @@
     <Folder Include="App_Data\" />
     <Folder Include="DocTemplate\Print\" />
     <Folder Include="Views\Attachment\ResourceFolder\" />
+    <Folder Include="Views\Customer\.svn\prop-base\" />
+    <Folder Include="Views\Customer\.svn\props\" />
+    <Folder Include="Views\Customer\.svn\tmp\prop-base\" />
+    <Folder Include="Views\Customer\.svn\tmp\props\" />
+    <Folder Include="Views\Customer\.svn\tmp\text-base\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
