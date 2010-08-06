@@ -185,7 +185,6 @@
         <ul>
             <li><a href="#tabs-1">发票信息</a></li>
             <li><a href="#tabs-2">商品信息</a></li>
-            <li><a href="#tabs-3">商品包装信息</a></li>
         </ul>
         <table width="100%" class="list" id="tabs-1">
             <caption style="text-align: center; font-size: x-large; font-weight: bolder; padding: 0 0 10px 0;">
@@ -623,17 +622,6 @@
                 </td>
             </tr>
             <!-- 商品信息 -->
-        </table>
-        <table width="100%" class="list" id="tabs-3">
-            <caption>
-                商品包装
-            </caption>
-            <!-- 商品包装信息 -->
-            <tr id="ProductPack♂" style="display: none;">
-                <td colspan="5">
-                </td>
-            </tr>
-            <!-- 商品包装信息 -->
         </table>
     </div>
     <%
