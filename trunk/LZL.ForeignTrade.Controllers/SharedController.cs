@@ -63,6 +63,7 @@ namespace LZL.ForeignTrade.Controllers
 
             Dictionary<string,object> lstReturn = new Dictionary<string,object>();
             lstReturn.Add("PackUnitEN", enProduct.PackUnitEN);//英文包装单位
+            lstReturn.Add("NameEH", enProduct.NameEH);//商品英文名称
             lstReturn.Add("PackAmount", enProduct.PackAmount);//单件包装数量
             lstReturn.Add("CustomsCode", enProduct.CustomsCode);//海关编码
             lstReturn.Add("PackLength", enProduct.PackLength);//包装的长

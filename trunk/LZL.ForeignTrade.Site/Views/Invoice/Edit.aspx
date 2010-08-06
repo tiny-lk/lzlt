@@ -728,29 +728,7 @@
             </tr>
             <!-- 商品信息 -->
         </table>
-        <%--<table class="list" width="100%" id="tabs-3">
-            <caption>
-                商品包装信息
-            </caption>
-            <!-- 商品包装信息 -->
-            <%
-                Model.ProductPack.Load();
-            %>
-            <tr id="ProductPack♂" style="<%=Model.ProductPack.Count>0?"": "display: none"%>;">
-                <td colspan="5">
-                    <%  
-                        if (Model.ProductPack.Count > 0)
-                        {
-                            ViewDataDictionary viewdictionary2 = new ViewDataDictionary();
-                            viewdictionary2.Add("number", Model.ProductPack.Count);
-                            viewdictionary2.Add("FK", "Invoice");//报价单信息
-                            Html.RenderPartial("ProductPackControl", Model.ProductPack.ToList(), viewdictionary2);
-                        }
-                    %>
-                </td>
-            </tr>
-            <!-- 商品包装信息 -->
-        </table>--%>
+       
     </div>
     <%if (ViewData["IsWrite"] == "false")
       {

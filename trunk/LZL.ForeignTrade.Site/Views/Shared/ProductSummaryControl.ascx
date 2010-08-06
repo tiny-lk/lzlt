@@ -29,7 +29,7 @@
                     COLUMN_NOEDIT: 'edit'
                 });
 
-                RelationControls();                
+                RelationControls();
             });
 
             function addRow(regionname) {
@@ -55,11 +55,6 @@
                 $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
                 $(copyobj).parent().append(copyhtml);
 
-//                $($("#editableTable tr")[$("#editableTable tr").length - 1]).find("#_ProductSummary♂ProductID").live("change", function(thisObj) {
-//                    alert('test');
-//                    SetInitValueWithSelect(thisObj);
-//                });
-                
                 init();
             }
             function removeRow(regionname) {
@@ -146,13 +141,63 @@
                 });  //外销总金额
 
                 $("#ProductSummary♂CustomsCode").live("dblclick", function(thisObj) {
-                    SetInitValueWithSelect(thisObj);
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    SetInitValueWithSelect(thistr);
                 });   //点击商品数量获取关联信息
+
+                //输入产品数量的同时自动计算如下数据
+                $("#ProductSummary♂ProductAmount").live("keyup", function(thisObj) {
+                    //包装件数
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    if (thistr.find("#ProductSummary♂SingleProductAmount").val() != "") {
+                        var tj = Number(thistr.find("#ProductSummary♂ProductAmount").val()) / Number(thistr.find("#ProductSummary♂SingleProductAmount").val());
+                        if (tj != 0) {
+                            thistr.find("#ProductSummary♂PieceAmount").val(tj.toFixed(2));
+                        }
+                    }
+
+                    //(单件)包装体积(CBM)
+                    var tj = Number(thistr.find("#ProductSummary♂PackLength").val()) * Number(thistr.find("#ProductSummary♂PackWidth").val()) * Number(thistr.find("#ProductSummary♂PackHeight").val());
+                    if (tj != 0) {
+                        thistr.find("#ProductSummary♂SinglePackBulk").val(tj.toFixed(2) / 1000000);
+                    }
+
+                    //总包装体积
+                    tj = Number(thistr.find("#ProductSummary♂SinglePackBulk").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    if (tj != 0) {
+                        thistr.find("#ProductSummary♂PackBulk").val(tj.toFixed(2));
+                    }
+
+                    // 总包装毛重
+                    tj = Number(thistr.find("#ProductSummary♂SingleGrossWeight").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    if (tj != 0) {
+                        thistr.find("#ProductSummary♂GrossWeight").val(tj.toFixed(2));
+                    }
+
+                    //总包装净重
+                    tj = Number(thistr.find("#ProductSummary♂SingleNetWeight").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    if (tj != 0) {
+                        thistr.find("#ProductSummary♂NetWeight").val(tj.toFixed(2));
+                    }
+
+                    //进销总金额
+                    tj = Number(thistr.find("#ProductSummary♂PurchasePrice").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    if (tj != 0) {
+                        thistr.find("#ProductSummary♂PurchaseTotalPrice").val(tj.toFixed(2));
+                    }
+
+                    //外销总金额
+                    tj = Number(thistr.find("#ProductSummary♂ExportPrice").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    if (tj != 0) {
+                        thistr.find("#ProductSummary♂ExportAmount").val(tj.toFixed(2));
+                    }
+
+                });
             }
 
             //通过选择商品获取商品相关信息
-            function SetInitValueWithSelect(thisObj) {
-                var thistr = $($(thisObj)[0].srcElement).closest("tr");
+            function SetInitValueWithSelect(thistr) {
+
                 var varid = thistr.find("#ProductSummary♂propertyobjectvalue").val();
 
                 $.get(
@@ -167,63 +212,44 @@
                               rowItems[0] = rowItems[0].replace("\"", "").replace("\"", "");
                               rowItems[1] = rowItems[1].replace("\"", "").replace("\"", "");
 
-                              if (rowItems[0] == "PackUnitEN") {
-                                  //if (thistr.find("#ProductSummary♂PackUnitEN").val() == "") {
+                              if (rowItems[0] == "CustomsCode") {
+                                  thistr.find("input[name = 'ProductSummary♂CustomsCode']").val(rowItems[1]);
+                              }
+                              else if (rowItems[0] == "PackUnitEN") {
                                   thistr.find("input[name = 'ProductSummary♂PackUnitEN']").val(rowItems[1]);
-                                  // }
+                              } else if (rowItems[0] == "NameEH") {
+                                  thistr.find("textarea[name = 'ProductSummary♂DescriptionEN']").val(rowItems[1]);
                               } else if (rowItems[0] == "PackAmount") {
-                                  //if (thistr.find("#ProductSummary♂SingleProductAmount").val() == "") {
-                                  thistr.find("#ProductSummary♂SingleProductAmount").val(rowItems[1]);
-                                  // }
-                              } else if (rowItems[0] == "CustomsCode") {
-                              //if (thistr.find("#ProductSummary♂SingleProductAmount").val() == "") {
-                              thistr.find("input[name = 'ProductSummary♂CustomsCode']").val(rowItems[1]);
-                              
-                                  // }
+                                  //thistr.find("#ProductSummary♂SingleProductAmount").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂SingleProductAmount']").val(rowItems[1]);
                               } else if (rowItems[0] == "PackLength") {
-                                  //if (thistr.find("#ProductSummary♂PackLength").val() == "") {
-                                  thistr.find("#ProductSummary♂PackLength").val(rowItems[1]);
-                                  // }
+                                  thistr.find("input[name = 'ProductSummary♂PackLength']").val(rowItems[1]);
+                                  // thistr.find("#ProductSummary♂PackLength").val(rowItems[1]);
                               } else if (rowItems[0] == "PackWidth") {
-                                  //if (thistr.find("#ProductSummary♂PackWidth").val() == "") {
-                                  thistr.find("#ProductSummary♂PackWidth").val(rowItems[1]);
-                                  //}
+                                  //thistr.find("#ProductSummary♂PackWidth").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂PackWidth']").val(rowItems[1]);
                               } else if (rowItems[0] == "PackHeight") {
-                                  // if (thistr.find("#ProductSummary♂PackHeight").val() == "") {
-                                  thistr.find("#ProductSummary♂PackHeight").val(rowItems[1]);
-                                  // }
+                                  //thistr.find("#ProductSummary♂PackHeight").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂PackHeight']").val(rowItems[1]);
                               } else if (rowItems[0] == "PackBulk") {
-                                  // if (thistr.find("#ProductSummary♂SinglePackBulk").val() == "") {
-                                  thistr.find("#ProductSummary♂SinglePackBulk").val(rowItems[1]);
-                                  // }
+                                  //thistr.find("#ProductSummary♂SinglePackBulk").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂SinglePackBulk']").val(rowItems[1]);
                               } else if (rowItems[0] == "PackGrossWeight") {
-                                  //  if (thistr.find("#ProductSummary♂SingleGrossWeight").val() == "") {
-                                  thistr.find("#ProductSummary♂SingleGrossWeight").val(rowItems[1]);
-                                  // }
+                                  //thistr.find("#ProductSummary♂SingleGrossWeight").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂SingleGrossWeight']").val(rowItems[1]);
                               } else if (rowItems[0] == "PackNetWeight") {
-                                  // if (thistr.find("#ProductSummary♂SingleNetWeight").val() == "") {
-                                  thistr.find("#ProductSummary♂SingleNetWeight").val(rowItems[1]);
-                                  // }
+                                  //thistr.find("#ProductSummary♂SingleNetWeight").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂SingleNetWeight']").val(rowItems[1]);
                               } else if (rowItems[0] == "BoxAmount") {
-                                  //  if (thistr.find("#ProductSummary♂InsideProductAmount").val() == "") {
-                                  thistr.find("#ProductSummary♂InsideProductAmount").val(rowItems[1]);
-                                  // }
+                                  //thistr.find("#ProductSummary♂InsideProductAmount").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂InsideProductAmount']").val(rowItems[1]);
                               } else if (rowItems[0] == "BoxUnitEN") {
-                                  //if (thistr.find("#ProductSummary♂InsideUnitEN").val() == "") {
-                                  thistr.find("#ProductSummary♂InsideUnitEN").val(rowItems[1]);
-                                  //}
+                                  //thistr.find("#ProductSummary♂InsideUnitEN").val(rowItems[1]);
+                                  thistr.find("input[name = 'ProductSummary♂InsideUnitEN']").val(rowItems[1]);
                               }
                           }
                       };
                   });
-
-//                $("#ProductSummary♂PieceAmount").ondblclick();
-//                $("#ProductSummary♂SinglePackBulk").ondblclick();
-//                $("#ProductSummary♂PackBulk").ondblclick();
-//                $("#ProductSummary♂GrossWeight").ondblclick();
-//                $("#ProductSummary♂NetWeight").ondblclick();
-//                $("#ProductSummary♂PurchaseTotalPrice").ondblclick();
-//                $("#ProductSummary♂ExportAmount").ondblclick();
             }
             
         </script>
@@ -233,10 +259,13 @@
         width="100%" style="margin-left: 0px; padding-left: 0px;">
         <thead class="header">
             <tr>
+                <%if (ViewData["Details"] == null)
+                  {%>
                 <th>
                     <br />
                     操作<input style="width: 60px;" />
                 </th>
+                <%} %>
                 <th>
                     商品款号
                 </th>
@@ -329,12 +358,15 @@
                        Response.Write(Html.Hidden("ProductSummary♂ID", Model[i].ID.ToString()));
                    }
                    Response.Write(Html.Hidden("ProductSummary♂propertyobject", "Product", new { copyvalue = true }));
-                %>
+
+                   if (ViewData["Details"] == null)
+                   {%>
                 <td align="center" width="4%">
                     <key></key>
                     <a class="tsEditLink" href="#">编辑</a><br />
                     <a href="#" onclick="removeRow(this)">删除</a>
                 </td>
+                <%} %>
                 <td width="10%">
                     <%                   
                
@@ -342,7 +374,7 @@
                         {
                             Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:80px;" }));
                             Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
-                            Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
+                            Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex','ProductSummary♂CustomsCode')>选择</a>");
                         }
                         else
                         {
@@ -359,7 +391,7 @@
                                     Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:80px;height:40px;" }));
                                     Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                                 }
-                                Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex')>选择</a>");
+                                Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex','ProductSummary♂CustomsCode')>选择</a>");
                             }
                             else
                             {
@@ -419,11 +451,11 @@
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂ProductAmount", Html.Encode(Model[i].Amount), new { validate = "digits:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂ProductAmount", Html.Encode(Model[i].ProductAmount), new { validate = "digits:true", style = "width:60px;" }));
                             }
                             else
                             {
-                                Response.Write(Html.Encode(Model[i].Amount));
+                                Response.Write(Html.Encode(Model[i].ProductAmount));
                             }
                         }
                     %>

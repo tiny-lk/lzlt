@@ -8,7 +8,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $(".print").live("click", function() {
-            $("table>tbody").printArea("true");
+                $("table>tbody").printArea("true");
             });
         });
         function addImage(key, n) {
@@ -55,7 +55,7 @@
         </thead>
         <tbody>
             <tr>
-                <td rowspan="5" align="center" valign="middle" style="width: 10%;">
+                <td rowspan="4" align="center" valign="middle" style="width: 10%;">
                     商品介绍信息
                 </td>
                 <td align="right" style="width: 15%;">
@@ -64,25 +64,11 @@
                 <td align="left" style="width: 30%;">
                     <%= Html.Encode( Model.NameCode)%>
                 </td>
-                <td align="right" style="width: 15%;">
-                    中文名称：
-                </td>
-                <td align="left" style="width: 30%;">
-                    <%= Html.Encode(Model.NameCH)%>
-                </td>
-            </tr>
-            <tr>
                 <td align="right">
                     英文名称：
                 </td>
                 <td align="left">
                     <%= Html.Encode(Model.NameEH)%>
-                </td>
-                <td align="right">
-                    中文规格：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.SpecCH)%>
                 </td>
             </tr>
             <tr>
@@ -93,24 +79,10 @@
                     <%=  Html.Encode(Model.SpecEN)%>
                 </td>
                 <td align="right">
-                    中文单位：
-                </td>
-                <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.UnitCH))%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
                     英文单位：
                 </td>
                 <td align="left">
                     <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model.UnitEN))%>
-                </td>
-                <td align="right">
-                    海关代码：
-                </td>
-                <td align="left">
-                    <%= Html.Encode(Model.CustomsCode)%>
                 </td>
             </tr>
             <tr>
@@ -121,10 +93,24 @@
                     <%= Html.Encode(Model.BarCode)%>
                 </td>
                 <td align="right">
+                    海关代码：
+                </td>
+                <td align="left">
+                    <%= Html.Encode(Model.CustomsCode)%>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
                     商品日期：
                 </td>
                 <td align="left">
                     <%= Html.Encode(Model.Date)%>
+                </td>
+                <td align="right">
+                    &nbsp;
+                </td>
+                <td align="left">
+                    &nbsp;
                 </td>
             </tr>
             <tr>
@@ -138,10 +124,10 @@
                     <%= Html.Encode(Model.PackAmount)%>
                 </td>
                 <td align="right">
-                    中文包装单位：
+                    &nbsp;
                 </td>
                 <td align="left">
-                    <%= LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName( Html.Encode(Model.PackUnitCH))%>
+                    &nbsp;
                 </td>
             </tr>
             <tr>
@@ -229,14 +215,6 @@
                 </td>
                 <td align="left">
                     <%= Html.CheckBox("IsShare", Model.IsShare)%>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    商品中文描述：
-                </td>
-                <td align="left" colspan="3">
-                    <%= Html.Encode(Model.DescriptionCH)%>
                 </td>
             </tr>
             <tr>
