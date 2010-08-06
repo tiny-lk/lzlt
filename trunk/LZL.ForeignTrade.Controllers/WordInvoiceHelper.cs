@@ -98,17 +98,21 @@ namespace LZL.ForeignTrade.Controllers
                 int count = 1;
                 for (int i = 0; i < invoice.ProductSummary.OrderBy(v=>v.CreateDate).ToList().Count; i++)
                 {
-                    invoice.ProductSummary.ElementAt(i).ProductReference.Load();
-                    Product product = invoice.ProductSummary.ElementAt(i).Product;
+                    ProductSummary productSummary = invoice.ProductSummary.ElementAt(i);
+                    productSummary.ProductReference.Load();
+                    Product product = productSummary.Product;
+
                     table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : (product.NameCode+" "+product.NameEH);
                     table.Cell(count, 1).Select();
                     table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-                    dwmc = DataHelper.GetDictionaryName(invoice.ProductSummary.ElementAt(i).UnitEN);
-                    sl += invoice.ProductSummary.ElementAt(i).Amount.GetValueOrDefault();
-                    hjje += invoice.ProductSummary.ElementAt(i).ExportAmount.GetValueOrDefault();
-                    table.Cell(count, 2).Range.Text = invoice.ProductSummary.ElementAt(i).Amount.GetValueOrDefault() + dwmc;
-                    table.Cell(count, 3).Range.Text = invoice.ProductSummary.ElementAt(i).ExportPrice.GetValueOrDefault().ToString();
-                    table.Cell(count, 4).Range.Text = invoice.ProductSummary.ElementAt(i).ExportAmount.GetValueOrDefault().ToString();
+
+                    dwmc = DataHelper.GetDictionaryName(productSummary.UnitEN);
+                    sl += productSummary.ProductAmount.GetValueOrDefault();
+                    hjje += productSummary.ExportAmount.GetValueOrDefault();
+
+                    table.Cell(count, 2).Range.Text = productSummary.ProductAmount.GetValueOrDefault() + dwmc;//产品总数量
+                    table.Cell(count, 3).Range.Text = productSummary.ExportPrice.GetValueOrDefault().ToString();//外销单价
+                    table.Cell(count, 4).Range.Text = productSummary.ExportAmount.GetValueOrDefault().ToString();//外销单价总额
                     count++;
                 }
                 table.Cell(count, 1).Merge(table.Cell(count, 4));
@@ -129,7 +133,7 @@ namespace LZL.ForeignTrade.Controllers
                 //添加商品明细
                 wordhelper.GotoBookMark("totalinfo");
 
-                wordhelper.InsertText(string.Format("SAY TOTAL USD {0} ONLY", MoneyConvert.ConverDigToEng(hjje)));//转换后的名称
+                wordhelper.InsertText(string.Format("SAY TOTAL {0} ONLY", MoneyConvert.ConverDigToEng(hjje)));//转换后的名称
                 
 
                 wordhelper.Save();
@@ -209,8 +213,7 @@ namespace LZL.ForeignTrade.Controllers
                         //wordhelper.InsertText(company.AddressCH);
                     }
                 }
-                invoice.ProductSummary.Load();
-
+                
                 wordhelper.GotoBookMark("contenttitle");
                 //插入价格条款、起运国、起运港口信息
                 wordhelper.InsertText(invoice.PriceClause + "   " + invoice.StartHaven + ",CHINA");
@@ -218,6 +221,7 @@ namespace LZL.ForeignTrade.Controllers
                 wordhelper.GotoBookMark("maitou");//唛头
                 wordhelper.InsertText(invoice.Mark);
 
+                invoice.ProductSummary.Load();
                 Table table = wordhelper.AddTable(wordhelper.GotoBookMark("content"), invoice.ProductSummary.Count + 2, 6);
                 table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
                 table.PreferredWidth = 95;
@@ -231,53 +235,44 @@ namespace LZL.ForeignTrade.Controllers
                 string slunit = string.Empty;
                 double mzcount = 0;
                 double jzcount = 0;
-                double jgcount = 0;
+                //double jgcount = 0;
                 double tjcount = 0;
+
                 for (int i = 0; i < invoice.ProductSummary.Count; i++)
                 {
-                    invoice.ProductSummary.ElementAt(i).ProductReference.Load();
-                    Guid productid = invoice.ProductSummary.ElementAt(i).Product.ID;
+                    ProductSummary productSummary = invoice.ProductSummary.ElementAt(i);
+                    productSummary.ProductReference.Load();
+
                     Product product = invoice.ProductSummary.ElementAt(i).Product;
-                    if (product == null)
-                    {
-                        product = new Product();
-                    }
-                    invoice.ProductSummary.Load();
-
-                    for (int s = 0; s < invoice.ProductSummary.Count; s++)
-                    {
-                        invoice.ProductSummary.ElementAt(s).ProductReference.Load();
-                    }
-
-                    ProductSummary productSummary = invoice.ProductSummary.Where( v => v.ProductReference.Value.Equals(product)).FirstOrDefault();
-                     
-                    if (productSummary == null)
-                    {
-                        productSummary = new ProductSummary();
-                    }
+                 
                     table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : (product.NameCode + " " + product.NameEH);
                     table.Cell(count, 1).Select();
                     table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    jscount += invoice.ProductSummary.ElementAt(i).PieceAmount.GetValueOrDefault();//件数
 
-                    jsunit = DataHelper.GetDictionaryName(invoice.ProductSummary.ElementAt(i).PackUnitEN);
-                    table.Cell(count, 2).Range.Text = invoice.ProductSummary.ElementAt(i).PieceAmount.GetValueOrDefault() + jsunit;
-                    slcount += productSummary.Amount.GetValueOrDefault();
-                    slunit = DataHelper.GetDictionaryName(productSummary.UnitEN);
-                    table.Cell(count, 3).Range.Text = productSummary.Amount.GetValueOrDefault() + slunit;
-                    mzcount += invoice.ProductSummary.ElementAt(i).GrossWeight.GetValueOrDefault();//毛重
-                    table.Cell(count, 4).Range.Text = invoice.ProductSummary.ElementAt(i).GrossWeight.GetValueOrDefault() + "KG";
-                    jzcount += invoice.ProductSummary.ElementAt(i).NetWeight.GetValueOrDefault();//净重
-                    table.Cell(count, 5).Range.Text = invoice.ProductSummary.ElementAt(i).NetWeight.GetValueOrDefault() + "KG";
+                    jscount += productSummary.PieceAmount.Value;//包装件数
+                    jsunit = DataHelper.GetDictionaryName(productSummary.PackUnitEN);//包装单位
+                    table.Cell(count, 2).Range.Text = productSummary.PieceAmount.GetValueOrDefault() + jsunit;//组合显示
+
+                    slcount += productSummary.ProductAmount.GetValueOrDefault();//总数
+                    slunit = DataHelper.GetDictionaryName(productSummary.UnitEN);//单件单位
+                    table.Cell(count, 3).Range.Text = productSummary.ProductAmount.GetValueOrDefault() + slunit;
+
+                    mzcount += productSummary.GrossWeight.GetValueOrDefault();//毛重
+                    table.Cell(count, 4).Range.Text = productSummary.GrossWeight.GetValueOrDefault() + "KG";
+                    jzcount += productSummary.NetWeight.GetValueOrDefault();//净重
+                    table.Cell(count, 5).Range.Text = productSummary.NetWeight.GetValueOrDefault() + "KG";
+
                     //显示报关价格
                     //table.Cell(count, 6).Range.Text = productSummary.ExportPrice.GetValueOrDefault().ToString();
+
                     //显示单款总体积
-                    double dTemp = invoice.ProductSummary.ElementAt(i).PackBulk.GetValueOrDefault();
+                    double dTemp = productSummary.PackBulk.GetValueOrDefault();
                     table.Cell(count, 6).Range.Text = dTemp.ToString();
                     tjcount += dTemp;
 
                     //jgcount += productSummary.ExportAmount.GetValueOrDefault();//价格总和
                     //table.Cell(count, 7).Range.Text = productSummary.ExportAmount.GetValueOrDefault().ToString();
+
                     count++;
                 }
                 table.Cell(count, 1).Merge(table.Cell(count, 6));
@@ -386,6 +381,7 @@ namespace LZL.ForeignTrade.Controllers
                 }
                 excelhepler.WriteValue(14, 4, invoice.ExportContractsName);
 
+                //汇总包装和净重等信息
                 excelhepler.WriteValue(14, 4, invoice.ProductSummary.Sum(v => v.PieceAmount).GetValueOrDefault() + dw);//包装件数
                 excelhepler.WriteValue(14, 6, dw);//包装单位
                 excelhepler.WriteValue(14, 8, invoice.ProductSummary.Sum(v => v.GrossWeight).GetValueOrDefault() + "KGS");//包装毛重
@@ -561,9 +557,6 @@ namespace LZL.ForeignTrade.Controllers
                 }
 
                 //添加唛头
-                wordhelper.GotoBookMark("childContentMt");
-                wordhelper.InsertText(invoice.Mark);
-
                 Table table = wordhelper.AddTable(wordhelper.GotoBookMark("childContentArea"), invoice.ProductSummary.Count + 2, 7);
                 table.PreferredWidthType = WdPreferredWidthType.wdPreferredWidthPercent;
                 table.PreferredWidth = 95;
@@ -579,49 +572,40 @@ namespace LZL.ForeignTrade.Controllers
                 double jzcount = 0;
                 double jgcount = 0;
                 double zongtiji = 0;
+
                 for (int i = 0; i < invoice.ProductSummary.Count; i++)
                 {
-                    invoice.ProductSummary.ElementAt(i).ProductReference.Load();
-                    Guid productid = invoice.ProductSummary.ElementAt(i).Product.ID;
-                    Product product = _Entities.Product.Where(v => v.ID.Equals(productid)).FirstOrDefault();
-                    if (product == null)
-                    {
-                        product = new Product();
-                    }
-                    invoice.ProductSummary.Load();
+                    ProductSummary productSummary = invoice.ProductSummary.ElementAt(i);
+                    productSummary.ProductReference.Load();
 
-                    for (int s = 0; s < invoice.ProductSummary.Count; s++)
-                    {
-                        invoice.ProductSummary.ElementAt(s).ProductReference.Load();
-                    }
+                    Product product = invoice.ProductSummary.ElementAt(i).Product;
 
-                    ProductSummary productSummary = invoice.ProductSummary.Where(v => v.ProductReference.Value.Equals(product)).FirstOrDefault();
-
-                    if (productSummary == null)
-                    {
-                        productSummary = new ProductSummary();
-                    }
                     table.Cell(count, 1).Range.Text = string.IsNullOrEmpty(product.NameCode) ? product.NameEH : (product.NameCode + " " + product.NameEH);
                     table.Cell(count, 1).Select();
                     table.Cell(count, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    jscount += invoice.ProductSummary.ElementAt(i).PieceAmount.GetValueOrDefault();//件数
+                    
+                    jscount += productSummary.PieceAmount.GetValueOrDefault();//件数
+                    jsunit = DataHelper.GetDictionaryName(productSummary.PackUnitEN);
+                    table.Cell(count, 2).Range.Text = productSummary.PieceAmount.GetValueOrDefault() + jsunit;
 
-                    jsunit = DataHelper.GetDictionaryName(invoice.ProductSummary.ElementAt(i).PackUnitEN);
-                    table.Cell(count, 2).Range.Text = invoice.ProductSummary.ElementAt(i).PieceAmount.GetValueOrDefault() + jsunit;
-                    slcount += productSummary.Amount.GetValueOrDefault();
+                    slcount += productSummary.ProductAmount.GetValueOrDefault();//商品总数
                     slunit = DataHelper.GetDictionaryName(productSummary.UnitEN);
-                    table.Cell(count, 3).Range.Text = productSummary.Amount.GetValueOrDefault() + slunit;
-                    mzcount += invoice.ProductSummary.ElementAt(i).GrossWeight.GetValueOrDefault();//毛重
-                    table.Cell(count, 4).Range.Text = invoice.ProductSummary.ElementAt(i).GrossWeight.GetValueOrDefault() + "KG";
-                    jzcount += invoice.ProductSummary.ElementAt(i).NetWeight.GetValueOrDefault();//净重
-                    table.Cell(count, 5).Range.Text = invoice.ProductSummary.ElementAt(i).NetWeight.GetValueOrDefault() + "KG";
-                    //显示报关价格
-                    table.Cell(count, 6).Range.Text = invoice.CurrencyType.ToString() + productSummary.ExportPrice.GetValueOrDefault().ToString();
-                    //显示单款总体积
-                    //table.Cell(count, 6).Range.Text = invoice.ProductSummary.ElementAt(i).PackBulk.GetValueOrDefault().ToString();
-                    zongtiji+= invoice.ProductSummary.ElementAt(i).PackBulk.GetValueOrDefault();
+                    table.Cell(count, 3).Range.Text = productSummary.ProductAmount.GetValueOrDefault() + slunit;//商品总数加上单位数
 
-                    jgcount += productSummary.ExportAmount.GetValueOrDefault();//价格总和
+                    mzcount += productSummary.GrossWeight.GetValueOrDefault();//毛重
+                    table.Cell(count, 4).Range.Text = productSummary.GrossWeight.GetValueOrDefault() + "KG";
+
+                    jzcount += productSummary.NetWeight.GetValueOrDefault();//净重
+                    table.Cell(count, 5).Range.Text = productSummary.NetWeight.GetValueOrDefault() + "KG";
+
+                    //显示外销单价
+                    table.Cell(count, 6).Range.Text = invoice.CurrencyType.ToString() + productSummary.ExportPrice.GetValueOrDefault().ToString();
+
+                    //显示单款总体积
+                    //table.Cell(count, 6).Range.Text = productSummary.PackBulk.GetValueOrDefault().ToString();
+                    zongtiji+= productSummary.PackBulk.GetValueOrDefault();
+
+                    jgcount += productSummary.ExportAmount.GetValueOrDefault();//外销总金额
                     table.Cell(count, 7).Range.Text = invoice.CurrencyType.ToString() + productSummary.ExportAmount.GetValueOrDefault().ToString();
                     count++;
                 }

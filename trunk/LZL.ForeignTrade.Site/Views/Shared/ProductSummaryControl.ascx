@@ -86,7 +86,7 @@
                     if (thistr.find("#ProductSummary♂SingleProductAmount").val() != "") {
                         var tj = Number(thistr.find("#ProductSummary♂ProductAmount").val()) / Number(thistr.find("#ProductSummary♂SingleProductAmount").val());
                         if (tj != 0) {
-                            thistr.find("#ProductSummary♂PieceAmount").val(tj.toFixed(2));
+                            thistr.find("#ProductSummary♂PieceAmount").val(tj.toFixed(0));
                         }
                     }
                 }); //包装件数
@@ -152,7 +152,7 @@
                     if (thistr.find("#ProductSummary♂SingleProductAmount").val() != "") {
                         var tj = Number(thistr.find("#ProductSummary♂ProductAmount").val()) / Number(thistr.find("#ProductSummary♂SingleProductAmount").val());
                         if (tj != 0) {
-                            thistr.find("#ProductSummary♂PieceAmount").val(tj.toFixed(2));
+                            thistr.find("#ProductSummary♂PieceAmount").val(tj.toFixed(0));
                         }
                     }
 
@@ -181,13 +181,13 @@
                     }
 
                     //进销总金额
-                    tj = Number(thistr.find("#ProductSummary♂PurchasePrice").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    tj = Number(thistr.find("#ProductSummary♂PurchasePrice").val()) * Number(thistr.find("#ProductSummary♂ProductAmount").val());
                     if (tj != 0) {
                         thistr.find("#ProductSummary♂PurchaseTotalPrice").val(tj.toFixed(2));
                     }
 
                     //外销总金额
-                    tj = Number(thistr.find("#ProductSummary♂ExportPrice").val()) * Number(thistr.find("#ProductSummary♂PieceAmount").val());
+                    tj = Number(thistr.find("#ProductSummary♂ExportPrice").val()) * Number(thistr.find("#ProductSummary♂ProductAmount").val());
                     if (tj != 0) {
                         thistr.find("#ProductSummary♂ExportAmount").val(tj.toFixed(2));
                     }
@@ -216,7 +216,7 @@
                                   thistr.find("input[name = 'ProductSummary♂CustomsCode']").val(rowItems[1]);
                               }
                               else if (rowItems[0] == "PackUnitEN") {
-                                  thistr.find("input[name = 'ProductSummary♂PackUnitEN']").val(rowItems[1]);
+                                  thistr.find("select[name = 'ProductSummary♂UnitEN']").val(rowItems[1]);
                               } else if (rowItems[0] == "NameEH") {
                                   thistr.find("textarea[name = 'ProductSummary♂DescriptionEN']").val(rowItems[1]);
                               } else if (rowItems[0] == "PackAmount") {
@@ -279,28 +279,28 @@
                     商品数量
                 </th>
                 <th>
-                    商品数量(单件包装)
-                </th>
-                <th>
-                    包装件数
-                </th>
-                <th>
-                    商品单位(英文)
+                    商品单位
                 </th>
                 <th>
                     商品外销单价
                 </th>
                 <th>
-                    商品进货单价
+                    商品外销总金额
                 </th>
                 <th>
-                    商品外销总金额
+                    商品进货单价
                 </th>
                 <th>
                     商品进货总金额
                 </th>
                 <th>
-                    包装单位(英文)
+                    商品数量(单件包装)
+                </th>
+                <th>
+                    包装箱数
+                </th>
+                <th>
+                    包装单位
                 </th>
                 <th>
                     包装长度(CM)
@@ -316,15 +316,6 @@
                 </th>
                 <th>
                     包装总体积(CBM)
-                </th>
-                <th>
-                    内盒商品数量
-                </th>
-                <th>
-                    内盒件数(单包装)
-                </th>
-                <th>
-                    内盒单位(英文)
                 </th>
                 <th>
                     (单件)包装毛重(KG)
@@ -460,6 +451,101 @@
                         }
                     %>
                 </td>
+                <td width="8%">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择", new { style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.DropDownList("ProductSummary♂UnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].UnitEN)), "请选择", new { style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].UnitEN)));
+                            }
+                        }
+                    %>
+                </td>
+                <td width="10%">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂ExportPrice", "", new { validate = "number:true", style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂ExportPrice", Html.Encode(Model[i].ExportPrice), new { validate = "number:true", style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].ExportPrice));
+                            }
+                        }
+                    %>
+                </td>
+                <td width="10%">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true", style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true", style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].ExportAmount));
+                            }
+                        }
+                    %>
+                </td>
+                <td width="10%">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", "", new { validate = "number:true", style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", Html.Encode(Model[i].PurchasePrice), new { validate = "number:true", style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].PurchasePrice));
+                            }
+                        }
+                    %>
+                </td>
+                <td width="10%">
+                    <%
+                        if (Model == null)
+                        {
+                            Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", "", new { validate = "number:true", style = "width:60px;" }));
+                        }
+                        else
+                        {
+                            if (ViewData["Details"] == null)
+                            {
+                                Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", Html.Encode(Model[i].PurchaseTotalPrice), new { validate = "number:true", style = "width:60px;" }));
+                            }
+                            else
+                            {
+                                Response.Write(Html.Encode(Model[i].PurchasePrice));
+                            }
+                        }
+                    %>
+                </td>
                 <td>
                     <%
                         if (Model == null)
@@ -494,101 +580,6 @@
                             else
                             {
                                 Response.Write(Html.Encode(Model[i].PieceAmount));
-                            }
-                        }
-                    %>
-                </td>
-                <td width="8%">
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.DropDownList("ProductSummary♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择", new { style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.DropDownList("ProductSummary♂PackUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].UnitEN)), "请选择", new { style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].UnitEN)));
-                            }
-                        }
-                    %>
-                </td>
-                <td width="10%">
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportPrice", "", new { validate = "number:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂ExportPrice", Html.Encode(Model[i].ExportPrice), new { validate = "number:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].ExportPrice));
-                            }
-                        }
-                    %>
-                </td>
-                <td width="10%">
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", "", new { validate = "number:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂PurchasePrice", Html.Encode(Model[i].PurchasePrice), new { validate = "number:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].PurchasePrice));
-                            }
-                        }
-                    %>
-                </td>
-                <td width="10%">
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].ExportAmount));
-                            }
-                        }
-                    %>
-                </td>
-                <td width="10%">
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", "", new { validate = "number:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", Html.Encode(Model[i].PurchaseTotalPrice), new { validate = "number:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].PurchasePrice));
                             }
                         }
                     %>
@@ -711,63 +702,6 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂InsideProductAmount", "", new { validate = "digits:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂InsideProductAmount", Html.Encode(Model[i].InsideProductAmount), new { validate = "digits:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].InsideProductAmount));
-                            }
-                        }
-                    %>
-                </td>
-                <td>
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.TextBox("ProductSummary♂SingleInsidePiece", "", new { validate = "digits:true", style = "width:60px;" }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.TextBox("ProductSummary♂SingleInsidePiece", Html.Encode(Model[i].SingleInsidePiece), new { validate = "digits:true", style = "width:60px;" }));
-                            }
-                            else
-                            {
-                                Response.Write(Html.Encode(Model[i].SingleInsidePiece));
-                            }
-                        }
-                    %>
-                </td>
-                <td>
-                    <%
-                        if (Model == null)
-                        {
-                            Response.Write(Html.DropDownList("ProductSummary♂InsideUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位"), "请选择", new { style = "width: 50px; " }));
-                        }
-                        else
-                        {
-                            if (ViewData["Details"] == null)
-                            {
-                                Response.Write(Html.DropDownList("ProductSummary♂InsideUnitEN", LZL.ForeignTrade.Controllers.DataHelper.GetDictionary("英文单位", Html.Encode(Model[i].InsideUnitEN)), "请选择", new { style = "width: 50px; " }));
-                            }
-                            else
-                            {
-                                Response.Write(LZL.ForeignTrade.Controllers.DataHelper.GetDictionaryName(Html.Encode(Model[i].InsideUnitEN)));
-                            }
-                        }
-                    %>
-                </td>
-                <td>
-                    <%
-                        if (Model == null)
-                        {
                             Response.Write(Html.TextBox("ProductSummary♂SingleGrossWeight", "", new { validate = "number:true", style = "width:60px;" }));
                         }
                         else
@@ -882,22 +816,6 @@
             $("#editableTable").addClass("dynamictablereadonly");
         }
         setreadonly();
-
-        $("#ProductSummary♂ExportAmount").attr("title", "双击自动获取运算值");
-        $("#ProductSummary♂PurchaseTotalPrice").attr("title", "双击自动获取运算值");
-
-        $("#ProductSummary♂ExportAmount").bind("dblclick", function() {
-            $(this).val(($(this).parent().parent().find("input[name='ProductSummary♂Amount']").val()) *
-                ($(this).parent().parent().find("input[name='ProductSummary♂ExportPrice']").val())
-                );
-        });
-
-        $("#ProductSummary♂PurchaseTotalPrice").bind("dblclick", function() {
-            $(this).val(($(this).parent().parent().find("input[name='ProductSummary♂Amount']").val()) *
-                ($(this).parent().parent().find("input[name='ProductSummary♂PurchasePrice']").val())
-                );
-        });
-    
     </script>
 
 </div>
