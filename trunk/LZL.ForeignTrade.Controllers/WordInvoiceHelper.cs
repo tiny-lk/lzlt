@@ -335,7 +335,11 @@ namespace LZL.ForeignTrade.Controllers
             using (ExcelHelper excelhepler = new ExcelHelper(targetpath))
             {
                 excelhepler.WriteValue(5, 2, invoice.StartHaven);//起运港口
-                excelhepler.WriteValue(5, 8, invoice.ShipmentDate.GetValueOrDefault().ToShortDateString() + "                    " + invoice.Date.ToShortDateString());//出运日期和申报日期
+                //装箱日期和出口日期，其中出口日期等于装箱日期-2天
+                if (invoice.ShipmentDate != null)
+                {
+                    excelhepler.WriteValue(5, 8, invoice.ShipmentDate.GetValueOrDefault().ToShortDateString() + "                    " + invoice.ShipmentDate.GetValueOrDefault().AddDays(-2).ToShortDateString());//出运日期和申报日期
+                }
 
                 if (invoice.CompanyID.HasValue)
                 {
@@ -354,7 +358,6 @@ namespace LZL.ForeignTrade.Controllers
                 excelhepler.WriteValue(10, 7, invoice.EdnHaven);//运抵港
                 excelhepler.WriteValue(12, 4, invoice.PriceClause);//价格条款
 
-                invoice.ProductSummary.Load();
                 invoice.ProductSummary.Load();
                 string dw = string.Empty;
                 if (invoice.ProductSummary.Count > 0)
@@ -388,7 +391,7 @@ namespace LZL.ForeignTrade.Controllers
                 excelhepler.WriteValue(14, 11, invoice.ProductSummary.Sum(v => v.NetWeight).GetValueOrDefault() + "KGS");//包装净重
                 excelhepler.WriteValue(18, 2, invoice.Mark);//添加唛头
                 excelhepler.WriteValue(23, 6, invoice.TansportCountry);//运抵国
-                excelhepler.WriteValue(23, 10, invoice.PriceClause + "  " + invoice.StartHaven);//成交方式和起运港口
+                excelhepler.WriteValue(23, 10, invoice.PriceClause + "  " + invoice.EdnHaven);//成交方式和目的港口
 
                 var groupproduct = invoice.ProductSummary.GroupBy(v => v.CustomsCode);
                 int startrow = 24;
@@ -401,18 +404,25 @@ namespace LZL.ForeignTrade.Controllers
                     excelhepler.MergeCell(startrow, 1, 2);
                     excelhepler.SetCellAlignment(startrow, 1, 1);//设置格式
 
+                    string strHgbm = string.Empty;
+                    string strDw = string.Empty;
+
                     for (int i = 0; i < item.Count(); i++)
                     {
-                        excelhepler.WriteValue(startrow, 1, item.ElementAt(i).CustomsCode);                      
-                        excelhepler.WriteValue(startrow, 5, item.ElementAt(i).PieceAmount + dw);
-
-                        jehj += item.ElementAt(i).ExportAmount.GetValueOrDefault();
-                        excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + item.ElementAt(i).ExportAmount);
+                        strHgbm = string.Format("{0}({1})", item.ElementAt(i).CustomsCode, item.ElementAt(i).DescriptionEN);
+                        strDw = DataHelper.GetDictionaryName(item.ElementAt(i).UnitEN);
                     }
+
+                    excelhepler.WriteValue(startrow, 1, strHgbm);
+                    excelhepler.WriteValue(startrow, 5, item.Sum(v => v.ProductAmount) + strDw);
+
+                    jehj += item.Sum(v => v.ExportAmount).GetValueOrDefault();
+                    excelhepler.WriteValue(startrow, 10, invoice.CurrencyType + "  " + item.Sum(v => v.ExportAmount));
+
                     startrow++;
                 }
 
-                if (groupproduct.Count() > 1)
+                if (groupproduct.Count() >= 1)
                 {
                     startrow++;
                     excelhepler.MergeCell(startrow, 3, 11);
