@@ -126,7 +126,7 @@
 
                 $("#ProductSummary°·PurchaseTotalPrice").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
-                    var tj = Number(thistr.find("#ProductSummary°·PurchasePrice").val()) * Number(thistr.find("#ProductSummary°·PieceAmount").val());
+                    var tj = Number(thistr.find("#ProductSummary°·PurchasePrice").val()) * Number(thistr.find("#ProductSummary°·ProductAmount").val());
                     if (tj != 0) {
                         thistr.find("#ProductSummary°·PurchaseTotalPrice").val(tj.toFixed(2));
                     }
@@ -134,7 +134,7 @@
 
                 $("#ProductSummary°·ExportAmount").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
-                    var tj = Number(thistr.find("#ProductSummary°·ExportPrice").val()) * Number(thistr.find("#ProductSummary°·PieceAmount").val());
+                    var tj = Number(thistr.find("#ProductSummary°·ExportPrice").val()) * Number(thistr.find("#ProductSummary°·ProductAmount").val());
                     if (tj != 0) {
                         thistr.find("#ProductSummary°·ExportAmount").val(tj.toFixed(2));
                     }
