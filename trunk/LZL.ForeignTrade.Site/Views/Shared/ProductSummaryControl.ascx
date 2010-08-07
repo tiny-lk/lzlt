@@ -258,46 +258,53 @@
     <table id="editableTable" class="dynamictable" cellspacing="0" cellpadding="0" border="0"
         width="100%" style="margin-left: 0px; padding-left: 0px;">
         <thead class="header">
-            <tr>
+            <tr style="cursor:pointer; background-color:Silver;" title="点击列进行排序">
                 <%if (ViewData["Details"] == null)
                   {%>
                 <th>
-                    <br />
-                    操作<input style="width: 60px;" />
+                   
+                    &nbsp;操&nbsp;作&nbsp;
                 </th>
                 <%} %>
                 <th>
                     商品款号
                 </th>
                 <th>
-                    商品编码(HS编码)
+                    商品编码<br />
+                    (HS编码)
                 </th>
                 <th>
-                    商品描述(英文)
+                    商品描述<br />
+                    (英文)
                 </th>
                 <th>
-                    商品数量
+                    商品<br />
+                    数量
                 </th>
                 <th>
                     商品单位
                 </th>
                 <th>
-                    商品外销单价
+                    商品外<br />
+                    销单价
                 </th>
                 <th>
-                    商品外销总金额
+                    商品外销<br />
+                    总金额
                 </th>
                 <th>
-                    商品进货单价
+                    商品进货<br />
+                    单价
                 </th>
                 <th>
-                    商品进货总金额
+                    商品进货<br />
+                    总金额
                 </th>
                 <th>
-                    商品数量(单件包装)
+                    单件商品数量
                 </th>
                 <th>
-                    包装箱数
+                    包装<br />箱数
                 </th>
                 <th>
                     包装单位
@@ -312,22 +319,28 @@
                     包装高度(CM)
                 </th>
                 <th>
-                    (单件)包装体积(CBM)
+                    (单件)包装<br />
+                    体积(CBM)
                 </th>
                 <th>
-                    包装总体积(CBM)
+                    包装总体积<br />
+                    (CBM)
                 </th>
                 <th>
-                    (单件)包装毛重(KG)
+                    (单件)包装<br />
+                    毛重(KG)
                 </th>
                 <th>
-                    (单件)包装净重(KG)
+                    (单件)包装<br />
+                    净重(KG)
                 </th>
                 <th>
-                    总包装毛重(KG)
+                    总包装毛重<br />
+                    (KG)
                 </th>
                 <th>
-                    总包装净重(KG)
+                    总包装净重<br />
+                    (KG)
                 </th>
                 <th>
                     备注
@@ -363,7 +376,7 @@
                
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:80px;" }));
+                            Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:120px;height:30px;" }));
                             Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                             Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex','ProductSummary♂CustomsCode')>选择</a>");
                         }
@@ -374,12 +387,12 @@
                             {
                                 if (Model[i].Product != null)
                                 {
-                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:80px;height:40px;" }));
+                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", Model[i].Product.NameCode, new { style = "width:120px;height:30px;" }));
                                     Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", Model[i].Product.ID, new { copyvalue = true }));
                                 }
                                 else
                                 {
-                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:80px;height:40px;" }));
+                                    Response.Write(Html.TextBox("_ProductSummary♂ProductID", "", new { style = "width:120px;height:30px;" }));
                                     Response.Write(Html.Hidden("ProductSummary♂propertyobjectvalue", "", new { copyvalue = true }));
                                 }
                                 Response.Write("<br/><a href='#'onclick=LoadControlList(this,'ProductIndex','ProductSummary♂CustomsCode')>选择</a>");
@@ -398,13 +411,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", "", new { style = "width:60px;height:40px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂CustomsCode", "", new { style = "width:80px;height:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂CustomsCode", Html.Encode(Model[i].CustomsCode), new { style = "width:60px;height:40px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂CustomsCode", Html.Encode(Model[i].CustomsCode), new { style = "width:80px;height:40px;" }));
                             }
                             else
                             {
@@ -436,13 +449,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂ProductAmount", "", new { validate = "digits:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂ProductAmount", "", new { validate = "digits:true", style = "width:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂ProductAmount", Html.Encode(Model[i].ProductAmount), new { validate = "digits:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂ProductAmount", Html.Encode(Model[i].ProductAmount), new { validate = "digits:true", style = "width:40px;" }));
                             }
                             else
                             {
@@ -474,13 +487,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportPrice", "", new { validate = "number:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂ExportPrice", "", new { validate = "number:true", style = "width:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂ExportPrice", Html.Encode(Model[i].ExportPrice), new { validate = "number:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂ExportPrice", Html.Encode(Model[i].ExportPrice), new { validate = "number:true", style = "width:40px;" }));
                             }
                             else
                             {
@@ -493,13 +506,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂ExportAmount", "", new { validate = "number:true", style = "width:70px;height:30px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂ExportAmount", Html.Encode(Model[i].ExportAmount), new { validate = "number:true", style = "width:70px;height:30px;" }));
                             }
                             else
                             {
@@ -531,13 +544,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", "", new { validate = "number:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", "", new { validate = "number:true", style = "width:70px;height:30px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", Html.Encode(Model[i].PurchaseTotalPrice), new { validate = "number:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂PurchaseTotalPrice", Html.Encode(Model[i].PurchaseTotalPrice), new { validate = "number:true", style = "width:70px;height:30px;" }));
                             }
                             else
                             {
@@ -550,13 +563,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂SingleProductAmount", "", new { validate = "digits:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂SingleProductAmount", "", new { validate = "digits:true", style = "width:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂SingleProductAmount", Html.Encode(Model[i].SingleProductAmount), new { validate = "digits:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂SingleProductAmount", Html.Encode(Model[i].SingleProductAmount), new { validate = "digits:true", style = "width:40px;" }));
                             }
                             else
                             {
@@ -569,13 +582,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂PieceAmount", "", new { validate = "digits:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂PieceAmount", "", new { validate = "digits:true", style = "width:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂PieceAmount", Html.Encode(Model[i].PieceAmount), new { validate = "digits:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂PieceAmount", Html.Encode(Model[i].PieceAmount), new { validate = "digits:true", style = "width:40px;" }));
                             }
                             else
                             {
@@ -607,13 +620,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂PackLength", "", new { validate = "number:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂PackLength", "", new { validate = "number:true", style = "width:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂PackLength", Html.Encode(Model[i].PackLength), new { validate = "number:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂PackLength", Html.Encode(Model[i].PackLength), new { validate = "number:true", style = "width:40px;" }));
                             }
                             else
                             {
@@ -626,13 +639,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂PackWidth", "", new { validate = "number:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂PackWidth", "", new { validate = "number:true", style = "width:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂PackWidth", Html.Encode(Model[i].PackWidth), new { validate = "number:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂PackWidth", Html.Encode(Model[i].PackWidth), new { validate = "number:true", style = "width:40px;" }));
                             }
                             else
                             {
@@ -645,13 +658,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂PackHeight", "", new { validate = "number:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂PackHeight", "", new { validate = "number:true", style = "width:40px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂PackHeight", Html.Encode(Model[i].PackHeight), new { validate = "number:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂PackHeight", Html.Encode(Model[i].PackHeight), new { validate = "number:true", style = "width:40px;" }));
                             }
                             else
                             {
@@ -740,13 +753,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂GrossWeight", "", new { validate = "number:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂GrossWeight", "", new { validate = "number:true", style = "width:80px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂GrossWeight", Html.Encode(Model[i].GrossWeight), new { validate = "number:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂GrossWeight", Html.Encode(Model[i].GrossWeight), new { validate = "number:true", style = "width:80px;" }));
                             }
                             else
                             {
@@ -759,13 +772,13 @@
                     <%
                         if (Model == null)
                         {
-                            Response.Write(Html.TextBox("ProductSummary♂NetWeight", "", new { validate = "number:true", style = "width:60px;" }));
+                            Response.Write(Html.TextBox("ProductSummary♂NetWeight", "", new { validate = "number:true", style = "width:80px;" }));
                         }
                         else
                         {
                             if (ViewData["Details"] == null)
                             {
-                                Response.Write(Html.TextBox("ProductSummary♂NetWeight", Html.Encode(Model[i].NetWeight), new { validate = "number:true", style = "width:60px;" }));
+                                Response.Write(Html.TextBox("ProductSummary♂NetWeight", Html.Encode(Model[i].NetWeight), new { validate = "number:true", style = "width:80px;" }));
                             }
                             else
                             {
