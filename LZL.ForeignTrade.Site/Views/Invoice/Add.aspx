@@ -612,7 +612,7 @@
                 </tr>
             </tfoot>
         </table>
-        <table width="100%" id="tabs-2">
+        <table class="list" width="100%" id="tabs-2">
             <caption>
                 商品信息
             </caption>
