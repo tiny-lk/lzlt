@@ -45,17 +45,20 @@
                 }
                 var copyobj = $($("#editableTable tr")[$("#editableTable tr").length - 1])
                 var copyhtml = $(copyobj).clone(true);
+
                 $.each($(copyhtml).find("input[type='hidden']"), function(i, o) {
                     var copyvalue = $(o).attr("copyvalue");
-                    if (copyvalue == null || copyvalue == "") {
+                    if (copyvalue == null || copyvalue == "" || typeof (copyvalue) == "undefined") {
                         $(o).val("");
                     }
                 });
-                $(copyhtml).find("input[type='text']").removeAttr("id");
+
+                //需要删掉，否则会导致新增一行的事件有问题
+                //$(copyhtml).find("input[type='text']").removeAttr("id");
                 $(copyhtml).find('.' + $.datepicker.markerClassName).removeClass($.datepicker.markerClassName)
                 $(copyobj).parent().append(copyhtml);
 
-                init();
+                initData();
             }
             function removeRow(regionname) {
                 var obj = $(regionname).closest("table").siblings("div[id='divProductSummaryRegion']");
@@ -82,14 +85,16 @@
                 $("#ProductSummary♂ExportAmount").attr("title", "双击自动获取运算值");
 
                 $("#ProductSummary♂PieceAmount").live("dblclick", function(thisObj) {
+                    alert('test');
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
+                    alert(thistr);
                     if (thistr.find("#ProductSummary♂SingleProductAmount").val() != "") {
                         var tj = Number(thistr.find("#ProductSummary♂ProductAmount").val()) / Number(thistr.find("#ProductSummary♂SingleProductAmount").val());
                         if (tj != 0) {
                             thistr.find("#ProductSummary♂PieceAmount").val(tj.toFixed(0));
                         }
                     }
-                }); //包装件数
+                });   //包装件数
 
                 $("#ProductSummary♂SinglePackBulk").live("dblclick", function(thisObj) {
                     var thistr = $($(thisObj)[0].srcElement).closest("tr");
@@ -258,11 +263,10 @@
     <table id="editableTable" class="dynamictable" cellspacing="0" cellpadding="0" border="0"
         width="100%" style="margin-left: 0px; padding-left: 0px;">
         <thead class="header">
-            <tr style="cursor:pointer; background-color:Silver;" title="点击列进行排序">
+            <tr style="cursor: pointer; background-color: Silver;" title="点击列进行排序">
                 <%if (ViewData["Details"] == null)
                   {%>
                 <th>
-                   
                     &nbsp;操&nbsp;作&nbsp;
                 </th>
                 <%} %>
@@ -304,7 +308,8 @@
                     单件商品数量
                 </th>
                 <th>
-                    包装<br />箱数
+                    包装<br />
+                    箱数
                 </th>
                 <th>
                     包装单位
@@ -502,7 +507,7 @@
                         }
                     %>
                 </td>
-                <td width="10%">
+                <td width="10%"  style="background-color: Silver">
                     <%
                         if (Model == null)
                         {
@@ -540,7 +545,7 @@
                         }
                     %>
                 </td>
-                <td width="10%">
+                <td width="10%" style="background-color: Silver">
                     <%
                         if (Model == null)
                         {
@@ -578,7 +583,7 @@
                         }
                     %>
                 </td>
-                <td>
+                <td style="background-color: Silver">
                     <%
                         if (Model == null)
                         {
@@ -673,7 +678,7 @@
                         }
                     %>
                 </td>
-                <td>
+                <td style="background-color: Silver">
                     <%
                         if (Model == null)
                         {
@@ -692,7 +697,7 @@
                         }
                     %>
                 </td>
-                <td>
+                <td style="background-color: Silver">
                     <%
                         if (Model == null)
                         {
@@ -749,7 +754,7 @@
                         }
                     %>
                 </td>
-                <td>
+                <td style="background-color: Silver">
                     <%
                         if (Model == null)
                         {
@@ -768,7 +773,7 @@
                         }
                     %>
                 </td>
-                <td>
+                <td style="background-color: Silver">
                     <%
                         if (Model == null)
                         {
