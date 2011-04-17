@@ -61,21 +61,22 @@ namespace LZL.ForeignTrade.Controllers
 
             Product enProduct = entities.Product.Where(v => v.ID.Equals(guid)).FirstOrDefault();
 
-            Dictionary<string,object> lstReturn = new Dictionary<string,object>();
-            lstReturn.Add("PackUnitEN", enProduct.PackUnitEN);//英文包装单位
-            lstReturn.Add("NameEH", Server.HtmlEncode(enProduct.NameEH));//商品英文名称
-            lstReturn.Add("PackAmount", enProduct.PackAmount);//单件包装数量
-            lstReturn.Add("CustomsCode", enProduct.CustomsCode);//海关编码
-            lstReturn.Add("PackLength", enProduct.PackLength);//包装的长
-            lstReturn.Add("PackWidth", enProduct.PackWidth);//包装的宽
-            lstReturn.Add("PackHeight", enProduct.PackHeight);//包装的高
-            lstReturn.Add("PackBulk", enProduct.PackBulk);//单件包装体积
-            lstReturn.Add("PackGrossWeight", enProduct.PackGrossWeight);//单件包装毛重
-            lstReturn.Add("PackNetWeight", enProduct.PackNetWeight);//单件包装净重
-            lstReturn.Add("BoxAmount", enProduct.BoxAmount);//内盒商品数量
-            lstReturn.Add("BoxUnitEN", enProduct.BoxUnitEN);//内盒英文单位
+            //Dictionary<string,object> lstReturn = new Dictionary<string,object>();
+            StringBuilder lstReturn = new StringBuilder();
+            lstReturn.Append("PackUnitEN:"+enProduct.PackUnitEN);//英文包装单位
+            lstReturn.Append(",NameEH:"+ Server.HtmlEncode(enProduct.NameEH));//商品英文名称
+            lstReturn.Append(",PackAmount:"+ enProduct.PackAmount);//单件包装数量
+            lstReturn.Append(",CustomsCode:"+ enProduct.CustomsCode);//海关编码
+            lstReturn.Append(",PackLength:"+ enProduct.PackLength);//包装的长
+            lstReturn.Append(",PackWidth:"+ enProduct.PackWidth);//包装的宽
+            lstReturn.Append(",PackHeight:"+ enProduct.PackHeight);//包装的高
+            lstReturn.Append(",PackBulk:"+ enProduct.PackBulk);//单件包装体积
+            lstReturn.Append(",PackGrossWeight:"+ enProduct.PackGrossWeight);//单件包装毛重
+            lstReturn.Append(",PackNetWeight:"+ enProduct.PackNetWeight);//单件包装净重
+            lstReturn.Append(",BoxAmount:"+ enProduct.BoxAmount);//内盒商品数量
+            lstReturn.Append(",BoxUnitEN:"+ enProduct.BoxUnitEN);//内盒英文单位
             
-            return Json(lstReturn);
+            return Json(lstReturn.ToString());
         }
 
         public JsonResult GetAutocompleteValue(string t, string f)
