@@ -44,9 +44,7 @@
         function submitInfo() {
             $("#btnTj").click();
         }
-    </script>
-
-    <script type="text/javascript">
+  
         $(document).ready(function() {
             $("input[name='_Invoice°·CustomerID']").autocomplete('<%=Url.Action("GetAutocompleteValue2","Shared")%>',
                 { max: 20,
