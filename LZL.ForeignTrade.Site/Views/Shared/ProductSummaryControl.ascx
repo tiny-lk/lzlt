@@ -85,9 +85,8 @@
                 $("#ProductSummary♂ExportAmount").attr("title", "双击自动获取运算值");
 
                 $("#ProductSummary♂PieceAmount").live("dblclick", function(thisObj) {
-                    alert('test');
-                    var thistr = $($(thisObj)[0].srcElement).closest("tr");
-                    alert(thistr);
+                    
+                    var thistr = $($(thisObj)[0].srcElement).closest("tr");                   
                     if (thistr.find("#ProductSummary♂SingleProductAmount").val() != "") {
                         var tj = Number(thistr.find("#ProductSummary♂ProductAmount").val()) / Number(thistr.find("#ProductSummary♂SingleProductAmount").val());
                         if (tj != 0) {
